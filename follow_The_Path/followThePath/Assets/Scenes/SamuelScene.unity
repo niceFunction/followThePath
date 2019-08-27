@@ -284,10 +284,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 083e0dff752615a4c92dd40a17504939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  midtTilePrefabs:
-  - {fileID: 6018356802307206504, guid: f8f82bc2a6286cd4cae31d181e67b1e3, type: 3}
-  - {fileID: 4011726797962897641, guid: da15776e1f344314e99a5b7de392b52c, type: 3}
-  - {fileID: 5138348526502406975, guid: 9a4b7b8a40cfec747b3fe1649518fb5e, type: 3}
 --- !u!4 &297212781 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7589039226730762048, guid: 40965167264009a4fa37baacba136d6c,
