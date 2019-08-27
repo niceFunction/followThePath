@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1655146093232460286}
+  - component: {fileID: 7929489349442135356}
   m_Layer: 0
   m_Name: RightEnter_LeftExit
   m_TagString: Untagged
@@ -32,6 +33,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7929489349442135356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655146093232460257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e1f208203daac04c91a3fa0d8d45438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  length: 19.9
+  connectsTo:
+  - {fileID: 6605387719196314318, guid: 238b1342d2e23f6499a1c5180fe97796, type: 3}
 --- !u!1 &1655146094282405606
 GameObject:
   m_ObjectHideFlags: 0

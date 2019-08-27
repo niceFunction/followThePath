@@ -115,6 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5275454494301271953}
+  - component: {fileID: 4293288189466454470}
   m_Layer: 0
   m_Name: RightEnter_MidExit
   m_TagString: Untagged
@@ -138,6 +139,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4293288189466454470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739456368454270791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e1f208203daac04c91a3fa0d8d45438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  length: 19.9
+  connectsTo:
+  - {fileID: -368675456781376960, guid: 9a4b7b8a40cfec747b3fe1649518fb5e, type: 3}
 --- !u!1001 &7249002091610168667
 PrefabInstance:
   m_ObjectHideFlags: 0
