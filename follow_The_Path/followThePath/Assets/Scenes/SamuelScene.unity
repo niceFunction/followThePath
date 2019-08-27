@@ -149,9 +149,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ad2094f7ff86e48b98370c9dc9cb23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startTile: {fileID: 297212780}
   leftTilePrefabs: []
   midTilePrefabs: []
   rightTilePrefabs: []
+  tileLength: 19.9
+  tilesToSpawn: 20
 --- !u!4 &118363635
 Transform:
   m_ObjectHideFlags: 0
@@ -266,22 +269,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!1 &297212779 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1882914710240246826, guid: 40965167264009a4fa37baacba136d6c,
+--- !u!114 &297212780 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -1247893802609552284, guid: 40965167264009a4fa37baacba136d6c,
     type: 3}
   m_PrefabInstance: {fileID: 788288988}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &297212780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 297212779}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 083e0dff752615a4c92dd40a17504939, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e1f208203daac04c91a3fa0d8d45438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &297212781 stripped
