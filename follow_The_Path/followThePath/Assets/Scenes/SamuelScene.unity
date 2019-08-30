@@ -153,7 +153,7 @@ MonoBehaviour:
   leftTilePrefabs: []
   midTilePrefabs: []
   rightTilePrefabs: []
-  tileLength: 19.9
+  tileLength: 20
   tilesToSpawn: 20
 --- !u!4 &118363635
 Transform:
