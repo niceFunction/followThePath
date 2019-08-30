@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    [SerializeField] private float length = 19.9f;
+    [SerializeField] private float length = 20f;
 
     [SerializeField] private Tile[] connectsTo;
 

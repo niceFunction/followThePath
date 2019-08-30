@@ -19,7 +19,7 @@ public class scr_CameraFollow : MonoBehaviour
     {
         if (!target)
         {
-            target = GameObject.Find("Player(Clone)").transform;
+            target = GameObject.FindGameObjectWithTag("Player").transform;
         }
             Vector3 desiredPosition = target.position + offset;
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
