@@ -14,7 +14,7 @@ public class scr_TileManager : MonoBehaviour
     [SerializeField] private GameObject[] midTilePrefabs;
     [SerializeField] private GameObject[] rightTilePrefabs;
 
-    [SerializeField] private float tileLength = 20f;
+    [SerializeField] private float tileLength = 19.99f;
     [SerializeField] private int tilesToSpawn = 20;
 
     
