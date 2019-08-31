@@ -5,7 +5,8 @@ public class scr_CameraFollow : MonoBehaviour
 {
     public Transform target;
     [Range(0.0f, 1f)]
-    public float smoothSpeed = 0.125f;
+    public float smoothSpeed = 0.225f;
+    // 0.125
     public Vector3 offset;
 
     private GameObject playerPrefab;
