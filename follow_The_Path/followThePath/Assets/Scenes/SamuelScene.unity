@@ -225,12 +225,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTile: {fileID: 297212780}
-  player: {fileID: 0}
+  player: {fileID: 29135969}
   leftTilePrefabs: []
   midTilePrefabs: []
   rightTilePrefabs: []
   tileLength: 20
-  tilesToSpawn: 20
+  tilesToSpawn: 1
 --- !u!4 &118363635
 Transform:
   m_ObjectHideFlags: 0
