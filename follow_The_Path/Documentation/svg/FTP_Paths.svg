@@ -17,7 +17,28 @@
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
    sodipodi:docname="FTP_Paths.svg">
   <defs
-     id="defs10" />
+     id="defs10">
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect984"
+       is_visible="true"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect892"
+       is_visible="true"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -25,11 +46,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.5"
-     inkscape:cx="694.373"
-     inkscape:cy="637.32128"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="619.49212"
+     inkscape:cy="1900.2628"
      inkscape:document-units="px"
-     inkscape:current-layer="layer22"
+     inkscape:current-layer="layer8"
      showgrid="false"
      units="px"
      inkscape:window-width="1920"
@@ -45,7 +66,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -211,7 +232,7 @@
      inkscape:groupmode="layer"
      id="layer18"
      inkscape:label="RightLane_LeftExit_Background"
-     style="display:inline"
+     style="display:none"
      sodipodi:insensitive="true">
     <path
        style="display:inline;fill:#000000;stroke-width:0.26458332"
@@ -219,6 +240,20 @@
        id="rect173-6"
        inkscape:connector-curvature="0" />
   </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer8"
+     inkscape:label="RightLane_LeftExit_Background 1">
+    <path
+       style="opacity:1;fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 1.1224121,-0.13288837 V 508.74818 h 5.312337 C 5.9676468,494.18527 5.5180211,469.45459 6.5138143,442.28299 8.091162,399.24287 8.9203635,352.43197 31.851803,315.47627 l 0.468704,-0.75395 0.507463,-0.72864 c 27.833436,-39.90041 62.270859,-63.94654 99.00429,-75.4569 26.52262,-8.31083 53.43807,-10.81649 81.36299,-11.77344 l -0.094,-226.89622837 z m 278.1251279,0 0.12145,291.98424837 -32.71841,0.36327 c -39.31453,0.43601 -70.63291,1.79364 -95.03916,9.44129 -24.09172,7.54909 -43.0255,19.80446 -63.726863,49.09984 -4.886097,8.55773 -13.835202,54.81608 -15.269353,93.9488 -0.978847,26.70922 -0.445717,51.03156 0.0041,64.04362 H 286.24556 V -0.13288837 Z"
+       id="rect995"
+       inkscape:connector-curvature="0" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="LeftCurveEnter_RightStraightExit" />
   <g
      inkscape:groupmode="layer"
      id="layer3"
