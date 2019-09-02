@@ -15,7 +15,10 @@
    version="1.1"
    id="svg16"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="FTP_Paths.svg">
+   sodipodi:docname="FTP_Paths.svg"
+   inkscape:export-filename="D:\UnityProjects\followThePath\follow_The_Path\Graphics\g_RightCurveEnter_LeftStraightExit.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
   <defs
      id="defs10">
     <inkscape:path-effect
@@ -46,11 +49,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="619.49212"
-     inkscape:cy="1900.2628"
+     inkscape:zoom="0.25"
+     inkscape:cx="2038.4675"
+     inkscape:cy="909.03562"
      inkscape:document-units="px"
-     inkscape:current-layer="layer8"
+     inkscape:current-layer="layer2"
      showgrid="false"
      units="px"
      inkscape:window-width="1920"
@@ -243,9 +246,10 @@
   <g
      inkscape:groupmode="layer"
      id="layer8"
-     inkscape:label="RightLane_LeftExit_Background 1">
+     inkscape:label="LeftCurveEnter_RightStraightExit_Background"
+     style="display:inline">
     <path
-       style="opacity:1;fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 1.1224121,-0.13288837 V 508.74818 h 5.312337 C 5.9676468,494.18527 5.5180211,469.45459 6.5138143,442.28299 8.091162,399.24287 8.9203635,352.43197 31.851803,315.47627 l 0.468704,-0.75395 0.507463,-0.72864 c 27.833436,-39.90041 62.270859,-63.94654 99.00429,-75.4569 26.52262,-8.31083 53.43807,-10.81649 81.36299,-11.77344 l -0.094,-226.89622837 z m 278.1251279,0 0.12145,291.98424837 -32.71841,0.36327 c -39.31453,0.43601 -70.63291,1.79364 -95.03916,9.44129 -24.09172,7.54909 -43.0255,19.80446 -63.726863,49.09984 -4.886097,8.55773 -13.835202,54.81608 -15.269353,93.9488 -0.978847,26.70922 -0.445717,51.03156 0.0041,64.04362 H 286.24556 V -0.13288837 Z"
        id="rect995"
        inkscape:connector-curvature="0" />
@@ -253,7 +257,14 @@
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="LeftCurveEnter_RightStraightExit" />
+     inkscape:label="RIghtCurveEnter_LeftStraightExit_Background"
+     style="display:none">
+    <path
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 285.75188,0 v 508.88106 h -5.32598 c 0.4683,-14.5629 0.91908,-39.29359 -0.0793,-66.46518 -1.58141,-43.04012 -2.41274,-89.85102 -25.40306,-126.80672 l -0.46991,-0.75393 -0.50877,-0.72867 C 226.05994,274.22615 191.53408,250.18003 154.7063,238.66967 128.11556,230.35884 101.131,227.85318 73.134377,226.89623 L 73.228658,0 Z M 6.9124974,0 6.7907356,291.98424 39.59317,292.34752 c 39.415492,0.436 70.81429,1.79363 95.28322,9.44128 24.15359,7.5491 43.13599,19.80446 63.89053,49.09984 4.89864,8.55774 13.87072,54.81609 15.30856,93.94881 0.98136,26.70921 0.44686,51.03156 -0.004,64.04361 H -0.10349411 V 0 Z"
+       id="rect995-4"
+       inkscape:connector-curvature="0" />
+  </g>
   <g
      inkscape:groupmode="layer"
      id="layer3"

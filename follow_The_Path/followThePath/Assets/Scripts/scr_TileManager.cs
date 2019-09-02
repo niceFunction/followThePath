@@ -35,7 +35,7 @@ public class scr_TileManager : MonoBehaviour
 
     void SpawnTiles()
     {
-        // Spawn a new tile is the player is sufficiently far
+        // Spawn a new tile if the player is sufficiently far
         if (player.position.z + (tilesToSpawn * tileLength) > lastSpawnedTile.transform.position.z)
         {
             lastSpawnedTile = lastSpawnedTile.SpawnNext();
