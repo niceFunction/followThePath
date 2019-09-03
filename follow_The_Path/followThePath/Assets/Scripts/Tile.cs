@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : MonoBehaviour
+public class Tile : scr_PooledObject
 {
     [SerializeField] private float length = 20f;
 
@@ -14,6 +14,7 @@ public class Tile : MonoBehaviour
         t = Instantiate(t.gameObject).GetComponent<Tile>();
         t.transform.position = this.transform.position + new Vector3(0f, 0f, length);
 
+        //ReturnToPool();
         return t;
     }
 }

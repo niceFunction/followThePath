@@ -8,6 +8,7 @@ public class scr_TileManager : MonoBehaviour
     private int tilesToRemove = 3;
 
     [SerializeField] private Tile startTile;
+
     [SerializeField] private Transform player;
 
     // Serialized private fields, because we don't want other objects to access these
@@ -35,6 +36,7 @@ public class scr_TileManager : MonoBehaviour
 
     void SpawnTiles()
     {
+
         // Spawn a new tile if the player is sufficiently far
         if (player.position.z + (tilesToSpawn * tileLength) > lastSpawnedTile.transform.position.z)
         {

@@ -13,12 +13,24 @@ public class scr_ObjectPool : MonoBehaviour
         return obj;
     }
 
-    public void AddObject (scr_PooledObject o)
+    public void AddObject(scr_PooledObject o)
     {
         Object.Destroy(o.gameObject);
     }
+
+    public static scr_ObjectPool GetPool (scr_PooledObject prefab)
+    {
+        GameObject obj = new GameObject(prefab.name + " Pool");
+        scr_ObjectPool pool = obj.AddComponent<scr_ObjectPool>();
+        pool.prefab = prefab;
+        return pool;
+    }
+
 }
 /*
- catlikecoding.com/unity/tutorials/object-pools/
- www.youtube.com/watch?v=tdSmKaJvCoA
+Cat Like Coding:
+    catlikecoding.com/unity/tutorials/object-pools/
+ 
+Brackeys - Object Pooling:   
+    www.youtube.com/watch?v=tdSmKaJvCoA
  */
