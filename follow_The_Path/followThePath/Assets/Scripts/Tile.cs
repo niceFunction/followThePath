@@ -14,7 +14,6 @@ public class Tile : scr_PooledObject
         t = Instantiate(t.gameObject).GetComponent<Tile>();
         t.transform.position = this.transform.position + new Vector3(0f, 0f, length);
 
-        //ReturnToPool();
         return t;
     }
 }

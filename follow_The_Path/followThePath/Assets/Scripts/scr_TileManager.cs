@@ -41,6 +41,7 @@ public class scr_TileManager : MonoBehaviour
         if (player.position.z + (tilesToSpawn * tileLength) > lastSpawnedTile.transform.position.z)
         {
             lastSpawnedTile = lastSpawnedTile.SpawnNext();
+
         }
     }
 }

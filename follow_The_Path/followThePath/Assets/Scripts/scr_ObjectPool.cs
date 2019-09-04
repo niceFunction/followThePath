@@ -5,27 +5,56 @@ using UnityEngine;
 public class scr_ObjectPool : MonoBehaviour
 {
     scr_PooledObject prefab;
+    List<scr_PooledObject> availableObjects = new List<scr_PooledObject>();
     public scr_PooledObject GetObject()
     {
         scr_PooledObject obj = Instantiate<scr_PooledObject>(prefab);
-        obj.transform.SetParent(transform, false);
-        obj.Pool = this;
-        return obj;
-    }
+        int lastAvailableIndex = availableObjects.Count - 1;
+        if (lastAvailableIndex >= 0)
+        {
+            obj = availableObjects[lastAvailableIndex];
+            availableObjects.RemoveAt(lastAvailableIndex);
+            obj.gameObject.SetActive(true);
 
-    public void AddObject(scr_PooledObject o)
-    {
-        Object.Destroy(o.gameObject);
+        }
+        else
+        {
+            obj = Instantiate<scr_PooledObject>(prefab);
+            obj.transform.SetParent(transform, false);
+            obj.Pool = this;
+
+        }
+        
+        return obj;
     }
 
     public static scr_ObjectPool GetPool (scr_PooledObject prefab)
     {
-        GameObject obj = new GameObject(prefab.name + " Pool");
-        scr_ObjectPool pool = obj.AddComponent<scr_ObjectPool>();
+        GameObject obj;
+        scr_ObjectPool pool;
+        if (Application.isEditor)
+        {
+            obj = GameObject.Find(prefab.name + " Pool");
+            if (obj)
+            {
+                pool = obj.GetComponent<scr_ObjectPool>();
+                if (pool)
+                {
+                    return pool;
+                }
+            }
+        }
+
+        obj = new GameObject(prefab.name + " Pool");
+        pool = obj.AddComponent<scr_ObjectPool>();
         pool.prefab = prefab;
         return pool;
     }
-
+    public void AddObject(scr_PooledObject obj)
+    {
+        obj.gameObject.SetActive(false);
+        availableObjects.Add(obj);
+    }
 }
 /*
 Cat Like Coding:
