@@ -689,6 +689,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Object Pooler
       objectReference: {fileID: 0}
+    - target: {fileID: 5234539985435230843, guid: a7cd38422d3fbc548b386a3d71e2589a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5234539985435230837, guid: a7cd38422d3fbc548b386a3d71e2589a,
         type: 3}
       propertyPath: m_LocalPosition.x

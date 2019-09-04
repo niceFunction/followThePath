@@ -43,5 +43,7 @@ public class scr_TileManager : MonoBehaviour
             lastSpawnedTile = lastSpawnedTile.SpawnNext();
 
         }
+
     }
+
 }
