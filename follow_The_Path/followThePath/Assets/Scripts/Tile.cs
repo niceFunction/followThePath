@@ -8,8 +8,16 @@ public class Tile : scr_PooledObject
 
     [SerializeField] private Tile[] connectsTo;
 
+    //public Tile[] tilePrefabs;
+
     public Tile SpawnNext()
     {
+
+        /*
+        Tile prefab = tilePrefabs[Random.Range(0, tilePrefabs.Length)];
+        Tile spawn = prefab.GetPooledInstance<Tile>();
+        */
+
         Tile t = connectsTo[Random.Range(0, connectsTo.Length)];
         t = Instantiate(t.gameObject).GetComponent<Tile>();
         t.transform.position = this.transform.position + new Vector3(0f, 0f, length);

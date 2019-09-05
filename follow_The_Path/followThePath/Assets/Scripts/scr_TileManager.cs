@@ -5,6 +5,9 @@ using UnityEngine;
 public class scr_TileManager : MonoBehaviour
 {
 
+    public Tile[] tilePrefabs;
+
+
     private int tilesToRemove = 3;
 
     [SerializeField] private Tile startTile;
@@ -36,6 +39,8 @@ public class scr_TileManager : MonoBehaviour
 
     void SpawnTiles()
     {
+        Tile prefab = tilePrefabs[Random.Range(0, tilePrefabs.Length)];
+        Tile spawn = prefab.GetPooledInstance<Tile>();
 
         // Spawn a new tile if the player is sufficiently far
         if (player.position.z + (tilesToSpawn * tileLength) > lastSpawnedTile.transform.position.z)
