@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* TODO Remove this class.
+ * it is unused, is a complex solution for a simple problem.
+ */
 public class scr_CountTiles : MonoBehaviour
 {
 

@@ -20,6 +20,7 @@ public class scr_CameraFollow : MonoBehaviour
     {
         if (!target)
         {
+            // TODO move logic that finds the player object into Start instead. It only needs to happen once, not every frame.
             target = GameObject.FindGameObjectWithTag("Player").transform;
         }
             Vector3 desiredPosition = target.position + offset;

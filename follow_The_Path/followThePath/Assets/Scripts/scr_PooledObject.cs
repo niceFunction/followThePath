@@ -30,6 +30,7 @@ public class scr_PooledObject : MonoBehaviour
     }
 }
 
+// TODO put this comment block at the top, to better inform where this code has been taken from/inspired by.
 /*
 Cat Like Coding:
     catlikecoding.com/unity/tutorials/object-pools/

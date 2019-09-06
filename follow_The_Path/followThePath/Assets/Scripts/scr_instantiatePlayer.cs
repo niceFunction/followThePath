@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO Remove this class, as it is unused.
 public class scr_instantiatePlayer : MonoBehaviour
 {
     // Reference to the Prefab. Drag a Prefab into this field in the Inspector.
