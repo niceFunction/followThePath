@@ -13,12 +13,12 @@ public class scr_TileManager : MonoBehaviour
     [SerializeField] private Tile startTile;
 
     [SerializeField] private Transform player;
-
+    /*
     // Serialized private fields, because we don't want other objects to access these
     [SerializeField] private GameObject[] leftTilePrefabs;
     [SerializeField] private GameObject[] midTilePrefabs;
     [SerializeField] private GameObject[] rightTilePrefabs;
-
+    */
     [SerializeField] private float tileLength = 20f;
     [SerializeField] private int tilesToSpawn = 2;
 
