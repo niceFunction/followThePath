@@ -236,7 +236,7 @@ MonoBehaviour:
   - {fileID: 2045572963078092356, guid: 50fbf02a24cd5c24497c50a415375904, type: 3}
   startTile: {fileID: 297212780}
   player: {fileID: 29135969}
-  safeDistance: 10
+  safeDistance: 20
 --- !u!4 &118363635
 Transform:
   m_ObjectHideFlags: 0
@@ -550,6 +550,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Tile
+      objectReference: {fileID: 0}
+    - target: {fileID: -1247893802609552284, guid: 40965167264009a4fa37baacba136d6c,
+        type: 3}
+      propertyPath: length
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7589039226730762048, guid: 40965167264009a4fa37baacba136d6c,
         type: 3}

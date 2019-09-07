@@ -40,9 +40,13 @@ public class scr_TileManager : MonoBehaviour
         // Spawn a new tile if the player is sufficiently far
         if(player.position.z + safeDistance > lastSpawnedTile.transform.position.z + lastSpawnedTile.Length)
         {
+            Debug.Log("player.Z: " + player.position.z);
+            Debug.Log("safeDistance: " + safeDistance);
+            Debug.Log("lastSpawnedTile: "+ lastSpawnedTile.Length);
             Tile t = tilePrefabs[Random.Range(0, tilePrefabs.Length)].GetPooledInstance<Tile>();
-            t.transform.position = this.transform.position + new Vector3(0f, 0f, lastSpawnedTile.Length);
-
+            
+            t.transform.position = new Vector3(0f, 0f, lastSpawnedTile.transform.position.z + lastSpawnedTile.Length);
+            Debug.Log("t.position: " + t.transform.position);
             lastSpawnedTile = t;
         }
 

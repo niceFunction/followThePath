@@ -59,11 +59,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1f208203daac04c91a3fa0d8d45438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  length: 20
   connectsTo:
   - {fileID: -4402068880671096535}
   - {fileID: 2554937829398322275, guid: f8f82bc2a6286cd4cae31d181e67b1e3, type: 3}
   - {fileID: -368675456781376960, guid: 9a4b7b8a40cfec747b3fe1649518fb5e, type: 3}
+  length: 20
 --- !u!1 &4513108207984976481
 GameObject:
   m_ObjectHideFlags: 0
