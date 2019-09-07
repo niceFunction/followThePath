@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+Cat Like Coding:
+    catlikecoding.com/unity/tutorials/object-pools/
+ 
+Brackeys - Object Pooling:   
+    www.youtube.com/watch?v=tdSmKaJvCoA
+ */
+
 public class scr_PooledObject : MonoBehaviour
 {
     public scr_ObjectPool Pool { get; set; }
@@ -29,12 +37,3 @@ public class scr_PooledObject : MonoBehaviour
         return (T)poolInstanceForPrefab.GetObject();
     }
 }
-
-// TODO put this comment block at the top, to better inform where this code has been taken from/inspired by.
-/*
-Cat Like Coding:
-    catlikecoding.com/unity/tutorials/object-pools/
- 
-Brackeys - Object Pooling:   
-    www.youtube.com/watch?v=tdSmKaJvCoA
- */

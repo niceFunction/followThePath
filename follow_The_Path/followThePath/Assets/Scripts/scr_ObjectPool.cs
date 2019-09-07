@@ -2,9 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+Cat Like Coding:
+    catlikecoding.com/unity/tutorials/object-pools/
+ 
+Brackeys - Object Pooling:   
+    www.youtube.com/watch?v=tdSmKaJvCoA
+ */
+
 public class scr_ObjectPool : MonoBehaviour
 {
-    // TODO rewrite this class to use a Queue instead of List of availableObjects. 
     scr_PooledObject prefab;
     List<scr_PooledObject> availableObjects = new List<scr_PooledObject>(); 
     public scr_PooledObject GetObject()
@@ -57,11 +64,3 @@ public class scr_ObjectPool : MonoBehaviour
         availableObjects.Add(obj);
     }
 }
-// TODO put this comment block at the top, to better inform where this code has been taken from/inspired by.
-/*
-Cat Like Coding:
-    catlikecoding.com/unity/tutorials/object-pools/
- 
-Brackeys - Object Pooling:   
-    www.youtube.com/watch?v=tdSmKaJvCoA
- */

@@ -236,8 +236,7 @@ MonoBehaviour:
   - {fileID: 2045572963078092356, guid: 50fbf02a24cd5c24497c50a415375904, type: 3}
   startTile: {fileID: 297212780}
   player: {fileID: 29135969}
-  tileLength: 20
-  tilesToSpawn: 1
+  safeDistance: 10
 --- !u!4 &118363635
 Transform:
   m_ObjectHideFlags: 0

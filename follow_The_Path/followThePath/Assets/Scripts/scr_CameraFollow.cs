@@ -13,16 +13,14 @@ public class scr_CameraFollow : MonoBehaviour
 
     private void Start()
     {
-
+        if (!target)
+        {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
     }
 
     void LateUpdate()
     {
-        if (!target)
-        {
-            // TODO move logic that finds the player object into Start instead. It only needs to happen once, not every frame.
-            target = GameObject.FindGameObjectWithTag("Player").transform;
-        }
             Vector3 desiredPosition = target.position + offset;
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
             transform.position = smoothedPosition;
