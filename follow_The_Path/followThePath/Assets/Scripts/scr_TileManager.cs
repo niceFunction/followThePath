@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages all tiles
+/// </summary>
+/// <param name="scr_TileManager"></param>
 public class scr_TileManager : MonoBehaviour
 {
 

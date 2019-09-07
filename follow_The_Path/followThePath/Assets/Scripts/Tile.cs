@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Tile is responsible where it will end up
+/// </summary>
+/// <param name="Tile"></param>
 public class Tile : scr_PooledObject
 {
     // Cohesion: The function and variables in a class relates closely to the purpose of that class.
@@ -15,7 +19,7 @@ public class Tile : scr_PooledObject
     public float Length { get { return length; } } 
 
     /// <summary>
-    /// PositionNewTile() is responsible where it will end up
+    /// PositionNewTile() is responsible for the tiles positioning
     /// </summary>
     /// <param name="newTile"></param>
     public void PositionNewTile(Tile newTile)
