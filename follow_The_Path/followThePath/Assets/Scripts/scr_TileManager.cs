@@ -11,7 +11,7 @@ public class scr_TileManager : MonoBehaviour
 
     [SerializeField] private Transform player;
 
-    [SerializeField] private int safeDistance = 5;
+    [SerializeField] private int safeDistance = 4;
 
     private Tile lastSpawnedTile;
 
@@ -44,12 +44,11 @@ public class scr_TileManager : MonoBehaviour
             Debug.Log("safeDistance: " + safeDistance);
             Debug.Log("lastSpawnedTile: "+ lastSpawnedTile.Length);
             Tile t = tilePrefabs[Random.Range(0, tilePrefabs.Length)].GetPooledInstance<Tile>();
-            
-            t.transform.position = new Vector3(0f, 0f, lastSpawnedTile.transform.position.z + lastSpawnedTile.Length);
-            Debug.Log("t.position: " + t.transform.position);
+
+            t.PositionNewTile(lastSpawnedTile);
+            Debug.Log("t.PositionNewTile: " + lastSpawnedTile);
             lastSpawnedTile = t;
         }
-
     }
 
 }

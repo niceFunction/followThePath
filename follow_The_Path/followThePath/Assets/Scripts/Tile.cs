@@ -14,5 +14,9 @@ public class Tile : scr_PooledObject
     // Public property will allow other objects to read the length of a Tile
     public float Length { get { return length; } } 
 
+    public void PositionNewTile(Tile newTile)
+    {
+        newTile.transform.position = new Vector3(0f, 0f, newTile.transform.position.z + newTile.Length);
+    }
 
 }
