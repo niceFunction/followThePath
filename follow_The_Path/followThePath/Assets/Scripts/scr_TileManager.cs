@@ -34,6 +34,9 @@ public class scr_TileManager : MonoBehaviour
        this.transform.position = new Vector3(0f, 0f, previousTile.position.z + previousTile.length);
      */
 
+    /// <summary>
+    /// SpawnTiles() tells new tiles to place themselves relative to the previous tile
+    /// </summary>
     void SpawnTiles()
     {
         Tile tile;
