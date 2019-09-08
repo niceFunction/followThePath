@@ -6,9 +6,8 @@ using UnityEngine;
 /// Tile is responsible where it will end up
 /// </summary>
 /// <param name="Tile"></param>
-public class Tile : scr_PooledObject
+public class Tile : MonoBehaviour
 {
-    
     [SerializeField] private Tile[] connectsTo;
 
     public Tile[] ConnectsTo { get { return connectsTo; } }
@@ -27,5 +26,4 @@ public class Tile : scr_PooledObject
         Vector3 newPos = new Vector3(0f, 0f, previousTile.transform.position.z + this.Length);
         this.transform.position = newPos;
     }
-
 }
