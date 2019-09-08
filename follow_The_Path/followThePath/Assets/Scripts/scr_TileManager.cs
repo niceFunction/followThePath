@@ -41,7 +41,7 @@ public class scr_TileManager : MonoBehaviour
         // Spawn a new tile if the player is sufficiently far
         if(player.position.z + safeDistance > lastSpawnedTile.transform.position.z + lastSpawnedTile.Length)
         {
-            Tile choosePrefab = tilePrefabs[Random.Range(0, tilePrefabs.Length)];
+            Tile choosePrefab = lastSpawnedTile.ConnectsTo[Random.Range(0, lastSpawnedTile.ConnectsTo.Length)];
             Tile t = TilePool.GetFromPool(choosePrefab.gameObject);
 
             t.SetPositionAfter(lastSpawnedTile);

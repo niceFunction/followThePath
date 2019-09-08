@@ -8,10 +8,10 @@ using UnityEngine;
 /// <param name="Tile"></param>
 public class Tile : scr_PooledObject
 {
-    // Cohesion: The function and variables in a class relates closely to the purpose of that class.
-    // Decoupling: Avoid intricate connections between objects, separate their concerns to do only their purpose.
     
     [SerializeField] private Tile[] connectsTo;
+
+    public Tile[] ConnectsTo { get { return connectsTo; } }
 
     // Private field that only instances of Tile is allowed to access and change
     [SerializeField] private float length; 
@@ -19,12 +19,13 @@ public class Tile : scr_PooledObject
     public float Length { get { return length; } } 
 
     /// <summary>
-    /// PositionNewTile() is responsible for the tiles positioning
+    /// SetPositionAfter responsible for the tiles positioning after the previous tile
     /// </summary>
     /// <param name="newTile"></param>
     public void SetPositionAfter(Tile previousTile)
     {
-        this.transform.position = new Vector3(0f, 0f, this.transform.position.z + this.Length);
+        Vector3 newPos = new Vector3(0f, 0f, previousTile.transform.position.z + this.Length);
+        this.transform.position = newPos;
     }
 
 }
