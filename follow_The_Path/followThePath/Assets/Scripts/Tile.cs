@@ -22,9 +22,9 @@ public class Tile : scr_PooledObject
     /// PositionNewTile() is responsible for the tiles positioning
     /// </summary>
     /// <param name="newTile"></param>
-    public void PositionNewTile(Tile newTile)
+    public void SetPositionAfter(Tile previousTile)
     {
-        newTile.transform.position = new Vector3(0f, 0f, newTile.transform.position.z + newTile.Length);
+        this.transform.position = new Vector3(0f, 0f, this.transform.position.z + this.Length);
     }
 
 }

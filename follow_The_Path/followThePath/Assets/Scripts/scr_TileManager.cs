@@ -32,12 +32,6 @@ public class scr_TileManager : MonoBehaviour
         SpawnTiles();
     }
 
-    // TODO remove comment block below after fixing the position logic for new tiles
-    /*
-       position.z för den nya tilen skall vara förraTilen.position.z + förra tilens längd.
-       this.transform.position = new Vector3(0f, 0f, previousTile.position.z + previousTile.length);
-     */
-
     /// <summary>
     /// SpawnTiles() tells new tiles to place themselves relative to the previous tile
     /// </summary>
@@ -47,13 +41,10 @@ public class scr_TileManager : MonoBehaviour
         // Spawn a new tile if the player is sufficiently far
         if(player.position.z + safeDistance > lastSpawnedTile.transform.position.z + lastSpawnedTile.Length)
         {
-            Debug.Log("player.Z: " + player.position.z);
-            Debug.Log("safeDistance: " + safeDistance);
-            Debug.Log("lastSpawnedTile: "+ lastSpawnedTile.Length);
-            Tile t = tilePrefabs[Random.Range(0, tilePrefabs.Length)].GetPooledInstance<Tile>();
+            Tile choosePrefab = tilePrefabs[Random.Range(0, tilePrefabs.Length)];
+            Tile t = TilePool.GetFromPool(choosePrefab.gameObject);
 
-            t.PositionNewTile(lastSpawnedTile);
-            Debug.Log("t.PositionNewTile: " + lastSpawnedTile);
+            t.SetPositionAfter(lastSpawnedTile);
             lastSpawnedTile = t;
         }
     }
