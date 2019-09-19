@@ -8,12 +8,18 @@ public class scr_GameManager : MonoBehaviour
 
     public static bool GameIsPaused = false;
 
+    private void Awake()
+    {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+    }
+
     public void Playgame()
     {
         
         SceneManager.LoadScene("SamuelScene");
     }
 
+    #region Pause Menu
     public void LoadMainMenu()
     {
         Time.timeScale = 1;
@@ -31,4 +37,5 @@ public class scr_GameManager : MonoBehaviour
         Time.timeScale = 0;
         GameIsPaused = true;
     }
+    #endregion
 }

@@ -6,9 +6,7 @@ namespace SamuelEinheri.Cameras
 { 
     public class SE_TopDown_Camera : MonoBehaviour
     {
-        /// <summary>
-        /// " m_ " = member component of this script 
-        /// </summary>
+        // " m_ " = member component of this script 
         public Transform m_Target;
 
         public float m_Height = 15f;
