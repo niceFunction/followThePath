@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class scr_UIManager : MonoBehaviour
+public class scr_GameManager : MonoBehaviour
 {
 
     public static bool GameIsPaused = false;

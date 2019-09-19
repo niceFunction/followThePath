@@ -2211,7 +2211,7 @@ PrefabInstance:
     - target: {fileID: 3596900844643142630, guid: 7f099ccd50ca071438eed6eb291dbe6e,
         type: 3}
       propertyPath: m_Name
-      value: UI Manager
+      value: Game Manager
       objectReference: {fileID: 0}
     - target: {fileID: 3596900844643142633, guid: 7f099ccd50ca071438eed6eb291dbe6e,
         type: 3}
@@ -2424,6 +2424,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 6580692546672935205, guid: 4afbb2300ee0391449484bbdea68b07d,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580692546672935205, guid: 4afbb2300ee0391449484bbdea68b07d,
+        type: 3}
+      propertyPath: far clip plane
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580692546672935205, guid: 4afbb2300ee0391449484bbdea68b07d,
+        type: 3}
+      propertyPath: field of view
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 6580692546672935202, guid: 4afbb2300ee0391449484bbdea68b07d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2484,20 +2499,5 @@ PrefabInstance:
       propertyPath: m_Target
       value: 
       objectReference: {fileID: 29135969}
-    - target: {fileID: 6580692546672935205, guid: 4afbb2300ee0391449484bbdea68b07d,
-        type: 3}
-      propertyPath: near clip plane
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6580692546672935205, guid: 4afbb2300ee0391449484bbdea68b07d,
-        type: 3}
-      propertyPath: far clip plane
-      value: 5000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6580692546672935205, guid: 4afbb2300ee0391449484bbdea68b07d,
-        type: 3}
-      propertyPath: field of view
-      value: 40
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4afbb2300ee0391449484bbdea68b07d, type: 3}
