@@ -7,7 +7,8 @@ public class scr_Ball : MonoBehaviour
     public float speed = 500;
     public float maxSpeed = 1500;
 
-    private Rigidbody RB;
+    [HideInInspector]
+    public Rigidbody RB;
 
     private void Start()
     {
@@ -23,11 +24,10 @@ public class scr_Ball : MonoBehaviour
         movement.x = Input.GetAxis("Horizontal");
         movement.z = Input.GetAxis("Vertical");
 #endif
-        //RB.velocity.x = Mathf.Clamp(RB.velocity.x, 0, maxSpeed);
+
         if(RB.velocity.magnitude < maxSpeed)
         {
             RB.AddForce(movement * speed * Time.deltaTime);
-            Debug.Log("Speed: " + RB.velocity.z);
         }    
     }
 }
