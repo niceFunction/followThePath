@@ -16,7 +16,7 @@ public class scr_GameManager : MonoBehaviour
     public void Playgame()
     {
         
-        SceneManager.LoadScene("SamuelScene");
+        SceneManager.LoadScene("GameScene");
     }
 
     #region Pause Menu
