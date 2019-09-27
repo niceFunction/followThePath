@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1129226456537178462}
   - component: {fileID: 7206124448519376567}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ab1237d3e1484da41838bee58a63aaab, type: 2}
+  - {fileID: 2100000, guid: 43e941050e0180e4e9bbda3792ed6646, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -232,7 +232,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 350386a98e64a624095954881601f63f, type: 2}
+      objectReference: {fileID: 2100000, guid: 4d8578f5c15b97e47ae1c6829242da8a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3a2698279b9d8c45b9fdfa9fb8e36c4, type: 3}
 --- !u!1 &7859563031211599941 stripped

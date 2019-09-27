@@ -31,6 +31,7 @@ public class scr_GameManager : MonoBehaviour
 
     void Update()
     {
+        /*
         if(Ball.RB.velocity.magnitude < minimumSpeed)
         {
             triggerCountdownTimer -= Time.deltaTime;
@@ -51,6 +52,7 @@ public class scr_GameManager : MonoBehaviour
             triggerCountdownTimer = 5;
             countdownTimer = 5;
         }
+        */
     }
 
     private void Awake()
