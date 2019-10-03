@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class scr_PlayerTrail : MonoBehaviour
 {
-    private bool trailActive = false;
+    //private bool trailActive = false;
     private scr_Ball Ball;
     private TrailRenderer Trail;
 

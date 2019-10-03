@@ -120,6 +120,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &6925021 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9154867312178150119, guid: 1febbe1a2843e964d80ce5d625983321,
+    type: 3}
+  m_PrefabInstance: {fileID: 29135968}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6846ab77d3a5534c966d29c8093c1aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &13441900
 GameObject:
   m_ObjectHideFlags: 0
@@ -2311,7 +2323,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: timer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -2380,7 +2392,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1479986332}
-    characterCount: 2
+    characterCount: 5
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -3111,6 +3123,21 @@ PrefabInstance:
       propertyPath: pauseMenuUI
       value: 
       objectReference: {fileID: 331015479}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: countdownText
+      value: 
+      objectReference: {fileID: 1479986332}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: triggerCountdownTimer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 6925021}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f099ccd50ca071438eed6eb291dbe6e, type: 3}
 --- !u!224 &1878075112 stripped

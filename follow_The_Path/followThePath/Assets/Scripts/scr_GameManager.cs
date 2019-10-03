@@ -7,31 +7,37 @@ using UnityEngine.SceneManagement;
 
 public class scr_GameManager : MonoBehaviour
 {
+    
+
     // Game "States"
     public static bool GameIsPaused = false;
     public static bool isGameOver = false;
+    [Space(10)]
+    [Header("Game Over Variables")]
+    [Tooltip("Manually get component from Player object")]
+    public scr_Ball Ball;
+    public TextMeshProUGUI countdownText;
 
-    public TextMeshPro countdownText;
-
+    [Range(1, 60)]
+    [Tooltip("Amount of time to trigger countdown timer")]
     public float triggerCountdownTimer = 5;
+    [Range(1, 60)]
+    [Tooltip("Amount of time to trigger Game Over")]
     public float countdownTimer = 5;
     public static bool showTimer = false;
-
+    [Range(0.01f, 5.0f)]
+    [Tooltip("Minimum 'speed' to activate triggerCountdownTimer")]
     public float minimumSpeed = 1.0f;
-
-    //public Text countdownText;
-
-    private scr_Ball Ball;
 
     void Start()
     {
-        Ball = GetComponent<scr_Ball>();
-        countdownText = GetComponent<TextMeshPro>();
+        //Ball = GetComponent<scr_Ball>();
+        countdownText = GetComponent<TextMeshProUGUI>();
     }
 
     void Update()
     {
-        /*
+       
         if(Ball.RB.velocity.magnitude < minimumSpeed)
         {
             triggerCountdownTimer -= Time.deltaTime;
@@ -52,7 +58,7 @@ public class scr_GameManager : MonoBehaviour
             triggerCountdownTimer = 5;
             countdownTimer = 5;
         }
-        */
+       
     }
 
     private void Awake()
