@@ -273,6 +273,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9154867312178150119, guid: 1febbe1a2843e964d80ce5d625983321,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 9154867312178150119, guid: 1febbe1a2843e964d80ce5d625983321,
+        type: 3}
+      propertyPath: speed
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 9154867312178150107, guid: 1febbe1a2843e964d80ce5d625983321,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -327,16 +337,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9154867312178150119, guid: 1febbe1a2843e964d80ce5d625983321,
-        type: 3}
-      propertyPath: maxSpeed
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 9154867312178150119, guid: 1febbe1a2843e964d80ce5d625983321,
-        type: 3}
-      propertyPath: speed
-      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 1536300379702297553, guid: 1febbe1a2843e964d80ce5d625983321,
         type: 3}
@@ -1638,6 +1638,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 486319623}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1024755653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1853,6 +1864,17 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 331015479}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 486319623}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -3138,6 +3160,16 @@ PrefabInstance:
       propertyPath: Ball
       value: 
       objectReference: {fileID: 6925021}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: gameOverTimerObject
+      value: 
+      objectReference: {fileID: 187852343}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: countDownTextObject
+      value: 
+      objectReference: {fileID: 187852343}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f099ccd50ca071438eed6eb291dbe6e, type: 3}
 --- !u!224 &1878075112 stripped

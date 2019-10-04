@@ -13,9 +13,13 @@ public class scr_GameManager : MonoBehaviour
     public static bool GameIsPaused = false;
     public static bool isGameOver = false;
     [Space(10)]
+
     [Header("Game Over Variables")]
     [Tooltip("Manually get component from Player object")]
     public scr_Ball Ball;
+    [Tooltip("GameObject responsible for the countdown text, disabled at the beginning")]
+    public GameObject gameOverTimerObject;
+    [Tooltip("The countdown timer text")]
     public TextMeshProUGUI countdownText;
 
     [Range(1, 60)]
@@ -23,8 +27,9 @@ public class scr_GameManager : MonoBehaviour
     public float triggerCountdownTimer = 5;
     [Range(1, 60)]
     [Tooltip("Amount of time to trigger Game Over")]
-    public float countdownTimer = 5;
-    public static bool showTimer = false;
+    public float countdownTimeAmount = 5.0f;
+    private float countdownTimer;
+    //public static bool showTimer = false;
     [Range(0.01f, 5.0f)]
     [Tooltip("Minimum 'speed' to activate triggerCountdownTimer")]
     public float minimumSpeed = 1.0f;
@@ -32,7 +37,10 @@ public class scr_GameManager : MonoBehaviour
     void Start()
     {
         //Ball = GetComponent<scr_Ball>();
-        countdownText = GetComponent<TextMeshProUGUI>();
+        //countdownText = GetComponent<TextMeshProUGUI>();
+        //gameOverTimerObject = GetComponent<GameObject>();
+        countdownTimer = countdownTimeAmount;
+        
     }
 
     void Update()
@@ -40,6 +48,7 @@ public class scr_GameManager : MonoBehaviour
        
         if(Ball.RB.velocity.magnitude < minimumSpeed)
         {
+            /*
             triggerCountdownTimer -= Time.deltaTime;
             if(triggerCountdownTimer <= 0)
             {
@@ -50,13 +59,29 @@ public class scr_GameManager : MonoBehaviour
                     GameOver();
                 }
             }
+            */
+            //TODO: Look through (or rework) why the countdownTimeAmount isn't used for the actual countdown.
+            triggerCountdownTimer -= Time.deltaTime;
+            if (triggerCountdownTimer <=0)
+            {
+                //showTimer = true;
+                gameOverTimerObject.SetActive(enabled);
+                countdownTimer -= Time.deltaTime;
+                countdownText.text = countdownTimeAmount.ToString();
+                if (countdownTimer <= 0)
+                {
+                    GameOver();
+                }
+            }
         }
         else if(Ball.RB.velocity.magnitude > minimumSpeed)
         {
+            /*
             isGameOver = false;
             showTimer = false;
             triggerCountdownTimer = 5;
-            countdownTimer = 5;
+            countdownTimer = 5;.
+            */
         }
        
     }
