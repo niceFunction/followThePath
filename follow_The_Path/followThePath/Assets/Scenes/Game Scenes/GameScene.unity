@@ -3170,6 +3170,11 @@ PrefabInstance:
       propertyPath: countDownTextObject
       value: 
       objectReference: {fileID: 187852343}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: gameOverTimeAmount
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f099ccd50ca071438eed6eb291dbe6e, type: 3}
 --- !u!224 &1878075112 stripped

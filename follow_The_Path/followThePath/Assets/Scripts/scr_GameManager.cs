@@ -19,27 +19,28 @@ public class scr_GameManager : MonoBehaviour
     public scr_Ball Ball;
     [Tooltip("GameObject responsible for the countdown text, disabled at the beginning")]
     public GameObject gameOverTimerObject;
+    public GameObject gameOverMenuObject;
     [Tooltip("The countdown timer text")]
     public TextMeshProUGUI countdownText;
 
     [Range(1, 60)]
     [Tooltip("Amount of time to trigger countdown timer")]
-    public float triggerCountdownTimer = 5;
+    public float backgroundTimeAmount = 5;
+    private float backgroundTimer;
     [Range(1, 60)]
     [Tooltip("Amount of time to trigger Game Over")]
-    public float countdownTimeAmount = 5.0f;
-    private float countdownTimer;
+    public float gameOverTimeAmount = 5.0f;
+    private float gameOverTimer;
     //public static bool showTimer = false;
     [Range(0.01f, 5.0f)]
-    [Tooltip("Minimum 'speed' to activate triggerCountdownTimer")]
+    [Tooltip("Minimum 'speed' to activate backgroundTimer")]
     public float minimumSpeed = 1.0f;
 
     void Start()
     {
-        //Ball = GetComponent<scr_Ball>();
-        //countdownText = GetComponent<TextMeshProUGUI>();
-        //gameOverTimerObject = GetComponent<GameObject>();
-        countdownTimer = countdownTimeAmount;
+
+        backgroundTimer = backgroundTimeAmount;
+        gameOverTimer = gameOverTimeAmount;
         
     }
 
@@ -48,28 +49,18 @@ public class scr_GameManager : MonoBehaviour
        
         if(Ball.RB.velocity.magnitude < minimumSpeed)
         {
-            /*
-            triggerCountdownTimer -= Time.deltaTime;
-            if(triggerCountdownTimer <= 0)
+            //TODO: Look through (or rework) why the gameOverTimeAmount isn't used for the actual countdown.
+            backgroundTimer -= Time.deltaTime;
+            if (backgroundTimeAmount <=0)
             {
-                showTimer = true;
-                countdownTimer -= Time.deltaTime;
-                if(countdownTimer <= 0)
+                backgroundTimer = 0;
+                gameOverTimerObject.SetActive(true);
+                gameOverTimer -= Time.deltaTime;
+                countdownText.text = gameOverTimer.ToString("F0");
+
+                if (gameOverTimer <= 0)
                 {
-                    GameOver();
-                }
-            }
-            */
-            //TODO: Look through (or rework) why the countdownTimeAmount isn't used for the actual countdown.
-            triggerCountdownTimer -= Time.deltaTime;
-            if (triggerCountdownTimer <=0)
-            {
-                //showTimer = true;
-                gameOverTimerObject.SetActive(enabled);
-                countdownTimer -= Time.deltaTime;
-                countdownText.text = countdownTimeAmount.ToString();
-                if (countdownTimer <= 0)
-                {
+                    isGameOver = true;
                     GameOver();
                 }
             }
@@ -79,9 +70,13 @@ public class scr_GameManager : MonoBehaviour
             /*
             isGameOver = false;
             showTimer = false;
-            triggerCountdownTimer = 5;
-            countdownTimer = 5;.
+            backgroundTimer = 5;
             */
+            gameOverTimerObject.SetActive(false);
+            gameOverMenuObject.SetActive(false);
+            backgroundTimer = backgroundTimeAmount;
+            gameOverTimer = gameOverTimeAmount;
+
         }
        
     }
@@ -122,6 +117,7 @@ public class scr_GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         isGameOver = true;
+        gameOverMenuObject.SetActive(true);
     }
 
     public void Replay()
