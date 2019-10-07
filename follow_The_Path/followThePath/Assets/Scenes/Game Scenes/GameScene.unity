@@ -968,7 +968,7 @@ GameObject:
   - component: {fileID: 608072757}
   - component: {fileID: 608072756}
   m_Layer: 5
-  m_Name: ContinueIcon
+  m_Name: ReplayIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2614,7 +2614,7 @@ GameObject:
   - component: {fileID: 1594773225}
   - component: {fileID: 1594773224}
   m_Layer: 5
-  m_Name: ContinueButton
+  m_Name: ReplayButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2682,7 +2682,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1594773225}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1878075113}
+        m_MethodName: Playgame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1594773225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3174,6 +3185,31 @@ PrefabInstance:
         type: 3}
       propertyPath: gameOverTimeAmount
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: gameOverTimer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: gameOverMenuObject
+      value: 
+      objectReference: {fileID: 486319623}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: backgroundTimer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: insideGameScene
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: minimumSpeed
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f099ccd50ca071438eed6eb291dbe6e, type: 3}

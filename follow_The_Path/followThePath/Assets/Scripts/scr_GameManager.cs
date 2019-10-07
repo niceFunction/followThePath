@@ -12,9 +12,12 @@ public class scr_GameManager : MonoBehaviour
     // Game "States"
     public static bool GameIsPaused = false;
     public static bool isGameOver = false;
-    [Space(10)]
 
+    [Space(10)]
+    #region GAME OVER VARIABLES
     [Header("Game Over Variables")]
+    [Tooltip("True if player is inside a 'active' game scene, false if they aren't")]
+    public bool insideGameScene = false;
     [Tooltip("Manually get component from Player object")]
     public scr_Ball Ball;
     [Tooltip("GameObject responsible for the countdown text, disabled at the beginning")]
@@ -24,61 +27,59 @@ public class scr_GameManager : MonoBehaviour
     public TextMeshProUGUI countdownText;
 
     [Range(1, 60)]
-    [Tooltip("Amount of time to trigger countdown timer")]
-    public float backgroundTimeAmount = 5;
-    private float backgroundTimer;
+    [Tooltip("Amount of time to trigger game over timer")]
+    public float backgroundTimer = 5.0f;
+    private float resetBackgroundTimer; // Used to reset 'backgroundTimer'.
+
     [Range(1, 60)]
     [Tooltip("Amount of time to trigger Game Over")]
-    public float gameOverTimeAmount = 5.0f;
-    private float gameOverTimer;
-    //public static bool showTimer = false;
+    public float gameOverTimer = 5.0f;
+    //public float gameOverTimer = 5.0f;
+    private float resetGameOverTimer;
+    //private float gameOverTimer;
     [Range(0.01f, 5.0f)]
     [Tooltip("Minimum 'speed' to activate backgroundTimer")]
     public float minimumSpeed = 1.0f;
+    #endregion
 
     void Start()
     {
-
-        backgroundTimer = backgroundTimeAmount;
-        gameOverTimer = gameOverTimeAmount;
-        
+        resetBackgroundTimer = backgroundTimer;
+        resetGameOverTimer = gameOverTimer;   
     }
 
     void Update()
     {
-       
-        if(Ball.RB.velocity.magnitude < minimumSpeed)
+        //Debug.Log(GameIsPaused);
+        //Debug.Log(Time.timeScale);
+       Debug.Log(isGameOver);
+        if (insideGameScene == true)
         {
-            //TODO: Look through (or rework) why the gameOverTimeAmount isn't used for the actual countdown.
-            backgroundTimer -= Time.deltaTime;
-            if (backgroundTimeAmount <=0)
-            {
-                backgroundTimer = 0;
-                gameOverTimerObject.SetActive(true);
-                gameOverTimer -= Time.deltaTime;
-                countdownText.text = gameOverTimer.ToString("F0");
 
-                if (gameOverTimer <= 0)
+            if (Ball.RB.velocity.magnitude < minimumSpeed)
+            {
+                backgroundTimer -= Time.deltaTime;
+                if (backgroundTimer <= 0)
                 {
-                    isGameOver = true;
-                    GameOver();
+                    backgroundTimer = 0;
+                    gameOverTimerObject.SetActive(true);
+                    gameOverTimer -= Time.deltaTime;
+                    countdownText.text = gameOverTimer.ToString("F0");
+                    if (gameOverTimer <= 0)
+                    {
+                        isGameOver = true;
+                        GameOver();
+                    }
                 }
             }
+            else if (Ball.RB.velocity.magnitude > minimumSpeed)
+            {
+                gameOverTimerObject.SetActive(false);
+                gameOverMenuObject.SetActive(false);
+                backgroundTimer = resetBackgroundTimer;
+                gameOverTimer = resetGameOverTimer;
+            }
         }
-        else if(Ball.RB.velocity.magnitude > minimumSpeed)
-        {
-            /*
-            isGameOver = false;
-            showTimer = false;
-            backgroundTimer = 5;
-            */
-            gameOverTimerObject.SetActive(false);
-            gameOverMenuObject.SetActive(false);
-            backgroundTimer = backgroundTimeAmount;
-            gameOverTimer = gameOverTimeAmount;
-
-        }
-       
     }
 
     private void Awake()
@@ -88,7 +89,10 @@ public class scr_GameManager : MonoBehaviour
 
     public void Playgame()
     {
-        
+        Time.timeScale = 1;
+        isGameOver = false;
+        backgroundTimer = resetBackgroundTimer;
+        gameOverTimer = resetGameOverTimer;
         SceneManager.LoadScene("GameScene");
     }
 
@@ -96,6 +100,9 @@ public class scr_GameManager : MonoBehaviour
     public void LoadMainMenu()
     {
         Time.timeScale = 1;
+        isGameOver = false;
+        backgroundTimer = resetBackgroundTimer;
+        gameOverTimer = resetGameOverTimer;
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -120,10 +127,12 @@ public class scr_GameManager : MonoBehaviour
         gameOverMenuObject.SetActive(true);
     }
 
-    public void Replay()
+    public void Restart()
     {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("GameScene");
+        //Time.timeScale = 1;
+        isGameOver = false;
+        gameOverMenuObject.SetActive(false);
+        SceneManager.LoadScene("GameScene");    
     }
     #endregion
 }
