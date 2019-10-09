@@ -34,9 +34,8 @@ public class scr_GameManager : MonoBehaviour
     [Range(1, 60)]
     [Tooltip("Amount of time to trigger Game Over")]
     public float gameOverTimer = 5.0f;
-    //public float gameOverTimer = 5.0f;
     private float resetGameOverTimer;
-    //private float gameOverTimer;
+
     [Range(0.01f, 5.0f)]
     [Tooltip("Minimum 'speed' to activate backgroundTimer")]
     public float minimumSpeed = 1.0f;
@@ -50,8 +49,6 @@ public class scr_GameManager : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(GameIsPaused);
-        //Debug.Log(Time.timeScale);
        Debug.Log(isGameOver);
         if (insideGameScene == true)
         {
@@ -127,6 +124,7 @@ public class scr_GameManager : MonoBehaviour
         gameOverMenuObject.SetActive(true);
     }
 
+    //TODO: Is this method necessary?
     public void Restart()
     {
         //Time.timeScale = 1;
