@@ -43,22 +43,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4386e59449376408a3438fc5cc4443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameMixer: {fileID: 24100000, guid: 505d13918522d914bafb17cc446e6e52, type: 2}
   sounds:
   - name: MainTheme_01
     clip: {fileID: 8300000, guid: dcd32246b7a8ef34ca46ff5c13359b54, type: 3}
     volume: 1
     pitch: 1
     loop: 1
+    group: {fileID: -8764282503383309918, guid: 505d13918522d914bafb17cc446e6e52,
+      type: 2}
     source: {fileID: 0}
   - name: MainTheme_02
     clip: {fileID: 8300000, guid: a393115b0050ffb489d96867c812192d, type: 3}
     volume: 1
     pitch: 1
     loop: 1
+    group: {fileID: 0}
     source: {fileID: 0}
   - name: Ball_Roll
     clip: {fileID: 8300000, guid: f56eb9436ddc83c4a8a7ef18fe1724a6, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    group: {fileID: 0}
     source: {fileID: 0}

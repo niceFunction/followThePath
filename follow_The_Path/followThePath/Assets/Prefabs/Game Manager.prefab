@@ -48,3 +48,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622a7e7703b18f64da35b6d9e372dc96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 505d13918522d914bafb17cc446e6e52, type: 2}
+  insideGameScene: 0
+  Ball: {fileID: 0}
+  gameOverTimerObject: {fileID: 0}
+  gameOverMenuObject: {fileID: 0}
+  countdownText: {fileID: 0}
+  backgroundTimer: 5
+  gameOverTimer: 5
+  minimumSpeed: 1

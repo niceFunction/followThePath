@@ -49,7 +49,6 @@ public class scr_GameManager : MonoBehaviour
 
     void Update()
     {
-       Debug.Log(isGameOver);
         if (insideGameScene == true)
         {
 
