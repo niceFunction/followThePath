@@ -6,7 +6,7 @@ using UnityEngine;
     For adding sound, to serve as a reminder:
     Introduction to AUDIO in Unity (Brackeys): www.youtube.com/watch?v=6OT43pvUyfY
 */
-public class scr_Ball : MonoBehaviour
+public class Ball : MonoBehaviour
 {
     public float speed = 500;
     public float maxSpeed = 1500;

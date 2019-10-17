@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scr_FPSDisplay : MonoBehaviour
+public class FPSDisplay : MonoBehaviour
 {
     float deltaTime = 0.0f;
 

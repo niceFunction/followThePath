@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class scr_AudioManager : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
 
     [Tooltip("Manages sound/volume")]
@@ -11,8 +11,10 @@ public class scr_AudioManager : MonoBehaviour
 
     public Sound[] sounds;
 
-    public static scr_AudioManager instance;
-    //public Slider musicSlider;
+    public static AudioManager instance;
+    public Slider musicSlider;
+
+    private float MusicVolume;
 
     // Start is called before the first frame update
     void Awake()
@@ -63,11 +65,17 @@ public class scr_AudioManager : MonoBehaviour
         s.source.Play();
     }
 
-    public void SetMusicVol (float sliderValue)
+    public float GetMusicVolume ()
     {
-        gameMixer.SetFloat("musicVolume", Mathf.Log10(sliderValue) * 20);
+        return MusicVolume;
+    }
+
+    public void SetMusicVolume (float volume)
+    {
+        MusicVolume = volume;
+        gameMixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20);
         //PlayerPrefs.SetFloat("musicVol", sliderValue);
-        Debug.Log(sliderValue);
+        Debug.Log(volume);
  
     }
 }

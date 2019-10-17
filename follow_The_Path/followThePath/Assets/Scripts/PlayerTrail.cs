@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scr_PlayerTrail : MonoBehaviour
+public class PlayerTrail : MonoBehaviour
 {
     //private bool trailActive = false;
-    private scr_Ball Ball;
+    private Ball Ball;
     private TrailRenderer Trail;
 
     [Range(0.1f, 8.0f)]
@@ -14,7 +14,7 @@ public class scr_PlayerTrail : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Ball = GetComponentInParent<scr_Ball>();
+        Ball = GetComponentInParent<Ball>();
         Trail = GetComponent<TrailRenderer>();
     }
 

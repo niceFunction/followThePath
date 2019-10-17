@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class scr_GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     
 
@@ -19,7 +19,7 @@ public class scr_GameManager : MonoBehaviour
     [Tooltip("True if player is inside a 'active' game scene, false if they aren't")]
     public bool insideGameScene = false;
     [Tooltip("Manually get component from Player object")]
-    public scr_Ball Ball;
+    public Ball Ball;
     [Tooltip("GameObject responsible for the countdown text, disabled at the beginning")]
     public GameObject gameOverTimerObject;
     public GameObject gameOverMenuObject;

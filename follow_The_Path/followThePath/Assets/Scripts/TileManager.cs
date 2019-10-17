@@ -5,8 +5,8 @@ using UnityEngine;
 /// <summary>
 /// Manages all tiles
 /// </summary>
-/// <param name="scr_TileManager"></param>
-public class scr_TileManager : MonoBehaviour
+/// <param name="TileManager"></param>
+public class TileManager : MonoBehaviour
 {
 
     public Tile[] tilePrefabs;
