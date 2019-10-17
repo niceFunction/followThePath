@@ -1,15 +1,18 @@
 ﻿using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class scr_AudioManager : MonoBehaviour
 {
+
     [Tooltip("Manages sound/volume")]
     public AudioMixer gameMixer;
 
     public Sound[] sounds;
 
     public static scr_AudioManager instance;
+    //public Slider musicSlider;
 
     // Start is called before the first frame update
     void Awake()
@@ -41,7 +44,10 @@ public class scr_AudioManager : MonoBehaviour
 
     void Start()
     {
-        // Play Main Theme here?
+        
+        //musicSlider.value = PlayerPrefs.GetFloat("musicVolume", 1.0f);
+        
+
         PlaySound("MainTheme_01");
     }
 
@@ -57,11 +63,11 @@ public class scr_AudioManager : MonoBehaviour
         s.source.Play();
     }
 
-    public void SetMusicVol (float musicVol)
+    public void SetMusicVol (float sliderValue)
     {
-        //TODO: musicVol_1: While volume can be set, slider isn't saved in the set position when returning to menu
-        //TODO: musicVol_2: When returning to settings, the slider is "full" and the music is still low.
-        gameMixer.SetFloat("musicVolume", 20f * Mathf.Log10(musicVol));
-        Debug.Log(musicVol);
+        gameMixer.SetFloat("musicVolume", Mathf.Log10(sliderValue) * 20);
+        //PlayerPrefs.SetFloat("musicVol", sliderValue);
+        Debug.Log(sliderValue);
+ 
     }
 }
