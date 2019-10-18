@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
+/// <summary>
+/// ManageSliderValue gets volume from AudioManager and puts slider at the correct position.
+/// When slider is changed, it sends the new information to AudioManager.
+/// </summary>
 public class ManageSliderValue : MonoBehaviour
 {
     private AudioManager audioManager;
@@ -26,6 +30,6 @@ public class ManageSliderValue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log(musicSlider);
     }
 }

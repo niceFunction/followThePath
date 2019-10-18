@@ -3,6 +3,9 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// AudioManager is responsible for all related to audio
+/// </summary>
 public class AudioManager : MonoBehaviour
 {
 
@@ -12,7 +15,6 @@ public class AudioManager : MonoBehaviour
     public Sound[] sounds;
 
     public static AudioManager instance;
-    public Slider musicSlider;
 
     private float MusicVolume;
 
@@ -46,10 +48,6 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        
-        //musicSlider.value = PlayerPrefs.GetFloat("musicVolume", 1.0f);
-        
-
         PlaySound("MainTheme_01");
     }
 
@@ -72,10 +70,12 @@ public class AudioManager : MonoBehaviour
 
     public void SetMusicVolume (float volume)
     {
+
         MusicVolume = volume;
         gameMixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20);
         //PlayerPrefs.SetFloat("musicVol", sliderValue);
-        Debug.Log(volume);
+        //Debug.Log(volume);
+        //Debug.Log("Music volume: " + volume);
  
     }
 }
