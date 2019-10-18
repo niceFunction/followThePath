@@ -6,13 +6,11 @@ using UnityEngine.UI;
 /// ManageSliderValue gets volume from AudioManager and puts slider at the correct position.
 /// When slider is changed, it sends the new information to AudioManager.
 /// </summary>
-public class ManageSliderValue : MonoBehaviour // TODO since this class manages the music volume slider, it should be renamed to fit that.
+public class MusicVolumeSlider : MonoBehaviour
 {
-    private AudioManager audioManager; // TODO remove this, it is unused and unecessary. AudioManger is accessed through the static variable "instance" in AudioManager.
-
+    //johnleonardfrench.com/articles/the-right-way-to-make-a-volume-slider-in-unity-using-logarithmic-conversion/
     [SerializeField]
     private Slider musicSlider;
-
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +20,7 @@ public class ManageSliderValue : MonoBehaviour // TODO since this class manages 
          slider still loses the "onValueChanged" reference.
         */
         //musicSlider = GameObject.Find("MusicSlider").GetComponent<Slider>();
-        musicSlider.value = AudioManager.instance.GetMusicVolume();   
+        musicSlider.value = AudioManager.Instance.GetMusicVolume();   
     }
     
     // Update is called once per frame
@@ -30,4 +28,10 @@ public class ManageSliderValue : MonoBehaviour // TODO since this class manages 
     {
         //Debug.Log(musicSlider);
     }
+
+    public void MusicChangeVolume()
+    {
+        AudioManager.Instance.SetMusicVolume(musicSlider.value);
+    }
+
 }

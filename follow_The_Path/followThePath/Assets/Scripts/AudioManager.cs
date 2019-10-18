@@ -7,15 +7,15 @@ using UnityEngine;
 /// </summary>
 public class AudioManager : MonoBehaviour
 {
-    // TODO change to private, since this object is responsible for audio other objects shouldn't know of the gameMixer.
+    // TODO Just as an reminder (if needed) it was public before (but probably don't need to change it).
     [Tooltip("Manages sound/volume")]
-    public AudioMixer gameMixer;
+    [SerializeField]
+    private AudioMixer gameMixer;
 
-    // TODO change to private, unless other objects are supposed to change this array.
-    public Sound[] sounds;
+    [SerializeField]
+    private Sound[] sounds;
 
-    // TODO change instance to a public property with private set.
-    public static AudioManager instance;
+    public static AudioManager Instance { get; private set; }
 
     private float MusicVolume;
 
@@ -23,9 +23,9 @@ public class AudioManager : MonoBehaviour
     void Awake()
     {
 
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -51,6 +51,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
+        MusicVolume = 1.0f;
         PlaySound("MainTheme_01");
     }
 

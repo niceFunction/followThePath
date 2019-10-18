@@ -658,9 +658,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1237241707}
-        m_MethodName: SetMusicVolume
-        m_Mode: 0
+      - m_Target: {fileID: 291651758}
+        m_MethodName: MusicChangeVolume
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2318,18 +2318,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1231465764}
   m_CullTransparentMesh: 0
---- !u!114 &1237241707 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2531836696072316954, guid: 1ae0613fe92deac4893200bbc97c96ce,
-    type: 3}
-  m_PrefabInstance: {fileID: 483452928}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e4386e59449376408a3438fc5cc4443, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1243699630
 GameObject:
   m_ObjectHideFlags: 0
