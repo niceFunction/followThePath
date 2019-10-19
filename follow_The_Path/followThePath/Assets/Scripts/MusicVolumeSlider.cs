@@ -15,23 +15,17 @@ public class MusicVolumeSlider : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /* 
-         This "remembers" the positioning of the slider, but the
-         slider still loses the "onValueChanged" reference.
-        */
-        //musicSlider = GameObject.Find("MusicSlider").GetComponent<Slider>();
         musicSlider.value = AudioManager.Instance.GetMusicVolume();   
     }
     
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(musicSlider);
+       
     }
 
     public void MusicChangeVolume()
     {
         AudioManager.Instance.SetMusicVolume(musicSlider.value);
     }
-
 }

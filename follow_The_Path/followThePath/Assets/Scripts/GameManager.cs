@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    
+    // Use as reference for "PlayerPrefs".
+    //answers.unity.com/questions/1537332/save-playerprefs-on-application-exit.html
+    //youtu.be/XOjd_qU2Ido - Brackeys: "SAVE & LOAD SYSTEM in Unity"
 
     // Game "States"
     public static bool GameIsPaused = false;
@@ -51,12 +53,13 @@ public class GameManager : MonoBehaviour
     {
         if (insideGameScene == true)
         {
-
+            // If the players "velocity" is below a certain value, activate timer
             if (Ball.RB.velocity.magnitude < minimumSpeed)
             {
                 backgroundTimer -= Time.deltaTime;
                 if (backgroundTimer <= 0)
                 {
+                    // If background timer is zero, "activate" visual timer
                     backgroundTimer = 0;
                     gameOverTimerObject.SetActive(true);
                     gameOverTimer -= Time.deltaTime;
@@ -68,6 +71,7 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
+            // If the players velocity is above a certain value, reset all timers
             else if (Ball.RB.velocity.magnitude > minimumSpeed)
             {
                 gameOverTimerObject.SetActive(false);
@@ -92,7 +96,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("GameScene");
     }
 
-    #region Pause Menu
+    #region Pause Menu Methods
     public void LoadMainMenu()
     {
         Time.timeScale = 1;
@@ -122,14 +126,12 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         gameOverMenuObject.SetActive(true);
     }
-
-    //TODO: Is this method necessary?
-    public void Restart()
-    {
-        //Time.timeScale = 1;
-        isGameOver = false;
-        gameOverMenuObject.SetActive(false);
-        SceneManager.LoadScene("GameScene");    
-    }
     #endregion
+
+    //NOTE: Maybe move this method to another script in the future
+    public void QuitGame()
+    {
+        Debug.Log("QUIT GAME");
+        Application.Quit();
+    }
 }

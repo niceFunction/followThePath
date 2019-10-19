@@ -7,7 +7,6 @@ using UnityEngine;
 /// </summary>
 public class AudioManager : MonoBehaviour
 {
-    // TODO Just as an reminder (if needed) it was public before (but probably don't need to change it).
     [Tooltip("Manages sound/volume")]
     [SerializeField]
     private AudioMixer gameMixer;
@@ -45,12 +44,11 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
             s.source.outputAudioMixerGroup = s.group;
         }
-
-        // TODO read music volume from player prefs
     }
 
     void Start()
     {
+        MusicVolume = PlayerPrefs.GetFloat("musicVolume", MusicVolume);
         MusicVolume = 1.0f;
         PlaySound("MainTheme_01");
     }
@@ -74,6 +72,7 @@ public class AudioManager : MonoBehaviour
     public float GetMusicVolume ()
     {
         return MusicVolume;
+
     }
 
     /// <summary>
@@ -82,13 +81,12 @@ public class AudioManager : MonoBehaviour
     /// <param name="volume">The volume music should have, from 0.0 to 1.0</param>
     public void SetMusicVolume (float volume)
     {
-
         MusicVolume = volume;
         gameMixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20);
         // TODO add saving to player prefs
-        //PlayerPrefs.SetFloat("musicVol", sliderValue);
-        //Debug.Log(volume);
-        //Debug.Log("Music volume: " + volume);
- 
+        PlayerPrefs.SetFloat("musicVolume", MusicVolume);
+        //TODO does this even do anything?
+        PlayerPrefs.Save();
     }
+
 }
