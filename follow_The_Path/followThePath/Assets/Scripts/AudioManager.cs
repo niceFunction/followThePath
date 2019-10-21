@@ -85,7 +85,11 @@ public class AudioManager : MonoBehaviour
         gameMixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20);
         // TODO add saving to player prefs
         PlayerPrefs.SetFloat("musicVolume", MusicVolume);
-        //TODO does this even do anything?
+        PlayerPrefs.Save();       
+    }
+
+    private void OnApplicationQuit()
+    {
         PlayerPrefs.Save();
     }
 

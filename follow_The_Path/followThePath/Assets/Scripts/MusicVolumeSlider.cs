@@ -8,7 +8,6 @@ using UnityEngine.UI;
 /// </summary>
 public class MusicVolumeSlider : MonoBehaviour
 {
-    //johnleonardfrench.com/articles/the-right-way-to-make-a-volume-slider-in-unity-using-logarithmic-conversion/
     [SerializeField]
     private Slider musicSlider;
 
@@ -27,5 +26,6 @@ public class MusicVolumeSlider : MonoBehaviour
     public void MusicChangeVolume()
     {
         AudioManager.Instance.SetMusicVolume(musicSlider.value);
+
     }
 }
