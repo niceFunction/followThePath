@@ -14,7 +14,7 @@ public class MusicVolumeSlider : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        musicSlider.value = AudioManager.Instance.GetMusicVolume();   
+        musicSlider.value = AudioManager.Instance.GetMusicVolume();
     }
     
     // Update is called once per frame
@@ -26,6 +26,6 @@ public class MusicVolumeSlider : MonoBehaviour
     public void MusicChangeVolume()
     {
         AudioManager.Instance.SetMusicVolume(musicSlider.value);
-
+        PlayerPrefs.Save();
     }
 }

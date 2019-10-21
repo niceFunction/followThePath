@@ -21,7 +21,7 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-
+        #region Sound Array
         if (Instance == null)
         {
             Instance = this;
@@ -44,12 +44,12 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
             s.source.outputAudioMixerGroup = s.group;
         }
+        #endregion
     }
 
     void Start()
     {
         MusicVolume = PlayerPrefs.GetFloat("musicVolume", MusicVolume);
-        MusicVolume = 1.0f;
         PlaySound("MainTheme_01");
     }
 
@@ -72,7 +72,6 @@ public class AudioManager : MonoBehaviour
     public float GetMusicVolume ()
     {
         return MusicVolume;
-
     }
 
     /// <summary>
@@ -83,14 +82,7 @@ public class AudioManager : MonoBehaviour
     {
         MusicVolume = volume;
         gameMixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20);
-        // TODO add saving to player prefs
         PlayerPrefs.SetFloat("musicVolume", MusicVolume);
-        PlayerPrefs.Save();       
-    }
-
-    private void OnApplicationQuit()
-    {
         PlayerPrefs.Save();
     }
-
 }
