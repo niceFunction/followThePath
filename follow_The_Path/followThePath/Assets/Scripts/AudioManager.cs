@@ -22,12 +22,8 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager Instance { get; private set; }
 
-    private float MusicVolume; // TODO delete this, variable no longer used. Value is read from PlayerPrefs
-    private float SFXVolume; // TODO delete this, variable no longer used. Value is read from PlayerPrefs
     private Ball Ball;
     // private float nominalSpeed = 1f;
-
-    private float GameMixerVolume; // Delete unused reference
 
     // Start is called before the first frame update
     void Awake()
@@ -92,16 +88,6 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Returns the current music volume.
-    /// </summary>
-    /// <returns></returns>
-    public float GetMusicVolume ()
-    {
-        // TODO Remove this method, it is replaced by GetVolume(MixerVolume)
-        return MusicVolume;
-    }
-
-    /// <summary>
     /// Returns the set volume on the game mixer for the specified parameters.
     /// </summary>
     /// <param name="mixerParameter">Exposed parameter to read</param>
@@ -109,19 +95,6 @@ public class AudioManager : MonoBehaviour
     public float GetVolume(MixerVolume mixerParameter)
     {
         return PlayerPrefs.GetFloat(mixerParameter.ToString(), 1.0f);
-    }
-
-    /// <summary>
-    /// Sets the current music volume.
-    /// </summary>
-    /// <param name="volume">The volume music should have, from 0.0 to 1.0</param>
-    public void SetMusicVolume (float volume)
-    {
-        // TODO remove this method, it is replaced by SetVolume(MixerVolume, float)
-        MusicVolume = volume;
-        gameMixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20);
-        PlayerPrefs.SetFloat("musicVolume", MusicVolume);
-        PlayerPrefs.Save();
     }
 
     /// <summary>
@@ -162,21 +135,5 @@ public class AudioManager : MonoBehaviour
     private float GetLogVolume(float volume)
     {
         return Mathf.Log10(volume) * 20;
-    }
-
-    public float GetSFXVolume ()
-    {
-        // TODO Remove this method, it is replaced by GetVolume(MixerVolume)
-        return SFXVolume;
-    }
-    
-    public void SetSFXVolume (float volume)
-    {
-        // TODO remove this method, it is replaced by SetVolume(MixerVolume, float)
-        SFXVolume = volume;
-        // Adjust volume
-        // "something here".SetFloat("sfxVolume", Mathf.Log10(volume) * 20);
-        PlayerPrefs.SetFloat("sfxVolume", SFXVolume);
-        PlayerPrefs.Save();
     }
 }

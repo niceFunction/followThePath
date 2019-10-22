@@ -23,7 +23,6 @@ public class VolumeSlider : MonoBehaviour
         slider.value = AudioManager.Instance.GetVolume(parameter);
     }
     
-
     public void ChangeVolume()
     {
         AudioManager.Instance.SetVolume(parameter, slider.value);
