@@ -17,6 +17,11 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
 
     private float MusicVolume;
+    private float SFXVolume;
+    private Ball Ball;
+    // private float nominalSpeed = 1f;
+
+    private float GameMixerVolume;
 
     // Start is called before the first frame update
     void Awake()
@@ -65,6 +70,11 @@ public class AudioManager : MonoBehaviour
         s.source.Play();
     }
 
+    public void PlayBallSound ()
+    {
+        //Ball.RB.velocity.magnitude / nominalSpeed;
+    }
+
     /// <summary>
     /// Returns the current music volume.
     /// </summary>
@@ -83,6 +93,20 @@ public class AudioManager : MonoBehaviour
         MusicVolume = volume;
         gameMixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("musicVolume", MusicVolume);
+        PlayerPrefs.Save();
+    }
+
+    public float GetSFXVolume ()
+    {
+        return SFXVolume;
+    }
+    
+    public void SetSFXVolume (float volume)
+    {
+        SFXVolume = volume;
+        // Adjust volume
+        // "something here".SetFloat("sfxVolume", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("sfxVolume", SFXVolume);
         PlayerPrefs.Save();
     }
 }
