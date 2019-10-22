@@ -96,7 +96,6 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
-    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -679,7 +678,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 291651755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28176d30653c08a4a8abcc1e336db018, type: 3}
+  m_Script: {fileID: 11500000, guid: be8e3f77c7b141d4e918ac649d842a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   parameter: 1
@@ -2778,9 +2777,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1349899699}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 9
   m_Type: 1
-  m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
@@ -4064,7 +4062,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1982922673}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28176d30653c08a4a8abcc1e336db018, type: 3}
+  m_Script: {fileID: 11500000, guid: be8e3f77c7b141d4e918ac649d842a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   parameter: 2
@@ -4896,6 +4894,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 578323116}
     m_Modifications:
+    - target: {fileID: 3596900844643142630, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: m_Name
+      value: Game Manager
+      objectReference: {fileID: 0}
     - target: {fileID: 3596900844643142633, guid: 7f099ccd50ca071438eed6eb291dbe6e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5000,11 +5003,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3596900844643142630, guid: 7f099ccd50ca071438eed6eb291dbe6e,
-        type: 3}
-      propertyPath: m_Name
-      value: Game Manager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f099ccd50ca071438eed6eb291dbe6e, type: 3}
