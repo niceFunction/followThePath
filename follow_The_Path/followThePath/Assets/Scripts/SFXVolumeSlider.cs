@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// TODO remove this class, it is replaced by the more general VolumeSlider
 public class SFXVolumeSlider : MonoBehaviour
 {
     [SerializeField]

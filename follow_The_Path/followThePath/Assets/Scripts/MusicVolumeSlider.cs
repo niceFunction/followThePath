@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-// TODO Specifically mentions MUSIC volume slider in summary, since this class specfically manages that.
+// TODO remove this class, it is replaced by the more general VolumeSlider
 /// <summary>
 /// ManageSliderValue gets volume from AudioManager and puts slider at the correct position.
 /// When slider is changed, it sends the new information to AudioManager.
