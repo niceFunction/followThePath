@@ -22,6 +22,9 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager Instance { get; private set; }
     /* THIS DID SOMETHING
+     * https://answers.unity.com/questions/1116974/roll-a-ball-rolling-sound.html
+     * https://answers.unity.com/questions/644841/nullreferenceexception-object-reference-not-set-to-83.html
+     * https://answers.unity.com/questions/60764/sound-volume-based-on-rigidbody-velocity-before-co.html
         VARIABLES
         private Ball ball;
         public GameObject ballObject;
@@ -74,6 +77,11 @@ public class AudioManager : MonoBehaviour
         LoadVolume(MixerVolume.musicVolume);
         LoadVolume(MixerVolume.sfxVolume);
         PlaySound("MainTheme_01");
+    }
+
+    private void Update()
+    {
+
     }
 
     /// <summary>
