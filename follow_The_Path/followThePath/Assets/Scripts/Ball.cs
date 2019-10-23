@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 /*
     For adding sound, to serve as a reminder:
@@ -28,10 +29,10 @@ public class Ball : MonoBehaviour
         movement.x = Input.GetAxis("Horizontal");
         movement.z = Input.GetAxis("Vertical");
 #endif
-
         if(RB.velocity.magnitude < maxSpeed)
         {
             RB.AddForce(movement * speed * Time.deltaTime);
-        }    
+            Debug.Log("Ball Velocity: " + RB.velocity.magnitude);
+        }
     }
 }

@@ -21,9 +21,23 @@ public class AudioManager : MonoBehaviour
     private Sound[] sounds;
 
     public static AudioManager Instance { get; private set; }
+    /* THIS DID SOMETHING
+        VARIABLES
+        private Ball ball;
+        public GameObject ballObject;
+        bool didItPlay = false;
 
-    private Ball Ball;
-    // private float nominalSpeed = 1f;
+        IN START()
+        ball = GetComponent<Ball>();
+
+        IN UPDATE()
+        if (ballObject.GetComponent<Ball>().RB.velocity.magnitude > 1f && !didItPlay)
+        {
+            PlaySound("Ball_Roll");
+            didItPlay = true;
+        }
+
+    */
 
     // Start is called before the first frame update
     void Awake()
@@ -56,6 +70,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
+
         LoadVolume(MixerVolume.musicVolume);
         LoadVolume(MixerVolume.sfxVolume);
         PlaySound("MainTheme_01");
@@ -80,11 +95,6 @@ public class AudioManager : MonoBehaviour
         }
 
         s.source.Play();
-    }
-
-    public void PlayBallSound ()
-    {
-        //Ball.RB.velocity.magnitude / nominalSpeed;
     }
 
     /// <summary>
