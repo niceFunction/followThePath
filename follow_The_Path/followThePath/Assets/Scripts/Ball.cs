@@ -11,13 +11,17 @@ public class Ball : MonoBehaviour
 {
     public float speed = 500;
     public float maxSpeed = 1500;
+    private AudioSource ballSource;
+    private float minimumSpeed = 1.0f;
 
     [HideInInspector]
     public Rigidbody RB;
+    
 
     private void Start()
     {
         RB = GetComponent<Rigidbody>();
+        ballSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -32,7 +36,11 @@ public class Ball : MonoBehaviour
         if(RB.velocity.magnitude < maxSpeed)
         {
             RB.AddForce(movement * speed * Time.deltaTime);
-            Debug.Log("Ball Velocity: " + RB.velocity.magnitude);
+
+            if (RB.velocity.magnitude > minimumSpeed && !ballSource.isPlaying)
+            {
+                ballSource.PlayOneShot(ballSource.clip);
+            }
         }
     }
 }

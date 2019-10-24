@@ -13,6 +13,11 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public enum MixerVolume { masterVolume, musicVolume, sfxVolume }
 
+    /// <summary>
+    /// Variables used to test if the Ball is moving
+    /// </summary>
+
+    [Header("Audio Manager")]
     [Tooltip("Manages sound/volume")]
     [SerializeField]
     private AudioMixer gameMixer;
@@ -21,6 +26,7 @@ public class AudioManager : MonoBehaviour
     private Sound[] sounds;
 
     public static AudioManager Instance { get; private set; }
+    #region Variables used to test sound when the Ball is moving
     /* THIS DID SOMETHING
      * https://answers.unity.com/questions/1116974/roll-a-ball-rolling-sound.html
      * https://answers.unity.com/questions/644841/nullreferenceexception-object-reference-not-set-to-83.html
@@ -41,7 +47,7 @@ public class AudioManager : MonoBehaviour
         }
 
     */
-
+    #endregion
     // Start is called before the first frame update
     void Awake()
     {
@@ -73,15 +79,9 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-
         LoadVolume(MixerVolume.musicVolume);
         LoadVolume(MixerVolume.sfxVolume);
         PlaySound("MainTheme_01");
-    }
-
-    private void Update()
-    {
-
     }
 
     /// <summary>
