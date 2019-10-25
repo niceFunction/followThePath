@@ -6,13 +6,19 @@ using UnityEngine.Audio;
 /*
     For adding sound, to serve as a reminder:
     Introduction to AUDIO in Unity (Brackeys): www.youtube.com/watch?v=6OT43pvUyfY
+    Fade Audio in Unity: https://johnleonardfrench.com/articles/how-to-fade-audio-in-unity-i-tested-every-method-this-ones-the-best/
 */
 public class Ball : MonoBehaviour
 {
+    //Movement related variables
     public float speed = 500;
-    public float maxSpeed = 1500;
+    public float maxSpeed = 40;
+    
+    // Audio related variables
     private AudioSource ballSource;
-    private float minimumSpeed = 1.0f;
+    [SerializeField]
+    private float[] speedLimits;
+    public AudioClip[] ballRollClips;
 
     [HideInInspector]
     public Rigidbody RB;
@@ -33,14 +39,36 @@ public class Ball : MonoBehaviour
         movement.x = Input.GetAxis("Horizontal");
         movement.z = Input.GetAxis("Vertical");
 #endif
-        if(RB.velocity.magnitude < maxSpeed)
-        {
-            RB.AddForce(movement * speed * Time.deltaTime);
+        RB.AddForce(movement * speed * Time.deltaTime);
 
-            if (RB.velocity.magnitude > minimumSpeed && !ballSource.isPlaying)
+        // Limit Ball velocity
+        if (RB.velocity.magnitude > maxSpeed)
+        {
+            RB.velocity = RB.velocity.normalized * maxSpeed;
+        }
+
+        if (RB.velocity.magnitude > speedLimits[0] && !ballSource.isPlaying)
+        {
+            ballSource.Stop();
+            ballSource.PlayOneShot(ballSource.clip = ballRollClips[0]);
+            
+            if (RB.velocity.magnitude > speedLimits[1])
             {
-                ballSource.PlayOneShot(ballSource.clip);
+                ballSource.Stop();
+                ballSource.PlayOneShot(ballSource.clip = ballRollClips[1]);
+            }
+            if (RB.velocity.magnitude > speedLimits[2])
+            {
+                ballSource.Stop();
+                ballSource.PlayOneShot(ballSource.clip = ballRollClips[2]);
+            }
+            if (RB.velocity.magnitude > speedLimits[3])
+            {
+                ballSource.Stop();
+                ballSource.PlayOneShot(ballSource.clip = ballRollClips[3]);
             }
         }
+
+        Debug.Log("Player Velocity: " + RB.velocity.magnitude);
     }
 }
