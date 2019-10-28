@@ -910,6 +910,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2531836696072316954, guid: 1ae0613fe92deac4893200bbc97c96ce,
         type: 3}
+      propertyPath: sounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531836696072316954, guid: 1ae0613fe92deac4893200bbc97c96ce,
+        type: 3}
       propertyPath: sounds.Array.data[0].loop
       value: 1
       objectReference: {fileID: 0}
@@ -967,6 +972,37 @@ PrefabInstance:
       propertyPath: minimumBallSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2531836696072316954, guid: 1ae0613fe92deac4893200bbc97c96ce,
+        type: 3}
+      propertyPath: sounds.Array.data[3].name
+      value: Ball_Roll
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531836696072316954, guid: 1ae0613fe92deac4893200bbc97c96ce,
+        type: 3}
+      propertyPath: sounds.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f56eb9436ddc83c4a8a7ef18fe1724a6, type: 3}
+    - target: {fileID: 2531836696072316954, guid: 1ae0613fe92deac4893200bbc97c96ce,
+        type: 3}
+      propertyPath: sounds.Array.data[3].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531836696072316954, guid: 1ae0613fe92deac4893200bbc97c96ce,
+        type: 3}
+      propertyPath: sounds.Array.data[3].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531836696072316954, guid: 1ae0613fe92deac4893200bbc97c96ce,
+        type: 3}
+      propertyPath: sounds.Array.data[3].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531836696072316954, guid: 1ae0613fe92deac4893200bbc97c96ce,
+        type: 3}
+      propertyPath: sounds.Array.data[3].group
+      value: 
+      objectReference: {fileID: -2040460229823727546, guid: 505d13918522d914bafb17cc446e6e52,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ae0613fe92deac4893200bbc97c96ce, type: 3}
 --- !u!1 &538867091

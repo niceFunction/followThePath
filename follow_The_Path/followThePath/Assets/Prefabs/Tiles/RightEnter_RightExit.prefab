@@ -169,6 +169,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: mdl_RightEnter_RightExit
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 93b80cbafe33e13498544d1b48fa5e78,
+        type: 3}
+      propertyPath: m_TagString
+      value: Tile
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 93b80cbafe33e13498544d1b48fa5e78,
         type: 3}
       propertyPath: m_LocalPosition.x

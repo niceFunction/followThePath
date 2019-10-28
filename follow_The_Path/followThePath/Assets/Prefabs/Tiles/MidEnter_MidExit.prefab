@@ -168,6 +168,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: mdl_MidEnter_MidExit
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: de217dfae3f2c89439b5786da191f189,
+        type: 3}
+      propertyPath: m_TagString
+      value: Tile
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: de217dfae3f2c89439b5786da191f189,
         type: 3}
       propertyPath: m_LocalPosition.x

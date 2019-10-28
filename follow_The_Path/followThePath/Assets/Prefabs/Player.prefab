@@ -162,8 +162,9 @@ GameObject:
   - component: {fileID: 9154867312178150106}
   - component: {fileID: 9154867312178150117}
   - component: {fileID: 9154867312178150116}
-  - component: {fileID: 9154867312178150119}
   - component: {fileID: 9154867312178150104}
+  - component: {fileID: 9154867312178150119}
+  - component: {fileID: 154449266199947766}
   - component: {fileID: 9128105815954553251}
   m_Layer: 0
   m_Name: Player
@@ -246,31 +247,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9154867312178150119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9154867312178150118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6846ab77d3a5534c966d29c8093c1aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1000
-  maxSpeed: 40
-  speedLimits:
-  - 0.5
-  - 5
-  - 10
-  - 15
-  ballRollClips:
-  - {fileID: 8300000, guid: 842c1c506bfe6334e8b1aace6e3e1d84, type: 3}
-  - {fileID: 8300000, guid: f56eb9436ddc83c4a8a7ef18fe1724a6, type: 3}
-  - {fileID: 8300000, guid: bbc6e2238e92c8d4295a9c9d6ec3b94f, type: 3}
-  - {fileID: 8300000, guid: ecf8a6e660ac0864e8bd11a8210304a7, type: 3}
-  RB: {fileID: 0}
 --- !u!54 &9154867312178150104
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -287,6 +263,45 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &9154867312178150119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9154867312178150118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6846ab77d3a5534c966d29c8093c1aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1000
+  maxSpeed: 40
+  speedLimits:
+  - 0.5
+  - 2
+  - 6.5
+  - 10
+  - 15
+  ballRollClips:
+  - {fileID: 8300000, guid: b173b149f0e4849458c8b21dceb4ecb4, type: 3}
+  - {fileID: 8300000, guid: 842c1c506bfe6334e8b1aace6e3e1d84, type: 3}
+  - {fileID: 8300000, guid: f56eb9436ddc83c4a8a7ef18fe1724a6, type: 3}
+  - {fileID: 8300000, guid: bbc6e2238e92c8d4295a9c9d6ec3b94f, type: 3}
+  - {fileID: 8300000, guid: ecf8a6e660ac0864e8bd11a8210304a7, type: 3}
+  RB: {fileID: 0}
+--- !u!114 &154449266199947766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9154867312178150118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 121de18df4027f34f80fea05a4d9747b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &9128105815954553251
 AudioSource:
   m_ObjectHideFlags: 0

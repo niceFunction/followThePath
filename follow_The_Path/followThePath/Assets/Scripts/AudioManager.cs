@@ -22,32 +22,12 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioMixer gameMixer;
 
+    [Tooltip("List of sounds")]
     [SerializeField]
     private Sound[] sounds;
 
     public static AudioManager Instance { get; private set; }
-    #region Variables used to test sound when the Ball is moving
-    /* THIS DID SOMETHING
-     * https://answers.unity.com/questions/1116974/roll-a-ball-rolling-sound.html
-     * https://answers.unity.com/questions/644841/nullreferenceexception-object-reference-not-set-to-83.html
-     * https://answers.unity.com/questions/60764/sound-volume-based-on-rigidbody-velocity-before-co.html
-        VARIABLES
-        private Ball ball;
-        public GameObject ballObject;
-        bool didItPlay = false;
 
-        IN START()
-        ball = GetComponent<Ball>();
-
-        IN UPDATE()
-        if (ballObject.GetComponent<Ball>().RB.velocity.magnitude > 1f && !didItPlay)
-        {
-            PlaySound("Ball_Roll");
-            didItPlay = true;
-        }
-
-    */
-    #endregion
     // Start is called before the first frame update
     void Awake()
     {

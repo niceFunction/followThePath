@@ -17,6 +17,7 @@ public class Ball : MonoBehaviour
     // Audio related variables
     private AudioSource ballSource;
     [SerializeField]
+    [Range(0.1f, 20f)]
     private float[] speedLimits;
     public AudioClip[] ballRollClips;
 
@@ -67,8 +68,13 @@ public class Ball : MonoBehaviour
                 ballSource.Stop();
                 ballSource.PlayOneShot(ballSource.clip = ballRollClips[3]);
             }
+            if (RB.velocity.magnitude > speedLimits[4])
+            {
+                ballSource.Stop();
+                ballSource.PlayOneShot(ballSource.clip = ballRollClips[4]);
+            }
         }
 
-        Debug.Log("Player Velocity: " + RB.velocity.magnitude);
+        //Debug.Log("Player Velocity: " + RB.velocity.magnitude);
     }
 }
