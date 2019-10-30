@@ -1,6 +1,7 @@
 ﻿using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// AudioManager is responsible for all related to audio
@@ -84,6 +85,11 @@ public class AudioManager : MonoBehaviour
 
         s.source.Play();
     }
+
+    //public void PlayButtonTapSound()
+    //{
+      //  PlaySound("Button_Effect");
+    //}
 
     /// <summary>
     /// Returns the set volume on the game mixer for the specified parameters.

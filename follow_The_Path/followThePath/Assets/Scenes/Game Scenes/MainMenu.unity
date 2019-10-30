@@ -532,6 +532,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1481872937}
+        m_MethodName: PlayButtonTapSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &47232777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -911,7 +922,7 @@ PrefabInstance:
     - target: {fileID: 2531836696072316954, guid: 1ae0613fe92deac4893200bbc97c96ce,
         type: 3}
       propertyPath: sounds.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2531836696072316954, guid: 1ae0613fe92deac4893200bbc97c96ce,
         type: 3}
@@ -965,7 +976,7 @@ PrefabInstance:
     - target: {fileID: 2531836696072316954, guid: 1ae0613fe92deac4893200bbc97c96ce,
         type: 3}
       propertyPath: sounds.Array.data[2].loop
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2531836696072316954, guid: 1ae0613fe92deac4893200bbc97c96ce,
         type: 3}
@@ -975,13 +986,13 @@ PrefabInstance:
     - target: {fileID: 2531836696072316954, guid: 1ae0613fe92deac4893200bbc97c96ce,
         type: 3}
       propertyPath: sounds.Array.data[3].name
-      value: Ball_Roll
+      value: Button_Effect
       objectReference: {fileID: 0}
     - target: {fileID: 2531836696072316954, guid: 1ae0613fe92deac4893200bbc97c96ce,
         type: 3}
       propertyPath: sounds.Array.data[3].clip
       value: 
-      objectReference: {fileID: 8300000, guid: f56eb9436ddc83c4a8a7ef18fe1724a6, type: 3}
+      objectReference: {fileID: 8300000, guid: d8a875ddef0519c45ada985ef98cc9a4, type: 3}
     - target: {fileID: 2531836696072316954, guid: 1ae0613fe92deac4893200bbc97c96ce,
         type: 3}
       propertyPath: sounds.Array.data[3].volume
@@ -995,13 +1006,13 @@ PrefabInstance:
     - target: {fileID: 2531836696072316954, guid: 1ae0613fe92deac4893200bbc97c96ce,
         type: 3}
       propertyPath: sounds.Array.data[3].loop
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2531836696072316954, guid: 1ae0613fe92deac4893200bbc97c96ce,
         type: 3}
       propertyPath: sounds.Array.data[3].group
       value: 
-      objectReference: {fileID: -2040460229823727546, guid: 505d13918522d914bafb17cc446e6e52,
+      objectReference: {fileID: -4241241104117623869, guid: 505d13918522d914bafb17cc446e6e52,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ae0613fe92deac4893200bbc97c96ce, type: 3}
@@ -1299,6 +1310,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 585052614}
   m_CullTransparentMesh: 0
+--- !u!114 &621518604 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2531836696072316954, guid: 1ae0613fe92deac4893200bbc97c96ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 483452928}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e4386e59449376408a3438fc5cc4443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &742615920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1417,6 +1440,17 @@ MonoBehaviour:
       - m_Target: {fileID: 1970978912}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1481872937}
+        m_MethodName: PlayButtonTapSound
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2223,6 +2257,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1481872937}
+        m_MethodName: PlayButtonTapSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1150296586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2535,6 +2580,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1481872937}
         m_MethodName: Playgame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1481872937}
+        m_MethodName: PlayButtonTapSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2898,7 +2954,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1481872937}
-        m_MethodName: QuitGame
+        m_MethodName: OnPressingQuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4677,6 +4733,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1481872937}
+        m_MethodName: PlayButtonTapSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2077176346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5045,5 +5112,10 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 621518604}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f099ccd50ca071438eed6eb291dbe6e, type: 3}

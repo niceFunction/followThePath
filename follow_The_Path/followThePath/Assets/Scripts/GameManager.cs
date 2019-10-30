@@ -4,16 +4,23 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
+/// <summary>
+/// Class that manages different states in the game
+/// </summary>
 public class GameManager : MonoBehaviour
 {
-    // Use as reference for "PlayerPrefs".
-    //answers.unity.com/questions/1537332/save-playerprefs-on-application-exit.html
-    //youtu.be/XOjd_qU2Ido - Brackeys: "SAVE & LOAD SYSTEM in Unity"
 
     // Game "States"
     public static bool GameIsPaused = false;
     public static bool isGameOver = false;
+
+    private AudioSource buttonTapSource;
+    [Tooltip("Used to Play an SFX when pressing a button")]
+    public AudioClip buttonTapClip;
+    private float delayButtonSound = 0.2f;
+
 
     [Space(10)]
     #region GAME OVER VARIABLES
@@ -45,12 +52,15 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        buttonTapSource = GetComponent<AudioSource>();
         resetBackgroundTimer = backgroundTimer;
         resetGameOverTimer = gameOverTimer;   
     }
 
     void Update()
     {
+
+        #region Game Over Conditions
         if (insideGameScene == true)
         {
             // If the players "velocity" is below a certain value, activate timer
@@ -80,6 +90,8 @@ public class GameManager : MonoBehaviour
                 gameOverTimer = resetGameOverTimer;
             }
         }
+        #endregion
+
     }
 
     private void Awake()
@@ -93,7 +105,7 @@ public class GameManager : MonoBehaviour
         isGameOver = false;
         backgroundTimer = resetBackgroundTimer;
         gameOverTimer = resetGameOverTimer;
-        SceneManager.LoadScene("GameScene");
+        Invoke("OpenPlayGame", delayButtonSound);
     }
 
     #region Pause Menu Methods
@@ -103,7 +115,8 @@ public class GameManager : MonoBehaviour
         isGameOver = false;
         backgroundTimer = resetBackgroundTimer;
         gameOverTimer = resetGameOverTimer;
-        SceneManager.LoadScene("MainMenu");
+        Invoke("OpenMainMenu", delayButtonSound);
+        
     }
 
     public void Resume()
@@ -133,5 +146,37 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("QUIT GAME");
         Application.Quit();
+    }
+
+    #region Delay specific UI methods
+    /// <summary>
+    /// Plays an SFX before opening a scene which is on a delay.
+    /// </summary>
+    public void OnPressingQuitGame()
+    {
+        PlayButtonTapSound();
+        Invoke("QuitGame", delayButtonSound);
+    }
+    /// <summary>
+    /// Used to Invoke the Scene in "LoadMainMenu".
+    /// </summary>
+    void OpenMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+    /// <summary>
+    /// Used to Invoke the Scene in the method "Playgame".
+    /// </summary>
+    void OpenPlayGame()
+    {
+        SceneManager.LoadScene("GameScene");
+    }
+    #endregion
+
+    //TODO: Look into moving this method in UI certain methods
+    public void PlayButtonTapSound()
+    {
+        buttonTapSource.Stop();
+        buttonTapSource.PlayOneShot(buttonTapSource.clip = buttonTapClip);
     }
 }
