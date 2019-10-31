@@ -15,7 +15,8 @@ public class Ball : MonoBehaviour
     public float maxSpeed = 40;
     
     // Audio related variables
-    private AudioSource ballSource;
+    [HideInInspector]
+    public AudioSource ballSource;
     [SerializeField]
     [Range(0.1f, 20f)]
     private float[] speedLimits;

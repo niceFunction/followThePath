@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3467168562045198298}
   - component: {fileID: 3467168562045198299}
   m_Layer: 0
-  m_Name: Display FPS
+  m_Name: Display Debug
   m_TagString: Untagged
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -43,3 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 096ef9d9e56556347b8fc6ec3da3b99a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ball: {fileID: 9154867312178150119, guid: 1febbe1a2843e964d80ce5d625983321, type: 3}
