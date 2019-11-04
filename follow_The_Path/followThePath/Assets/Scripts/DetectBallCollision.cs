@@ -17,7 +17,7 @@ public class DetectBallCollision : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player") 
         {
-            Debug.Log("Collision Detected");
+            Debug.Log("Ball collided with wall");
             collisionSource.Stop();
             collisionSource.PlayOneShot(collisionSource.clip = collisionClips[Random.Range(0, collisionClips.Length)]);
         }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tile
   - musicSlider
+  - Collectible
   layers:
   - Default
   - TransparentFX

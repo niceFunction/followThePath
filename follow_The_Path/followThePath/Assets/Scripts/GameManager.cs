@@ -149,6 +149,7 @@ public class GameManager : MonoBehaviour
     }
 
     #region Delay specific UI methods
+    //TODO: Look into if a better method would work in the long run
     /// <summary>
     /// Plays an SFX before opening a scene which is on a delay.
     /// </summary>

@@ -75,7 +75,7 @@ public class Ball : MonoBehaviour
                 ballSource.PlayOneShot(ballSource.clip = ballRollClips[4]);
             }
         }
-
+        //TODO Saving this Debug in case it's needed again
         //Debug.Log("Player Velocity: " + RB.velocity.magnitude);
     }
 }
