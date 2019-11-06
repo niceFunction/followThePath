@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2685521929021703128}
   m_Layer: 5
   m_Name: Game Manager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,6 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonTapClip: {fileID: 8300000, guid: d8a875ddef0519c45ada985ef98cc9a4, type: 3}
+  currentScoreText: {fileID: 0}
+  highscoreText: {fileID: 0}
   insideGameScene: 0
   Ball: {fileID: 0}
   gameOverTimerObject: {fileID: 0}

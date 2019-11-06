@@ -22,6 +22,14 @@ public class GameManager : MonoBehaviour
     private float delayButtonSound = 0.2f;
 
 
+    private Collectible collectible;
+    private int score;
+    // currentScoreText displays while game is active
+    public TextMeshProUGUI currentScoreText;
+    // highscoreText displays when the game is over
+    public TextMeshProUGUI highscoreText;
+    
+
     [Space(10)]
     #region GAME OVER VARIABLES
     [Header("Game Over Variables")]
@@ -54,12 +62,11 @@ public class GameManager : MonoBehaviour
     {
         buttonTapSource = GetComponent<AudioSource>();
         resetBackgroundTimer = backgroundTimer;
-        resetGameOverTimer = gameOverTimer;   
+        resetGameOverTimer = gameOverTimer;
     }
 
     void Update()
     {
-
         #region Game Over Conditions
         if (insideGameScene == true)
         {
@@ -180,4 +187,16 @@ public class GameManager : MonoBehaviour
         buttonTapSource.Stop();
         buttonTapSource.PlayOneShot(buttonTapSource.clip = buttonTapClip);
     }
+
+    public void AddScore (int newScoreValue)
+    {
+        score += newScoreValue;
+        UpdateScore();
+    }
+
+    void UpdateScore()
+    {
+        currentScoreText.text = score.ToString();
+    }
+
 }
