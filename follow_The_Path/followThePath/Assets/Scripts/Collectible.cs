@@ -17,13 +17,17 @@ public class Collectible : MonoBehaviour
     [Range(0.1f, 1.0f)]
     public float destroyDelay = 0.5f;
 
+    public GameObject collectibleEffect;
+    private float destroyParticle = 1.0f;
+
     /// <summary>
     /// Access the collectibles mesh, a workaround to continue playing an SFX when collectible is "destroyed".
     /// </summary>
     MeshRenderer collectibleMesh;
+    BoxCollider collectibleCollider;
 
     /// <summary>
-    /// Get the AudioSource component
+    /// "Get" the AudioSource component
     /// </summary>
     private AudioSource collectSource;
     /// <summary>
@@ -46,6 +50,7 @@ public class Collectible : MonoBehaviour
         }
 
         collectibleMesh = GetComponent<MeshRenderer>();
+        collectibleCollider = GetComponent<BoxCollider>();
         collectSource = GetComponent<AudioSource>();
 
     }
@@ -60,12 +65,23 @@ public class Collectible : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && !collectSource.isPlaying)
         {
-            // Disable the collectible renderer before invoking "DestroyObject" method
+            ///<summary>
+            /// Disable the collectible renderer before invoking "DestroyObject" method, 
+            /// so that the AudioClip can finish playing.
+            /// </summary> 
             collectibleMesh.enabled = false;
+
+            ///<summary>
+            /// Disable the collectible Box Collider before invoking "DestroyObject" method, 
+            /// to ensure no more collision happens.
+            /// </summary> 
+            collectibleCollider.enabled = false;
+            Explode();
             // Invoke DestroyObject method
             Invoke("DestroyObject", destroyDelay);
             collectSource.Stop();
             collectSource.PlayOneShot(collectSource.clip = collectClip);
+
             gameManager.AddScore(collectibleScore);
             Debug.Log("Player collided with Collectible");
         }
@@ -75,4 +91,10 @@ public class Collectible : MonoBehaviour
     {
         Object.Destroy(collectibleParent);
     }
+
+    void Explode()
+    {
+        Instantiate(collectibleEffect, transform.position, transform.rotation);
+    }
+
 }

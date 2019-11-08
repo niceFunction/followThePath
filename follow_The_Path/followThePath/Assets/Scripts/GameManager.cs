@@ -25,9 +25,9 @@ public class GameManager : MonoBehaviour
     private Collectible collectible;
     private int score;
     // currentScoreText displays while game is active
-    public TextMeshProUGUI currentScoreText;
+    public TextMeshProUGUI currentScore;
     // highscoreText displays when the game is over
-    public TextMeshProUGUI highscoreText;
+    public TextMeshProUGUI highscore;
     
 
     [Space(10)]
@@ -63,6 +63,8 @@ public class GameManager : MonoBehaviour
         buttonTapSource = GetComponent<AudioSource>();
         resetBackgroundTimer = backgroundTimer;
         resetGameOverTimer = gameOverTimer;
+
+        highscore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
     }
 
     void Update()
@@ -188,15 +190,27 @@ public class GameManager : MonoBehaviour
         buttonTapSource.PlayOneShot(buttonTapSource.clip = buttonTapClip);
     }
 
+    #region Score specific methods
     public void AddScore (int newScoreValue)
     {
         score += newScoreValue;
         UpdateScore();
+        if (score > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+            highscore.text = score.ToString();
+        }
     }
 
     void UpdateScore()
     {
-        currentScoreText.text = score.ToString();
+        currentScore.text = score.ToString();
     }
 
+    public void ResetHighScore()
+    {
+            PlayerPrefs.DeleteKey("HighScore");
+            highscore.text = "0";
+    }
+    #endregion
 }
