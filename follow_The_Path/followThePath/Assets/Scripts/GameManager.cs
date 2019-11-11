@@ -56,6 +56,14 @@ public class GameManager : MonoBehaviour
     [Range(0.01f, 5.0f)]
     [Tooltip("Minimum 'speed' to activate backgroundTimer")]
     public float minimumSpeed = 1.0f;
+
+    /// <summary>
+    /// Another version used to display Player's score on Game Over.
+    /// Temporary solution, variable "currentScore" should be used instead.
+    /// </summary>
+    [Tooltip("Display Score on Game Over")]
+    public TextMeshProUGUI gameOverScore;
+    //public TextMeshProUGUI gameOverHighScore;
     #endregion
 
     void Start()
@@ -146,6 +154,8 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         isGameOver = true;
+        countdownText.enabled = false;
+        currentScore.enabled = false;
         gameOverMenuObject.SetActive(true);
     }
     #endregion
@@ -199,18 +209,25 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("HighScore", score);
             highscore.text = score.ToString();
+            //gameOverHighScore.text = score.ToString();
         }
     }
 
     void UpdateScore()
     {
         currentScore.text = score.ToString();
+        gameOverScore.text = score.ToString();
     }
 
+    /// <summary>
+    /// Used for Debugging and testing, will be removed in the future.
+    /// </summary>
     public void ResetHighScore()
     {
-            PlayerPrefs.DeleteKey("HighScore");
-            highscore.text = "0";
+        PlayerPrefs.DeleteKey("HighScore");
+        highscore.text = "0";
+        buttonTapSource.Stop();
+        buttonTapSource.PlayOneShot(buttonTapSource.clip = buttonTapClip);
     }
     #endregion
 }
