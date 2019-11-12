@@ -7,10 +7,11 @@ using UnityEngine.UI;
 public class DebugDisplay : MonoBehaviour
 {
 
-    //[HideInInspector]
-    public Ball ball;
+    [SerializeField]
+    private Ball ball;
 
     float deltaTime = 0.0f;
+
 
     void Start()
     {
@@ -21,7 +22,6 @@ public class DebugDisplay : MonoBehaviour
     {
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
     }
-
     void OnGUI()
     {
         int w = Screen.width, h = Screen.height;
@@ -37,12 +37,13 @@ public class DebugDisplay : MonoBehaviour
         float fps = 1.0f / deltaTime;
         string FPSText = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
 
-        // What Audio Clip is playing on the Ball
-        string ballSourceText = string.Format("ballSource: " + ball.ballSource.clip.name.ToString());
+
+        // What Audio Clip is playing on the Ball)
+        //string ballSourceText = string.Format("ballSource: " + ball.ballSource.clip.name.ToString());
 
         GUILayout.BeginVertical("box");
         GUILayout.Label(FPSText);
-        GUILayout.Label(ballSourceText);
+        //GUILayout.Label(ballSourceText);
         GUILayout.EndVertical();
         
     }
