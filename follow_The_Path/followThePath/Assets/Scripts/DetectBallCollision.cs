@@ -20,7 +20,6 @@ public class DetectBallCollision : MonoBehaviour
             Debug.Log("Ball collided with wall");
             collisionSource.Stop();
             collisionSource.PlayOneShot(collisionSource.clip = collisionClips[Random.Range(0, collisionClips.Length)]);
-        }
-        
+        } 
     }
 }

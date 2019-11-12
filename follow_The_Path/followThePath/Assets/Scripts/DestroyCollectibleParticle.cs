@@ -10,10 +10,4 @@ public class DestroyCollectibleParticle : MonoBehaviour
     {
         Destroy(this.gameObject, GetComponent<ParticleSystem>().main.duration);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

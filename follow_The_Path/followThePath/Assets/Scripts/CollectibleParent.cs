@@ -35,7 +35,7 @@ public class CollectibleParent : MonoBehaviour
     {
         
         randomDirection = Random.Range(0, 2);
-        Debug.Log("Rotation direction: " + randomDirection);
+        //Debug.Log("Rotation direction: " + randomDirection);
         if (randomDirection == 0)
         {
             // Set currentRotation to Counter-Clockwise
