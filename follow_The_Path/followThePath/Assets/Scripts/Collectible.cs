@@ -20,6 +20,10 @@ public class Collectible : MonoBehaviour
     public GameObject collectibleEffect;
     private float destroyParticle = 1.0f;
 
+    // Used to make the Collectible "appear" in the scene
+    private float appearanceChance;
+    private float appearanceChanceValue = 0.2f;
+
     /// <summary>
     /// Access the collectibles mesh, a workaround to continue playing an SFX when collectible is "destroyed".
     /// </summary>
@@ -59,6 +63,15 @@ public class Collectible : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void Awake()
+    {
+        appearanceChance = Random.Range(0, 2);
+        if (appearanceChance < appearanceChanceValue)
+        {
+            DestroyObject();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
