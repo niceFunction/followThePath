@@ -10,6 +10,15 @@ using UnityEngine.Audio;
 */
 public class Ball : MonoBehaviour
 {
+
+    // Lowpass Filter Related varaibels
+    const float updateSpeed = 60.0f;
+
+    float accelerometerUpdateInterval = 1.0f / updateSpeed;
+    float lowPassKernelWidthInSeconds = 1.0f;
+    float lowPassFilterFactor = 0;
+    Vector3 lowPassValue = Vector3.zero;
+
     //Movement related variables
     public float speed = 500;
     public float maxSpeed = 40;
@@ -30,11 +39,27 @@ public class Ball : MonoBehaviour
     {
         RB = GetComponent<Rigidbody>();
         ballSource = GetComponent<AudioSource>();
+
+        // Filter Accelerometer
+        lowPassFilterFactor = accelerometerUpdateInterval / lowPassKernelWidthInSeconds;
+        lowPassValue = Input.acceleration;
+
+    }
+
+    private void Update()
+    {
+        // Get Raw Accelerometer values (pass in false to get raw Accelerometer values)
+        Vector3 rawAccelValue = filterAccelValue(false);
+        //Debug.Log("Raw X: " + rawAccelValue.x + " Y: " + rawAccelValue.y + " Z: " + rawAccelValue.z);
+
+        // Get smoothed Accelerometer values (pass in true to get Filtered Accelerometer values)
+        Vector3 filteredAccelValue = filterAccelValue(true);
+        //Debug.Log("FILTERED X: " + filteredAccelValue.x + " Y: " + filteredAccelValue.y + " Z: " + filteredAccelValue.z);
     }
 
     private void FixedUpdate()
     {
-        Vector3 movement = new Vector3(Input.acceleration.x, 0.0f, Input.acceleration.y);
+        Vector3 movement = new Vector3(lowPassValue.x, 0.0f, lowPassValue.y);
 
 #if UNITY_EDITOR
         // Allow other input controls in editor onlyz
@@ -49,6 +74,7 @@ public class Ball : MonoBehaviour
             RB.velocity = RB.velocity.normalized * maxSpeed;
         }
 
+        #region Play ball different ball sounds depending on velocity
         if (RB.velocity.magnitude > speedLimits[0] && !ballSource.isPlaying)
         {
             ballSource.Stop();
@@ -75,7 +101,22 @@ public class Ball : MonoBehaviour
                 ballSource.PlayOneShot(ballSource.clip = ballRollClips[4]);
             }
         }
+        #endregion
         //TODO Saving this Debug in case it's needed again
         //Debug.Log("Player Velocity: " + RB.velocity.magnitude);
     }
+
+    Vector3 filterAccelValue(bool smooth)
+    {
+        if (smooth)
+        {
+            lowPassValue = Vector3.Lerp(lowPassValue, Input.acceleration, lowPassFilterFactor);
+        }
+        else
+        {
+            lowPassValue = Input.acceleration;
+        }
+        return lowPassValue;
+    }
+
 }
