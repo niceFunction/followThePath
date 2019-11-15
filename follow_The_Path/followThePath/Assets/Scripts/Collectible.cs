@@ -18,7 +18,6 @@ public class Collectible : MonoBehaviour
     public float destroyDelay = 0.5f;
 
     public GameObject collectibleEffect;
-    private float destroyParticle = 1.0f;
 
     // Used to make the Collectible "appear" in the scene
     private float appearanceChance;
