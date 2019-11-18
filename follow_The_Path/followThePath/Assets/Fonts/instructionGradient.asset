@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: instructionGradient
   m_EditorClassIdentifier: 
   colorMode: 3
-  topLeft: {r: 0, g: 0, b: 0, a: 0.5882353}
-  topRight: {r: 0, g: 0, b: 0, a: 0.5882353}
-  bottomLeft: {r: 0, g: 0, b: 0, a: 0.5882353}
-  bottomRight: {r: 0, g: 0, b: 0, a: 0.5882353}
+  topLeft: {r: 0, g: 0, b: 0, a: 0.78431374}
+  topRight: {r: 0, g: 0, b: 0, a: 0.78431374}
+  bottomLeft: {r: 0, g: 0, b: 0, a: 0.78431374}
+  bottomRight: {r: 0, g: 0, b: 0, a: 0.78431374}
