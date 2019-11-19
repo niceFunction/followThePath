@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 131673260}
   m_Layer: 0
   m_Name: Random Color Cube
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -831,7 +831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfd806a12a17b04f9d10da9dcc85c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileMaterial: {fileID: 0}
+  tileMaterial: {fileID: 2100000, guid: 409bff0faec8d784ab0a4d7247af65e1, type: 2}
   floorMaterial: {fileID: 0}
   changeSpeed: 1
   tileColorList:
