@@ -40,12 +40,10 @@ public class ColorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ColorChange();
-        Debug.Log(currentTileColor);
-
+        SetRandomColor();
     }
 
-    void ColorChange()
+    void SetRandomColor()
     {
 
         //TODO Look more into getting random element from array
@@ -133,8 +131,9 @@ public class ColorManager : MonoBehaviour
             currentTileColor = tileColorList[6];
             currentFloorColor = floorColorList[6];
         }
-        //tileMaterial.color = Color.Lerp(tileMaterial.color, currentTileColor, changeSpeed);
-        //floorMaterial.color = Color.Lerp(floorMaterial.color, currentFloorColor, changeSpeed);
+        
+        //tileMaterial.color = Color.Lerp(currentTileColor, tileColorList[tileColorIndex], changeSpeed);
+        //floorMaterial.color = Color.Lerp(currentFloorColor, floorColorList[floorColorIndex],changeSpeed);
         #endregion
     }
 }

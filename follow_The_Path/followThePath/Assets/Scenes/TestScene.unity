@@ -1017,7 +1017,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMaterial: {fileID: 2100000, guid: 409bff0faec8d784ab0a4d7247af65e1, type: 2}
   floorMaterial: {fileID: 2100000, guid: b6dccb9381a8461458c3d4ff2d332e9d, type: 2}
-  changeSpeed: 1
+  changeSpeed: 10
   tileColorList:
   - {r: 0.91764706, g: 0.1254902, b: 0.15294118, a: 0}
   - {r: 0.9529412, g: 0.6117647, b: 0.07058824, a: 0}
@@ -1034,9 +1034,6 @@ MonoBehaviour:
   - {r: 0.105882354, g: 0.078431375, b: 0.39215687, a: 0}
   - {r: 0.2901961, g: 0.078431375, b: 0.54901963, a: 0}
   - {r: 0.43529412, g: 0.11764706, b: 0.31764707, a: 0}
-  fadeInTime: 1
-  fadeOutTime: 1
-  fadeDelay: 1
 --- !u!4 &1909861918
 Transform:
   m_ObjectHideFlags: 0
