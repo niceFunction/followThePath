@@ -66,6 +66,7 @@ public class Collectible : MonoBehaviour
 
     private void Awake()
     {
+        // How big of a chance will the "Collectible" stay in the Scene?
         appearanceChance = Random.Range(0, 2);
         if (appearanceChance < appearanceChanceValue)
         {

@@ -17,41 +17,52 @@ public class ColorManager : MonoBehaviour
     [Tooltip("Used to change the color of the Floor")]
     public Material floorMaterial;
 
-    [Tooltip("How fast will the Color chnage into a new Color?")]
-    public float changeSpeed = 1.0f;
-
     [SerializeField]
-    [Tooltip("Create a list of Colors and choose Colors for Tiles")]
+    [Tooltip("Create an Array of Colors and choose Colors for Tiles")]
     private Color[] tileColorList;
     [SerializeField]
-    [Tooltip("Create a list of Colors and choose Colors for Floors")]
+    [Tooltip("Create an Array of Colors and choose Colors for Floors")]
     private Color[] floorColorList;
 
+    // Used to get/set the current Color
     private Color currentTileColor;
     private Color currentFloorColor;
 
-    public float colorChangeTimerReset = 3.0f;
+    // Variables used to Randomize colors
+    public float colorChangeTimerReset;
     private float colorChangeTimer;
-
+    private bool currentlyChangingColor;
+    
     // Start is called before the first frame update
     void Start()
     {
-        //currentTileColor = Color.white;
-        //currentFloorColor = Color.white;
+        currentTileColor = tileMaterial.color;
+        currentFloorColor = floorMaterial.color;
         colorChangeTimer = colorChangeTimerReset;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Time is: " + colorChangeTimer);
+        Debug.Log("currentlyChangingColor: " + currentlyChangingColor);
+        NewRandomColor();
+    }
+
+    public void NewRandomColor()
+    {
         colorChangeTimer -= Time.deltaTime;
-        if (colorChangeTimer < 0)
+        if (colorChangeTimer < 0 && !currentlyChangingColor)
         {
             StartCoroutine(SetRandomColor());
             colorChangeTimer = colorChangeTimerReset;
         }
     }
 
+    /// <summary>
+    /// This Coroutine is used to randomize the "Tile" colors using Random.Range
+    /// </summary>
+    /// <returns></returns>
     IEnumerator SetRandomColor()
     {
         //TODO Look more into getting random element from array
@@ -59,74 +70,30 @@ public class ColorManager : MonoBehaviour
         int floorColorIndex = Random.Range(0, floorColorList.Length);
 
         float elapsedTime = 0.0f;
-        float totalTime = 2.0f;
-        //Debug.Log("tileColorIndex is: " + tileColorIndex);
+        float totalTime = 3.0f;
 
-        #region Randomize Material Color
+        // Set the tileMaterial.color into a random different color
+        currentlyChangingColor = true;
+        while (elapsedTime < totalTime && tileColorIndex == floorColorIndex && tileColorIndex >= 0 && tileColorIndex <= 6)
+        {
+            elapsedTime += Time.deltaTime;
+            float fraction = Mathf.Sin(elapsedTime / totalTime);
 
-        while (elapsedTime < totalTime)
-        { 
-             /// <summary>
-            /// If indices are equals to an int value, set the materials to that color from the tile/floor arrays.
-            /// </summary>
-            if (tileColorIndex == 0 && floorColorIndex == 0)
-            {
-                elapsedTime += Time.deltaTime;
+            tileMaterial.color = Color.Lerp(currentTileColor, tileColorList[tileColorIndex], fraction);
+            floorMaterial.color = Color.Lerp(currentFloorColor, floorColorList[floorColorIndex], fraction);
 
-                // Set Color to RED
-                tileMaterial.color = Color.Lerp(currentTileColor, tileColorList[0], (Mathf.Sin(elapsedTime / totalTime)));
-                floorMaterial.color = Color.Lerp(currentFloorColor, floorColorList[0], (Mathf.Sin(elapsedTime / totalTime)));
-            }
-            else if (tileColorIndex == 1 && floorColorIndex == 1)
-            {
-                elapsedTime += Time.deltaTime;
-
-                // Set Color to ORANGE
-                tileMaterial.color = Color.Lerp(currentTileColor, tileColorList[1], (Mathf.Sin(elapsedTime / totalTime)));
-                floorMaterial.color = Color.Lerp(currentFloorColor, floorColorList[1], (Mathf.Sin(elapsedTime / totalTime)));
-            }
-            else if (tileColorIndex == 2 && floorColorIndex == 2)
-            {
-                elapsedTime += Time.deltaTime;
-
-                // Set Color to YELLOW
-                tileMaterial.color = Color.Lerp(currentTileColor, tileColorList[2], (Mathf.Sin(elapsedTime / totalTime)));
-                floorMaterial.color = Color.Lerp(currentFloorColor, floorColorList[2], (Mathf.Sin(elapsedTime / totalTime)));
-            }
-            else if (tileColorIndex == 3 && floorColorIndex == 3)
-            {
-                elapsedTime += Time.deltaTime;
-
-                // Set Color to GREEN
-                tileMaterial.color = Color.Lerp(currentTileColor, tileColorList[3], (Mathf.Sin(elapsedTime / totalTime)));
-                floorMaterial.color = Color.Lerp(currentFloorColor, floorColorList[3], (Mathf.Sin(elapsedTime / totalTime)));
-            }
-            else if (tileColorIndex == 4 && floorColorIndex == 4)
-            {
-                elapsedTime += Time.deltaTime;
-
-                // Set Color to BLUE
-                tileMaterial.color = Color.Lerp(currentTileColor, tileColorList[4], (Mathf.Sin(elapsedTime / totalTime)));
-                floorMaterial.color = Color.Lerp(currentFloorColor, floorColorList[4], (Mathf.Sin(elapsedTime / totalTime)));
-            }
-            else if (tileColorIndex == 5 && floorColorIndex == 5)
-            {
-                elapsedTime += Time.deltaTime;.
-
-                // Set Color to INDIGO
-                tileMaterial.color = Color.Lerp(currentTileColor, tileColorList[5], (Mathf.Sin(elapsedTime / totalTime)));
-                floorMaterial.color = Color.Lerp(currentFloorColor, floorColorList[5], (Mathf.Sin(elapsedTime / totalTime)));
-            }
-            else if (tileColorIndex == 6 && floorColorIndex == 6)
-            {
-                elapsedTime += Time.deltaTime;
-
-                // Set Color to VIOLET
-                tileMaterial.color = Color.Lerp(currentTileColor, tileColorList[6], (Mathf.Sin(elapsedTime / totalTime)));
-                floorMaterial.color = Color.Lerp(currentFloorColor, floorColorList[6], (Mathf.Sin(elapsedTime / totalTime)));
-            }
             yield return null;
         }
-        #endregion
+        currentlyChangingColor = false;
     }
+
+    /* Leave this be for now
+    // https://www.youtube.com/watch?v=Q4NYCSIOamY
+    // https://www.youtube.com/watch?v=LRoqGsJGgA4
+    public void SetSpecificColor()
+    {
+        List<string> colorNames = new List<string>() {"RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "VIOLET"}
+    }
+    */
+
 }
