@@ -44,19 +44,22 @@ public class ColorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Time is: " + colorChangeTimer);
-        Debug.Log("currentlyChangingColor: " + currentlyChangingColor);
+        //Debug.Log("colorChangeTimer: " + colorChangeTimer);
+        //Debug.Log("currentlyChangingColor: " + currentlyChangingColor);
         NewRandomColor();
     }
 
     public void NewRandomColor()
     {
         colorChangeTimer -= Time.deltaTime;
+
         if (colorChangeTimer < 0 && !currentlyChangingColor)
         {
-            StartCoroutine(SetRandomColor());
             colorChangeTimer = colorChangeTimerReset;
+            StartCoroutine(SetRandomColor());
+            Debug.Log("Currently Changing Color: " + currentlyChangingColor);            
         }
+
     }
 
     /// <summary>
@@ -65,24 +68,29 @@ public class ColorManager : MonoBehaviour
     /// <returns></returns>
     IEnumerator SetRandomColor()
     {
+        currentlyChangingColor = true;
         //TODO Look more into getting random element from array
         int tileColorIndex = Random.Range(0, tileColorList.Length);
         int floorColorIndex = Random.Range(0, floorColorList.Length);
 
         float elapsedTime = 0.0f;
-        float totalTime = 3.0f;
+        float totalTime = 6.0f;
 
         // Set the tileMaterial.color into a random different color
-        currentlyChangingColor = true;
         while (elapsedTime < totalTime && tileColorIndex == floorColorIndex && tileColorIndex >= 0 && tileColorIndex <= 6)
         {
             elapsedTime += Time.deltaTime;
             float fraction = Mathf.Sin(elapsedTime / totalTime);
 
             tileMaterial.color = Color.Lerp(currentTileColor, tileColorList[tileColorIndex], fraction);
-            floorMaterial.color = Color.Lerp(currentFloorColor, floorColorList[floorColorIndex], fraction);
-
+            floorMaterial.color = Color.Lerp(currentFloorColor, floorColorList[tileColorIndex], fraction);
+            /*
+               floorColorIndex was used before, line of code commented to remember
+               floorMaterial.color = Color.Lerp(currentFloorColor, floorColorList[floorColorIndex], fraction);
+            */
             yield return null;
+            Debug.Log("Current Color Index: " + tileColorIndex);
+
         }
         currentlyChangingColor = false;
     }

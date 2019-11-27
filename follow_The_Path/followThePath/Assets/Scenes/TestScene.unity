@@ -1033,7 +1033,7 @@ MonoBehaviour:
   - {r: 0.105882354, g: 0.078431375, b: 0.39215687, a: 0}
   - {r: 0.2901961, g: 0.078431375, b: 0.54901963, a: 0}
   - {r: 0.43529412, g: 0.11764706, b: 0.31764707, a: 0}
-  colorChangeTimerReset: 5
+  colorChangeTimerReset: 20
 --- !u!4 &1909861918
 Transform:
   m_ObjectHideFlags: 0
