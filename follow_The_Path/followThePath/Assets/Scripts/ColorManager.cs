@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// Manager class used to change the color of prefabs, specifically Tiles and Floors.
@@ -18,6 +20,14 @@ public class ColorManager : MonoBehaviour
     public Material tileMaterial;
     [Tooltip("Used to change the color of the Floor")]
     public Material floorMaterial;
+
+    /// <summary>
+    /// colorDropDown and randomizeColorsToggle are used for specifying colors
+    /// </summary>
+    [Tooltip("Create Dropdown UI element and add it here")]
+    public TMP_Dropdown colorDropdown; 
+    [Tooltip("Create Toggle UI element and add it here")]
+    public Toggle randomizeColorsToggle;
 
     /// <summary>
     /// The Color arrays size are specified in the Inspector.
@@ -39,7 +49,26 @@ public class ColorManager : MonoBehaviour
     public float colorChangeTimerReset;
     private float colorChangeTimer;
     private bool currentlyChangingColor;
-    
+
+    // Variables used to Specify colors
+    List<string> colorNames = new List<string>() { "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "VIOLET" };
+
+    public static ColorManager ColorInstance { get; private set; }
+
+    void Awake()
+    {
+        if (ColorInstance == null)
+        {
+            ColorInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,8 +80,6 @@ public class ColorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("colorChangeTimer: " + colorChangeTimer);
-        //Debug.Log("currentlyChangingColor: " + currentlyChangingColor);
         NewRandomColor();
     }
 
@@ -62,6 +89,7 @@ public class ColorManager : MonoBehaviour
 
         if (colorChangeTimer < 0 && !currentlyChangingColor)
         {
+            currentlyChangingColor = true;
             colorChangeTimer = colorChangeTimerReset;
             StartCoroutine(SetRandomColor());
             Debug.Log("Currently Changing Color: " + currentlyChangingColor);
@@ -73,51 +101,60 @@ public class ColorManager : MonoBehaviour
     /// This Coroutine is used to randomize the "Tile" colors using Random.Range
     /// </summary>
     /// <returns></returns>
-
-
-    /* Store "tileColorIndex" in a temporary variable that removes elements from it
-     Figure out how to store "tileColorIndex" in a temporary "list" variable and randomly choose from that list
-     and remove that element from that "list".
-     When that temporary "list" is empty, "repopluate" that "list" again.
-
-    https://forum.unity.com/threads/how-to-not-pick-same-object-from-array-twice-in-a-row.298546/
-    https://stackoverflow.com/questions/43708077/how-to-prevent-same-object-from-being-picked-from-array-twice-in-a-row
-    https://www.reddit.com/r/Unity3D/comments/7hp91b/can_i_avoid_repeated_numbers_with_randomrange/?sort=top
-     */
     IEnumerator SetRandomColor()
     {
         currentlyChangingColor = true;
         //TODO Look more into getting random element from array
-        int tileColorIndex = Random.Range(0, tileColorList.Length);
-        int floorColorIndex = Random.Range(0, floorColorList.Length);
-        Debug.Log("Color Element is: " + tileColorIndex);
+
+        ///<summary>
+        /// Using tileColorList as the 2nd argument in Random.Range as both
+        /// of the tile- and floor mateial color arrays are of the same length.
+        /// </summary>
+        int colorIndex = Random.Range(0, tileColorList.Length);
+
+        Debug.Log("Color Element is: " + colorIndex);
 
         float elapsedTime = 0.0f;
         float totalTime = 6.0f;
 
-        // Set the tileMaterial.color into a random different color
-        while (elapsedTime < totalTime && tileColorIndex == floorColorIndex && tileColorIndex >= 0 && tileColorIndex <= 6)
+        // Set the materials into a random color
+        #region Old arguments used for while loop
+        /* 
+           while (elapsedTime < totalTime && tileColorList == floorColorList && tileColorIndex >= 0 && tileColorIndex <= 0)
+
+            int tileColorIndex = Random.Range(0, tileColorList.Length);
+            int floorColorIndex = Random.Range(0, floorColorIndex.Length);
+
+           tileMaterial.color = Color.Lerp(currentTileColor, tileColorList[tileColorIndex], fraction);
+           floorMaterial.color = Color.Lerp(currentTileColor, tileColorList[floorColorIndex], fraction);
+         */
+        #endregion
+
+        while (elapsedTime < totalTime && colorIndex >= 0 && colorIndex <= 6)
         {
             elapsedTime += Time.deltaTime;
             float fraction = Mathf.Sin(elapsedTime / totalTime);
 
-            tileMaterial.color = Color.Lerp(currentTileColor, tileColorList[tileColorIndex], fraction);
-            floorMaterial.color = Color.Lerp(currentFloorColor, floorColorList[floorColorIndex], fraction);
+            tileMaterial.color = Color.Lerp(currentTileColor, tileColorList[colorIndex], fraction);
+            floorMaterial.color = Color.Lerp(currentFloorColor, floorColorList[colorIndex], fraction);
 
             yield return null;
-            //Debug.Log("Current Color Index: " + tileColorIndex);
-
         }
         currentlyChangingColor = false;
     }
 
-    /* Leave this be for now
+    // Leave this be for now
     // https://www.youtube.com/watch?v=Q4NYCSIOamY
-    // https://www.youtube.com/watch?v=LRoqGsJGgA4
+    // https://www.youtube.com/watch?v=LRoqGsJGgA4.
+    void PopulateColorList()
+    {
+        colorDropdown.AddOptions(colorNames);
+    }
+
     public void SetSpecificColor()
     {
-        List<string> colorNames = new List<string>() {"RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "VIOLET"}
+
     }
-    */
+
 
 }
