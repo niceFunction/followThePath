@@ -50,7 +50,7 @@ public class ColorManager : MonoBehaviour
     private float colorChangeTimer;
     private bool currentlyChangingColor;
 
-    // Variables used to Specify colors
+    // Variables used to set specific colors
     List<string> colorNames = new List<string>() { "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "VIOLET" };
 
     public static ColorManager ColorInstance { get; private set; }
@@ -151,9 +151,45 @@ public class ColorManager : MonoBehaviour
         colorDropdown.AddOptions(colorNames);
     }
 
-    public void SetSpecificColor()
+    public void SetSpecificColor(int index)
     {
-
+        #region Set materials to a specific color
+        if (index == 0)
+        {
+            tileMaterial.color = tileColorList[0];
+            floorMaterial.color = floorColorList[0];
+        }
+        else if (index == 1)
+        {
+            tileMaterial.color = tileColorList[1];
+            floorMaterial.color = floorColorList[1];
+        }
+        else if (index == 2)
+        {
+            tileMaterial.color = tileColorList[2];
+            floorMaterial.color = floorColorList[2];
+        }
+        else if (index == 3)
+        {
+            tileMaterial.color = tileColorList[3];
+            floorMaterial.color = floorColorList[3];
+        }
+        else if (index == 4)
+        {
+            tileMaterial.color = tileColorList[4];
+            floorMaterial.color = floorColorList[4];
+        }
+        else if (index == 5)
+        {
+            tileMaterial.color = tileColorList[5];
+            floorMaterial.color = floorColorList[5];
+        }
+        else if (index == 6)
+        {
+            tileMaterial.color = tileColorList[6];
+            floorMaterial.color = floorColorList[6];
+        }
+        #endregion
     }
 
 
