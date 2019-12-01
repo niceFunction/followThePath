@@ -80,7 +80,30 @@ public class ColorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        NewRandomColor();
+        SetColorMode();
+        Debug.Log("Random Color Timer: " + colorChangeTimer);
+    }
+
+    public void SetColorMode()
+    {
+        if (randomizeColorsToggle.isOn == true)
+        {
+            ///<summary>
+            /// Color Randomization is active and set specific color dropdown is non-interactable
+            /// </summary>
+            colorDropdown.interactable = false;
+            NewRandomColor();
+            PlayerPrefs.Save();
+        }
+        else if (randomizeColorsToggle.isOn == false)
+        {
+            ///<summary>
+            /// Color randomization is inactive and set specific color dropdown is interactable
+            /// </summary>
+            colorDropdown.interactable = true;
+            colorChangeTimer = colorChangeTimerReset;
+            PlayerPrefs.Save();
+        }
     }
 
     public void NewRandomColor()
@@ -92,9 +115,7 @@ public class ColorManager : MonoBehaviour
             currentlyChangingColor = true;
             colorChangeTimer = colorChangeTimerReset;
             StartCoroutine(SetRandomColor());
-            Debug.Log("Currently Changing Color: " + currentlyChangingColor);
         }
-
     }
 
     /// <summary>
@@ -103,9 +124,10 @@ public class ColorManager : MonoBehaviour
     /// <returns></returns>
     IEnumerator SetRandomColor()
     {
+        #region Randomize colors
         currentlyChangingColor = true;
         //TODO Look more into getting random element from array
-
+        Debug.Log("Random Color Timer: " + colorChangeTimer);
         ///<summary>
         /// Using tileColorList as the 2nd argument in Random.Range as both
         /// of the tile- and floor mateial color arrays are of the same length.
@@ -141,6 +163,7 @@ public class ColorManager : MonoBehaviour
             yield return null;
         }
         currentlyChangingColor = false;
+        #endregion
     }
 
     // Leave this be for now
@@ -191,6 +214,4 @@ public class ColorManager : MonoBehaviour
         }
         #endregion
     }
-
-
 }
