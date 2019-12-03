@@ -24,11 +24,12 @@ public class ColorManager : MonoBehaviour
     /// <summary>
     /// colorDropDown and randomizeColorsToggle are used for specifying colors
     /// </summary>
-    [Tooltip("Create Dropdown UI element and add it here")]
+    [Tooltip("Create Dropdown UI element to set specific colors and add it here")]
     public TMP_Dropdown colorDropdown; 
-    [Tooltip("Create Toggle UI element and add it here")]
+    [Tooltip("Create Toggle UI element to randomize colors and add it here")]
     public Toggle randomizeColorsToggle;
-
+    [Tooltip("Create Toggle UI element to toggle grayscale and add it here")]
+    public Toggle grayscaleToggle;
     /// <summary>
     /// The Color arrays size are specified in the Inspector.
     /// In this case, colors of the Rainbow and the colors for the floor
@@ -53,9 +54,15 @@ public class ColorManager : MonoBehaviour
     // Variables used to set specific colors
     List<string> colorNames = new List<string>() { "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "VIOLET" };
 
+    // Variables used to set Grayscale
+    [SerializeField]
+    [Tooltip("Add camera to get access to GrayscaleCamera component")]
+    private GameObject playerCamera;
 
     // https://flaredust.com/game-dev/unity/having-fun-with-shaders-in-unity/
     public static ColorManager ColorInstance { get; private set; }
+
+
 
     void Awake()
     {
@@ -83,9 +90,12 @@ public class ColorManager : MonoBehaviour
     void Update()
     {
         SetColorMode();
-        Debug.Log("Random Color Timer: " + colorChangeTimer);
     }
 
+    /// <summary>
+    /// If randomizationToggle.isOn is set to true, colors are randomized
+    /// if false, user can set specific color on materials
+    /// </summary>
     public void SetColorMode()
     {
         if (randomizeColorsToggle.isOn == true)
@@ -107,7 +117,32 @@ public class ColorManager : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
+    ///<summary>
+    /// Used to turn "Grayscale Mode" on and off, user can still set specific color.
+    /// Disables color randomization when grayscaleToggle.isOn is true, renables it when set to false
+    /// </summary>
+    public void SetGrayscaleMode()
+    {
+        if (grayscaleToggle.isOn == true)
+        {
+            playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
+            randomizeColorsToggle.isOn = false;
+            randomizeColorsToggle.interactable = false;
+            colorChangeTimer = colorChangeTimerReset;
 
+            PlayerPrefs.Save();
+        }
+        else if (grayscaleToggle.isOn == false)
+        {
+            playerCamera.GetComponent<GrayscaleCamera>().enabled = false;
+            randomizeColorsToggle.isOn = true;
+            randomizeColorsToggle.interactable = true;
+            PlayerPrefs.Save();
+        }
+    }
+    /// <summary>
+    /// Changes color on materials every time the timer reaches 0
+    /// </summary>
     public void NewRandomColor()
     {
         colorChangeTimer -= Time.deltaTime;
@@ -168,49 +203,60 @@ public class ColorManager : MonoBehaviour
         #endregion
     }
 
-    // Leave this be for now
-    // https://www.youtube.com/watch?v=Q4NYCSIOamY
-    // https://www.youtube.com/watch?v=LRoqGsJGgA4.
+    /// <summary>
+    /// Populates the dropdown UI menu with a list of strings
+    /// </summary>
     void PopulateColorList()
     {
         colorDropdown.AddOptions(colorNames);
     }
 
+    /// <summary>
+    /// When an "index" in the dropdown menu is chosen, sets materials to that color
+    /// </summary>
+    /// <param name="index"></param>
     public void SetSpecificColor(int index)
     {
         #region Set materials to a specific color
         if (index == 0)
         {
+            // Set colors to RED
             tileMaterial.color = tileColorList[0];
             floorMaterial.color = floorColorList[0];
         }
         else if (index == 1)
         {
+            // Set colors to ORANGE
             tileMaterial.color = tileColorList[1];
             floorMaterial.color = floorColorList[1];
         }
         else if (index == 2)
         {
+            // Set colors to YELLOW
             tileMaterial.color = tileColorList[2];
             floorMaterial.color = floorColorList[2];
         }
         else if (index == 3)
         {
+            // Set colors to GREEN
             tileMaterial.color = tileColorList[3];
             floorMaterial.color = floorColorList[3];
         }
         else if (index == 4)
         {
+            // Set colors to BLUE
             tileMaterial.color = tileColorList[4];
             floorMaterial.color = floorColorList[4];
         }
         else if (index == 5)
         {
+            // Set colors to INDIGO
             tileMaterial.color = tileColorList[5];
             floorMaterial.color = floorColorList[5];
         }
         else if (index == 6)
         {
+            // Set colors to VIOLET
             tileMaterial.color = tileColorList[6];
             floorMaterial.color = floorColorList[6];
         }
