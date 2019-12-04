@@ -62,8 +62,6 @@ public class ColorManager : MonoBehaviour
     // https://flaredust.com/game-dev/unity/having-fun-with-shaders-in-unity/
     public static ColorManager ColorInstance { get; private set; }
 
-
-
     void Awake()
     {
         if (ColorInstance == null)
@@ -123,6 +121,8 @@ public class ColorManager : MonoBehaviour
     /// </summary>
     public void SetGrayscaleMode()
     {
+        // TODO: 1. Take a look at if change to accessing Player Camera (which is a prefab in "final" version"),
+        // TODO: 2. how is the camera accessed? if it's a prefab, does that need to be changed?
         if (grayscaleToggle.isOn == true)
         {
             playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
