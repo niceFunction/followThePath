@@ -26,10 +26,23 @@ public class ColorManager : MonoBehaviour
     /// </summary>
     [Tooltip("Create Dropdown UI element to set specific colors and add it here")]
     public TMP_Dropdown colorDropdown; 
+    
+    /*
     [Tooltip("Create Toggle UI element to randomize colors and add it here")]
     public Toggle randomizeColorsToggle;
-    [Tooltip("Create Toggle UI element to toggle grayscale and add it here")]
-    public Toggle grayscaleToggle;
+    */
+
+    [Tooltip("Randomizes level colors when toggled ON (UI Toggle element needed)")]
+    public Toggle randomLevelColorToggle_ON;
+    [Tooltip("Disables random level colors and enables Set Specific colors when toggled OFF (UI Toggle element needed)")]
+    public Toggle randomLevelColorToggle_OFF;
+
+    // public Toggle grayscaleToggle;
+
+    [Tooltip("Toggle grayscale mode ON (UI Toggle element needed)")]
+    public Toggle grayscaleToggle_ON;
+    [Tooltip("Toggle grayscale mode OFF (UI Toggle element needed")]
+    public Toggle grayscaleToggle_OFF;
     /// <summary>
     /// The Color arrays size are specified in the Inspector.
     /// In this case, colors of the Rainbow and the colors for the floor
@@ -96,6 +109,8 @@ public class ColorManager : MonoBehaviour
     /// </summary>
     public void SetColorMode()
     {
+        #region old level color randomization code
+        /*
         if (randomizeColorsToggle.isOn == true)
         {
             ///<summary>
@@ -114,6 +129,36 @@ public class ColorManager : MonoBehaviour
             colorChangeTimer = colorChangeTimerReset;
             PlayerPrefs.Save();
         }
+        */
+        #endregion
+
+        ///<summary>
+        /// When randomLevelColorToggle_ON.isOn is true, tile/floor materials are random and active,
+        /// If randomLevelColorToggle_OFF.isOn is set to true instead, it disables random tile/floor colors
+        /// and randomLevelColorToggle_ON.isOn is set to false.
+        /// </summary>
+        if (randomLevelColorToggle_OFF.isOn == true)
+        {
+            ///<summary>
+            /// Color randomization is inactive and set specific color dropdown is interactable
+            /// </summary>
+            colorDropdown.interactable = true;
+            colorChangeTimer = colorChangeTimerReset;
+
+            randomLevelColorToggle_ON.isOn = false;
+            PlayerPrefs.Save();
+        }
+        else if (randomLevelColorToggle_ON.isOn == true)
+        {
+            ///<summary>
+            /// Color Randomization is active and set specific color dropdown is non-interactable
+            /// </summary>
+            colorDropdown.interactable = false;
+            NewRandomColor();
+
+            randomLevelColorToggle_OFF.isOn = false;
+            PlayerPrefs.Save();
+        }
     }
     ///<summary>
     /// Used to turn "Grayscale Mode" on and off, user can still set specific color.
@@ -123,6 +168,8 @@ public class ColorManager : MonoBehaviour
     {
         // TODO: 1. Take a look at if change to accessing Player Camera (which is a prefab in "final" version"),
         // TODO: 2. how is the camera accessed? if it's a prefab, does that need to be changed?
+        #region Old grayscale toggle code (Used singular UI Toggle)
+        /*
         if (grayscaleToggle.isOn == true)
         {
             playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
@@ -139,6 +186,38 @@ public class ColorManager : MonoBehaviour
             randomizeColorsToggle.interactable = true;
             PlayerPrefs.Save();
         }
+        */
+        #endregion
+        
+        if (grayscaleToggle_OFF.isOn == true)
+        {
+            playerCamera.GetComponent<GrayscaleCamera>().enabled = false;
+
+            randomLevelColorToggle_ON.isOn = true;
+            randomLevelColorToggle_ON.interactable = true;
+
+            randomLevelColorToggle_OFF.isOn = true;
+            randomLevelColorToggle_OFF.interactable = true;
+
+            grayscaleToggle_ON.isOn = false;
+            PlayerPrefs.Save();
+        }
+        else if (grayscaleToggle_ON.isOn == true)
+        {
+            playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
+
+            randomLevelColorToggle_ON.isOn = false;
+            randomLevelColorToggle_ON.interactable = false;
+
+            randomLevelColorToggle_OFF.isOn = false;
+            randomLevelColorToggle_OFF.interactable = false;
+
+            grayscaleToggle_OFF.isOn = false;
+            colorChangeTimer = colorChangeTimerReset;
+
+            PlayerPrefs.Save();
+        }
+
     }
     /// <summary>
     /// Changes color on materials every time the timer reaches 0
