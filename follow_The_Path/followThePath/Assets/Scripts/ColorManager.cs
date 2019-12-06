@@ -24,25 +24,21 @@ public class ColorManager : MonoBehaviour
     /// <summary>
     /// colorDropDown and randomizeColorsToggle are used for specifying colors
     /// </summary>
-    [Tooltip("Create Dropdown UI element to set specific colors and add it here")]
+    [Tooltip("When colors in the level isn't active, user can specifically set level colors")]
     public TMP_Dropdown colorDropdown; 
     
-    /*
-    [Tooltip("Create Toggle UI element to randomize colors and add it here")]
-    public Toggle randomizeColorsToggle;
-    */
+    [Tooltip("Randomly changes colors on the level wjen active")]
+    public Toggle randomColorsToggle;
+    [Tooltip("Visual element that the user can see if randomizing colors are active or not")]
+    [SerializeField]
+    private TextMeshProUGUI randomColorsStatus;
 
-    [Tooltip("Randomizes level colors when toggled ON (UI Toggle element needed)")]
-    public Toggle randomLevelColorToggle_ON;
-    [Tooltip("Disables random level colors and enables Set Specific colors when toggled OFF (UI Toggle element needed)")]
-    public Toggle randomLevelColorToggle_OFF;
+    [Tooltip("Toggle grayscale 'overlay' on an off")]
+    public Toggle grayscaleToggle;
+    [Tooltip("Visual element that the user can see if grayscale 'overlay'  is active or not")]
+    [SerializeField]
+    private TextMeshProUGUI grayscaleStatus;
 
-    // public Toggle grayscaleToggle;
-
-    [Tooltip("Toggle grayscale mode ON (UI Toggle element needed)")]
-    public Toggle grayscaleToggle_ON;
-    [Tooltip("Toggle grayscale mode OFF (UI Toggle element needed")]
-    public Toggle grayscaleToggle_OFF;
     /// <summary>
     /// The Color arrays size are specified in the Inspector.
     /// In this case, colors of the Rainbow and the colors for the floor
@@ -67,14 +63,11 @@ public class ColorManager : MonoBehaviour
     // Variables used to set specific colors
     List<string> colorNames = new List<string>() { "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "VIOLET" };
 
-    // Variables used to set Grayscale
-    [SerializeField]
-    [Tooltip("Add camera to get access to GrayscaleCamera component")]
+    // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
 
     // https://flaredust.com/game-dev/unity/having-fun-with-shaders-in-unity/
     public static ColorManager ColorInstance { get; private set; }
-
     void Awake()
     {
         if (ColorInstance == null)
@@ -100,125 +93,37 @@ public class ColorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Camera: " + playerCamera);
         SetColorMode();
     }
 
+    #region Setting specific color and Getting Random colors
     /// <summary>
     /// If randomizationToggle.isOn is set to true, colors are randomized
     /// if false, user can set specific color on materials
     /// </summary>
     public void SetColorMode()
-    {
-        #region old level color randomization code
-        /*
-        if (randomizeColorsToggle.isOn == true)
+    {   
+        if (randomColorsToggle.isOn == true)
         {
             ///<summary>
             /// Color Randomization is active and set specific color dropdown is non-interactable
             /// </summary>
             colorDropdown.interactable = false;
+            randomColorsStatus.text = "ON";
             NewRandomColor();
-            PlayerPrefs.Save();
         }
-        else if (randomizeColorsToggle.isOn == false)
+        else if (randomColorsToggle.isOn == false)
         {
             ///<summary>
             /// Color randomization is inactive and set specific color dropdown is interactable
             /// </summary>
             colorDropdown.interactable = true;
+            randomColorsStatus.text = "OFF";
             colorChangeTimer = colorChangeTimerReset;
-            PlayerPrefs.Save();
-        }
-        */
-        #endregion
-
-        ///<summary>
-        /// When randomLevelColorToggle_ON.isOn is true, tile/floor materials are random and active,
-        /// If randomLevelColorToggle_OFF.isOn is set to true instead, it disables random tile/floor colors
-        /// and randomLevelColorToggle_ON.isOn is set to false.
-        /// </summary>
-        if (randomLevelColorToggle_OFF.isOn == true)
-        {
-            ///<summary>
-            /// Color randomization is inactive and set specific color dropdown is interactable
-            /// </summary>
-            colorDropdown.interactable = true;
-            colorChangeTimer = colorChangeTimerReset;
-
-            randomLevelColorToggle_ON.isOn = false;
-            PlayerPrefs.Save();
-        }
-        else if (randomLevelColorToggle_ON.isOn == true)
-        {
-            ///<summary>
-            /// Color Randomization is active and set specific color dropdown is non-interactable
-            /// </summary>
-            colorDropdown.interactable = false;
-            NewRandomColor();
-
-            randomLevelColorToggle_OFF.isOn = false;
-            PlayerPrefs.Save();
         }
     }
-    ///<summary>
-    /// Used to turn "Grayscale Mode" on and off, user can still set specific color.
-    /// Disables color randomization when grayscaleToggle.isOn is true, renables it when set to false
-    /// </summary>
-    public void SetGrayscaleMode()
-    {
-        // TODO: 1. Take a look at if change to accessing Player Camera (which is a prefab in "final" version"),
-        // TODO: 2. how is the camera accessed? if it's a prefab, does that need to be changed?
-        #region Old grayscale toggle code (Used singular UI Toggle)
-        /*
-        if (grayscaleToggle.isOn == true)
-        {
-            playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
-            randomizeColorsToggle.isOn = false;
-            randomizeColorsToggle.interactable = false;
-            colorChangeTimer = colorChangeTimerReset;
-
-            PlayerPrefs.Save();
-        }
-        else if (grayscaleToggle.isOn == false)
-        {
-            playerCamera.GetComponent<GrayscaleCamera>().enabled = false;
-            randomizeColorsToggle.isOn = true;
-            randomizeColorsToggle.interactable = true;
-            PlayerPrefs.Save();
-        }
-        */
-        #endregion
-        
-        if (grayscaleToggle_OFF.isOn == true)
-        {
-            playerCamera.GetComponent<GrayscaleCamera>().enabled = false;
-
-            randomLevelColorToggle_ON.isOn = true;
-            randomLevelColorToggle_ON.interactable = true;
-
-            randomLevelColorToggle_OFF.isOn = true;
-            randomLevelColorToggle_OFF.interactable = true;
-
-            grayscaleToggle_ON.isOn = false;
-            PlayerPrefs.Save();
-        }
-        else if (grayscaleToggle_ON.isOn == true)
-        {
-            playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
-
-            randomLevelColorToggle_ON.isOn = false;
-            randomLevelColorToggle_ON.interactable = false;
-
-            randomLevelColorToggle_OFF.isOn = false;
-            randomLevelColorToggle_OFF.interactable = false;
-
-            grayscaleToggle_OFF.isOn = false;
-            colorChangeTimer = colorChangeTimerReset;
-
-            PlayerPrefs.Save();
-        }
-
-    }
+   
     /// <summary>
     /// Changes color on materials every time the timer reaches 0
     /// </summary>
@@ -240,10 +145,8 @@ public class ColorManager : MonoBehaviour
     /// <returns></returns>
     IEnumerator SetRandomColor()
     {
-        #region Randomize colors
         currentlyChangingColor = true;
         //TODO Look more into getting random element from array
-        Debug.Log("Random Color Timer: " + colorChangeTimer);
         ///<summary>
         /// Using tileColorList as the 2nd argument in Random.Range as both
         /// of the tile- and floor mateial color arrays are of the same length.
@@ -256,18 +159,6 @@ public class ColorManager : MonoBehaviour
         float totalTime = 6.0f;
 
         // Set the materials into a random color
-        #region Old arguments used for while loop
-        /* 
-           while (elapsedTime < totalTime && tileColorList == floorColorList && tileColorIndex >= 0 && tileColorIndex <= 0)
-
-            int tileColorIndex = Random.Range(0, tileColorList.Length);
-            int floorColorIndex = Random.Range(0, floorColorIndex.Length);
-
-           tileMaterial.color = Color.Lerp(currentTileColor, tileColorList[tileColorIndex], fraction);
-           floorMaterial.color = Color.Lerp(currentTileColor, tileColorList[floorColorIndex], fraction);
-         */
-        #endregion
-
         while (elapsedTime < totalTime && colorIndex >= 0 && colorIndex <= 6)
         {
             elapsedTime += Time.deltaTime;
@@ -279,7 +170,6 @@ public class ColorManager : MonoBehaviour
             yield return null;
         }
         currentlyChangingColor = false;
-        #endregion
     }
 
     /// <summary>
@@ -340,5 +230,33 @@ public class ColorManager : MonoBehaviour
             floorMaterial.color = floorColorList[6];
         }
         #endregion
+
+    }
+    #endregion
+
+    ///<summary>
+    /// Used to turn "Grayscale Mode" on and off, user can still set specific color.
+    /// Disables color randomization when grayscaleToggle.isOn is true, renables it when set to false
+    /// </summary>
+    public void SetGrayscaleMode()
+    {
+        // TODO: 1. Take a look at if change to accessing Player Camera (which is a prefab in "final" version"),
+        // TODO: 2. how is the camera accessed? if it's a prefab, does that need to be changed?
+        playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        if (grayscaleToggle.isOn == true)
+        {
+            playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
+            randomColorsToggle.isOn = false;
+            randomColorsToggle.interactable = false;
+            grayscaleStatus.text = "ON";
+            colorChangeTimer = colorChangeTimerReset;
+        }
+        else if (grayscaleToggle.isOn == false)
+        {
+            playerCamera.GetComponent<GrayscaleCamera>().enabled = false;
+            randomColorsToggle.isOn = true;
+            randomColorsToggle.interactable = true;
+            grayscaleStatus.text = "OFF";
+        }
     }
 }
