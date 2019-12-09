@@ -11,6 +11,7 @@ using TMPro;
 // https://www.youtube.com/watch?v=pvo0RCiqtLQ&feature=youtu.be&t=254
 // https://www.youtube.com/watch?v=usAaH5Mi0ZQ
 
+//TODO will change class name to "VisualManager" instead in the future
 public class ColorManager : MonoBehaviour
 {
     /// <summary>
@@ -21,24 +22,33 @@ public class ColorManager : MonoBehaviour
     [Tooltip("Used to change the color of the Floor")]
     public Material floorMaterial;
 
+    [Space(5)]
     /// <summary>
     /// colorDropDown and randomizeColorsToggle are used for specifying colors
     /// </summary>
     [Tooltip("When colors in the level isn't active, user can specifically set level colors")]
-    public TMP_Dropdown colorDropdown; 
-    
+    public TMP_Dropdown colorDropdown;
+
+    [Space(5)]
     [Tooltip("Randomly changes colors on the level wjen active")]
     public Toggle randomColorsToggle;
     [Tooltip("Visual element that the user can see if randomizing colors are active or not")]
     [SerializeField]
     private TextMeshProUGUI randomColorsStatus;
 
+    [Space(5)]
     [Tooltip("Toggle grayscale 'overlay' on an off")]
     public Toggle grayscaleToggle;
-    [Tooltip("Visual element that the user can see if grayscale 'overlay'  is active or not")]
+    [Tooltip("Visual element that the user can see if grayscale 'overlay' is active or not")]
     [SerializeField]
     private TextMeshProUGUI grayscaleStatus;
 
+    [Space(5)]
+    public Toggle dyslexicFontToggle;
+    [SerializeField]
+    private TextMeshProUGUI dyslexicFontStatus;
+
+    [Space(5)]
     /// <summary>
     /// The Color arrays size are specified in the Inspector.
     /// In this case, colors of the Rainbow and the colors for the floor
@@ -55,6 +65,7 @@ public class ColorManager : MonoBehaviour
     private Color currentTileColor;
     private Color currentFloorColor;
 
+    [Space(5)]
     // Variables used to Randomize colors
     public float colorChangeTimerReset;
     private float colorChangeTimer;
@@ -65,6 +76,8 @@ public class ColorManager : MonoBehaviour
 
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
+
+    private ChangeFont changeFont;
 
     // https://flaredust.com/game-dev/unity/having-fun-with-shaders-in-unity/
     public static ColorManager ColorInstance { get; private set; }
@@ -93,7 +106,7 @@ public class ColorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Camera: " + playerCamera);
+        //Debug.Log("Camera: " + playerCamera);
         SetColorMode();
     }
 
@@ -152,8 +165,6 @@ public class ColorManager : MonoBehaviour
         /// of the tile- and floor mateial color arrays are of the same length.
         /// </summary>
         int colorIndex = Random.Range(0, tileColorList.Length);
-
-        Debug.Log("Color Element is: " + colorIndex);
 
         float elapsedTime = 0.0f;
         float totalTime = 6.0f;
@@ -259,4 +270,18 @@ public class ColorManager : MonoBehaviour
             grayscaleStatus.text = "OFF";
         }
     }
+
+    public void SetDyslexicFont()
+    {
+
+        if (dyslexicFontToggle.isOn == true)
+        {
+            dyslexicFontStatus.text = "ON";
+        }
+        else if (dyslexicFontToggle.isOn == false)
+        {
+            dyslexicFontStatus.text = "OFF";
+        }
+    }
+
 }

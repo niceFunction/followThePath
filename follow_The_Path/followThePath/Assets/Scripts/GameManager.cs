@@ -63,7 +63,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     [Tooltip("Display Score on Game Over")]
     public TextMeshProUGUI gameOverScore;
-    //public TextMeshProUGUI gameOverHighScore;
     #endregion
 
     void Start()
