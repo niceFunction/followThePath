@@ -273,13 +273,14 @@ public class ColorManager : MonoBehaviour
 
     public void SetDyslexicFont()
     {
-
         if (dyslexicFontToggle.isOn == true)
         {
+            changeFont.ToDyslexic();
             dyslexicFontStatus.text = "ON";
         }
         else if (dyslexicFontToggle.isOn == false)
         {
+            changeFont.ToRegular();
             dyslexicFontStatus.text = "OFF";
         }
     }
