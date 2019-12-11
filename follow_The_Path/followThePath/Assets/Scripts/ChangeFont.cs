@@ -5,12 +5,6 @@ using TMPro;
 
 public class ChangeFont : MonoBehaviour
 {
-    // regularFont of the type TextMeshPro
-    // dyslexicFont of the type TextMeshPro
-    // currentFont of the type TextMeshPro
-    private ColorManager colorManager;
-
-    //[SerializeField]
     public TextMeshProUGUI textObject;
 
     [Space(10)]
@@ -21,30 +15,19 @@ public class ChangeFont : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        textObject = GetComponent<TextMeshProUGUI>();
+
     }
 
     private void Awake()
     {
-
+        textObject = GetComponent<TextMeshProUGUI>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
-    }
-
-
-    public void SetFont()
-    {
-        if (colorManager.dyslexicFontToggle.isOn == true)
+        if (textObject == null)
         {
-            textObject.font = dyslexicFont;
-        }
-        else if (colorManager.dyslexicFontToggle.isOn == false)
-        {
-            textObject.font = regularFont;
+            Debug.Log("Text Object is NULL");
         }
     }
 

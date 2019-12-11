@@ -93,6 +93,7 @@ public class ColorManager : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(gameObject);
+        changeFont = GetComponent<ChangeFont>();
     }
 
     // Start is called before the first frame update
@@ -107,6 +108,10 @@ public class ColorManager : MonoBehaviour
     void Update()
     {
         //Debug.Log("Camera: " + playerCamera);
+        if (changeFont == null)
+        {
+            //Debug.Log("ChangeFont class is NULL");
+        }
         SetColorMode();
     }
 
@@ -273,6 +278,7 @@ public class ColorManager : MonoBehaviour
 
     public void SetDyslexicFont()
     {
+        
         if (dyslexicFontToggle.isOn == true)
         {
             changeFont.ToDyslexic();
