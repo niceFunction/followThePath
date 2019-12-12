@@ -2594,6 +2594,11 @@ PrefabInstance:
       propertyPath: dyslexicFontToggle
       value: 
       objectReference: {fileID: 1433439690}
+    - target: {fileID: 3941759333624630605, guid: 76279ea77ec4dc54ea28351d82425128,
+        type: 3}
+      propertyPath: changeFont
+      value: 
+      objectReference: {fileID: 1755206119}
     - target: {fileID: 3941759333624630606, guid: 76279ea77ec4dc54ea28351d82425128,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5470,8 +5475,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1755206119}
-        m_MethodName: SetFont
+      - m_Target: {fileID: 739256840}
+        m_MethodName: SetDyslexicFont
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

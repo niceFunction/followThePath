@@ -83,6 +83,7 @@ public class ColorManager : MonoBehaviour
     public static ColorManager ColorInstance { get; private set; }
     void Awake()
     {
+
         if (ColorInstance == null)
         {
             ColorInstance = this;
@@ -93,6 +94,7 @@ public class ColorManager : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(gameObject);
+
         changeFont = GetComponent<ChangeFont>();
     }
 
@@ -108,10 +110,7 @@ public class ColorManager : MonoBehaviour
     void Update()
     {
         //Debug.Log("Camera: " + playerCamera);
-        if (changeFont == null)
-        {
-            //Debug.Log("ChangeFont class is NULL");
-        }
+
         SetColorMode();
     }
 

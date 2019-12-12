@@ -25,14 +25,12 @@ public class ChangeFont : MonoBehaviour
 
     private void Update()
     {
-        if (textObject == null)
-        {
-            Debug.Log("Text Object is NULL");
-        }
+
     }
 
     public void ToDyslexic()
     {
+
         textObject.font = dyslexicFont;
         // Check if you need "font material" both here and in "ToRegular()"
     }
