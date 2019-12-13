@@ -9,6 +9,7 @@ TagManager:
   - Collectible
   - GameManager
   - Score
+  - UIText
   layers:
   - Default
   - TransparentFX

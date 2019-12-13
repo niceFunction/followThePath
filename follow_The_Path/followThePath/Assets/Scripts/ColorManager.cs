@@ -77,7 +77,9 @@ public class ColorManager : MonoBehaviour
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
 
+    [SerializeField]
     private ChangeFont changeFont;
+    //private ChangeFont[] changeFont;
 
     // https://flaredust.com/game-dev/unity/having-fun-with-shaders-in-unity/
     public static ColorManager ColorInstance { get; private set; }
@@ -95,7 +97,7 @@ public class ColorManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
 
-        changeFont = GetComponent<ChangeFont>();
+        //changeFont = GetComponent<ChangeFont>();
     }
 
     // Start is called before the first frame update
@@ -277,7 +279,16 @@ public class ColorManager : MonoBehaviour
 
     public void SetDyslexicFont()
     {
-        
+        /*
+         Different alternatives:
+         1. Create an Array of ChangeFont and change UI elements that way
+         2. Find out how to get access to object Tag and change it that way
+
+            Best alternative should be finding the gameobject by tag,
+            in ChangeFont class, see if changing the "textObject" variable
+            from 'TextMeshProUGUI' to 'GameObject'.
+            That's because there are UI elements in different scenes.
+         */
         if (dyslexicFontToggle.isOn == true)
         {
             changeFont.ToDyslexic();
