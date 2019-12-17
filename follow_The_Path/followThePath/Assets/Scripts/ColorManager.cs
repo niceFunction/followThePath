@@ -79,7 +79,8 @@ public class ColorManager : MonoBehaviour
 
     [SerializeField]
     private ChangeFont changeFont;
-    //private ChangeFont[] changeFont;
+
+    public List<GameObject> textObjects = new List<GameObject>();
 
     // https://flaredust.com/game-dev/unity/having-fun-with-shaders-in-unity/
     public static ColorManager ColorInstance { get; private set; }
@@ -97,7 +98,9 @@ public class ColorManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
 
-        //changeFont = GetComponent<ChangeFont>();
+        // Preferably I want to add all objects with the tag "UIText" at the run time
+        // both active and inactive
+        textObjects.AddRange(GameObject.FindGameObjectsWithTag("UIText"));
     }
 
     // Start is called before the first frame update
@@ -112,7 +115,8 @@ public class ColorManager : MonoBehaviour
     void Update()
     {
         //Debug.Log("Camera: " + playerCamera);
-
+        Debug.Log(textObjects);
+        //addedTextObjects = GameObject.FindGameObjectsWithTag("UIText");
         SetColorMode();
     }
 
@@ -279,6 +283,7 @@ public class ColorManager : MonoBehaviour
 
     public void SetDyslexicFont()
     {
+
         /*
          Different alternatives:
          1. Create an Array of ChangeFont and change UI elements that way
@@ -289,16 +294,18 @@ public class ColorManager : MonoBehaviour
             from 'TextMeshProUGUI' to 'GameObject'.
             That's because there are UI elements in different scenes.
          */
+
         if (dyslexicFontToggle.isOn == true)
-        {
-            changeFont.ToDyslexic();
-            dyslexicFontStatus.text = "ON";
-        }
-        else if (dyslexicFontToggle.isOn == false)
-        {
-            changeFont.ToRegular();
-            dyslexicFontStatus.text = "OFF";
-        }
+            {
+                changeFont.ToDyslexic();
+                dyslexicFontStatus.text = "ON";
+            }
+            else if (dyslexicFontToggle.isOn == false)
+            {
+                changeFont.ToRegular();
+                dyslexicFontStatus.text = "OFF";
+            }
+
     }
 
 }

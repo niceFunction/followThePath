@@ -5,7 +5,10 @@ using TMPro;
 
 public class ChangeFont : MonoBehaviour
 {
-    public TextMeshProUGUI textObject;
+    //public TextMeshProUGUI textObject;
+
+    [HideInInspector]
+    public GameObject textObject;
 
     [Space(10)]
     public TMP_FontAsset regularFont;
@@ -20,7 +23,8 @@ public class ChangeFont : MonoBehaviour
 
     private void Awake()
     {
-        textObject = GetComponent<TextMeshProUGUI>();
+        textObject = GameObject.FindGameObjectWithTag("UIText");
+        
     }
 
     private void Update()
@@ -31,12 +35,13 @@ public class ChangeFont : MonoBehaviour
     public void ToDyslexic()
     {
 
-        textObject.font = dyslexicFont;
+        textObject.GetComponent<TextMeshProUGUI>().font = dyslexicFont;
         // Check if you need "font material" both here and in "ToRegular()"
     }
 
     public void ToRegular()
     {
-        textObject.font = regularFont;
+        textObject.GetComponent<TextMeshProUGUI>().font = regularFont;
+        //textObject.font = regularFont;
     }
 }
