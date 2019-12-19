@@ -80,7 +80,7 @@ public class ColorManager : MonoBehaviour
     [SerializeField]
     private ChangeFont changeFont;
 
-    public List<GameObject> textObjects = new List<GameObject>();
+    public List<GameObject> textObjectList = new List<GameObject>();
 
     // https://flaredust.com/game-dev/unity/having-fun-with-shaders-in-unity/
     public static ColorManager ColorInstance { get; private set; }
@@ -100,7 +100,14 @@ public class ColorManager : MonoBehaviour
 
         // Preferably I want to add all objects with the tag "UIText" at the run time
         // both active and inactive
-        textObjects.AddRange(GameObject.FindGameObjectsWithTag("UIText"));
+        textObjectList.AddRange(GameObject.FindGameObjectsWithTag("UIText"));
+        //if (GameObject.FindGameObjectsWithTag("UIText").set)
+        /* 
+        foreach ()
+        {
+            Debug.Log(textObjectList);
+        }
+        */
     }
 
     // Start is called before the first frame update
@@ -115,7 +122,7 @@ public class ColorManager : MonoBehaviour
     void Update()
     {
         //Debug.Log("Camera: " + playerCamera);
-        Debug.Log(textObjects);
+        //Debug.Log(textObjects);
         //addedTextObjects = GameObject.FindGameObjectsWithTag("UIText");
         SetColorMode();
     }
@@ -297,12 +304,12 @@ public class ColorManager : MonoBehaviour
 
         if (dyslexicFontToggle.isOn == true)
             {
-                changeFont.ToDyslexic();
+                //changeFont.ToDyslexic();
                 dyslexicFontStatus.text = "ON";
             }
             else if (dyslexicFontToggle.isOn == false)
             {
-                changeFont.ToRegular();
+                //changeFont.ToRegular();
                 dyslexicFontStatus.text = "OFF";
             }
 
