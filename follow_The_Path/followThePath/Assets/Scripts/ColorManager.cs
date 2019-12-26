@@ -152,6 +152,12 @@ public class ColorManager : MonoBehaviour
             randomColorsStatus.text = "OFF";
             colorChangeTimer = colorChangeTimerReset;
         }
+
+        // if the grayscale toggle is active, make color dropdown not interactable
+        if (grayscaleToggle.isOn == true)
+        {
+            colorDropdown.interactable = false;
+        }
     }
    
     /// <summary>
@@ -274,16 +280,21 @@ public class ColorManager : MonoBehaviour
         if (grayscaleToggle.isOn == true)
         {
             playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
+            
             randomColorsToggle.isOn = false;
             randomColorsToggle.interactable = false;
+
+            //colorDropdown.interactable = false;
+            
             grayscaleStatus.text = "ON";
             colorChangeTimer = colorChangeTimerReset;
         }
         else if (grayscaleToggle.isOn == false)
         {
             playerCamera.GetComponent<GrayscaleCamera>().enabled = false;
-            randomColorsToggle.isOn = true;
+            
             randomColorsToggle.interactable = true;
+
             grayscaleStatus.text = "OFF";
         }
     }
@@ -314,5 +325,4 @@ public class ColorManager : MonoBehaviour
             }
 
     }
-
 }
