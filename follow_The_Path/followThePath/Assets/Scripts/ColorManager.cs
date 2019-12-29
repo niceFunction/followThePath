@@ -30,7 +30,7 @@ public class ColorManager : MonoBehaviour
     public TMP_Dropdown colorDropdown;
 
     [Space(5)]
-    [Tooltip("Randomly changes colors on the level wjen active")]
+    [Tooltip("Randomly changes colors on the level when active")]
     public Toggle randomColorsToggle;
     [Tooltip("Visual element that the user can see if randomizing colors are active or not")]
     [SerializeField]
