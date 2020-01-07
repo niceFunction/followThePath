@@ -70,17 +70,24 @@ public class ColorManager : MonoBehaviour
     public float colorChangeTimerReset;
     private float colorChangeTimer;
     private bool currentlyChangingColor;
+    /*
+    [Space(5)]
+    [Tooltip("Regular 'default' font")]
+    public TMP_FontAsset regularFont;
+    [Tooltip("Dyslexic friendly font")]
+    public TMP_FontAsset dyslexicFont;
+    */
 
     // Variables used to set specific colors
     List<string> colorNames = new List<string>() { "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "VIOLET" };
 
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
-
+    
+    /*
     [SerializeField]
     private ChangeFont changeFont;
-
-    public List<GameObject> textObjectList = new List<GameObject>();
+    */
 
     // https://flaredust.com/game-dev/unity/having-fun-with-shaders-in-unity/
     public static ColorManager ColorInstance { get; private set; }
@@ -98,16 +105,6 @@ public class ColorManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
 
-        // Preferably I want to add all objects with the tag "UIText" at the run time
-        // both active and inactive
-        textObjectList.AddRange(GameObject.FindGameObjectsWithTag("UIText"));
-        //if (GameObject.FindGameObjectsWithTag("UIText").set)
-        /* 
-        foreach ()
-        {
-            Debug.Log(textObjectList);
-        }
-        */
     }
 
     // Start is called before the first frame update
@@ -121,9 +118,7 @@ public class ColorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("Camera: " + playerCamera);
-        //Debug.Log(textObjects);
-        //addedTextObjects = GameObject.FindGameObjectsWithTag("UIText");
+
         SetColorMode();
     }
 
@@ -284,7 +279,6 @@ public class ColorManager : MonoBehaviour
             randomColorsToggle.isOn = false;
             randomColorsToggle.interactable = false;
 
-            //colorDropdown.interactable = false;
             
             grayscaleStatus.text = "ON";
             colorChangeTimer = colorChangeTimerReset;

@@ -2599,6 +2599,18 @@ PrefabInstance:
       propertyPath: changeFont
       value: 
       objectReference: {fileID: 1755206119}
+    - target: {fileID: 3941759333624630605, guid: 76279ea77ec4dc54ea28351d82425128,
+        type: 3}
+      propertyPath: regularFont
+      value: 
+      objectReference: {fileID: 11400000, guid: eb5edf94b5e9abe498a287324ec718da,
+        type: 2}
+    - target: {fileID: 3941759333624630605, guid: 76279ea77ec4dc54ea28351d82425128,
+        type: 3}
+      propertyPath: dyslexicFont
+      value: 
+      objectReference: {fileID: 11400000, guid: 0e5f1b3345d3cd64a8c90d5dc3fc46aa,
+        type: 2}
     - target: {fileID: 3941759333624630606, guid: 76279ea77ec4dc54ea28351d82425128,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4385,7 +4397,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textObject: {fileID: 0}
   regularFont: {fileID: 0}
   dyslexicFont: {fileID: 0}
 --- !u!1 &1225560420
@@ -6514,9 +6525,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textObject: {fileID: 1755206115}
-  regularFont: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
-  dyslexicFont: {fileID: 11400000, guid: 01c1c9463bc4a004182b7e84a18ab945, type: 2}
+  regularFont: {fileID: 11400000, guid: eb5edf94b5e9abe498a287324ec718da, type: 2}
+  dyslexicFont: {fileID: 11400000, guid: 0e5f1b3345d3cd64a8c90d5dc3fc46aa, type: 2}
 --- !u!1 &1771676985
 GameObject:
   m_ObjectHideFlags: 0
@@ -8273,9 +8283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textObject: {fileID: 2068449121}
-  regularFont: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
-  dyslexicFont: {fileID: 11400000, guid: 01c1c9463bc4a004182b7e84a18ab945, type: 2}
+  regularFont: {fileID: 0}
+  dyslexicFont: {fileID: 0}
 --- !u!1 &2077176343
 GameObject:
   m_ObjectHideFlags: 0
