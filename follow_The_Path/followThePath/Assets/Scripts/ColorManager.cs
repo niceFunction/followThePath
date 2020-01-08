@@ -116,13 +116,13 @@ public class ColorManager : MonoBehaviour
         currentTileColor = tileMaterial.color;
         currentFloorColor = floorMaterial.color;
         colorChangeTimer = colorChangeTimerReset;
+
         currentFont = regularFont;
     }
 
     // Update is called once per frame
     void Update()
     {
-
         SetColorMode();
     }
 
@@ -325,12 +325,10 @@ public class ColorManager : MonoBehaviour
 
         if(dyslexicFontToggle.isOn == false)
         {
-            ChangeFont.UpdateFonts();
             currentFont = regularFont;
         }
-        if(dyslexicFontToggle.isOn == true)
+       else if(dyslexicFontToggle.isOn == true)
         {
-            ChangeFont.UpdateFonts();
             currentFont = dyslexicFont;
         }
         Debug.Log("Current font is: " + currentFont);

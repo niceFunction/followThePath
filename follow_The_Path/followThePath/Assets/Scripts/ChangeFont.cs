@@ -14,7 +14,7 @@ public class ChangeFont : MonoBehaviour
 {
     private static List<ChangeFont> changeFonts = new List<ChangeFont>();
     private TextMeshProUGUI textObject;
-    private ColorManager colorManager;
+    public ColorManager colorManager;
 
     public static void UpdateFonts()
     {
@@ -31,9 +31,14 @@ public class ChangeFont : MonoBehaviour
         // TODO include additional code from Start() here, if you reuse an old object
     }
 
+    private void Update()
+    {
+
+    }
+
     void OnEnable() // This should run every time this object is enabled.
     {
-        // Debug.Log("ChangeFont enabled!"); // Uncomment to debug if things aren't working as intended.
+        Debug.Log("ChangeFont enabled!"); // Uncomment to debug if things aren't working as intended.
         UpdateFont();
         changeFonts.Add(this);
     }
@@ -47,8 +52,8 @@ public class ChangeFont : MonoBehaviour
     private void UpdateFont()
     {
 
-        textObject.font = colorManager.dyslexicFont;
-        Debug.Log(colorManager);
+        textObject.font = colorManager.currentFont;
+
     }
     #region Old Code
     /*

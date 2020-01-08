@@ -2597,7 +2597,7 @@ PrefabInstance:
         type: 3}
       propertyPath: changeFont
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2068449125}
     - target: {fileID: 3941759333624630605, guid: 76279ea77ec4dc54ea28351d82425128,
         type: 3}
       propertyPath: regularFont
@@ -6348,7 +6348,7 @@ GameObject:
   - component: {fileID: 1755206117}
   m_Layer: 5
   m_Name: SoundHeader
-  m_TagString: UIText
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
