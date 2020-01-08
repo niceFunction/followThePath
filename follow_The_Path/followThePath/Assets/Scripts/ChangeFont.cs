@@ -14,10 +14,7 @@ public class ChangeFont : MonoBehaviour
 {
     private static List<ChangeFont> changeFonts = new List<ChangeFont>();
     private TextMeshProUGUI textObject;
-
-    [Space(10)]
-    public TMP_FontAsset regularFont;
-    public TMP_FontAsset dyslexicFont;
+    private ColorManager colorManager;
 
     public static void UpdateFonts()
     {
@@ -30,12 +27,8 @@ public class ChangeFont : MonoBehaviour
     void Start()
     {
         textObject = this.GetComponent<TextMeshProUGUI>();
-        // TODO include additional code from Start() here, if you reuse an old object
-    }
 
-    void Update()
-    {
-        
+        // TODO include additional code from Start() here, if you reuse an old object
     }
 
     void OnEnable() // This should run every time this object is enabled.
@@ -47,28 +40,16 @@ public class ChangeFont : MonoBehaviour
 
     void OnDisable() // This should run every time this object is disabled.
     {
-        // Debug.Log("ChangeFont disabled!"); // Uncomment to debug if things aren't working as intended.
+        Debug.Log("ChangeFont disabled!"); // Uncomment to debug if things aren't working as intended.
         changeFonts.Remove(this); // Remove this instance from our list of changeFonts
     }
 
     private void UpdateFont()
     {
-       
+
+        textObject.font = colorManager.dyslexicFont;
+        Debug.Log(colorManager);
     }
-
-    public void ToDyslexic()
-    {
-
-        //textObject.GetComponent<TextMeshProUGUI>().font = dyslexicFont;
-        // Check if you need "font material" both here and in "ToRegular()"
-    }
-
-    public void ToRegular()
-    {
-        //textObject.GetComponent<TextMeshProUGUI>().font = regularFont;
-        //textObject.font = regularFont;
-    }
-
     #region Old Code
     /*
     //public TextMeshProUGUI textObject;

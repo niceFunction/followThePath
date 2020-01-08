@@ -49,6 +49,14 @@ public class ColorManager : MonoBehaviour
     private TextMeshProUGUI dyslexicFontStatus;
 
     [Space(5)]
+    public TMP_FontAsset regularFont;
+    public TMP_FontAsset dyslexicFont;
+    [HideInInspector]
+    public TMP_FontAsset currentFont;
+    private ChangeFont changeFont;
+    
+
+    [Space(5)]
     /// <summary>
     /// The Color arrays size are specified in the Inspector.
     /// In this case, colors of the Rainbow and the colors for the floor
@@ -84,11 +92,6 @@ public class ColorManager : MonoBehaviour
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
     
-    /*
-    [SerializeField]
-    private ChangeFont changeFont;
-    */
-
     // https://flaredust.com/game-dev/unity/having-fun-with-shaders-in-unity/
     public static ColorManager ColorInstance { get; private set; }
     void Awake()
@@ -103,7 +106,7 @@ public class ColorManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        DontDestroyOnLoad(gameObject);
+       // DontDestroyOnLoad(gameObject);
 
     }
 
@@ -113,6 +116,7 @@ public class ColorManager : MonoBehaviour
         currentTileColor = tileMaterial.color;
         currentFloorColor = floorMaterial.color;
         colorChangeTimer = colorChangeTimerReset;
+        currentFont = regularFont;
     }
 
     // Update is called once per frame
@@ -306,17 +310,44 @@ public class ColorManager : MonoBehaviour
             from 'TextMeshProUGUI' to 'GameObject'.
             That's because there are UI elements in different scenes.
          */
+        /*
+        if (!changeFont.enabled)
+        {
+            ChangeFont.UpdateFonts();
+            currentFont = regularFont;
+        }
+        else if (changeFont.enabled)
+        {
+            ChangeFont.UpdateFonts();
+            currentFont = dyslexicFont;
+        }
+        */
 
-        if (dyslexicFontToggle.isOn == true)
-            {
-                //changeFont.ToDyslexic();
-                dyslexicFontStatus.text = "ON";
-            }
-            else if (dyslexicFontToggle.isOn == false)
-            {
-                //changeFont.ToRegular();
-                dyslexicFontStatus.text = "OFF";
-            }
+        if(dyslexicFontToggle.isOn == false)
+        {
+            ChangeFont.UpdateFonts();
+            currentFont = regularFont;
+        }
+        if(dyslexicFontToggle.isOn == true)
+        {
+            ChangeFont.UpdateFonts();
+            currentFont = dyslexicFont;
+        }
+        Debug.Log("Current font is: " + currentFont);
+        #region OLD CODE
+        /* 
+       if (dyslexicFontToggle.isOn == true)
+           {
+               //changeFont.ToDyslexic();
+               dyslexicFontStatus.text = "ON";
+           }
+           else if (dyslexicFontToggle.isOn == false)
+           {
+               //changeFont.ToRegular();
+               dyslexicFontStatus.text = "OFF";
+           }
+       */
+        #endregion
 
     }
 }
