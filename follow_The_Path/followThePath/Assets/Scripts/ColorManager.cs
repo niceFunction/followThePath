@@ -310,27 +310,21 @@ public class ColorManager : MonoBehaviour
             from 'TextMeshProUGUI' to 'GameObject'.
             That's because there are UI elements in different scenes.
          */
-        /*
-        if (!changeFont.enabled)
-        {
-            ChangeFont.UpdateFonts();
-            currentFont = regularFont;
-        }
-        else if (changeFont.enabled)
-        {
-            ChangeFont.UpdateFonts();
-            currentFont = dyslexicFont;
-        }
-        */
 
-        if(dyslexicFontToggle.isOn == false)
+
+        if (dyslexicFontToggle.isOn == false)
         {
+
             currentFont = regularFont;
+            dyslexicFontStatus.text = "OFF";
         }
        else if(dyslexicFontToggle.isOn == true)
         {
+
             currentFont = dyslexicFont;
+            dyslexicFontStatus.text = "ON";
         }
+        ChangeFont.UpdateFonts();
         Debug.Log("Current font is: " + currentFont);
         #region OLD CODE
         /* 

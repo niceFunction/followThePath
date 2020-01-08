@@ -26,7 +26,7 @@ public class ChangeFont : MonoBehaviour
 
     void Start()
     {
-        textObject = this.GetComponent<TextMeshProUGUI>();
+        
 
         // TODO include additional code from Start() here, if you reuse an old object
     }
@@ -39,6 +39,10 @@ public class ChangeFont : MonoBehaviour
     void OnEnable() // This should run every time this object is enabled.
     {
         Debug.Log("ChangeFont enabled!"); // Uncomment to debug if things aren't working as intended.
+        if (textObject == null)
+        {
+            textObject = this.GetComponent<TextMeshProUGUI>();
+        }
         UpdateFont();
         changeFonts.Add(this);
     }
