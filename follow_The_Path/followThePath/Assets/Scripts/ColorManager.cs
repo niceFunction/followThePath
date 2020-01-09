@@ -53,9 +53,12 @@ public class ColorManager : MonoBehaviour
     public TMP_FontAsset dyslexicFont;
     [HideInInspector]
     public TMP_FontAsset currentFont;
+    
+    // Currently used to affect font size but can have other areas to be used
+    private TextMeshPro TMP;
     private ChangeFont changeFont;
     
-
+    
     [Space(5)]
     /// <summary>
     /// The Color arrays size are specified in the Inspector.
@@ -78,13 +81,6 @@ public class ColorManager : MonoBehaviour
     public float colorChangeTimerReset;
     private float colorChangeTimer;
     private bool currentlyChangingColor;
-    /*
-    [Space(5)]
-    [Tooltip("Regular 'default' font")]
-    public TMP_FontAsset regularFont;
-    [Tooltip("Dyslexic friendly font")]
-    public TMP_FontAsset dyslexicFont;
-    */
 
     // Variables used to set specific colors
     List<string> colorNames = new List<string>() { "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "VIOLET" };
@@ -117,7 +113,7 @@ public class ColorManager : MonoBehaviour
         currentFloorColor = floorMaterial.color;
         colorChangeTimer = colorChangeTimerReset;
 
-        currentFont = regularFont;
+        //currentFont = regularFont;
     }
 
     // Update is called once per frame
@@ -310,36 +306,24 @@ public class ColorManager : MonoBehaviour
             from 'TextMeshProUGUI' to 'GameObject'.
             That's because there are UI elements in different scenes.
          */
-
+        currentFont = regularFont;
 
         if (dyslexicFontToggle.isOn == false)
         {
 
             currentFont = regularFont;
+            //TMP.fontSize = changeFont.regularFontSize;
             dyslexicFontStatus.text = "OFF";
         }
        else if(dyslexicFontToggle.isOn == true)
         {
 
             currentFont = dyslexicFont;
+            //TMP.fontSize = changeFont.dyslexicFontSize;
             dyslexicFontStatus.text = "ON";
         }
         ChangeFont.UpdateFonts();
         Debug.Log("Current font is: " + currentFont);
-        #region OLD CODE
-        /* 
-       if (dyslexicFontToggle.isOn == true)
-           {
-               //changeFont.ToDyslexic();
-               dyslexicFontStatus.text = "ON";
-           }
-           else if (dyslexicFontToggle.isOn == false)
-           {
-               //changeFont.ToRegular();
-               dyslexicFontStatus.text = "OFF";
-           }
-       */
-        #endregion
 
     }
 }

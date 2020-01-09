@@ -16,6 +16,13 @@ public class ChangeFont : MonoBehaviour
     private TextMeshProUGUI textObject;
     public ColorManager colorManager;
 
+    [Range(0.1f, 200f)]
+    [Tooltip("The regular size of the font")]
+    public float regularFontSize;
+    [Range(1f, 200f)]
+    [Tooltip("The size of the dyslexic font")]
+    public float dyslexicFontSize;
+
     public static void UpdateFonts()
     {
         foreach(ChangeFont c in changeFonts)
@@ -26,7 +33,6 @@ public class ChangeFont : MonoBehaviour
 
     void Start()
     {
-        
 
         // TODO include additional code from Start() here, if you reuse an old object
     }
@@ -38,7 +44,10 @@ public class ChangeFont : MonoBehaviour
 
     void OnEnable() // This should run every time this object is enabled.
     {
-        Debug.Log("ChangeFont enabled!"); // Uncomment to debug if things aren't working as intended.
+        // At start, sets the font to regular font and not an unrelated font
+        colorManager.currentFont = colorManager.regularFont;
+
+        //Debug.Log("ChangeFont enabled!"); // Uncomment to debug if things aren't working as intended.
         if (textObject == null)
         {
             textObject = this.GetComponent<TextMeshProUGUI>();
@@ -49,7 +58,7 @@ public class ChangeFont : MonoBehaviour
 
     void OnDisable() // This should run every time this object is disabled.
     {
-        Debug.Log("ChangeFont disabled!"); // Uncomment to debug if things aren't working as intended.
+        //Debug.Log("ChangeFont disabled!"); // Uncomment to debug if things aren't working as intended.
         changeFonts.Remove(this); // Remove this instance from our list of changeFonts
     }
 
