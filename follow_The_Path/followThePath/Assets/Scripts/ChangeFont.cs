@@ -10,6 +10,9 @@ This will just prevent you from putting this object on other
 things that don't have a UI.Text
 */
 [RequireComponent(typeof(TextMeshProUGUI))] 
+/// <summary>
+/// Changes font style from regular to dyslexic
+/// </summary>
 public class ChangeFont : MonoBehaviour
 {
     private static List<ChangeFont> changeFonts = new List<ChangeFont>();
@@ -23,6 +26,7 @@ public class ChangeFont : MonoBehaviour
     [Tooltip("The size of the dyslexic font")]
     public float dyslexicFontSize;
 
+    // Updates all UI/text elements where this script is attached to
     public static void UpdateFonts()
     {
         foreach(ChangeFont c in changeFonts)
@@ -45,7 +49,6 @@ public class ChangeFont : MonoBehaviour
     void OnEnable() // This should run every time this object is enabled.
     {
         // At start, sets the font to regular font and not an unrelated font
-        colorManager.currentFont = colorManager.regularFont;
 
         //Debug.Log("ChangeFont enabled!"); // Uncomment to debug if things aren't working as intended.
         if (textObject == null)
@@ -66,48 +69,19 @@ public class ChangeFont : MonoBehaviour
     {
 
         textObject.font = colorManager.currentFont;
+        ///<summary>
+        /// This if-statement is used to individually adjust the size of the font.
+        /// This is because the dyslexic font is larger compared to the regular
+        /// font style.
+        /// </summary>
+        if (colorManager.dyslexicFontToggle.isOn == false)
+        {
+            textObject.fontSize = regularFontSize;
+        }
+        else if (colorManager.dyslexicFontToggle.isOn == true)
+        {
+            textObject.fontSize = dyslexicFontSize;
+        }
 
     }
-    #region Old Code
-    /*
-    //public TextMeshProUGUI textObject;
-
-    [HideInInspector]
-    public GameObject textObject;
-
-    [Space(10)]
-    public TMP_FontAsset regularFont;
-    public TMP_FontAsset dyslexicFont;
-
-    // https://forum.unity.com/threads/trouble-programatically-changing-text-mesh-pro-font.470047/
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    private void Awake()
-    {
-       textObject = GameObject.FindGameObjectWithTag("UIText");
-        
-    }
-
-    private void Update()
-    {
-
-    }
-
-    public void ToDyslexic()
-    {
-
-        textObject.GetComponent<TextMeshProUGUI>().font = dyslexicFont;
-        // Check if you need "font material" both here and in "ToRegular()"
-    }
-
-    public void ToRegular()
-    {
-        textObject.GetComponent<TextMeshProUGUI>().font = regularFont;
-        //textObject.font = regularFont;
-    }*/
-    #endregion
 }

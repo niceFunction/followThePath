@@ -102,7 +102,8 @@ public class ColorManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-       // DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
+        currentFont = regularFont;
 
     }
 
@@ -306,21 +307,21 @@ public class ColorManager : MonoBehaviour
             from 'TextMeshProUGUI' to 'GameObject'.
             That's because there are UI elements in different scenes.
          */
-        currentFont = regularFont;
+        //currentFont = regularFont;
 
         if (dyslexicFontToggle.isOn == false)
         {
 
             currentFont = regularFont;
-            //TMP.fontSize = changeFont.regularFontSize;
             dyslexicFontStatus.text = "OFF";
+            //PlayerPrefs.Save();
         }
        else if(dyslexicFontToggle.isOn == true)
         {
 
             currentFont = dyslexicFont;
-            //TMP.fontSize = changeFont.dyslexicFontSize;
             dyslexicFontStatus.text = "ON";
+            //PlayerPrefs.Save();
         }
         ChangeFont.UpdateFonts();
         Debug.Log("Current font is: " + currentFont);
