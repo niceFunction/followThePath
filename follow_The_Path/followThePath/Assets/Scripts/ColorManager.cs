@@ -17,11 +17,15 @@ public class ColorManager : MonoBehaviour
     public delegate void UxEventHandler();
     public static event UxEventHandler onActiveUX;
 
+    public delegate void ChangeFontHandler(TMP_FontAsset newFont);
+    public event ChangeFontHandler onChangeFont;
+
+
     /// <summary>
     /// The Materials are added to the references in the Inspector
     /// </summary>
     [Tooltip("Used to change color on the Tiles")]
-    public Material tileMaterial;
+    public Material tileMaterial; // TODO do not expose materials like this, unless other objects are supposed to change them.
     [Tooltip("Used to change the color of the Floor")]
     public Material floorMaterial;
 
@@ -30,11 +34,11 @@ public class ColorManager : MonoBehaviour
     /// colorDropDown and randomizeColorsToggle are used for specifying colors
     /// </summary>
     [Tooltip("When colors in the level isn't active, user can specifically set level colors")]
-    public TMP_Dropdown colorDropdown;
+    public TMP_Dropdown colorDropdown; // TODO do not expose GUI elements like this, as this object should manage them. Create a property that returns the value instead.
 
     [Space(5)]
     [Tooltip("Randomly changes colors on the level when active")]
-    public Toggle randomColorsToggle;
+    public Toggle randomColorsToggle; // TODO do not expose things like toggles, se comments for dyslexicFontToggle
     [Tooltip("Visual element that the user can see if randomizing colors are active or not")]
     [SerializeField]
     private TextMeshProUGUI randomColorsStatus;
@@ -47,19 +51,25 @@ public class ColorManager : MonoBehaviour
     private TextMeshProUGUI grayscaleStatus;
 
     [Space(5)]
-    public Toggle dyslexicFontToggle;
+    public Toggle dyslexicFontToggle; // TODO do not expose things like toggles, as they belong to this object.
+    // TODO create a property boolean that returns whether the toggle is on/off instead.
     [SerializeField]
     private TextMeshProUGUI dyslexicFontStatus;
 
-    [Space(5)]
+    /*[Space(5)]
     public TMP_FontAsset regularFont;
     public TMP_FontAsset dyslexicFont;
     [HideInInspector]
     public TMP_FontAsset currentFont;
-    
+    */
+    [SerializeField, Space(5)]
+    private TMP_FontAsset regularFont; // TODO keep set things like fonts private to the class that manages them
+    [SerializeField, Space(5)]
+    private TMP_FontAsset dyslexicFont;
+    public TMP_FontAsset currentFont { get; private set; } // TODO expose things through properties, which will prevent accidentally changing them and decrease coupling.
+
     // Currently used to affect font size but can have other areas to be used
     private TextMeshPro TMP;
-    private ChangeFont changeFont;
     
     
     [Space(5)]
@@ -92,7 +102,7 @@ public class ColorManager : MonoBehaviour
     private GameObject playerCamera;
     
     // https://flaredust.com/game-dev/unity/having-fun-with-shaders-in-unity/
-    public static ColorManager ColorInstance { get; private set; }
+    public static ColorManager Instance { get; private set; } // Single instances are normally referenced with class.Instance
     
     public static void newUxActive()
     {
@@ -105,9 +115,9 @@ public class ColorManager : MonoBehaviour
     void Awake()
     {
 
-        if (ColorInstance == null)
+        if (Instance == null)
         {
-            ColorInstance = this;
+            Instance = this;
         }
         else
         {
@@ -338,7 +348,10 @@ public class ColorManager : MonoBehaviour
         }
         // Inform text objects with ChangeFont class attached,
         // to update to the new font
-        ChangeFont.UpdateFonts();
+        if (onChangeFont != null) // This null check is important, because if no listeners are registered, it will result in an NPE.
+        {
+            onChangeFont.Invoke(currentFont);
+        }
         
         //Debug.Log("Current font is: " + currentFont); // Uncomment to debug what font is active
 
