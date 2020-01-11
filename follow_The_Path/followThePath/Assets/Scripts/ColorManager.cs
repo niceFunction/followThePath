@@ -14,6 +14,9 @@ using TMPro;
 //TODO will change class name to "VisualManager" instead in the future
 public class ColorManager : MonoBehaviour
 {
+    public delegate void UxEventHandler();
+    public static event UxEventHandler onActiveUX;
+
     /// <summary>
     /// The Materials are added to the references in the Inspector
     /// </summary>
