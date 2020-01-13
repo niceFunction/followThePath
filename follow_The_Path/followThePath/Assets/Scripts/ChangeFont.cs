@@ -9,15 +9,13 @@ using UnityEngine.UI;
 This will just prevent you from putting this object on other 
 things that don't have a UI.Text
 */
-[RequireComponent(typeof(TextMeshProUGUI))] 
+[RequireComponent(typeof(TextMeshProUGUI))]
 /// <summary>
 /// Changes font style from regular to dyslexic
 /// </summary>
 public class ChangeFont : MonoBehaviour
 {
-    private static List<ChangeFont> changeFonts = new List<ChangeFont>(); // TODO Remove this (changeFonts)
     private TextMeshProUGUI textObject;
-    public ColorManager colorManager; // TODO Remove this (colorManager)
 
     [Range(0.1f, 200f)]
     [Tooltip("The regular size of the font")]
@@ -26,78 +24,43 @@ public class ChangeFont : MonoBehaviour
     [Tooltip("The size of the dyslexic font")]
     public float dyslexicFontSize;
 
-    #region Remove this (UpdateFonts)
-    // TODO Remove this method/foreach loop (UpdateFonts)
-    // Updates all UI/text elements where this script is attached to
-    public static void UpdateFonts()
-    {
-        foreach(ChangeFont c in changeFonts)
-        {
-            c.UpdateFont();
-        }
-    }
-    #endregion
 
     void Start()
     {
-        #region Remove this
-        // TODO Remove this within the region
-        // TODO include additional code from Start() here, if you reuse an old object
-    }
-
-    private void Update()
-    {
-
-    }
-
-    void OnEnable() // This should run every time this object is enabled.
-    {
-        // At start, sets the font to regular font and not an unrelated font
-
-        //Debug.Log("ChangeFont enabled!"); // Uncomment to debug if things aren't working as intended.
-        #endregion
         if (textObject == null)
         {
             textObject = this.GetComponent<TextMeshProUGUI>();
         }
-        UpdateFont(); // TODO Remove this
-        changeFonts.Add(this); // TODO Remove this
+        UpdateFont(ColorManager.Instance.currentFont);
+        ColorManager.Instance.onChangeFont += this.UpdateFont;
     }
 
-    void OnDisable() // This should run every time this object is disabled.
+    void OnDestroy()
     {
-        //Debug.Log("ChangeFont disabled!"); // Uncomment to debug if things aren't working as intended.
-        changeFonts.Remove(this); // Remove this instance from our list of changeFonts
+        // Remove listener when destroyed
+        ColorManager.Instance.onChangeFont -= this.UpdateFont;
     }
 
-    private void UpdateFont() // TODO Add "TMP_FontAsset newFont" into this method
+    private void UpdateFont(TMP_FontAsset newFont)
     {
-        #region Remove this
-        // TODO Remove this (statement and summary)
-        textObject.font = colorManager.currentFont;
-        ///<summary>
-        /// This if-statement is used to individually adjust the size of the font.
-        /// This is because the dyslexic font is larger compared to the regular
-        /// font style.
-        /// </summary>
-        #endregion
-        if (colorManager.dyslexicFontToggle.isOn == false) // TODO change this to "ColorManager.Instance.dyslexicFontToggle.isOn"
-        {
-            /* TODO the below size adjustment can be changed into:
-             *  1. Store the original font value for atteched gui text object on start
-             *  2. ColorManager can have a float which stores the relative size the dyslexic font should be scaled
-             *  3. When font changes, also send a float value for scale (1 for regular font, and the dyslexic value for dyslexic font)
-             *  4. This object can then set textObject.fontSize = originalFontSize * scale
-             * You won't have to set font size on each and every object
-             * and you won't have to do any additional work on all objects if you add more fonts later.
-             */
+        textObject.font = newFont;
 
-            textObject.fontSize = regularFontSize;
-        }
-        else if (colorManager.dyslexicFontToggle.isOn == true) // TODO Remove if statement part but keep else
+        /* TODO the below size adjustment can be changed into:
+         *  1. Store the original font value for atteched gui text object on start
+         *  2. ColorManager can have a float which stores the relative size the dyslexic font should be scaled
+         *  3. When font changes, also send a float value for scale (1 for regular font, and the dyslexic value for dyslexic font)
+         *  4. This object can then set textObject.fontSize = originalFontSize * scale
+         * You won't have to set font size on each and every object
+         * and you won't have to do any additional work on all objects if you add more fonts later.
+         */
+        // Set reduced font size for dyslexic, as it is bigger by design.
+        if (ColorManager.Instance.dyslexicFontToggle.isOn) // TODO remove this comment. A toggle is ON or OFF, which means you can simplify to use if/else only.
         {
             textObject.fontSize = dyslexicFontSize;
         }
-
+        else
+        {
+            textObject.fontSize = regularFontSize;
+        }
     }
 }

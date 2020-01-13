@@ -351,7 +351,7 @@ public class ColManager : MonoBehaviour
         }
         // Inform text objects with ChangeFont class attached,
         // to update to the new font
-        ChangeFont.UpdateFonts(); // TODO Remove this
+        ChangeTheFont.UpdateFonts(); // TODO Remove this
 
         /* TODO Add this to check of "onChangeFont" event is null or not
          * if (onChangeFont != null) // This null check is important, because if no listeners are registered, it will result in an NPE.
