@@ -11,7 +11,7 @@ using TMPro;
 // https://www.youtube.com/watch?v=pvo0RCiqtLQ&feature=youtu.be&t=254
 // https://www.youtube.com/watch?v=usAaH5Mi0ZQ
 
-//TODO will change class name to "VisualManager" instead in the future
+//TODO will change class name to "UxManager" instead in the future
 public class ColorManager : MonoBehaviour
 {
     public delegate void UxEventHandler();
@@ -24,14 +24,15 @@ public class ColorManager : MonoBehaviour
     /// <summary>
     /// The Materials are added to the references in the Inspector
     /// </summary>
-    
     [Tooltip("Used to change color on the Tiles")]
-    // TODO make this private and add SerializeField (?)
-    public Material tileMaterial; // TODO do not expose materials like this, unless other objects are supposed to change them.
+    [SerializeField]
+    // TODO personal note: keep in mind if tile/floor material needs to be public again if other objects needs to access them
+    private Material tileMaterial;
     [Tooltip("Used to change the color of the Floor")]
-    // TODO make this private and add SerializeField (?)
-    public Material floorMaterial;
+    [SerializeField]
+    private Material floorMaterial;
 
+    #region SET SPECIFIC COLORS
     [Space(5)]
     /// <summary>
     /// colorDropDown and randomizeColorsToggle are used for specifying colors
@@ -39,47 +40,62 @@ public class ColorManager : MonoBehaviour
     [Tooltip("When colors in the level isn't active, user can specifically set level colors")]
     // TODO 1a. do not expose GUI elements like this, as this object should manage them. 
     // TODO 2a. Create a property that returns the value instead.
-    public TMP_Dropdown colorDropdown; 
+    [SerializeField]
+    private TMP_Dropdown colorDropdown;
+    public TMP_Dropdown ColorDropdown { get { return colorDropdown; } } // Am I thinking right?
+    // Variables used to set specific colors
+    List<string> colorNames = new List<string>() { "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "VIOLET" };
+    #endregion
 
+    #region RANDOM COLORS
     [Space(5)]
     [Tooltip("Randomly changes colors on the level when active")]
     // TODO do not expose things like toggles, se comments for dyslexicFontToggle
-    public Toggle randomColorsToggle; 
+    [SerializeField]
+    private Toggle randomColorsToggle;
+    public Toggle RandomColorsToggle { get { return randomColorsToggle; } }
     [Tooltip("Visual element that the user can see if randomizing colors are active or not")]
     [SerializeField]
     private TextMeshProUGUI randomColorsStatus;
+    #endregion
 
+    #region GRAYSCALE
     [Space(5)]
     [Tooltip("Toggle grayscale 'overlay' on an off")]
-    public Toggle grayscaleToggle;
+    [SerializeField]
+    private Toggle grayscaleToggle;
+    public Toggle GrayscaleToggle { get { return grayscaleToggle; } }
+
     [Tooltip("Visual element that the user can see if grayscale 'overlay' is active or not")]
     [SerializeField]
     private TextMeshProUGUI grayscaleStatus;
+    #endregion
 
+    #region FONT
     [Space(5)]
     // TODO do not expose things like toggles, as they belong to this object.
-    public Toggle dyslexicFontToggle; 
+    [SerializeField]
+    private Toggle dyslexicFontToggle;
+    public Toggle DyslexicFontToggle { get { return dyslexicFontToggle; } }
     // TODO create a property boolean that returns whether the toggle is on/off instead.
     [SerializeField]
     private TextMeshProUGUI dyslexicFontStatus;
 
-    /*[Space(5)]
-    public TMP_FontAsset regularFont;
-    public TMP_FontAsset dyslexicFont;
-    [HideInInspector]
-    public TMP_FontAsset currentFont;
-    */
     [SerializeField, Space(5)]
     // TODO keep set things like fonts private to the class that manages them
     private TMP_FontAsset regularFont; 
+    public TMP_FontAsset RegularFont { get { return regularFont; } }
+
     [SerializeField, Space(5)]
-    private TMP_FontAsset dyslexicFont;
     // TODO expose things through properties, which will prevent accidentally changing them and decrease coupling.
-    public TMP_FontAsset currentFont { get; private set; } 
+    private TMP_FontAsset dyslexicFont;
+    public TMP_FontAsset DyslexicFont { get { return dyslexicFont; } }
+
+    public TMP_FontAsset currentFont { get; private set; }
+    #endregion
 
     // Currently used to affect font size but can have other areas to be used
     private TextMeshPro TMP;
-
 
     [Space(5)]
     /// <summary>
@@ -103,9 +119,6 @@ public class ColorManager : MonoBehaviour
     public float colorChangeTimerReset;
     private float colorChangeTimer;
     private bool currentlyChangingColor;
-
-    // Variables used to set specific colors
-    List<string> colorNames = new List<string>() { "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "VIOLET" };
 
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
@@ -135,7 +148,7 @@ public class ColorManager : MonoBehaviour
             return;
         }
         // DontDestroyOnLoad(gameObject);
-        currentFont = regularFont;
+        currentFont = RegularFont;
 
     }
 
@@ -146,7 +159,7 @@ public class ColorManager : MonoBehaviour
         currentFloorColor = floorMaterial.color;
         colorChangeTimer = colorChangeTimerReset;
 
-        //currentFont = regularFont;
+        //currentFont = RegularFont;
     }
 
     // Update is called once per frame
@@ -162,29 +175,29 @@ public class ColorManager : MonoBehaviour
     /// </summary>
     public void SetColorMode()
     {
-        if (randomColorsToggle.isOn == true)
+        if (RandomColorsToggle.isOn == true)
         {
             ///<summary>
             /// Color Randomization is active and set specific color dropdown is non-interactable
             /// </summary>
-            colorDropdown.interactable = false;
+            ColorDropdown.interactable = false;
             randomColorsStatus.text = "ON";
             NewRandomColor();
         }
-        else if (randomColorsToggle.isOn == false)
+        else if (RandomColorsToggle.isOn == false)
         {
             ///<summary>
             /// Color randomization is inactive and set specific color dropdown is interactable
             /// </summary>
-            colorDropdown.interactable = true;
+            ColorDropdown.interactable = true;
             randomColorsStatus.text = "OFF";
             colorChangeTimer = colorChangeTimerReset;
         }
 
         // if the grayscale toggle is active, make color dropdown not interactable
-        if (grayscaleToggle.isOn == true)
+        if (GrayscaleToggle.isOn == true)
         {
-            colorDropdown.interactable = false;
+            ColorDropdown.interactable = false;
         }
     }
 
@@ -239,7 +252,7 @@ public class ColorManager : MonoBehaviour
     /// </summary>
     void PopulateColorList()
     {
-        colorDropdown.AddOptions(colorNames);
+        ColorDropdown.AddOptions(colorNames);
     }
 
     /// <summary>
@@ -298,14 +311,14 @@ public class ColorManager : MonoBehaviour
 
     ///<summary>
     /// Used to turn "Grayscale Mode" on and off, user can still set specific color.
-    /// Disables color randomization when grayscaleToggle.isOn is true, renables it when set to false
+    /// Disables color randomization when GrayscaleToggle.isOn is true, renables it when set to false
     /// </summary>
     public void SetGrayscaleMode()
     {
         // TODO: 1. Take a look at if change to accessing Player Camera (which is a prefab in "final" version"),
         // TODO: 2. how is the camera accessed? if it's a prefab, does that need to be changed?
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        if (grayscaleToggle.isOn == true)
+        if (GrayscaleToggle.isOn == true)
         {
             ///<summary>
             /// if grayscale toggle object is on,
@@ -313,14 +326,14 @@ public class ColorManager : MonoBehaviour
             /// </summary>
             playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
 
-            randomColorsToggle.isOn = false;
-            randomColorsToggle.interactable = false;
+            RandomColorsToggle.isOn = false;
+            RandomColorsToggle.interactable = false;
 
 
             grayscaleStatus.text = "ON";
             colorChangeTimer = colorChangeTimerReset;
         }
-        else if (grayscaleToggle.isOn == false)
+        else if (GrayscaleToggle.isOn == false)
         {
             ///<summary>
             /// if grayscale toggle object is NOT on,
@@ -328,7 +341,7 @@ public class ColorManager : MonoBehaviour
             /// </summary>
             playerCamera.GetComponent<GrayscaleCamera>().enabled = false;
 
-            randomColorsToggle.interactable = true;
+            RandomColorsToggle.interactable = true;
 
             grayscaleStatus.text = "OFF";
         }
@@ -340,9 +353,9 @@ public class ColorManager : MonoBehaviour
         /// if dyslexic toggle object is not on,
         /// set current font to the regular font
         /// </summary>
-        if (dyslexicFontToggle.isOn == false)
+        if (DyslexicFontToggle.isOn == false)
         {
-            currentFont = regularFont;
+            currentFont = RegularFont;
             dyslexicFontStatus.text = "OFF";
             //PlayerPrefs.Save();
         }
@@ -350,9 +363,9 @@ public class ColorManager : MonoBehaviour
         /// if dyslexic toggle object IS on,
         /// set the current font to the dyslexic font
         /// </summary>
-        else if (dyslexicFontToggle.isOn == true)
+        else if (DyslexicFontToggle.isOn == true)
         {
-            currentFont = dyslexicFont;
+            currentFont = DyslexicFont;
             dyslexicFontStatus.text = "ON";
             //PlayerPrefs.Save();
         }

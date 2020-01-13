@@ -53,8 +53,8 @@ public class ChangeFont : MonoBehaviour
          * You won't have to set font size on each and every object
          * and you won't have to do any additional work on all objects if you add more fonts later.
          */
-        // Set reduced font size for dyslexic, as it is bigger by design.
-        if (ColorManager.Instance.dyslexicFontToggle.isOn) // TODO remove this comment. A toggle is ON or OFF, which means you can simplify to use if/else only.
+
+        if (ColorManager.Instance.DyslexicFontToggle.isOn)
         {
             textObject.fontSize = dyslexicFontSize;
         }
@@ -62,5 +62,6 @@ public class ChangeFont : MonoBehaviour
         {
             textObject.fontSize = regularFontSize;
         }
+
     }
 }

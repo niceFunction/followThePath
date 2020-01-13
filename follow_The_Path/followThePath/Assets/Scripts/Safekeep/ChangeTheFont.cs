@@ -17,7 +17,7 @@ public class ChangeTheFont : MonoBehaviour
 {
     private static List<ChangeTheFont> changeTheFonts = new List<ChangeTheFont>(); // TODO Remove this (changeFonts)
     private TextMeshProUGUI textObject;
-    public ColorManager colorManager; // TODO Remove this (colorManager)
+    public ColManager colManager; // TODO Remove this (colorManager)
 
     [Range(0.1f, 200f)]
     [Tooltip("The regular size of the font")]
@@ -75,14 +75,14 @@ public class ChangeTheFont : MonoBehaviour
     {
         #region Remove this
         // TODO Remove this (statement and summary)
-        textObject.font = colorManager.currentFont;
+        textObject.font = colManager.currentFont;
         ///<summary>
         /// This if-statement is used to individually adjust the size of the font.
         /// This is because the dyslexic font is larger compared to the regular
         /// font style.
         /// </summary>
         #endregion
-        if (colorManager.dyslexicFontToggle.isOn == false) // TODO change this to "ColorManager.Instance.dyslexicFontToggle.isOn"
+        if (colManager.dyslexicFontToggle.isOn == false) // TODO change this to "ColorManager.Instance.dyslexicFontToggle.isOn"
         {
             /* TODO the below size adjustment can be changed into:
              *  1. Store the original font value for atteched gui text object on start
@@ -95,7 +95,7 @@ public class ChangeTheFont : MonoBehaviour
 
             textObject.fontSize = regularFontSize;
         }
-        else if (colorManager.dyslexicFontToggle.isOn == true) // TODO Remove if statement part but keep else
+        else if (colManager.dyslexicFontToggle.isOn == true) // TODO Remove if statement part but keep else
         {
             textObject.fontSize = dyslexicFontSize;
         }

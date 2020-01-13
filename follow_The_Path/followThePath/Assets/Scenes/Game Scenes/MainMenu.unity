@@ -976,7 +976,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 64
   dyslexicFontSize: 60
 --- !u!1 &183123860
@@ -1732,7 +1731,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 64
   dyslexicFontSize: 60
 --- !u!1 &402036319
@@ -1907,7 +1905,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 1.5
   dyslexicFontSize: 1.1
 --- !u!1 &434150232
@@ -3068,7 +3065,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 60
   dyslexicFontSize: 56
 --- !u!1 &819609238
@@ -3302,7 +3298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 14
   dyslexicFontSize: 14
 --- !u!1 &872686780
@@ -3474,7 +3469,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 64
   dyslexicFontSize: 60
 --- !u!1001 &906222299
@@ -3979,7 +3973,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 68
   dyslexicFontSize: 48
 --- !u!1 &1043742765
@@ -4519,7 +4512,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 64
   dyslexicFontSize: 60
 --- !u!1 &1221202321 stripped
@@ -4540,7 +4532,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 14
   dyslexicFontSize: 14
 --- !u!1 &1225560420
@@ -5285,7 +5276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 64
   dyslexicFontSize: 60
 --- !u!1 &1397022835
@@ -5586,7 +5576,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 64
   dyslexicFontSize: 60
 --- !u!1 &1433439688
@@ -5863,7 +5852,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 96
   dyslexicFontSize: 88
 --- !u!114 &1481872937 stripped
@@ -6047,7 +6035,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 64
   dyslexicFontSize: 60
 --- !u!1 &1560017736
@@ -6255,7 +6242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 68
   dyslexicFontSize: 68
 --- !u!1 &1635426716
@@ -6301,7 +6287,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -339.41898}
+  m_AnchoredPosition: {x: 0, y: -335.05515}
   m_SizeDelta: {x: 950, y: 2170.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1701791621
@@ -6509,7 +6495,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 117
   dyslexicFontSize: 113
 --- !u!1001 &1732540983
@@ -6759,7 +6744,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 96
   dyslexicFontSize: 88
 --- !u!1 &1771676985
@@ -7293,7 +7277,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 64
   dyslexicFontSize: 60
 --- !u!1 &1899366934
@@ -7593,7 +7576,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 68
   dyslexicFontSize: 64
 --- !u!1 &1961985905
@@ -8395,7 +8377,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 60
   dyslexicFontSize: 56
 --- !u!1 &2068449121
@@ -8566,7 +8547,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 96
   dyslexicFontSize: 88
 --- !u!1 &2077176343
@@ -8910,7 +8890,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 739256840}
   regularFontSize: 96
   dyslexicFontSize: 96
 --- !u!1 &2109818199
