@@ -76,7 +76,8 @@ public class ColorManager : MonoBehaviour
     [Tooltip("Randomly changes colors on the level when active")]
     [SerializeField]
     private Toggle randomColorsToggle;
-    public Toggle RandomColorsToggle { get { return randomColorsToggle; } }
+    //public Toggle RandomColorsToggle { get { return randomColorsToggle; } }
+    public bool RandomColorsToggleOn { get { return randomColorsToggle.isOn; } }
     [Tooltip("Visual element that the user can see if randomizing colors are active or not")]
     [SerializeField]
     private TextMeshProUGUI randomColorsStatus;
@@ -96,11 +97,15 @@ public class ColorManager : MonoBehaviour
 
     #region FONT
     [Space(5)]
-    // TODO do not expose things like toggles, as they belong to this object.
+    /* 
+    TODO do not expose things like toggles, as they belong to this object,
+    TODO create a property boolean that returns whether the toggle is on/off instead.
+    */
     [SerializeField]
     private Toggle dyslexicFontToggle;
-    public Toggle DyslexicFontToggle { get { return dyslexicFontToggle; } }
-    // TODO create a property boolean that returns whether the toggle is on/off instead.
+    //public Toggle DyslexicFontToggle { get { return dyslexicFontToggle.isOn; } }
+    public bool DyslexicFontToggleOn { get { return dyslexicFontToggle.isOn; } }
+
     [SerializeField]
     private TextMeshProUGUI dyslexicFontStatus;
 
@@ -173,7 +178,7 @@ public class ColorManager : MonoBehaviour
     /// </summary>
     public void SetColorMode()
     {
-        if (RandomColorsToggle.isOn == true)
+        if (RandomColorsToggleOn)
         {
             ///<summary>
             /// Color Randomization is active and set specific color dropdown is non-interactable
@@ -182,7 +187,7 @@ public class ColorManager : MonoBehaviour
             randomColorsStatus.text = "ON";
             NewRandomColor();
         }
-        else if (RandomColorsToggle.isOn == false)
+        else
         {
             ///<summary>
             /// Color randomization is inactive and set specific color dropdown is interactable
@@ -318,6 +323,7 @@ public class ColorManager : MonoBehaviour
     {
         // TODO 3a Take a look at if change to accessing Player Camera (which is a prefab in "final" version"),
         // TODO 3b how is the camera accessed? if it's a prefab, does that need to be changed?
+
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
         if (GrayscaleToggle.isOn == true)
         {
@@ -349,26 +355,28 @@ public class ColorManager : MonoBehaviour
 
     public void SetDyslexicFont()
     {
-        ///<summary>
-        /// if dyslexic toggle object is not on,
-        /// set current font to the regular font
-        /// </summary>
-        if (DyslexicFontToggle.isOn == false)
+        if (DyslexicFontToggleOn)
         {
-            currentFont = RegularFont;
-            dyslexicFontStatus.text = "OFF";
-            //PlayerPrefs.Save();
-        }
-        ///<summary>
-        /// if dyslexic toggle object IS on,
-        /// set the current font to the dyslexic font
-        /// </summary>
-        else if (DyslexicFontToggle.isOn == true)
-        {
+            ///<summary>
+            /// if dyslexic toggle object IS on,
+            /// set the current font to the dyslexic font
+            /// </summary>
             currentFont = DyslexicFont;
             dyslexicFontStatus.text = "ON";
             //PlayerPrefs.Save();
         }
+
+        else
+        {
+            ///<summary>
+            /// if dyslexic toggle object is not on,
+            /// set current font to the regular font
+            /// </summary>
+            currentFont = RegularFont;
+            dyslexicFontStatus.text = "OFF";
+            //PlayerPrefs.Save();
+        }
+
         // Inform text objects with ChangeFont class attached to update to the new font
         if (onChangeFont != null) // This null check is important, because if no listeners are registered, it will result in an NPE.
         {

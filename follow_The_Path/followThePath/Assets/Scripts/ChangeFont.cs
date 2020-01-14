@@ -46,14 +46,18 @@ public class ChangeFont : MonoBehaviour
 
         /* TODO the below size adjustment can be changed into:
          *  1. Store the original font value for atteched gui text object on start
+         *  
          *  2. ColorManager can have a float which stores the relative size the dyslexic font should be scaled
-         *  3. When font changes, also send a float value for scale (1 for regular font, and the dyslexic value for dyslexic font)
+         *  
+         *  3. When font changes, also send a float value for scale (1 for regular font, 
+         *     and the dyslexic value for dyslexic font)
+         *     
          *  4. This object can then set textObject.fontSize = originalFontSize * scale
-         * You won't have to set font size on each and every object
-         * and you won't have to do any additional work on all objects if you add more fonts later.
+         *     You won't have to set font size on each and every object
+         *     and you won't have to do any additional work on all objects if you add more fonts later.
          */
 
-        if (ColorManager.Instance.DyslexicFontToggle.isOn)
+        if (ColorManager.Instance.DyslexicFontToggleOn)
         {
             textObject.fontSize = dyslexicFontSize;
         }
