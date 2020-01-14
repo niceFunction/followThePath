@@ -24,7 +24,6 @@ public class ChangeFont : MonoBehaviour
     [Tooltip("The size of the dyslexic font")]
     public float dyslexicFontSize;
 
-
     void Start()
     {
         if (textObject == null)
@@ -62,6 +61,5 @@ public class ChangeFont : MonoBehaviour
         {
             textObject.fontSize = regularFontSize;
         }
-
     }
 }

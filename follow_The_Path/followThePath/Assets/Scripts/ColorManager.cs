@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-/// <summary>
-/// Manager class used to change the color of prefabs, specifically Tiles and Floors.
-/// </summary>
 
 // https://www.youtube.com/watch?v=pvo0RCiqtLQ&feature=youtu.be&t=254
 // https://www.youtube.com/watch?v=usAaH5Mi0ZQ
 
+/// <summary>
+/// Manager class used to affect colors on materials, change fonts or improve user experience
+/// </summary>
 //TODO will change class name to "UxManager" instead in the future
 public class ColorManager : MonoBehaviour
 {
@@ -20,7 +20,7 @@ public class ColorManager : MonoBehaviour
     public delegate void ChangeFontHandler(TMP_FontAsset newFont);
     public event ChangeFontHandler onChangeFont;
 
-
+    #region COLORS AND MATERIALS
     /// <summary>
     /// The Materials are added to the references in the Inspector
     /// </summary>
@@ -31,6 +31,30 @@ public class ColorManager : MonoBehaviour
     [Tooltip("Used to change the color of the Floor")]
     [SerializeField]
     private Material floorMaterial;
+    
+    [Space(5)]
+    /// <summary>
+    /// The Color arrays size are specified in the Inspector.
+    /// In this case, colors of the Rainbow and the colors for the floor
+    /// is in a darker hue.
+    /// </summary>
+    [SerializeField]
+    [Tooltip("Creates an Array of Colors for Tiles")]
+    private Color[] tileColorList;
+    [SerializeField]
+    [Tooltip("Create an Array of Colors for Floors")]
+    private Color[] floorColorList;
+
+    // Used to get/set the current Color
+    private Color currentTileColor;
+    private Color currentFloorColor;
+
+    [Space(5)]
+    // Variables used to Randomize colors
+    public float colorChangeTimerReset;
+    private float colorChangeTimer;
+    private bool currentlyChangingColor;
+    #endregion
 
     #region SET SPECIFIC COLORS
     [Space(5)]
@@ -39,10 +63,10 @@ public class ColorManager : MonoBehaviour
     /// </summary>
     [Tooltip("When colors in the level isn't active, user can specifically set level colors")]
     // TODO 1a. do not expose GUI elements like this, as this object should manage them. 
-    // TODO 2a. Create a property that returns the value instead.
+    // TODO 1b. Create a property that returns the value instead.
     [SerializeField]
     private TMP_Dropdown colorDropdown;
-    public TMP_Dropdown ColorDropdown { get { return colorDropdown; } } // Am I thinking right?
+    public TMP_Dropdown ColorDropdown { get { return colorDropdown; } }
     // Variables used to set specific colors
     List<string> colorNames = new List<string>() { "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "VIOLET" };
     #endregion
@@ -50,7 +74,6 @@ public class ColorManager : MonoBehaviour
     #region RANDOM COLORS
     [Space(5)]
     [Tooltip("Randomly changes colors on the level when active")]
-    // TODO do not expose things like toggles, se comments for dyslexicFontToggle
     [SerializeField]
     private Toggle randomColorsToggle;
     public Toggle RandomColorsToggle { get { return randomColorsToggle; } }
@@ -97,29 +120,6 @@ public class ColorManager : MonoBehaviour
     // Currently used to affect font size but can have other areas to be used
     private TextMeshPro TMP;
 
-    [Space(5)]
-    /// <summary>
-    /// The Color arrays size are specified in the Inspector.
-    /// In this case, colors of the Rainbow and the colors for the floor
-    /// is in a darker hue.
-    /// </summary>
-    [SerializeField]
-    [Tooltip("Creates an Array of Colors for Tiles")]
-    private Color[] tileColorList;
-    [SerializeField]
-    [Tooltip("Create an Array of Colors for Floors")]
-    private Color[] floorColorList;
-
-    // Used to get/set the current Color
-    private Color currentTileColor;
-    private Color currentFloorColor;
-
-    [Space(5)]
-    // Variables used to Randomize colors
-    public float colorChangeTimerReset;
-    private float colorChangeTimer;
-    private bool currentlyChangingColor;
-
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
 
@@ -137,7 +137,6 @@ public class ColorManager : MonoBehaviour
 
     void Awake()
     {
-
         if (Instance == null)
         {
             Instance = this;
@@ -149,7 +148,6 @@ public class ColorManager : MonoBehaviour
         }
         // DontDestroyOnLoad(gameObject);
         currentFont = RegularFont;
-
     }
 
     // Start is called before the first frame update
@@ -223,7 +221,11 @@ public class ColorManager : MonoBehaviour
     IEnumerator SetRandomColor()
     {
         currentlyChangingColor = true;
-        //TODO Look more into getting random element from array
+        //TODO 2a Look more into getting random element from array
+        //TODO 2b Look into an for loop that creates a "list" of elements (7 of them),
+        //TODO 2c that everytime it changes, removes that element from the "list",
+        //TODO 2d when the "list" is empty, it randomizes the list of colors again.
+
         ///<summary>
         /// Using tileColorList as the 2nd argument in Random.Range as both
         /// of the tile- and floor mateial color arrays are of the same length.
@@ -305,7 +307,6 @@ public class ColorManager : MonoBehaviour
             floorMaterial.color = floorColorList[6];
         }
         #endregion
-
     }
     #endregion
 
@@ -315,8 +316,8 @@ public class ColorManager : MonoBehaviour
     /// </summary>
     public void SetGrayscaleMode()
     {
-        // TODO: 1. Take a look at if change to accessing Player Camera (which is a prefab in "final" version"),
-        // TODO: 2. how is the camera accessed? if it's a prefab, does that need to be changed?
+        // TODO 3a Take a look at if change to accessing Player Camera (which is a prefab in "final" version"),
+        // TODO 3b how is the camera accessed? if it's a prefab, does that need to be changed?
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
         if (GrayscaleToggle.isOn == true)
         {
@@ -328,7 +329,6 @@ public class ColorManager : MonoBehaviour
 
             RandomColorsToggle.isOn = false;
             RandomColorsToggle.interactable = false;
-
 
             grayscaleStatus.text = "ON";
             colorChangeTimer = colorChangeTimerReset;
@@ -369,14 +369,11 @@ public class ColorManager : MonoBehaviour
             dyslexicFontStatus.text = "ON";
             //PlayerPrefs.Save();
         }
-        // Inform text objects with ChangeFont class attached,
-        // to update to the new font
+        // Inform text objects with ChangeFont class attached to update to the new font
         if (onChangeFont != null) // This null check is important, because if no listeners are registered, it will result in an NPE.
         {
             onChangeFont.Invoke(currentFont);
         }
-
         //Debug.Log("Current font is: " + currentFont); // Uncomment to debug what font is active
-
     }
 }
