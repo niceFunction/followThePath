@@ -76,7 +76,7 @@ public class ColorManager : MonoBehaviour
     [Tooltip("Randomly changes colors on the level when active")]
     [SerializeField]
     private Toggle randomColorsToggle;
-    //public Toggle RandomColorsToggle { get { return randomColorsToggle; } }
+    public Toggle RandomColorsToggle { get { return randomColorsToggle; } }
     public bool RandomColorsToggleOn { get { return randomColorsToggle.isOn; } }
     [Tooltip("Visual element that the user can see if randomizing colors are active or not")]
     [SerializeField]
@@ -89,6 +89,7 @@ public class ColorManager : MonoBehaviour
     [SerializeField]
     private Toggle grayscaleToggle;
     public Toggle GrayscaleToggle { get { return grayscaleToggle; } }
+    public bool GrayscaleToggleOn { get { return grayscaleToggle.isOn; } }
 
     [Tooltip("Visual element that the user can see if grayscale 'overlay' is active or not")]
     [SerializeField]
@@ -113,6 +114,10 @@ public class ColorManager : MonoBehaviour
     // TODO keep set things like fonts private to the class that manages them
     private TMP_FontAsset regularFont; 
     public TMP_FontAsset RegularFont { get { return regularFont; } }
+
+    [SerializeField]
+    [Range(0, 1)]
+    private float scaleFont;
 
     [SerializeField, Space(5)]
     // TODO expose things through properties, which will prevent accidentally changing them and decrease coupling.
@@ -325,7 +330,7 @@ public class ColorManager : MonoBehaviour
         // TODO 3b how is the camera accessed? if it's a prefab, does that need to be changed?
 
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        if (GrayscaleToggle.isOn == true)
+        if (GrayscaleToggleOn)
         {
             ///<summary>
             /// if grayscale toggle object is on,
@@ -339,7 +344,7 @@ public class ColorManager : MonoBehaviour
             grayscaleStatus.text = "ON";
             colorChangeTimer = colorChangeTimerReset;
         }
-        else if (GrayscaleToggle.isOn == false)
+        else
         {
             ///<summary>
             /// if grayscale toggle object is NOT on,

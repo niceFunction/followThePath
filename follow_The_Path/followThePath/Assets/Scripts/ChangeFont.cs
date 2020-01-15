@@ -24,6 +24,8 @@ public class ChangeFont : MonoBehaviour
     [Tooltip("The size of the dyslexic font")]
     public float dyslexicFontSize;
 
+    public float originalFontSize;
+
     void Start()
     {
         if (textObject == null)
@@ -45,7 +47,7 @@ public class ChangeFont : MonoBehaviour
         textObject.font = newFont;
 
         /* TODO the below size adjustment can be changed into:
-         *  1. Store the original font value for atteched gui text object on start
+         *  1. Store the original font value for attached gui text object on start
          *  
          *  2. ColorManager can have a float which stores the relative size the dyslexic font should be scaled
          *  
