@@ -104,7 +104,7 @@ public class ColorManager : MonoBehaviour
     */
     [SerializeField]
     private Toggle dyslexicFontToggle;
-    //public Toggle DyslexicFontToggle { get { return dyslexicFontToggle.isOn; } }
+    //public Toggle DyslexicFontToggle { get { return dyslexicFontToggle; } }
     public bool DyslexicFontToggleOn { get { return dyslexicFontToggle.isOn; } }
 
     [SerializeField]
@@ -117,7 +117,9 @@ public class ColorManager : MonoBehaviour
 
     [SerializeField]
     [Range(0, 1)]
-    private float scaleFont;
+    private float fontScale;
+
+    public float FontScale { get { return fontScale; } }
 
     [SerializeField, Space(5)]
     // TODO expose things through properties, which will prevent accidentally changing them and decrease coupling.

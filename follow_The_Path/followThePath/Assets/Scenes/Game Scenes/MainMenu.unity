@@ -976,8 +976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 64
-  dyslexicFontSize: 60
+  originalFontSize: 64
 --- !u!1 &183123860
 GameObject:
   m_ObjectHideFlags: 0
@@ -1731,8 +1730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 64
-  dyslexicFontSize: 60
+  originalFontSize: 64
 --- !u!1 &402036319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,8 +1903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 1.5
-  dyslexicFontSize: 1.1
+  originalFontSize: 1.5
 --- !u!1 &434150232
 GameObject:
   m_ObjectHideFlags: 0
@@ -2655,6 +2652,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 0e5f1b3345d3cd64a8c90d5dc3fc46aa,
         type: 2}
+    - target: {fileID: 3941759333624630605, guid: 76279ea77ec4dc54ea28351d82425128,
+        type: 3}
+      propertyPath: fontScale
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3941759333624630606, guid: 76279ea77ec4dc54ea28351d82425128,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3065,8 +3067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 60
-  dyslexicFontSize: 56
+  originalFontSize: 60
 --- !u!1 &819609238
 GameObject:
   m_ObjectHideFlags: 0
@@ -3298,8 +3299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 14
-  dyslexicFontSize: 14
+  originalFontSize: 14
 --- !u!1 &872686780
 GameObject:
   m_ObjectHideFlags: 0
@@ -3469,8 +3469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 64
-  dyslexicFontSize: 60
+  originalFontSize: 64
 --- !u!1001 &906222299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3973,8 +3972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 68
-  dyslexicFontSize: 48
+  originalFontSize: 68
 --- !u!1 &1043742765
 GameObject:
   m_ObjectHideFlags: 0
@@ -4512,8 +4510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 64
-  dyslexicFontSize: 60
+  originalFontSize: 64
 --- !u!1 &1221202321 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4372810587223881443, guid: 752359f32aa50c34fa36da0c52bca782,
@@ -4532,8 +4529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 14
-  dyslexicFontSize: 14
+  originalFontSize: 14
 --- !u!1 &1225560420
 GameObject:
   m_ObjectHideFlags: 0
@@ -5276,8 +5272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 64
-  dyslexicFontSize: 60
+  originalFontSize: 64
 --- !u!1 &1397022835
 GameObject:
   m_ObjectHideFlags: 0
@@ -5576,8 +5571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 64
-  dyslexicFontSize: 60
+  originalFontSize: 64
 --- !u!1 &1433439688
 GameObject:
   m_ObjectHideFlags: 0
@@ -5852,8 +5846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 96
-  dyslexicFontSize: 88
+  originalFontSize: 96
 --- !u!114 &1481872937 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
@@ -6035,8 +6028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 64
-  dyslexicFontSize: 60
+  originalFontSize: 64
 --- !u!1 &1560017736
 GameObject:
   m_ObjectHideFlags: 0
@@ -6242,8 +6234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 68
-  dyslexicFontSize: 68
+  originalFontSize: 68
 --- !u!1 &1635426716
 GameObject:
   m_ObjectHideFlags: 0
@@ -6495,8 +6486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 117
-  dyslexicFontSize: 113
+  originalFontSize: 117
 --- !u!1001 &1732540983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6744,8 +6734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 96
-  dyslexicFontSize: 88
+  originalFontSize: 96
 --- !u!1 &1771676985
 GameObject:
   m_ObjectHideFlags: 0
@@ -7277,8 +7266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 64
-  dyslexicFontSize: 60
+  originalFontSize: 64
 --- !u!1 &1899366934
 GameObject:
   m_ObjectHideFlags: 0
@@ -7576,8 +7564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 68
-  dyslexicFontSize: 64
+  originalFontSize: 68
 --- !u!1 &1961985905
 GameObject:
   m_ObjectHideFlags: 0
@@ -8377,8 +8364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 60
-  dyslexicFontSize: 56
+  originalFontSize: 0
 --- !u!1 &2068449121
 GameObject:
   m_ObjectHideFlags: 0
@@ -8547,8 +8533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 96
-  dyslexicFontSize: 88
+  originalFontSize: 96
 --- !u!1 &2077176343
 GameObject:
   m_ObjectHideFlags: 0
@@ -8806,8 +8791,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 88
-  m_fontSizeBase: 88
+  m_fontSize: 96
+  m_fontSizeBase: 96
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8890,8 +8875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784ab8aea764fd4b98a5a48a5b24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularFontSize: 96
-  dyslexicFontSize: 96
+  originalFontSize: 96
 --- !u!1 &2109818199
 GameObject:
   m_ObjectHideFlags: 0

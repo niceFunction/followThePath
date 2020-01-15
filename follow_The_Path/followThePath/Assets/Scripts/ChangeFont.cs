@@ -18,14 +18,14 @@ public class ChangeFont : MonoBehaviour
     private TextMeshProUGUI textObject;
 
     [Range(0.1f, 200f)]
-    [Tooltip("The regular size of the font")]
-    public float regularFontSize;
-    [Range(1f, 200f)]
-    [Tooltip("The size of the dyslexic font")]
-    public float dyslexicFontSize;
-
+    [Tooltip("The regular size of the font (this variable may be renamed)")]
     public float originalFontSize;
-
+    
+    /*
+    [Range(1f, 200f)]
+    [Tooltip("The size of the dyslexic font (this variable will probably be removed)")] // Will probably be removed
+    public float dyslexicFontSize;
+    */
     void Start()
     {
         if (textObject == null)
@@ -34,6 +34,8 @@ public class ChangeFont : MonoBehaviour
         }
         UpdateFont(ColorManager.Instance.currentFont);
         ColorManager.Instance.onChangeFont += this.UpdateFont;
+        textObject.fontSize = textObject.fontSize;
+        Debug.Log("Font size is: " + textObject.fontSize);
     }
 
     void OnDestroy()
@@ -61,11 +63,11 @@ public class ChangeFont : MonoBehaviour
 
         if (ColorManager.Instance.DyslexicFontToggleOn)
         {
-            textObject.fontSize = dyslexicFontSize;
+            textObject.fontSize = originalFontSize * ColorManager.Instance.FontScale;
         }
         else
         {
-            textObject.fontSize = regularFontSize;
+            textObject.fontSize = originalFontSize;
         }
     }
 }
