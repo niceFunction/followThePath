@@ -116,7 +116,7 @@ public class ColorManager : MonoBehaviour
     public TMP_FontAsset RegularFont { get { return regularFont; } }
 
     [SerializeField]
-    [Range(0, 1)]
+    [Range(0.01f, 1)]
     private float fontScale;
 
     public float FontScale { get { return fontScale; } }

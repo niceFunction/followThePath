@@ -45,6 +45,7 @@ public class ChangeFont : MonoBehaviour
     {
         textObject.font = newFont;
 
+        //textObject.fontSize = scaleFont;
         /* TODO the below size adjustment can be changed into:
          *  1. Store the original font value for attached gui text object on start
          *  
@@ -57,14 +58,15 @@ public class ChangeFont : MonoBehaviour
          *     You won't have to set font size on each and every object
          *     and you won't have to do any additional work on all objects if you add more fonts later.
          */
-
+         /*
         if (ColorManager.Instance.DyslexicFontToggleOn)
         {
-            textObject.fontSize = originalFontSize * ColorManager.Instance.FontScale;
+            textObject.fontSize = originalFontSize;
         }
         else
         {
             textObject.fontSize = originalFontSize;
         }
+        */
     }
 }
