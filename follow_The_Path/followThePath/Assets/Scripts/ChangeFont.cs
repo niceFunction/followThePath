@@ -31,7 +31,7 @@ public class ChangeFont : MonoBehaviour
             originalFontSize = textObject.GetComponent<TextMeshProUGUI>().fontSize;
         }
 
-        UpdateFont(ColorManager.Instance.currentFont);
+        UpdateFont(ColorManager.Instance.currentFont, ColorManager.Instance.FontScale);
         ColorManager.Instance.onChangeFont += this.UpdateFont;
     }
 
@@ -41,7 +41,7 @@ public class ChangeFont : MonoBehaviour
         ColorManager.Instance.onChangeFont -= this.UpdateFont;
     }
 
-    private void UpdateFont(TMP_FontAsset newFont)
+    private void UpdateFont(TMP_FontAsset newFont, float scaleFont)
     {
         textObject.font = newFont;
 

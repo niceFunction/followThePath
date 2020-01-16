@@ -17,7 +17,7 @@ public class ColorManager : MonoBehaviour
     public delegate void UxEventHandler();
     public static event UxEventHandler onActiveUX;
 
-    public delegate void ChangeFontHandler(TMP_FontAsset newFont);
+    public delegate void ChangeFontHandler(TMP_FontAsset newFont, float scaleFont);
     public event ChangeFontHandler onChangeFont;
 
     #region COLORS AND MATERIALS
@@ -120,6 +120,8 @@ public class ColorManager : MonoBehaviour
     private float fontScale;
 
     public float FontScale { get { return fontScale; } }
+
+    public float currentScale { get; private set; }
 
     [SerializeField, Space(5)]
     // TODO expose things through properties, which will prevent accidentally changing them and decrease coupling.
@@ -387,7 +389,7 @@ public class ColorManager : MonoBehaviour
         // Inform text objects with ChangeFont class attached to update to the new font
         if (onChangeFont != null) // This null check is important, because if no listeners are registered, it will result in an NPE.
         {
-            onChangeFont.Invoke(currentFont);
+            onChangeFont.Invoke(currentFont, FontScale);
         }
         //Debug.Log("Current font is: " + currentFont); // Uncomment to debug what font is active
     }
