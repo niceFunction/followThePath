@@ -17,25 +17,22 @@ public class ChangeFont : MonoBehaviour
 {
     private TextMeshProUGUI textObject;
 
-    [Range(0.1f, 200f)]
-    [Tooltip("The regular size of the font (this variable may be renamed)")]
-    public float originalFontSize;
     
-    /*
-    [Range(1f, 200f)]
-    [Tooltip("The size of the dyslexic font (this variable will probably be removed)")] // Will probably be removed
-    public float dyslexicFontSize;
-    */
+    [Tooltip("Font starting size")]
+    // Size is "stored" at the start, eliminating the need to manually set the original font size yourself
+    public float originalFontSize;
+
     void Start()
     {
         if (textObject == null)
         {
             textObject = this.GetComponent<TextMeshProUGUI>();
+            // Is this the correct way of doing it or should I exchange "textObject" with "this"?
+            originalFontSize = textObject.GetComponent<TextMeshProUGUI>().fontSize;
         }
+
         UpdateFont(ColorManager.Instance.currentFont);
         ColorManager.Instance.onChangeFont += this.UpdateFont;
-        textObject.fontSize = textObject.fontSize;
-        Debug.Log("Font size is: " + textObject.fontSize);
     }
 
     void OnDestroy()
