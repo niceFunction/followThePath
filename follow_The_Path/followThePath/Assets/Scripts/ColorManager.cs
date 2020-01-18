@@ -67,6 +67,7 @@ public class ColorManager : MonoBehaviour
     [SerializeField]
     private TMP_Dropdown colorDropdown;
     public TMP_Dropdown ColorDropdown { get { return colorDropdown; } }
+
     // Variables used to set specific colors
     List<string> colorNames = new List<string>() { "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "VIOLET" };
     #endregion
