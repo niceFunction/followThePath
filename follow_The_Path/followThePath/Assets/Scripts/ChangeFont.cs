@@ -44,6 +44,11 @@ public class ChangeFont : MonoBehaviour
     private void UpdateFont(TMP_FontAsset newFont, float scaleFont)
     {
         textObject.font = newFont;
+        textObject.fontSize = scaleFont;
+
+        //textObject.fontSize = originalFontSize * scaleFont;
+
+        /*
         if (ColorManager.Instance.DyslexicFontToggleOn)
         {
             textObject.fontSize = originalFontSize * scaleFont;
@@ -52,7 +57,7 @@ public class ChangeFont : MonoBehaviour
         {
             textObject.fontSize = originalFontSize;
         }
-        
+       */
 
         //textObject.fontSize = scaleFont;
         /* TODO the below size adjustment can be changed into:

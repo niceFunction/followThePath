@@ -122,14 +122,15 @@ public class ColorManager : MonoBehaviour
 
     public float FontScale { get { return fontScale; } }
 
-    public float currentScale { get; private set; }
-
     [SerializeField, Space(5)]
     // TODO expose things through properties, which will prevent accidentally changing them and decrease coupling.
     private TMP_FontAsset dyslexicFont;
     public TMP_FontAsset DyslexicFont { get { return dyslexicFont; } }
 
     public TMP_FontAsset currentFont { get; private set; }
+
+    public float currentScale { get; private set; }
+
     #endregion
 
     // Currently used to affect font size but can have other areas to be used
@@ -372,6 +373,7 @@ public class ColorManager : MonoBehaviour
             /// set the current font to the dyslexic font
             /// </summary>
             currentFont = DyslexicFont;
+            currentScale = FontScale;
             dyslexicFontStatus.text = "ON";
             //PlayerPrefs.Save();
         }
@@ -390,7 +392,7 @@ public class ColorManager : MonoBehaviour
         // Inform text objects with ChangeFont class attached to update to the new font
         if (onChangeFont != null) // This null check is important, because if no listeners are registered, it will result in an NPE.
         {
-            onChangeFont.Invoke(currentFont, FontScale);
+            onChangeFont.Invoke(currentFont, currentScale);
         }
         //Debug.Log("Current font is: " + currentFont); // Uncomment to debug what font is active
     }
