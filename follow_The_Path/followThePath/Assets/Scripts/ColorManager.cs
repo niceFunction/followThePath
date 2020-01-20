@@ -99,46 +99,40 @@ public class ColorManager : MonoBehaviour
 
     #region FONT
     [Space(5)]
-    /* 
-    TODO do not expose things like toggles, as they belong to this object,
-    TODO create a property boolean that returns whether the toggle is on/off instead.
-    */
     [SerializeField]
+    // Toggle UI object
     private Toggle dyslexicFontToggle;
-    //public Toggle DyslexicFontToggle { get { return dyslexicFontToggle; } }
     public bool DyslexicFontToggleOn { get { return dyslexicFontToggle.isOn; } }
 
     [SerializeField]
+    ///<summary>
+    /// Visual text element to show the player if the dyslexic font is active or not
+    ///</summary>
     private TextMeshProUGUI dyslexicFontStatus;
 
+    // Regular font variables
     [SerializeField, Space(5)]
-    // TODO keep set things like fonts private to the class that manages them
     private TMP_FontAsset regularFont; 
     public TMP_FontAsset RegularFont { get { return regularFont; } }
-
     [SerializeField]
     [Range(0.01f, 1)]
     [Tooltip("Sets the scale on the regular font")]
     private float regularFontScale;
-
     public float RegularFontScale { get { return regularFontScale; } }
 
+    // Dyslexic font variables
     [SerializeField]
     [Range(0.01f, 1)]
     [Tooltip("Sets the scale on the dyslexic font")]
     private float dyslexicFontScale;
-
     public float DyslexicFontScale { get { return dyslexicFontScale; } }
-
     [SerializeField, Space(5)]
-    // TODO expose things through properties, which will prevent accidentally changing them and decrease coupling.
     private TMP_FontAsset dyslexicFont;
     public TMP_FontAsset DyslexicFont { get { return dyslexicFont; } }
 
+    // Sets what ever is the current active font and its current scale
     public TMP_FontAsset currentFont { get; private set; }
-
     public float currentScale { get; private set; }
-
     #endregion
 
     // Currently used to affect font size but can have other areas to be used
@@ -147,8 +141,6 @@ public class ColorManager : MonoBehaviour
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
 
-    // https://flaredust.com/game-dev/unity/having-fun-with-shaders-in-unity/
-    // Single instances are normally referenced with class.Instance
     public static ColorManager Instance { get; private set; } 
 
     public static void newUxActive()
