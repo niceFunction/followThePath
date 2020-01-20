@@ -118,9 +118,17 @@ public class ColorManager : MonoBehaviour
 
     [SerializeField]
     [Range(0.01f, 1)]
-    private float fontScale;
+    [Tooltip("Sets the scale on the regular font")]
+    private float regularFontScale;
 
-    public float FontScale { get { return fontScale; } }
+    public float RegularFontScale { get { return regularFontScale; } }
+
+    [SerializeField]
+    [Range(0.01f, 1)]
+    [Tooltip("Sets the scale on the dyslexic font")]
+    private float dyslexicFontScale;
+
+    public float DyslexicFontScale { get { return dyslexicFontScale; } }
 
     [SerializeField, Space(5)]
     // TODO expose things through properties, which will prevent accidentally changing them and decrease coupling.
@@ -164,6 +172,7 @@ public class ColorManager : MonoBehaviour
         }
         // DontDestroyOnLoad(gameObject);
         currentFont = RegularFont;
+        currentScale = RegularFontScale;
     }
 
     // Start is called before the first frame update
@@ -373,7 +382,7 @@ public class ColorManager : MonoBehaviour
             /// set the current font to the dyslexic font
             /// </summary>
             currentFont = DyslexicFont;
-            currentScale = FontScale;
+            currentScale = DyslexicFontScale;
             dyslexicFontStatus.text = "ON";
             //PlayerPrefs.Save();
         }
@@ -385,6 +394,7 @@ public class ColorManager : MonoBehaviour
             /// set current font to the regular font
             /// </summary>
             currentFont = RegularFont;
+            currentScale = RegularFontScale;
             dyslexicFontStatus.text = "OFF";
             //PlayerPrefs.Save();
         }

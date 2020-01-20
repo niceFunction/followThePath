@@ -2657,6 +2657,16 @@ PrefabInstance:
       propertyPath: fontScale
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 3941759333624630605, guid: 76279ea77ec4dc54ea28351d82425128,
+        type: 3}
+      propertyPath: regularFontScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3941759333624630605, guid: 76279ea77ec4dc54ea28351d82425128,
+        type: 3}
+      propertyPath: dyslexicFontScale
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3941759333624630606, guid: 76279ea77ec4dc54ea28351d82425128,
         type: 3}
       propertyPath: m_LocalPosition.x
