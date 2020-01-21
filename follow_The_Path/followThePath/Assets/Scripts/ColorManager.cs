@@ -394,7 +394,6 @@ public class ColorManager : MonoBehaviour
             dyslexicFontStatus.text = "ON";
             //PlayerPrefs.Save();
         }
-
         else
         {
             ///<summary>
@@ -407,9 +406,14 @@ public class ColorManager : MonoBehaviour
             //PlayerPrefs.Save();
         }
 
-        // Inform text objects with ChangeFont class attached to update to the new font
-        if (onChangeFont != null) // This null check is important, because if no listeners are registered, it will result in an NPE.
+        ///<summary>
+        ///This null check is important, 
+        ///because if no listeners are registered, 
+        ///it will result in an NPE.
+        /// </summary>
+        if (onChangeFont != null) // 
         {
+            // Inform text objects with ChangeFont class attached to update to the new font
             onChangeFont.Invoke(currentFont, currentScale);
         }
         //Debug.Log("Current font is: " + currentFont); // Uncomment to debug what font is active
