@@ -11,6 +11,21 @@ using TMPro;
 /// <summary>
 /// Manager class used to affect colors on materials, change fonts or improve user experience
 /// </summary>
+
+/*
+ * Random number that doesn't repeat:
+ * https://stackoverflow.com/questions/59773513/solvedunity-c-sharp-how-do-i-make-a-random-number-that-doesnt-repeat
+ * 
+ * Random number generator with no duplicates:
+ * https://stackoverflow.com/questions/26931528/random-number-generator-with-no-duplicates
+ * 
+ * Fisher Yates Shuffle examples:
+ * https://gist.github.com/mikedugan/8249637
+ * https://www.dotnetperls.com/fisher-yates-shuffle
+ * https://codereview.stackexchange.com/questions/136341/fisher-yates-shuffle-in-c
+ * https://www.programmingalgorithms.com/algorithm/fisher%E2%80%93yates-shuffle/
+ */
+
 //TODO will change class name to "UxManager" instead in the future
 public class ColorManager : MonoBehaviour
 {
@@ -183,39 +198,7 @@ public class ColorManager : MonoBehaviour
         SetColorMode();
     }
 
-    #region Setting specific color and Getting Random colors
-    /// <summary>
-    /// If randomizationToggle.isOn is set to true, colors are randomized
-    /// if false, user can set specific color on materials
-    /// </summary>
-    public void SetColorMode()
-    {
-        if (RandomColorsToggleOn)
-        {
-            ///<summary>
-            /// Color Randomization is active and set specific color dropdown is non-interactable
-            /// </summary>
-            ColorDropdown.interactable = false;
-            randomColorsStatus.text = "ON";
-            NewRandomColor();
-        }
-        else
-        {
-            ///<summary>
-            /// Color randomization is inactive and set specific color dropdown is interactable
-            /// </summary>
-            ColorDropdown.interactable = true;
-            randomColorsStatus.text = "OFF";
-            colorChangeTimer = colorChangeTimerReset;
-        }
-
-        // if the grayscale toggle is active, make color dropdown not interactable
-        if (GrayscaleToggle.isOn == true)
-        {
-            ColorDropdown.interactable = false;
-        }
-    }
-
+    #region RANDOM COLOR METHODS
     /// <summary>
     /// Changes color on materials every time the timer reaches 0
     /// </summary>
@@ -265,6 +248,40 @@ public class ColorManager : MonoBehaviour
         }
         currentlyChangingColor = false;
     }
+    #endregion
+
+    #region SET SPECIFIC COLOR METHODS
+    /// <summary>
+    /// If randomizationToggle.isOn is set to true, colors are randomized
+    /// if false, user can set specific color on materials
+    /// </summary>
+    public void SetColorMode()
+    {
+        if (RandomColorsToggleOn)
+        {
+            ///<summary>
+            /// Color Randomization is active and set specific color dropdown is non-interactable
+            /// </summary>
+            ColorDropdown.interactable = false;
+            randomColorsStatus.text = "ON";
+            NewRandomColor();
+        }
+        else
+        {
+            ///<summary>
+            /// Color randomization is inactive and set specific color dropdown is interactable
+            /// </summary>
+            ColorDropdown.interactable = true;
+            randomColorsStatus.text = "OFF";
+            colorChangeTimer = colorChangeTimerReset;
+        }
+
+        // if the grayscale toggle is active, make color dropdown not interactable
+        if (GrayscaleToggle.isOn == true)
+        {
+            ColorDropdown.interactable = false;
+        }
+    }
 
     /// <summary>
     /// Populates the dropdown UI menu with a list of strings
@@ -280,7 +297,6 @@ public class ColorManager : MonoBehaviour
     /// <param name="index"></param>
     public void SetSpecificColor(int index)
     {
-        #region Set materials to a specific color
         if (index == 0)
         {
             // Set colors to RED
@@ -323,10 +339,10 @@ public class ColorManager : MonoBehaviour
             tileMaterial.color = tileColorList[6];
             floorMaterial.color = floorColorList[6];
         }
-        #endregion
     }
     #endregion
 
+    #region ACCESSIBILITY METHODS
     ///<summary>
     /// Used to turn "Grayscale Mode" on and off, user can still set specific color.
     /// Disables color randomization when GrayscaleToggle.isOn is true, renables it when set to false
@@ -398,4 +414,6 @@ public class ColorManager : MonoBehaviour
         }
         //Debug.Log("Current font is: " + currentFont); // Uncomment to debug what font is active
     }
+    #endregion
+
 }
