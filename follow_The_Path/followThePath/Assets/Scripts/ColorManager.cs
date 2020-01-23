@@ -63,12 +63,6 @@ public class ColorManager : MonoBehaviour
     // Used to get/set the current Color
     private Color currentTileColor;
     private Color currentFloorColor;
-
-    [Space(5)]
-    // Variables used to Randomize colors
-    public float colorChangeTimerReset;
-    private float colorChangeTimer;
-    private bool currentlyChangingColor;
     #endregion
 
     #region SET SPECIFIC COLORS
@@ -89,6 +83,11 @@ public class ColorManager : MonoBehaviour
 
     #region RANDOM COLORS
     [Space(5)]
+    // Variables used to Randomize colors
+    public float colorChangeTimerReset;
+    private float colorChangeTimer;
+    private bool currentlyChangingColor;
+
     [Tooltip("Randomly changes colors on the level when active")]
     [SerializeField]
     private Toggle randomColorsToggle;
