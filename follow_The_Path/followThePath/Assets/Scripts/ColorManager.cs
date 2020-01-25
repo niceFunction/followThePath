@@ -165,6 +165,7 @@ public class ColorManager : MonoBehaviour
         }
     }
 
+    #region GENERIC METHODS
     void Awake()
     {
         if (Instance == null)
@@ -196,6 +197,7 @@ public class ColorManager : MonoBehaviour
     {
         SetColorMode();
     }
+    #endregion
 
     #region RANDOM COLOR METHODS
     /// <summary>
