@@ -21,9 +21,8 @@ public class RandomColor : MonoBehaviour
     private Color currentRandomColorOne;
     private Color currentRandomColorTwo;
 
-    private Color nextColor;
-
-    private List<int> randomColorIndex = new List<int>();
+    private Color colorA;
+    private Color colorB; 
 
     private float changeColorTimeAmount;
     public float changeColorTimeReset;
@@ -38,7 +37,7 @@ public class RandomColor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ChangeNewRandomColor();
+        //ChangeNewRandomColor();
         print("Time is: " + changeColorTimeAmount);
     }
 
@@ -51,38 +50,7 @@ public class RandomColor : MonoBehaviour
             Debug.Log("Changing color now!");
             changeColorTimeAmount = changeColorTimeReset;
             // Start the Coroutine here
-        }
-    }
-
-    private void GetColorIndex(int index)
-    {
-        if (index == 0)
-        {
-            randomColorMaterialOne.color = randomColorListOne[0];
-        }
-        else if (index == 1)
-        {
-            randomColorMaterialOne.color = randomColorListOne[1];
-        }
-        else if (index == 2)
-        {
-            randomColorMaterialOne.color = randomColorListOne[2];
-        }
-        else if (index == 3)
-        {
-            randomColorMaterialOne.color = randomColorListOne[3];
-        }
-        else if (index == 4)
-        {
-            randomColorMaterialOne.color = randomColorListOne[4];
-        }
-        else if (index == 5)
-        {
-            randomColorMaterialOne.color = randomColorListOne[5];
-        }
-        else if (index == 6)
-        {
-            randomColorMaterialOne.color = randomColorListOne[6];
+            StartCoroutine(MakeRandomColor());
         }
     }
 
@@ -95,12 +63,20 @@ public class RandomColor : MonoBehaviour
         //Color colorA = randomColorListOne[colorIndexA];
 
     }
-    /*
+    
     IEnumerator MakeRandomColor()
     {
-        currentRandomColorOne = randomColorMaterialOne.color;
+        /*
+        float elapsedTime = 0.0f;
+        float totalTime = 6.0f;
 
+        while (elapsedTime < totalTime)
+        {
+            elapsedTime += Time.deltaTime;
+            float fraction = Mathf.Sin(elapsedTime / totalTime);
+        }
+        */
         
     }
-    */
+    
 }
