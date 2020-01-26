@@ -86,5 +86,21 @@ public class RandomColor : MonoBehaviour
         }
     }
 
+    private void SetColorValue()
+    {
+        //int colorIndexA = Random.Range(0, randomColorListOne.Length);
+        //int colorA = randomColorListOne[i];
 
+        //int colorIndexA = Random.Range(0, randomColorListOne.Length);
+        //Color colorA = randomColorListOne[colorIndexA];
+
+    }
+    /*
+    IEnumerator MakeRandomColor()
+    {
+        currentRandomColorOne = randomColorMaterialOne.color;
+
+        
+    }
+    */
 }
