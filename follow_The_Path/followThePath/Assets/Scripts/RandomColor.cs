@@ -116,6 +116,14 @@ public class RandomColor : MonoBehaviour
         randomColorMaterialOne.color = currentTileColor;
         */
         // TODO Calculate the new exact color to apply to the material, using the material and currentFloorColor
+        /*
+        What is an IndexOutOfRangeException / ArgumentOutOfRangeException and how do I fix it?
+        https://stackoverflow.com/questions/20940979/what-is-an-indexoutofrangeexception-argumentoutofrangeexception-and-how-do-i-f
+        
+        Index was out of range. Must be non-negative or less than size of collection
+         https://stackoverflow.com/questions/30974623/index-was-out-of-range-must-be-non-negative-or-less-than-size-of-collection
+
+        */
         randomColorMaterialOne.color = currentTileColor;
     }
 
