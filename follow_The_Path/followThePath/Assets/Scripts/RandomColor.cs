@@ -46,6 +46,7 @@ public class RandomColor : MonoBehaviour
 
         tileColors.AddRange(randomColorListOne);
         floorColors.AddRange(randomColorListTwo);
+        
         changeColorTimeAmount = changeColorTimeReset;
         StartCoroutine(MakeRandomColor());
     }
@@ -54,7 +55,7 @@ public class RandomColor : MonoBehaviour
     void Update()
     {
         //ChangeNewRandomColor();
-        print("Time is: " + changeColorTimeAmount);
+        //print("Time is: " + changeColorTimeAmount);
     }
 
     private void ChangeNewRandomColor()
@@ -85,41 +86,41 @@ public class RandomColor : MonoBehaviour
         }
         */
         Color tempTileColor = previousTileColor;
+        /*
+         Error Message:
+         Index was out of range. Must be non-negative and 
+         less than the size of the collection.
+        */
+        /*
+         For some reason "index" goes out of "range", in the Editor it (for some reason)
+         creates either high or low number of int values
+        */
         int index = Random.Range(0, randomColorListOne.Length);
+        Debug.Log(index);
         currentTileColor = randomColorListOne[index];
 
         tileColors.RemoveAt(index);
         if (hasSetFirstColor)
         {
             tileColors.Add(tempTileColor);
-            hasSetFirstColor = true;
+            
         }
+        hasSetFirstColor = true;
     }
 
-    private void SetColorValue()
+    private void SetColorValue(float fraction)
     {
-
+        /*
+         I need to use "material" and (in my case) "currentTileColor"
+            
+        randomColorMaterialOne.color = currentTileColor;
+        */
         // TODO Calculate the new exact color to apply to the material, using the material and currentFloorColor
-
-        //int colorIndexA = Random.Range(0, randomColorListOne.Length);
-        //int colorA = randomColorListOne[i];
-
-        //int colorIndexA = Random.Range(0, randomColorListOne.Length);
-        //Color colorA = randomColorListOne[colorIndexA];
+        randomColorMaterialOne.color = currentTileColor;
     }
 
     IEnumerator MakeRandomColor()
     {
-        /*
-        float elapsedTime = 0.0f;
-        float totalTime = 6.0f;
-
-        while (elapsedTime < totalTime)
-        {
-            elapsedTime += Time.deltaTime;
-            float fraction = Mathf.Sin(elapsedTime / totalTime);
-        }
-        */
         float elapsedTime = 0f;
         float totalTime = changeColorTimeAmount;
         
@@ -131,9 +132,9 @@ public class RandomColor : MonoBehaviour
                 // This loop makes sure the color is updated
                 elapsedTime += Time.deltaTime;
                 float fraction = Mathf.Sin(elapsedTime / totalTime);
-                //SetColorValue(fraction);
+                SetColorValue(fraction);
             }
-            //SetColorValue(1f);
+            SetColorValue(1f); // Just to make sure the colors are 100% this color
         }
     }
     
