@@ -96,7 +96,7 @@ public class RandomColor : MonoBehaviour
          creates either high or low number of int values
         */
         //TODO quesation: Replace ".Length" with ".GetUpperBound(0)"? and replace "(0)" with ".GetLowerBound(0)"?
-        int index = Random.Range(0, tileColorList.Length); 
+        int index = Random.Range(tileColorList.GetLowerBound(0), tileColorList.Length); 
         Debug.Log(index);
         currentTileColor = tileColorList[index];
 
