@@ -9,14 +9,14 @@ using UnityEngine;
 public class RandomColor : MonoBehaviour
 {
     [SerializeField, Tooltip("First random color material")]
-    private Material randomColorMaterialOne;
+    private Material tileMaterial;
     [SerializeField, Tooltip("Second random color material")]
-    private Material randomColorMaterialTwo;
+    private Material floorMaterial;
 
     [SerializeField, Tooltip("List of colors for the first material")]
-    private Color[] randomColorListOne; // This variable will be replaced by "tileMaterial"
+    private Color[] tileColorList; // This variable will be replaced by "tileMaterial"
     [SerializeField, Tooltip("List of colors for the second material")]
-    private Color[] randomColorListTwo; // This variable will be replaced by "floorMaterial"
+    private Color[] floorColorList; // This variable will be replaced by "floorMaterial"
 
     //private Color currentRandomColorOne;
     //private Color currentRandomColorTwo;
@@ -44,8 +44,8 @@ public class RandomColor : MonoBehaviour
     void Start()
     {
 
-        tileColors.AddRange(randomColorListOne);
-        floorColors.AddRange(randomColorListTwo);
+        tileColors.AddRange(tileColorList);
+        floorColors.AddRange(floorColorList);
         
         changeColorTimeAmount = changeColorTimeReset;
         StartCoroutine(MakeRandomColor());
@@ -95,9 +95,10 @@ public class RandomColor : MonoBehaviour
          For some reason "index" goes out of "range", in the Editor it (for some reason)
          creates either high or low number of int values
         */
-        int index = Random.Range(0, randomColorListOne.Length);
+        //TODO quesation: Replace ".Length" with ".GetUpperBound(0)"? and replace "(0)" with ".GetLowerBound(0)"?
+        int index = Random.Range(0, tileColorList.Length); 
         Debug.Log(index);
-        currentTileColor = randomColorListOne[index];
+        currentTileColor = tileColorList[index];
 
         tileColors.RemoveAt(index);
         if (hasSetFirstColor)
@@ -115,7 +116,7 @@ public class RandomColor : MonoBehaviour
             
         randomColorMaterialOne.color = currentTileColor;
         */
-        // TODO Calculate the new exact color to apply to the material, using the material and currentFloorColor
+
         /*
         What is an IndexOutOfRangeException / ArgumentOutOfRangeException and how do I fix it?
         https://stackoverflow.com/questions/20940979/what-is-an-indexoutofrangeexception-argumentoutofrangeexception-and-how-do-i-f
@@ -124,7 +125,9 @@ public class RandomColor : MonoBehaviour
          https://stackoverflow.com/questions/30974623/index-was-out-of-range-must-be-non-negative-or-less-than-size-of-collection
 
         */
-        randomColorMaterialOne.color = currentTileColor;
+        // TODO Calculate the new exact color to apply to the material, using the material and currentFloorColor
+        tileMaterial.color = currentTileColor;
+        Debug.Log("Current color index is: " + currentTileColor);
     }
 
     IEnumerator MakeRandomColor()
@@ -144,6 +147,7 @@ public class RandomColor : MonoBehaviour
             }
             SetColorValue(1f); // Just to make sure the colors are 100% this color
         }
+        
     }
     
 }

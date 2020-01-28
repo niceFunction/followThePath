@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -228,8 +229,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851864060}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 1}
   m_Intensity: 1
   m_Range: 10
@@ -327,22 +329,23 @@ MonoBehaviour:
     type: 2}
   randomColorMaterialTwo: {fileID: 2100000, guid: 81c43c565a88b2d49ad70ca05019371a,
     type: 2}
-  randomColorListOne:
-  - {r: 0.75686276, g: 0, b: 0, a: 0}
-  - {r: 1, g: 0.48220384, b: 0, a: 0}
-  - {r: 1, g: 0.8741453, b: 0, a: 0}
-  - {r: 0, g: 0.5566038, b: 0.14101598, a: 0}
-  - {r: 0, g: 0.20099854, b: 1, a: 0}
-  - {r: 0.4954958, g: 0, b: 1, a: 0}
-  - {r: 1, g: 0, b: 0.9271908, a: 0}
-  randomColorListTwo:
-  - {r: 0.6862745, g: 0, b: 0, a: 0}
-  - {r: 0.6226415, g: 0.32603735, b: 0, a: 0}
-  - {r: 0.5660378, g: 0.5414104, b: 0, a: 0}
-  - {r: 0, g: 0.3490566, b: 0.06357596, a: 0}
-  - {r: 0, g: 0.02276084, b: 0.41509432, a: 0}
-  - {r: 0.26699096, g: 0, b: 0.5660378, a: 0}
-  - {r: 0.5660378, g: 0, b: 0.5290809, a: 0}
+  tileColorList:
+  - {r: 1, g: 0, b: 0, a: 0}
+  - {r: 1, g: 0.5442529, b: 0, a: 0}
+  - {r: 1, g: 0.9685757, b: 0, a: 0}
+  - {r: 0, g: 0.8962264, b: 0.00541714, a: 0}
+  - {r: 0, g: 0.07855177, b: 1, a: 0}
+  - {r: 0.43190622, g: 0, b: 1, a: 0}
+  - {r: 1, g: 0, b: 0.958446, a: 0}
+  floorColorList:
+  - {r: 0.59607846, g: 0, b: 0, a: 0}
+  - {r: 0.5943396, g: 0.3974033, b: 0, a: 0}
+  - {r: 0.48082894, g: 0.5, b: 0, a: 0}
+  - {r: 0, g: 0.007335119, b: 0.43529412, a: 0}
+  - {r: 0, g: 0.3882353, b: 0.14357352, a: 0}
+  - {r: 0.18078735, g: 0, b: 0.3584906, a: 0}
+  - {r: 0.3962264, g: 0, b: 0.38481736, a: 0}
+  changeColorTimeAmount: 0
   changeColorTimeReset: 10
 --- !u!4 &1076493872
 Transform:
@@ -404,6 +407,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -496,6 +500,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
