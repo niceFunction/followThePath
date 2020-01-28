@@ -49,6 +49,9 @@ public class RandomColor : MonoBehaviour
         
         changeColorTimeAmount = changeColorTimeReset;
         StartCoroutine(MakeRandomColor());
+        //currentTileColor = tileMaterial.color;
+        //previousTileColor = tileMaterial.color;
+
     }
 
     // Update is called once per frame
@@ -96,7 +99,7 @@ public class RandomColor : MonoBehaviour
          creates either high or low number of int values
         */
         //TODO quesation: Replace ".Length" with ".GetUpperBound(0)"? and replace "(0)" with ".GetLowerBound(0)"?
-        int index = Random.Range(tileColorList.GetLowerBound(0), tileColorList.Length); 
+        int index = Random.Range(0, tileColorList.Length - 1); 
         Debug.Log(index);
         currentTileColor = tileColorList[index];
 
@@ -126,8 +129,9 @@ public class RandomColor : MonoBehaviour
 
         */
         // TODO Calculate the new exact color to apply to the material, using the material and currentFloorColor
-        tileMaterial.color = currentTileColor;
-        Debug.Log("Current color index is: " + currentTileColor);
+        //tileMaterial.color = currentTileColor;
+        tileMaterial.color = Color.Lerp(previousTileColor, currentTileColor, fraction);
+        //Debug.Log("Current color index is: " + currentTileColor);
     }
 
     IEnumerator MakeRandomColor()
@@ -144,8 +148,12 @@ public class RandomColor : MonoBehaviour
                 elapsedTime += Time.deltaTime;
                 float fraction = Mathf.Sin(elapsedTime / totalTime);
                 SetColorValue(fraction);
+                //elapsedTime = 0;
+                yield return new WaitForSeconds(0);
             }
+            elapsedTime = 0;
             SetColorValue(1f); // Just to make sure the colors are 100% this color
+
         }
         
     }

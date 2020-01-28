@@ -325,10 +325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a69da2b9361864998b899ff3141b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomColorMaterialOne: {fileID: 2100000, guid: d4da139e2d9c91f49ba83d899c9ed6bc,
-    type: 2}
-  randomColorMaterialTwo: {fileID: 2100000, guid: 81c43c565a88b2d49ad70ca05019371a,
-    type: 2}
+  tileMaterial: {fileID: 2100000, guid: d4da139e2d9c91f49ba83d899c9ed6bc, type: 2}
+  floorMaterial: {fileID: 2100000, guid: 81c43c565a88b2d49ad70ca05019371a, type: 2}
   tileColorList:
   - {r: 1, g: 0, b: 0, a: 0}
   - {r: 1, g: 0.5442529, b: 0, a: 0}
