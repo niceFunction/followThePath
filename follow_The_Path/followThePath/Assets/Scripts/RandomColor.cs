@@ -14,12 +14,9 @@ public class RandomColor : MonoBehaviour
     private Material floorMaterial;
 
     [SerializeField, Tooltip("List of colors for the first material")]
-    private Color[] tileColorList; // This variable will be replaced by "tileMaterial"
+    private Color[] tileColorList;
     [SerializeField, Tooltip("List of colors for the second material")]
-    private Color[] floorColorList; // This variable will be replaced by "floorMaterial"
-
-    //private Color currentRandomColorOne;
-    //private Color currentRandomColorTwo;
+    private Color[] floorColorList;
 
     private Color currentTileColor;
     private Color currentFloorColor;
@@ -39,6 +36,7 @@ public class RandomColor : MonoBehaviour
     List<Color> floorColors = new List<Color>();
 
     bool hasSetFirstColor = false;
+    bool hasSetSecondColor = false;
 
     // Start is called before the first frame update
     void Start()
@@ -49,9 +47,10 @@ public class RandomColor : MonoBehaviour
         
         changeColorTimeAmount = changeColorTimeReset;
         StartCoroutine(MakeRandomColor());
-        //currentTileColor = tileMaterial.color;
-        //previousTileColor = tileMaterial.color;
+        currentTileColor = tileMaterial.color;
 
+        //previousTileColor = tileMaterial.color;
+        SetColorValue(1f);
     }
 
     // Update is called once per frame
@@ -63,75 +62,55 @@ public class RandomColor : MonoBehaviour
 
     private void ChangeNewRandomColor()
     {
-        /* changeColorTimeAmount -= Time.deltaTime;
+        Color tempTileColorOne = previousTileColor;
 
-        if (changeColorTimeAmount < 0)
-        {
-            Debug.Log("Changing color now!");
-            changeColorTimeAmount = changeColorTimeReset;
-            // Start the Coroutine here
-            StartCoroutine(MakeRandomColor());
-        }
+        Debug.Log("Previous color: " + previousTileColor);
 
-
-        Color tempTileColor = null;
-        if (currentTileColor != null)
-        {
-            tempTileColor = previousTileColor;
-        }
-
-        currentTileColor = tileColors(Random.Range(0, randomColorListOne.Length));
-        
-
-        if (tempTileColor != null)
-        {
-            // Put the temp color back into the list
-        }
-        */
-        Color tempTileColor = previousTileColor;
-        /*
-         Error Message:
-         Index was out of range. Must be non-negative and 
-         less than the size of the collection.
-        */
-        /*
-         For some reason "index" goes out of "range", in the Editor it (for some reason)
-         creates either high or low number of int values
-        */
         //TODO quesation: Replace ".Length" with ".GetUpperBound(0)"? and replace "(0)" with ".GetLowerBound(0)"?
-        int index = Random.Range(0, tileColorList.Length - 1); 
-        Debug.Log(index);
-        currentTileColor = tileColorList[index];
+        int indexOne = Random.Range(0, tileColorList.Length - 1); 
+        Debug.Log("indexOne is: " + indexOne);
+        currentTileColor = tileColorList[indexOne];
 
-        tileColors.RemoveAt(index);
+        tileColors.RemoveAt(indexOne);
         if (hasSetFirstColor)
         {
-            tileColors.Add(tempTileColor);
+            tileColors.Add(tempTileColorOne);
             
         }
+        
         hasSetFirstColor = true;
+
+        if (hasSetFirstColor == true)
+        {
+            Color tempTileColorTwo = tempTileColorOne;
+
+            int indexTwo = Random.Range(0, tileColorList.Length - 1);
+            currentTileColor = tileColorList[indexTwo];
+
+            tileColors.RemoveAt(indexTwo);
+            if (hasSetSecondColor)
+            {
+                //tileColors.Add(currentTileColor);
+                tileColors.Insert(indexOne, currentTileColor);
+                tileColors.Add(tempTileColorTwo);
+            }
+            hasSetSecondColor = true;
+            // something here
+            /*
+             B. Choose random color from list and pick it out (save as "ColorA")
+             c. Choose new random color from list and pick it out (save as "ColorB")
+             D. Put ColorA back to list
+             E. Save ColorB as ColorA
+             F. Repeat from C.
+            */
+
+        }
     }
 
     private void SetColorValue(float fraction)
     {
-        /*
-         I need to use "material" and (in my case) "currentTileColor"
-            
-        randomColorMaterialOne.color = currentTileColor;
-        */
-
-        /*
-        What is an IndexOutOfRangeException / ArgumentOutOfRangeException and how do I fix it?
-        https://stackoverflow.com/questions/20940979/what-is-an-indexoutofrangeexception-argumentoutofrangeexception-and-how-do-i-f
-        
-        Index was out of range. Must be non-negative or less than size of collection
-         https://stackoverflow.com/questions/30974623/index-was-out-of-range-must-be-non-negative-or-less-than-size-of-collection
-
-        */
         // TODO Calculate the new exact color to apply to the material, using the material and currentFloorColor
-        //tileMaterial.color = currentTileColor;
         tileMaterial.color = Color.Lerp(previousTileColor, currentTileColor, fraction);
-        //Debug.Log("Current color index is: " + currentTileColor);
     }
 
     IEnumerator MakeRandomColor()
@@ -147,13 +126,14 @@ public class RandomColor : MonoBehaviour
                 // This loop makes sure the color is updated
                 elapsedTime += Time.deltaTime;
                 float fraction = Mathf.Sin(elapsedTime / totalTime);
+                
                 SetColorValue(fraction);
-                //elapsedTime = 0;
+
                 yield return new WaitForSeconds(0);
             }
             elapsedTime = 0;
-            SetColorValue(1f); // Just to make sure the colors are 100% this color
 
+            SetColorValue(1f); // Just to make sure the colors are 100% this color
         }
         
     }
