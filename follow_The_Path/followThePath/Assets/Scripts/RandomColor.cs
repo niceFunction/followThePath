@@ -18,124 +18,74 @@ public class RandomColor : MonoBehaviour
     [SerializeField, Tooltip("List of colors for the second material")]
     private Color[] floorColorList;
 
-    private Color currentTileColor;
-    private Color currentFloorColor;
+    private ColorIndex tileIndex = new ColorIndex();
 
-    private Color previousTileColor;
-    private Color previousFloorColor;
+    [SerializeField, Range(0.1f, 10f)] private float changeColorTime = 1f;
 
-    private Color colorA;
-    private Color colorB; 
-
-    [SerializeField]
-    private float changeColorTimeAmount;
-    public float changeColorTimeReset;
-    private bool isChangingColor;
-
-    List<Color> tileColors = new List<Color>();
-    List<Color> floorColors = new List<Color>();
-
-    bool hasSetFirstColor = false;
-    bool hasSetSecondColor = false;
-
-    // Start is called before the first frame update
     void Start()
     {
-
-        tileColors.AddRange(tileColorList);
-        floorColors.AddRange(floorColorList);
+        SelectNewRandomColorIndices();
+        UpdateColors(1f);
         
-        changeColorTimeAmount = changeColorTimeReset;
         StartCoroutine(MakeRandomColor());
-        currentTileColor = tileMaterial.color;
-
-        //previousTileColor = tileMaterial.color;
-        SetColorValue(1f);
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Updates color indices for all indices
+    /// </summary>
+    private void SelectNewRandomColorIndices()
     {
-        //ChangeNewRandomColor();
-        //print("Time is: " + changeColorTimeAmount);
+        SetNewColorIndice(tileIndex, tileColorList); // Copy this row and change tileIndex and tileColorList to floor or other, if adding more.
     }
 
-    private void ChangeNewRandomColor()
+    /// <summary>
+    /// Selects new indices for the provided indice, from the provided list.
+    /// </summary>
+    /// <param name="indice">The indice to update</param>
+    /// <param name="colors">The list of colors to choose from</param>
+    private void SetNewColorIndice(ColorIndex indice, Color[] colors)
     {
-        Color tempTileColorOne = previousTileColor;
-
-        Debug.Log("Previous color: " + previousTileColor);
-
-        //TODO quesation: Replace ".Length" with ".GetUpperBound(0)"? and replace "(0)" with ".GetLowerBound(0)"?
-        int indexOne = Random.Range(0, tileColorList.Length - 1); 
-        Debug.Log("indexOne is: " + indexOne);
-        currentTileColor = tileColorList[indexOne];
-
-        tileColors.RemoveAt(indexOne);
-        if (hasSetFirstColor)
-        {
-            tileColors.Add(tempTileColorOne);
-            
-        }
-        
-        hasSetFirstColor = true;
-
-        if (hasSetFirstColor == true)
-        {
-            Color tempTileColorTwo = tempTileColorOne;
-
-            int indexTwo = Random.Range(0, tileColorList.Length - 1);
-            currentTileColor = tileColorList[indexTwo];
-
-            tileColors.RemoveAt(indexTwo);
-            if (hasSetSecondColor)
-            {
-                //tileColors.Add(currentTileColor);
-                tileColors.Insert(indexOne, currentTileColor);
-                tileColors.Add(tempTileColorTwo);
-            }
-            hasSetSecondColor = true;
-            // something here
-            /*
-             B. Choose random color from list and pick it out (save as "ColorA")
-             c. Choose new random color from list and pick it out (save as "ColorB")
-             D. Put ColorA back to list
-             E. Save ColorB as ColorA
-             F. Repeat from C.
-            */
-
-        }
+        // We've completed one full cycle of color fade, so "next" color index should be saved as "previous"
+        indice.previous = indice.next;
+        // Select a new color from the provided list
+        indice.next = Random.Range(0, colors.Length - 1);
     }
 
-    private void SetColorValue(float fraction)
+    private void UpdateColors(float fraction)
     {
-        // TODO Calculate the new exact color to apply to the material, using the material and currentFloorColor
-        tileMaterial.color = Color.Lerp(previousTileColor, currentTileColor, fraction);
+        UpdateColor(tileMaterial, tileColorList, tileIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
+    }
+    private void UpdateColor(Material material, Color[] colorList, ColorIndex indice, float fraction)
+    {
+        material.color = Color.Lerp(colorList[indice.previous], colorList[indice.next], fraction);
     }
 
     IEnumerator MakeRandomColor()
     {
         float elapsedTime = 0f;
-        float totalTime = changeColorTimeAmount;
         
         while(true)
         {
-            ChangeNewRandomColor(); // Select the new Color
-            while(elapsedTime < totalTime)
+            SelectNewRandomColorIndices(); // Select the new Colors
+            while(elapsedTime < changeColorTime)
             {
                 // This loop makes sure the color is updated
                 elapsedTime += Time.deltaTime;
-                float fraction = Mathf.Sin(elapsedTime / totalTime);
-                
-                SetColorValue(fraction);
+                float fraction = Mathf.Sin(elapsedTime / changeColorTime);
 
-                yield return new WaitForSeconds(0);
+                UpdateColors(fraction);
+
+                yield return new WaitForEndOfFrame();
             }
             elapsedTime = 0;
-
-            SetColorValue(1f); // Just to make sure the colors are 100% this color
         }
         
     }
-    
+    /// <summary>
+    /// To easier keep track of two indices
+    /// </summary>
+    private class ColorIndex
+    {
+        public int previous, next;
+    }
 }
