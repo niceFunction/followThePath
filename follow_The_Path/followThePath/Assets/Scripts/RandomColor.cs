@@ -51,10 +51,22 @@ public class RandomColor : MonoBehaviour
         indice.next = Random.Range(0, colors.Length - 1);
     }
 
+    /// <summary>
+    /// Updates colors for all materials
+    /// </summary>
+    /// <param name="fraction"></param>
     private void UpdateColors(float fraction)
     {
         UpdateColor(tileMaterial, tileColorList, tileIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
     }
+
+    /// <summary>
+    /// Updates color for the specified material
+    /// </summary>
+    /// <param name="material"></param>
+    /// <param name="colorList"></param>
+    /// <param name="indice"></param>
+    /// <param name="fraction"></param>
     private void UpdateColor(Material material, Color[] colorList, ColorIndex indice, float fraction)
     {
         material.color = Color.Lerp(colorList[indice.previous], colorList[indice.next], fraction);
@@ -73,9 +85,9 @@ public class RandomColor : MonoBehaviour
                 elapsedTime += Time.deltaTime;
                 float fraction = Mathf.Sin(elapsedTime / changeColorTime);
 
-                UpdateColors(fraction);
+                UpdateColors(fraction); // Update the actual material colors
 
-                yield return new WaitForEndOfFrame();
+                yield return new WaitForSeconds(0);
             }
             elapsedTime = 0;
         }
