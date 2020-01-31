@@ -8,19 +8,25 @@ using UnityEngine;
 /// <param name="RandomColor"></param>
 public class RandomColor : MonoBehaviour
 {
-    [SerializeField, Tooltip("First random color material")]
+    [SerializeField, Tooltip("The material attached to the Tiles")]
     private Material tileMaterial;
-    [SerializeField, Tooltip("Second random color material")]
+    [SerializeField, Tooltip("The material attached to the Floors")]
     private Material floorMaterial;
 
-    [SerializeField, Tooltip("List of colors for the first material")]
+    [SerializeField, Tooltip("List of colors for the Tiles (In lighter hues)")]
     private Color[] tileColorList;
-    [SerializeField, Tooltip("List of colors for the second material")]
+    [SerializeField, Tooltip("List of colors for the Floors (in darker hues)")]
     private Color[] floorColorList;
 
     private ColorIndex tileIndex = new ColorIndex();
 
-    [SerializeField, Range(0.1f, 10f)] private float changeColorTime = 1f;
+    [Tooltip("How fast will the change of color happen? The lower the value, the faster the change happens")]
+    [SerializeField, Range(0.1f, 10f)] 
+    private float changeColorTime = 1f;
+
+    [Tooltip("How much time will pass until the color changes again?")]
+    [SerializeField, Range(10f, 300f)]
+    private float changeColorDuration = 30f;
 
     void Start()
     {
@@ -35,7 +41,9 @@ public class RandomColor : MonoBehaviour
     /// </summary>
     private void SelectNewRandomColorIndices()
     {
+        // Cycles the indices in the lists of colors (Tiles and Floors)
         SetNewColorIndice(tileIndex, tileColorList); // Copy this row and change tileIndex and tileColorList to floor or other, if adding more.
+        SetNewColorIndice(tileIndex, floorColorList);
     }
 
     /// <summary>
@@ -57,7 +65,9 @@ public class RandomColor : MonoBehaviour
     /// <param name="fraction"></param>
     private void UpdateColors(float fraction)
     {
+        // Updates the color of the material on Tiles and Floors
         UpdateColor(tileMaterial, tileColorList, tileIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
+        UpdateColor(floorMaterial, floorColorList, tileIndex, fraction);
     }
 
     /// <summary>
@@ -72,6 +82,9 @@ public class RandomColor : MonoBehaviour
         material.color = Color.Lerp(colorList[indice.previous], colorList[indice.next], fraction);
     }
 
+    /// <summary>
+    /// "Blends" one color into another predetermined color 
+    /// </summary>
     IEnumerator MakeRandomColor()
     {
         float elapsedTime = 0f;
@@ -90,9 +103,9 @@ public class RandomColor : MonoBehaviour
                 yield return new WaitForSeconds(0);
             }
             elapsedTime = 0;
-        }
-        
+        }  
     }
+
     /// <summary>
     /// To easier keep track of two indices
     /// </summary>

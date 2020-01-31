@@ -339,12 +339,12 @@ MonoBehaviour:
   - {r: 0.59607846, g: 0, b: 0, a: 0}
   - {r: 0.5943396, g: 0.3974033, b: 0, a: 0}
   - {r: 0.48082894, g: 0.5, b: 0, a: 0}
-  - {r: 0, g: 0.007335119, b: 0.43529412, a: 0}
-  - {r: 0, g: 0.3882353, b: 0.14357352, a: 0}
+  - {r: 0, g: 0.43529412, b: 0.06006312, a: 0}
+  - {r: 0, g: 0.007843138, b: 0.43529415, a: 0}
   - {r: 0.18078735, g: 0, b: 0.3584906, a: 0}
   - {r: 0.3962264, g: 0, b: 0.38481736, a: 0}
-  changeColorTimeAmount: 0
-  changeColorTimeReset: 10
+  changeColorTime: 7.5
+  changeColorDuration: 30
 --- !u!4 &1076493872
 Transform:
   m_ObjectHideFlags: 0

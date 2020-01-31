@@ -4,28 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
-// https://www.youtube.com/watch?v=pvo0RCiqtLQ&feature=youtu.be&t=254
-// https://www.youtube.com/watch?v=usAaH5Mi0ZQ
-
 /// <summary>
 /// Manager class used to affect colors on materials, change fonts or improve user experience
 /// </summary>
-
-/*
- * Random number that doesn't repeat:
- * https://stackoverflow.com/questions/59773513/solvedunity-c-sharp-how-do-i-make-a-random-number-that-doesnt-repeat
- * 
- * Random number generator with no duplicates:
- * https://stackoverflow.com/questions/26931528/random-number-generator-with-no-duplicates
- * 
- * Fisher Yates Shuffle examples:
- * https://gist.github.com/mikedugan/8249637
- * https://www.dotnetperls.com/fisher-yates-shuffle
- * https://codereview.stackexchange.com/questions/136341/fisher-yates-shuffle-in-c
- * https://www.programmingalgorithms.com/algorithm/fisher%E2%80%93yates-shuffle/
- */
-
 //TODO will change class name to "UxManager" instead in the future
 public class ColorManager : MonoBehaviour
 {
