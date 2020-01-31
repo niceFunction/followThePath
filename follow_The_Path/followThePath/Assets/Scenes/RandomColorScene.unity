@@ -344,7 +344,7 @@ MonoBehaviour:
   - {r: 0.18078735, g: 0, b: 0.3584906, a: 0}
   - {r: 0.3962264, g: 0, b: 0.38481736, a: 0}
   changeColorTime: 7.5
-  changeColorDuration: 30
+  changeColorDuration: 15
 --- !u!4 &1076493872
 Transform:
   m_ObjectHideFlags: 0

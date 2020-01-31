@@ -24,16 +24,27 @@ public class RandomColor : MonoBehaviour
     [SerializeField, Range(0.1f, 10f)] 
     private float changeColorTime = 1f;
 
-    [Tooltip("How much time will pass until the color changes again?")]
+    [Tooltip("Duration of time left until the color on materials will change")]
     [SerializeField, Range(10f, 300f)]
     private float changeColorDuration = 30f;
+    // How much much of the current time is left until the color changes again?
+    private float currentColorDuration;
 
     void Start()
     {
+
+        currentColorDuration = changeColorDuration;
         SelectNewRandomColorIndices();
         UpdateColors(1f);
         
         StartCoroutine(MakeRandomColor());
+    }
+
+
+    private void Update()
+    {
+        currentColorDuration -= Time.deltaTime;
+        Debug.Log("Time until color change: " + currentColorDuration);
     }
 
     /// <summary>
@@ -66,8 +77,13 @@ public class RandomColor : MonoBehaviour
     private void UpdateColors(float fraction)
     {
         // Updates the color of the material on Tiles and Floors
-        UpdateColor(tileMaterial, tileColorList, tileIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
-        UpdateColor(floorMaterial, floorColorList, tileIndex, fraction);
+        if (currentColorDuration <= 0)
+        {
+            UpdateColor(tileMaterial, tileColorList, tileIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
+            UpdateColor(floorMaterial, floorColorList, tileIndex, fraction);
+            currentColorDuration = changeColorDuration;
+        }
+        
     }
 
     /// <summary>
