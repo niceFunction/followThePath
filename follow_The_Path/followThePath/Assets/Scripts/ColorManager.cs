@@ -16,7 +16,7 @@ public class ColorManager : MonoBehaviour
     public delegate void ChangeFontHandler(TMP_FontAsset newFont, float scaleFont);
     public event ChangeFontHandler onChangeFont;
 
-    #region COLORS AND MATERIALS
+    #region COLORS AND MATERIALS VARIABLES
     /// <summary>
     /// The Materials are added to the references in the Inspector
     /// </summary>
@@ -46,14 +46,12 @@ public class ColorManager : MonoBehaviour
     private Color currentFloorColor;
     #endregion
 
-    #region SET SPECIFIC COLORS
+    #region SET SPECIFIC COLORS VARIABLES
     [Space(5)]
     /// <summary>
     /// colorDropDown and randomizeColorsToggle are used for specifying colors
     /// </summary>
     [Tooltip("When colors in the level isn't active, user can specifically set level colors")]
-    // TODO 1a. do not expose GUI elements like this, as this object should manage them. 
-    // TODO 1b. Create a property that returns the value instead.
     [SerializeField]
     private TMP_Dropdown colorDropdown;
     public TMP_Dropdown ColorDropdown { get { return colorDropdown; } }
@@ -62,8 +60,22 @@ public class ColorManager : MonoBehaviour
     List<string> colorNames = new List<string>() { "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "VIOLET" };
     #endregion
 
-    #region RANDOM COLORS
+    #region RANDOM COLORS VARIABLES
     [Space(5)]
+    // NEW RANDOM COLOR VARIABLES
+    private ColorIndex tileIndex = new ColorIndex();
+
+    [Tooltip("How fast will the change of color happen? The lower the value, the faster the change happens")]
+    [SerializeField, Range(0.1f, 10f)]
+    private float changeColorTime = 1f;
+
+    [Tooltip("Duration of time left until the color on materials will change")]
+    [SerializeField, Range(10f, 300f)]
+    private float changeColorDuration = 30f;
+    // How much much of the current time is left until the color changes again?
+    private float currentColorDuration;
+
+    // OLD RANDOM COLOR VARIABLES
     // Variables used to Randomize colors
     public float colorChangeTimerReset;
     private float colorChangeTimer;
@@ -79,7 +91,7 @@ public class ColorManager : MonoBehaviour
     private TextMeshProUGUI randomColorsStatus;
     #endregion
 
-    #region GRAYSCALE
+    #region GRAYSCALE VARIABLES
     [Space(5)]
     [Tooltip("Toggle grayscale 'overlay' on an off")]
     [SerializeField]
@@ -92,7 +104,7 @@ public class ColorManager : MonoBehaviour
     private TextMeshProUGUI grayscaleStatus;
     #endregion
 
-    #region FONT
+    #region FONT VARIABLES
     [Space(5)]
     [SerializeField]
     // Toggle UI object
@@ -166,11 +178,18 @@ public class ColorManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // To be removed (find out if it is some or all of them
         currentTileColor = tileMaterial.color;
         currentFloorColor = floorMaterial.color;
         colorChangeTimer = colorChangeTimerReset;
 
         //currentFont = RegularFont;
+        /* To be ADDED
+        SelectNewRandomColorIndices();
+        UpdateColors(1f);
+        
+        StartCoroutine(MakeRandomColor());
+        */
     }
 
     // Update is called once per frame
@@ -181,6 +200,91 @@ public class ColorManager : MonoBehaviour
     #endregion
 
     #region RANDOM COLOR METHODS
+
+    #region new random color methods
+    /// <summary>
+    /// Updates color indices for all indices
+    /// </summary>
+    private void SelectNewRandomColorIndices()
+    {
+        // Cycles the indices in the lists of colors (Tiles and Floors)
+        SetNewColorIndice(tileIndex, tileColorList); // Copy this row and change tileIndex and tileColorList to floor or other, if adding more.
+        SetNewColorIndice(tileIndex, floorColorList);
+    }
+
+    /// <summary>
+    /// Selects new indices for the provided indice, from the provided list.
+    /// </summary>
+    /// <param name="indice">The indice to update</param>
+    /// <param name="colors">The list of colors to choose from</param>
+    private void SetNewColorIndice(ColorIndex indice, Color[] colors)
+    {
+        // We've completed one full cycle of color fade, so "next" color index should be saved as "previous"
+        indice.previous = indice.next;
+        // Select a new color from the provided list
+        indice.next = Random.Range(0, colors.Length - 1);
+    }
+
+    /// <summary>
+    /// Updates colors for all materials
+    /// </summary>
+    /// <param name="fraction"></param>
+    private void UpdateColors(float fraction)
+    {
+        // Updates the color of the material on Tiles and Floors
+        UpdateColor(tileMaterial, tileColorList, tileIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
+        UpdateColor(floorMaterial, floorColorList, tileIndex, fraction);
+        currentColorDuration = changeColorDuration;
+
+    }
+
+    /// <summary>
+    /// Updates color for the specified material
+    /// </summary>
+    /// <param name="material"></param>
+    /// <param name="colorList"></param>
+    /// <param name="indice"></param>
+    /// <param name="fraction"></param>
+    private void UpdateColor(Material material, Color[] colorList, ColorIndex indice, float fraction)
+    {
+        material.color = Color.Lerp(colorList[indice.previous], colorList[indice.next], fraction);
+    }
+
+    /// <summary>
+    /// "Blends" one color into another predetermined color 
+    /// </summary>
+    IEnumerator MakeRandomColor()
+    {
+        float elapsedTime = 0f;
+
+        while (true)
+        {
+            SelectNewRandomColorIndices(); // Select the new Colors
+            while (elapsedTime < changeColorTime)
+            {
+                // This loop makes sure the color is updated
+                elapsedTime += Time.deltaTime;
+                float fraction = Mathf.Sin(elapsedTime / changeColorTime);
+
+                UpdateColors(fraction); // Update the actual material colors
+
+                yield return new WaitForSeconds(0);
+            }
+            elapsedTime = 0;
+            yield return new WaitForSeconds(changeColorDuration);
+        }
+    }
+
+    /// <summary>
+    /// To easier keep track of two indices
+    /// </summary>
+    private class ColorIndex
+    {
+        public int previous, next;
+    }
+    #endregion
+
+    #region old random color methods
     /// <summary>
     /// Changes color on materials every time the timer reaches 0
     /// </summary>
@@ -230,6 +334,8 @@ public class ColorManager : MonoBehaviour
         }
         currentlyChangingColor = false;
     }
+    #endregion
+
     #endregion
 
     #region SET SPECIFIC COLOR METHODS

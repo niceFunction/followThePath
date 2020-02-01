@@ -98,17 +98,13 @@ public class RandomColor : MonoBehaviour
             SelectNewRandomColorIndices(); // Select the new Colors
             while(elapsedTime < changeColorTime)
             {
-                /*
-                 * Det var helt rätt tänkt med att lägga till en sleep på den tid du vill den 
-                 * skall stanna på färgen i coroutinen (enumeratorn, som du sade). 
-                 * Det är exakt det ändamålet det är till för, och gör koden tydligare för du 
-                 * behöver inte massa extra variabler som skall kollas eller uppdaterad varje frame.
-                */
                 // This loop makes sure the color is updated
                 elapsedTime += Time.deltaTime;
                 float fraction = Mathf.Sin(elapsedTime / changeColorTime);
 
                 UpdateColors(fraction); // Update the actual material colors
+
+                yield return new WaitForSeconds(0);
             }
             elapsedTime = 0;
             yield return new WaitForSeconds(changeColorDuration);
