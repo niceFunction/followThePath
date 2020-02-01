@@ -350,6 +350,9 @@ public class ColorManager : MonoBehaviour
             ///<summary>
             /// Color Randomization is active and set specific color dropdown is non-interactable
             /// </summary>
+            
+            // TODO Add new random color method here
+
             ColorDropdown.interactable = false;
             randomColorsStatus.text = "ON";
             NewRandomColor();
