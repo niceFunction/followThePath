@@ -62,24 +62,21 @@ public class ColorManager : MonoBehaviour
 
     #region RANDOM COLORS VARIABLES
     [Space(5)]
-    // NEW RANDOM COLOR VARIABLES
+    
     private ColorIndex tileIndex = new ColorIndex();
 
     [Tooltip("How fast will the change of color happen? The lower the value, the faster the change happens")]
     [SerializeField, Range(0.1f, 10f)]
     private float changeColorTime = 1f;
 
+    // TODO 1a. Use another variable that holds the value 60 and that multiplies with another value
+    // TODO 1b. example "changeDuration" holds the values 0.1 - 10 in a Range
+    // TODO 1c. those example values in 1b. can make it into minutes (or seconds) for full release or testing
     [Tooltip("Duration of time left until the color on materials will change")]
     [SerializeField, Range(10f, 300f)]
     private float changeColorDuration = 30f;
     // How much much of the current time is left until the color changes again?
     private float currentColorDuration;
-
-    // OLD RANDOM COLOR VARIABLES
-    // Variables used to Randomize colors
-    public float colorChangeTimerReset;
-    private float colorChangeTimer;
-    private bool currentlyChangingColor;
 
     [Tooltip("Randomly changes colors on the level when active")]
     [SerializeField]
@@ -89,6 +86,7 @@ public class ColorManager : MonoBehaviour
     [Tooltip("Visual element that the user can see if randomizing colors are active or not")]
     [SerializeField]
     private TextMeshProUGUI randomColorsStatus;
+
     #endregion
 
     #region GRAYSCALE VARIABLES
@@ -181,27 +179,22 @@ public class ColorManager : MonoBehaviour
         // To be removed (find out if it is some or all of them
         currentTileColor = tileMaterial.color;
         currentFloorColor = floorMaterial.color;
-        colorChangeTimer = colorChangeTimerReset;
-
-        //currentFont = RegularFont;
-        /* To be ADDED
+        
         SelectNewRandomColorIndices();
         UpdateColors(1f);
         
         StartCoroutine(MakeRandomColor());
-        */
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        SetColorMode();
+
     }
     #endregion
 
     #region RANDOM COLOR METHODS
-
-    #region new random color methods
     /// <summary>
     /// Updates color indices for all indices
     /// </summary>
@@ -235,7 +228,6 @@ public class ColorManager : MonoBehaviour
         UpdateColor(tileMaterial, tileColorList, tileIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
         UpdateColor(floorMaterial, floorColorList, tileIndex, fraction);
         currentColorDuration = changeColorDuration;
-
     }
 
     /// <summary>
@@ -282,59 +274,6 @@ public class ColorManager : MonoBehaviour
     {
         public int previous, next;
     }
-    #endregion
-
-    #region old random color methods
-    /// <summary>
-    /// Changes color on materials every time the timer reaches 0
-    /// </summary>
-    public void NewRandomColor()
-    {
-        colorChangeTimer -= Time.deltaTime;
-
-        if (colorChangeTimer < 0 && !currentlyChangingColor)
-        {
-            currentlyChangingColor = true;
-            colorChangeTimer = colorChangeTimerReset;
-            StartCoroutine(SetRandomColor());
-        }
-    }
-
-    /// <summary>
-    /// This Coroutine is used to randomize the "Tile" colors using Random.Range
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator SetRandomColor()
-    {
-        currentlyChangingColor = true;
-        //TODO 2a Look more into getting random element from array
-        //TODO 2b Look into an for loop that creates a "list" of elements (7 of them),
-        //TODO 2c that everytime it changes, removes that element from the "list",
-        //TODO 2d when the "list" is empty, it randomizes the list of colors again.
-
-        ///<summary>
-        /// Using tileColorList as the 2nd argument in Random.Range as both
-        /// of the tile- and floor mateial color arrays are of the same length.
-        /// </summary>
-        int colorIndex = Random.Range(0, tileColorList.Length);
-
-        float elapsedTime = 0.0f;
-        float totalTime = 6.0f;
-
-        // Set the materials into a random color
-        while (elapsedTime < totalTime && colorIndex >= 0 && colorIndex <= 6)
-        {
-            elapsedTime += Time.deltaTime;
-            float fraction = Mathf.Sin(elapsedTime / totalTime);
-
-            tileMaterial.color = Color.Lerp(currentTileColor, tileColorList[colorIndex], fraction);
-            floorMaterial.color = Color.Lerp(currentFloorColor, floorColorList[colorIndex], fraction);
-
-            yield return null;
-        }
-        currentlyChangingColor = false;
-    }
-    #endregion
 
     #endregion
 
@@ -350,21 +289,20 @@ public class ColorManager : MonoBehaviour
             ///<summary>
             /// Color Randomization is active and set specific color dropdown is non-interactable
             /// </summary>
-            
-            // TODO Add new random color method here
 
+            // TODO Add new random color method here
+            StartCoroutine(MakeRandomColor());
             ColorDropdown.interactable = false;
             randomColorsStatus.text = "ON";
-            NewRandomColor();
         }
         else
         {
             ///<summary>
             /// Color randomization is inactive and set specific color dropdown is interactable
             /// </summary>
+            StopCoroutine(MakeRandomColor());
             ColorDropdown.interactable = true;
             randomColorsStatus.text = "OFF";
-            colorChangeTimer = colorChangeTimerReset;
         }
 
         // if the grayscale toggle is active, make color dropdown not interactable
@@ -456,7 +394,6 @@ public class ColorManager : MonoBehaviour
             RandomColorsToggle.interactable = false;
 
             grayscaleStatus.text = "ON";
-            colorChangeTimer = colorChangeTimerReset;
         }
         else
         {

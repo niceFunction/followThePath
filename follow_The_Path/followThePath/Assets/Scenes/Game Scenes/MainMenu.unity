@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -2667,6 +2668,16 @@ PrefabInstance:
       propertyPath: dyslexicFontScale
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 3941759333624630605, guid: 76279ea77ec4dc54ea28351d82425128,
+        type: 3}
+      propertyPath: changeColorTime
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3941759333624630605, guid: 76279ea77ec4dc54ea28351d82425128,
+        type: 3}
+      propertyPath: changeColorDuration
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3941759333624630606, guid: 76279ea77ec4dc54ea28351d82425128,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5010,8 +5021,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1349899699}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
