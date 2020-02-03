@@ -102,7 +102,7 @@ public class Ball : MonoBehaviour
             }
         }
         #endregion
-        //TODO Saving this Debug in case it's needed again
+
         //Debug.Log("Player Velocity: " + RB.velocity.magnitude);
     }
 
