@@ -2741,12 +2741,38 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 739256839}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 739256841}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddfd806a12a17b04f9d10da9dcc85c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &739256841 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3941759333624630604, guid: 76279ea77ec4dc54ea28351d82425128,
+    type: 3}
+  m_PrefabInstance: {fileID: 739256839}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &739256843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739256841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30dfc3d19fe7a4347a817bf1c0b641fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grayscaleToggle: {fileID: 0}
+  grayscaleStatus: {fileID: 0}
+  dyslexicFontToggle: {fileID: 0}
+  dyslexicFontStatus: {fileID: 0}
+  regularFont: {fileID: 0}
+  regularFontScale: 0
+  dyslexicFontScale: 0
+  dyslexicFont: {fileID: 0}
 --- !u!1 &742615920
 GameObject:
   m_ObjectHideFlags: 0
@@ -3814,7 +3840,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 739256840}
-        m_MethodName: SetGrayscaleMode
+        m_MethodName: SetGrayscaleOverlay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -27,7 +27,7 @@ public class ColorManager : MonoBehaviour
     [Tooltip("Used to change the color of the Floor")]
     [SerializeField]
     private Material floorMaterial;
-    
+
     [Space(5)]
     /// <summary>
     /// The Color arrays size are specified in the Inspector.
@@ -62,7 +62,7 @@ public class ColorManager : MonoBehaviour
 
     #region RANDOM COLORS VARIABLES
     [Space(5)]
-    
+
     private ColorIndex tileIndex = new ColorIndex();
 
     [Tooltip("How fast will the change of color happen? The lower the value, the faster the change happens")]
@@ -100,6 +100,8 @@ public class ColorManager : MonoBehaviour
     [Tooltip("Visual element that the user can see if grayscale 'overlay' is active or not")]
     [SerializeField]
     private TextMeshProUGUI grayscaleStatus;
+
+    public TextMeshProUGUI GrayscaleStatus { get { return grayscaleStatus; } }
     #endregion
 
     #region FONT VARIABLES
@@ -110,14 +112,13 @@ public class ColorManager : MonoBehaviour
     public bool DyslexicFontToggleOn { get { return dyslexicFontToggle.isOn; } }
 
     [SerializeField]
-    ///<summary>
-    /// Visual text element to show the player if the dyslexic font is active or not
-    ///</summary>
+    // Visual text element to show the player if the dyslexic font is active or not
     private TextMeshProUGUI dyslexicFontStatus;
+    public TextMeshProUGUI DyslexicFontStatus { get { return dyslexicFontStatus; } }
 
     // Regular font variables
     [SerializeField, Space(5)]
-    private TMP_FontAsset regularFont; 
+    private TMP_FontAsset regularFont;
     public TMP_FontAsset RegularFont { get { return regularFont; } }
     [SerializeField]
     [Range(0.01f, 1)]
@@ -140,14 +141,19 @@ public class ColorManager : MonoBehaviour
     public float currentScale { get; private set; }
     #endregion
 
+    [SerializeField]
+    private Accessibility accessibility;
+
     // Currently used to affect font size but can have other areas to be used
     private TextMeshPro TMP;
 
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
 
-    public static ColorManager Instance { get; private set; } 
+    
 
+    public static ColorManager Instance { get; private set; } 
+/*
     public static void newUxActive()
     {
         if (onActiveUX != null)
@@ -155,6 +161,7 @@ public class ColorManager : MonoBehaviour
             onActiveUX();
         }
     }
+*/
 
     #region GENERIC METHODS
     void Awake()
@@ -169,8 +176,14 @@ public class ColorManager : MonoBehaviour
             return;
         }
         // DontDestroyOnLoad(gameObject);
+
         currentFont = RegularFont;
         currentScale = RegularFontScale;
+
+        
+
+        //currentFont = accessibility.RegularFont;
+        //currentScale = accessibility.RegularFontScale;
     }
 
     // Start is called before the first frame update
@@ -184,6 +197,7 @@ public class ColorManager : MonoBehaviour
         UpdateColors(1f);
         
         StartCoroutine(MakeRandomColor());
+        Debug.Log("Accessibility is: " + accessibility);
 
     }
 
@@ -195,6 +209,7 @@ public class ColorManager : MonoBehaviour
     #endregion
 
     #region RANDOM COLOR METHODS
+
     /// <summary>
     /// Updates color indices for all indices
     /// </summary>
@@ -284,6 +299,7 @@ public class ColorManager : MonoBehaviour
     /// </summary>
     public void SetColorMode()
     {
+
         if (RandomColorsToggleOn)
         {
             ///<summary>
@@ -310,6 +326,7 @@ public class ColorManager : MonoBehaviour
         {
             ColorDropdown.interactable = false;
         }
+
     }
 
     /// <summary>
@@ -324,6 +341,7 @@ public class ColorManager : MonoBehaviour
     /// When an "index" in the dropdown menu is chosen, sets materials to that color
     /// </summary>
     /// <param name="index"></param>
+
     public void SetSpecificColor(int index)
     {
         if (index == 0)
@@ -369,13 +387,29 @@ public class ColorManager : MonoBehaviour
             floorMaterial.color = floorColorList[6];
         }
     }
+
     #endregion
 
     #region ACCESSIBILITY METHODS
+
+    public void SetGrayscaleOverlay()
+    {
+        //accessibility.GrayscaleOverlay();
+        //accessibility.GetComponent<Accessibility>().GrayscaleOverlay();
+        Accessibility.Instance.GrayscaleOverlay();
+    }
+
+    public void SetDyslexicFont()
+    {
+        //accessibility.DyslexicFontMode();
+        Accessibility.Instance.DyslexicFontMode();
+    }
+
     ///<summary>
     /// Used to turn "Grayscale Mode" on and off, user can still set specific color.
     /// Disables color randomization when GrayscaleToggle.isOn is true, renables it when set to false
     /// </summary>
+    /*
     public void SetGrayscaleMode()
     {
         // TODO 3a Take a look at if change to accessing Player Camera (which is a prefab in "final" version"),
@@ -408,9 +442,11 @@ public class ColorManager : MonoBehaviour
             grayscaleStatus.text = "OFF";
         }
     }
-
+    */
+    /*
     public void SetDyslexicFont()
     {
+
         if (DyslexicFontToggleOn)
         {
             ///<summary>
@@ -446,6 +482,7 @@ public class ColorManager : MonoBehaviour
         }
         //Debug.Log("Current font is: " + currentFont); // Uncomment to debug what font is active
     }
+    */
     #endregion
 
 }
