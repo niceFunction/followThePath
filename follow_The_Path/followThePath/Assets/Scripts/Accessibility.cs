@@ -15,26 +15,6 @@ public class Accessibility : MonoBehaviour
     public delegate void ChangeFontHandler(TMP_FontAsset newFont, float scaleFont);
     public event ChangeFontHandler onChangeFont;
 
-    [Space(5)]
-    [Tooltip("Toggle grayscale 'overlay' on an off")]
-    [SerializeField]
-    private Toggle grayscaleToggle;
-    public Toggle GrayscaleToggle { get { return grayscaleToggle; } }
-    public bool GrayscaleToggleOn { get { return grayscaleToggle.isOn; } }
-
-    [Tooltip("Visual element that the user can see if grayscale 'overlay' is active or not")]
-    [SerializeField]
-    private TextMeshProUGUI grayscaleStatus;
-
-    [SerializeField]
-    // Toggle UI object
-    private Toggle dyslexicFontToggle;
-    public bool DyslexicFontToggleOn { get { return dyslexicFontToggle.isOn; } }
-
-    [SerializeField]
-    // Visual text element to show the player if the dyslexic font is active or not
-    private TextMeshProUGUI dyslexicFontStatus;
-
     // Regular font variables
     [SerializeField, Space(5)]
     private TMP_FontAsset regularFont;
@@ -59,18 +39,13 @@ public class Accessibility : MonoBehaviour
     public TMP_FontAsset currentFont { get; private set; }
     public float currentScale { get; private set; }
 
-
     // Currently used to affect font size but can have other areas to be used
     private TextMeshPro TMP;
 
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
 
-    private ColorManager colorManager;
-    private RandomColor randomColor;
-
-
-    public static Accessibility Instance { get; private set; }
+    public static Accessibility Instance { get; set; }
     public static void newUxActive()
     {
         if (onActiveUX != null)
@@ -81,9 +56,6 @@ public class Accessibility : MonoBehaviour
 
     private void Awake()
     {
-        //currentFont = colorManager.RegularFont;
-        //currentScale = colorManager.RegularFontScale;
-        //colorManager = gameObject.GetComponent<ColorManager>();
         if(Instance == null)
         {
             Instance = this;
@@ -93,62 +65,42 @@ public class Accessibility : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        currentFont = RegularFont;
+        currentScale = RegularFontScale;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("colorManager is: " + colorManager);
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     ///<summary>
-    /// Used to turn "Grayscale Mode" on and off, user can still set specific color.
-    /// Disables color randomization when GrayscaleToggle.isOn is true, renables it when set to false
+    /// Creates a grayscale overlay "over" the player camera
     /// </summary>
     public void GrayscaleOverlay()
     {
-        // TODO 3a Take a look at if change to accessing Player Camera (which is a prefab in "final" version"),
-        // TODO 3b how is the camera accessed? if it's a prefab, does that need to be changed?
         
+        // NOTE: Keep in mind to see if enabling an image effect on the camera is too costly 
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
-        //if (colorManager.GrayscaleToggleOn)
         if (ColorManager.Instance.GrayscaleToggleOn)
         {
-            ///<summary>
-            /// if grayscale toggle object is on,
-            ///  activate grayscale camera overlay.
-            /// </summary>
+            // If grayscale toggle object is on, activate grayscale camera overlay.
             playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
 
-            //colorManager.RandomColorsToggle.isOn = false;
-            //colorManager.Instance.RandomColorsToggle.isOn = false;
-
             ColorManager.Instance.RandomColorsToggle.isOn = false;
-
             ColorManager.Instance.RandomColorsToggle.interactable = false;
-
-            //colorManager.RandomColorsToggle.interactable = false;
             ColorManager.Instance.GrayscaleStatus.text = "ON";
-            //colorManager.GrayscaleStatus.text = "ON";
         }
         else
         {
-            ///<summary>
-            /// if grayscale toggle object is NOT on,
-            /// deactivate grayscale camera overlay.
-            /// </summary>
+            // If grayscale toggle object is NOT on, deactivate grayscale camera overlay.
             playerCamera.GetComponent<GrayscaleCamera>().enabled = false;
 
-            //colorManager.RandomColorsToggle.interactable = true;
             ColorManager.Instance.RandomColorsToggle.interactable = true;
             ColorManager.Instance.GrayscaleStatus.text = "OFF";
-            //colorManager.GrayscaleStatus.text = "OFF";
         }
     }
 
@@ -156,46 +108,32 @@ public class Accessibility : MonoBehaviour
     {
         
         //if (colorManager.DyslexicFontToggleOn)
-        if(ColorManager.Instance.DyslexicFontToggleOn)
+        if (ColorManager.Instance.DyslexicFontToggleOn)
         {
-            ///<summary>
-            /// if dyslexic toggle object IS on,
-            /// set the current font to the dyslexic font
-            /// </summary>
-            //currentFont = colorManager.DyslexicFont;
-            currentFont = ColorManager.Instance.DyslexicFont;
-            //currentScale = colorManager.DyslexicFontScale;
-            currentScale = ColorManager.Instance.DyslexicFontScale;
-            //dyslexicFontStatus.text = "ON";
+            // If dyslexic toggle object IS on, set the current font to the dyslexic font
+            currentFont = DyslexicFont;
+            currentScale = DyslexicFontScale;
             ColorManager.Instance.DyslexicFontStatus.text = "ON";
             //PlayerPrefs.Save();
         }
         else
         {
-            ///<summary>
-            /// if dyslexic toggle object is not on,
-            /// set current font to the regular font
-            /// </summary>
-            //currentFont = colorManager.RegularFont;
-            currentFont = ColorManager.Instance.RegularFont;
-            currentScale = ColorManager.Instance.RegularFontScale;
-            //currentScale = colorManager.RegularFontScale;
+            // If dyslexic toggle object is not on, set current font to the regular font
+            currentFont = RegularFont;
+            currentScale = RegularFontScale;
             ColorManager.Instance.DyslexicFontStatus.text = "OFF";
-//            colorManager.DyslexicFontStatus.text = "OFF";
             //PlayerPrefs.Save();
         }
 
-        ///<summary>
-        ///This null check is important, 
-        ///because if no listeners are registered, 
-        ///it will result in an NPE.
-        /// </summary>
+        /*
+        This null check is important, because if no listeners are registered, 
+        it will result in an NPE.
+        */
         if (onChangeFont != null) // 
         {
             // Inform text objects with ChangeFont class attached to update to the new font
             onChangeFont.Invoke(currentFont, currentScale);
         }
         //Debug.Log("Current font is: " + currentFont); // Uncomment to debug what font is active
-        
     }
 }

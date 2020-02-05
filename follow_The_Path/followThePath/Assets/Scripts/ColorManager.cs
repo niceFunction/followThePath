@@ -10,9 +10,10 @@ using TMPro;
 //TODO will change class name to "UxManager" instead in the future
 public class ColorManager : MonoBehaviour
 {
+    /*
     public delegate void UxEventHandler();
     public static event UxEventHandler onActiveUX;
-
+    */
     public delegate void ChangeFontHandler(TMP_FontAsset newFont, float scaleFont);
     public event ChangeFontHandler onChangeFont;
 
@@ -137,11 +138,11 @@ public class ColorManager : MonoBehaviour
     public TMP_FontAsset DyslexicFont { get { return dyslexicFont; } }
 
     // Sets what ever is the current active font and its current scale
-    public TMP_FontAsset currentFont { get; private set; }
-    public float currentScale { get; private set; }
+    public TMP_FontAsset currentFont { get; set; }
+
+    public float currentScale { get; set; }
     #endregion
 
-    [SerializeField]
     private Accessibility accessibility;
 
     // Currently used to affect font size but can have other areas to be used
@@ -177,13 +178,13 @@ public class ColorManager : MonoBehaviour
         }
         // DontDestroyOnLoad(gameObject);
 
-        currentFont = RegularFont;
-        currentScale = RegularFontScale;
-
-        
+        //currentFont = RegularFont;
+        //currentScale = RegularFontScale;
 
         //currentFont = accessibility.RegularFont;
         //currentScale = accessibility.RegularFontScale;
+        //currentFont = Accessibility.Instance.RegularFont;
+        //currentScale = Accessibility.Instance.RegularFontScale;
     }
 
     // Start is called before the first frame update
@@ -197,8 +198,6 @@ public class ColorManager : MonoBehaviour
         UpdateColors(1f);
         
         StartCoroutine(MakeRandomColor());
-        Debug.Log("Accessibility is: " + accessibility);
-
     }
 
     // Update is called once per frame
