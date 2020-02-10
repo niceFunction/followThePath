@@ -25,9 +25,14 @@ public class ColorManager : MonoBehaviour
     [SerializeField]
     // TODO personal note: keep in mind if tile/floor material needs to be public again if other objects needs to access them
     private Material tileMaterial;
+    public Material TileMaterial { get { return tileMaterial; } }
+
+
     [Tooltip("Used to change the color of the Floor")]
     [SerializeField]
     private Material floorMaterial;
+    public Material FloorMaterial { get { return floorMaterial; } }
+
 
     [Space(5)]
     /// <summary>
@@ -38,9 +43,13 @@ public class ColorManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Creates an Array of Colors for Tiles")]
     private Color[] tileColorList;
+    public Color[] TileColorList { get { return tileColorList; } }
+
+
     [SerializeField]
     [Tooltip("Create an Array of Colors for Floors")]
     private Color[] floorColorList;
+    public Color[] FloorColorList { get { return floorColorList; } }
 
     // Used to get/set the current Color
     private Color currentTileColor;
@@ -49,9 +58,8 @@ public class ColorManager : MonoBehaviour
 
     #region SET SPECIFIC COLORS VARIABLES
     [Space(5)]
-    /// <summary>
-    /// colorDropDown and randomizeColorsToggle are used for specifying colors
-    /// </summary>
+    // colorDropDown and randomizeColorsToggle are used for specifying colors
+    // NOTE: Save "colorDropdown" and "ColorDropdown"
     [Tooltip("When colors in the level isn't active, user can specifically set level colors")]
     [SerializeField]
     private TMP_Dropdown colorDropdown;
@@ -138,9 +146,9 @@ public class ColorManager : MonoBehaviour
     public TMP_FontAsset DyslexicFont { get { return dyslexicFont; } }
 
     // Sets what ever is the current active font and its current scale
-    public TMP_FontAsset currentFont { get; set; }
+    public TMP_FontAsset currentFont { get; private set; }
 
-    public float currentScale { get; set; }
+    public float currentScale { get; private set; }
     #endregion
 
     private Accessibility accessibility;
@@ -177,14 +185,6 @@ public class ColorManager : MonoBehaviour
             return;
         }
         // DontDestroyOnLoad(gameObject);
-
-        //currentFont = RegularFont;
-        //currentScale = RegularFontScale;
-
-        //currentFont = accessibility.RegularFont;
-        //currentScale = accessibility.RegularFontScale;
-        //currentFont = Accessibility.Instance.RegularFont;
-        //currentScale = Accessibility.Instance.RegularFontScale;
     }
 
     // Start is called before the first frame update
@@ -333,7 +333,8 @@ public class ColorManager : MonoBehaviour
     /// </summary>
     void PopulateColorList()
     {
-        ColorDropdown.AddOptions(colorNames);
+        //ColorDropdown.AddOptions(colorNames);
+        SpecificColor.Instance.PopulateColors();
     }
 
     /// <summary>
@@ -341,8 +342,11 @@ public class ColorManager : MonoBehaviour
     /// </summary>
     /// <param name="index"></param>
 
-    public void SetSpecificColor(int index)
+    public void SetSpecificColor()
     {
+
+        //SpecificColor.Instance.ParticularColor(SpecificColor.Instance.);
+        /*
         if (index == 0)
         {
             // Set colors to RED
@@ -385,103 +389,19 @@ public class ColorManager : MonoBehaviour
             tileMaterial.color = tileColorList[6];
             floorMaterial.color = floorColorList[6];
         }
+        */
     }
 
     #endregion
 
-    #region ACCESSIBILITY METHODS
-
+    // Accessibility Methods
     public void SetGrayscaleOverlay()
     {
-        //accessibility.GrayscaleOverlay();
-        //accessibility.GetComponent<Accessibility>().GrayscaleOverlay();
         Accessibility.Instance.GrayscaleOverlay();
     }
 
     public void SetDyslexicFont()
     {
-        //accessibility.DyslexicFontMode();
         Accessibility.Instance.DyslexicFontMode();
     }
-
-    ///<summary>
-    /// Used to turn "Grayscale Mode" on and off, user can still set specific color.
-    /// Disables color randomization when GrayscaleToggle.isOn is true, renables it when set to false
-    /// </summary>
-    /*
-    public void SetGrayscaleMode()
-    {
-        // TODO 3a Take a look at if change to accessing Player Camera (which is a prefab in "final" version"),
-        // TODO 3b how is the camera accessed? if it's a prefab, does that need to be changed?
-
-        playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        if (GrayscaleToggleOn)
-        {
-            ///<summary>
-            /// if grayscale toggle object is on,
-            ///  activate grayscale camera overlay.
-            /// </summary>
-            playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
-
-            RandomColorsToggle.isOn = false;
-            RandomColorsToggle.interactable = false;
-
-            grayscaleStatus.text = "ON";
-        }
-        else
-        {
-            ///<summary>
-            /// if grayscale toggle object is NOT on,
-            /// deactivate grayscale camera overlay.
-            /// </summary>
-            playerCamera.GetComponent<GrayscaleCamera>().enabled = false;
-
-            RandomColorsToggle.interactable = true;
-
-            grayscaleStatus.text = "OFF";
-        }
-    }
-    */
-    /*
-    public void SetDyslexicFont()
-    {
-
-        if (DyslexicFontToggleOn)
-        {
-            ///<summary>
-            /// if dyslexic toggle object IS on,
-            /// set the current font to the dyslexic font
-            /// </summary>
-            currentFont = DyslexicFont;
-            currentScale = DyslexicFontScale;
-            dyslexicFontStatus.text = "ON";
-            //PlayerPrefs.Save();
-        }
-        else
-        {
-            ///<summary>
-            /// if dyslexic toggle object is not on,
-            /// set current font to the regular font
-            /// </summary>
-            currentFont = RegularFont;
-            currentScale = RegularFontScale;
-            dyslexicFontStatus.text = "OFF";
-            //PlayerPrefs.Save();
-        }
-
-        ///<summary>
-        ///This null check is important, 
-        ///because if no listeners are registered, 
-        ///it will result in an NPE.
-        /// </summary>
-        if (onChangeFont != null) // 
-        {
-            // Inform text objects with ChangeFont class attached to update to the new font
-            onChangeFont.Invoke(currentFont, currentScale);
-        }
-        //Debug.Log("Current font is: " + currentFont); // Uncomment to debug what font is active
-    }
-    */
-    #endregion
-
 }
