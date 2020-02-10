@@ -104,25 +104,19 @@ public class Accessibility : MonoBehaviour
         }
     }
 
-    public void DyslexicFontMode()
+    public void DyslexicFontMode(bool toggleOn)
     {
-        
-        //if (colorManager.DyslexicFontToggleOn)
-        if (ColorManager.Instance.DyslexicFontToggleOn)
+        if (toggleOn)
         {
-            // If dyslexic toggle object IS on, set the current font to the dyslexic font
+            // If dyslexic toggle IS on, set the current font to the dyslexic font
             currentFont = DyslexicFont;
             currentScale = DyslexicFontScale;
-            ColorManager.Instance.DyslexicFontStatus.text = "ON";
-            //PlayerPrefs.Save();
         }
         else
         {
             // If dyslexic toggle object is not on, set current font to the regular font
             currentFont = RegularFont;
             currentScale = RegularFontScale;
-            ColorManager.Instance.DyslexicFontStatus.text = "OFF";
-            //PlayerPrefs.Save();
         }
 
         /*
@@ -134,6 +128,5 @@ public class Accessibility : MonoBehaviour
             // Inform text objects with ChangeFont class attached to update to the new font
             onChangeFont.Invoke(currentFont, currentScale);
         }
-        //Debug.Log("Current font is: " + currentFont); // Uncomment to debug what font is active
     }
 }

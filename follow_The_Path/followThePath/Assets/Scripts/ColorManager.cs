@@ -118,7 +118,6 @@ public class ColorManager : MonoBehaviour
     [SerializeField]
     // Toggle UI object
     private Toggle dyslexicFontToggle;
-    public bool DyslexicFontToggleOn { get { return dyslexicFontToggle.isOn; } }
 
     [SerializeField]
     // Visual text element to show the player if the dyslexic font is active or not
@@ -345,7 +344,7 @@ public class ColorManager : MonoBehaviour
     public void SetSpecificColor()
     {
 
-        //SpecificColor.Instance.ParticularColor(SpecificColor.Instance.);
+        SpecificColor.Instance.ParticularColor(ColorDropdown.value);
         /*
         if (index == 0)
         {
@@ -402,6 +401,16 @@ public class ColorManager : MonoBehaviour
 
     public void SetDyslexicFont()
     {
-        Accessibility.Instance.DyslexicFontMode();
+        // Update the GUI
+        if (dyslexicFontToggle.isOn)
+        {
+            ColorManager.Instance.DyslexicFontStatus.text = "ON";
+        }
+        else
+        {
+            ColorManager.Instance.DyslexicFontStatus.text = "OFF";
+        }
+            // Update all text
+        Accessibility.Instance.DyslexicFontMode(dyslexicFontToggle.isOn);
     }
 }
