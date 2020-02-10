@@ -3119,6 +3119,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3c1bdbe07e7b44581c80936988b1f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &739256844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739256841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a69da2b9361864998b899ff3141b99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeColorTime: 1
+  changeColorDuration: 10
 --- !u!1 &742615920
 GameObject:
   m_ObjectHideFlags: 0
@@ -8039,7 +8053,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 739256840}
-        m_MethodName: NewRandomColor
+        m_MethodName: SetColorMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

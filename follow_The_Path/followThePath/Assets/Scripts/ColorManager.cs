@@ -66,28 +66,12 @@ public class ColorManager : MonoBehaviour
     #endregion
 
     #region RANDOM COLORS VARIABLES
-    [Space(5)]
-
-    private ColorIndex tileIndex = new ColorIndex();
-
-    [Tooltip("How fast will the change of color happen? The lower the value, the faster the change happens")]
-    [SerializeField, Range(0.1f, 10f)]
-    private float changeColorTime = 1f;
-
-    // TODO 1a. Use another variable that holds the value 60 and that multiplies with another value
-    // TODO 1b. example "changeDuration" holds the values 0.1 - 10 in a Range
-    // TODO 1c. those example values in 1b. can make it into minutes (or seconds) for full release or testing
-    [Tooltip("Duration of time left until the color on materials will change")]
-    [SerializeField, Range(10f, 300f)]
-    private float changeColorDuration = 30f;
-    // How much much of the current time is left until the color changes again?
-    private float currentColorDuration;
-
     [Tooltip("Randomly changes colors on the level when active")]
     [SerializeField]
     private Toggle randomColorsToggle;
+
     public Toggle RandomColorsToggle { get { return randomColorsToggle; } }
-    public bool RandomColorsToggleOn { get { return randomColorsToggle.isOn; } }
+
     [Tooltip("Visual element that the user can see if randomizing colors are active or not")]
     [SerializeField]
     private TextMeshProUGUI randomColorsStatus;
@@ -158,11 +142,8 @@ public class ColorManager : MonoBehaviour
         // To be removed (find out if it is some or all of them
         currentTileColor = tileMaterial.color;
         currentFloorColor = floorMaterial.color;
-        
-        SelectNewRandomColorIndices();
-        UpdateColors(1f);
-        
-   //     StartCoroutine(MakeRandomColor());
+
+        SetColorMode();
     }
 
     // Update is called once per frame
@@ -170,90 +151,6 @@ public class ColorManager : MonoBehaviour
     {
 
     }
-    #endregion
-
-    #region RANDOM COLOR METHODS
-
-    /// <summary>
-    /// Updates color indices for all indices
-    /// </summary>
-    private void SelectNewRandomColorIndices()
-    {
-        // Cycles the indices in the lists of colors (Tiles and Floors)
-        SetNewColorIndice(tileIndex, tileColorList); // Copy this row and change tileIndex and tileColorList to floor or other, if adding more.
-        SetNewColorIndice(tileIndex, floorColorList);
-    }
-
-    /// <summary>
-    /// Selects new indices for the provided indice, from the provided list.
-    /// </summary>
-    /// <param name="indice">The indice to update</param>
-    /// <param name="colors">The list of colors to choose from</param>
-    private void SetNewColorIndice(ColorIndex indice, Color[] colors)
-    {
-        // We've completed one full cycle of color fade, so "next" color index should be saved as "previous"
-        indice.previous = indice.next;
-        // Select a new color from the provided list
-        indice.next = Random.Range(0, colors.Length - 1);
-    }
-
-    /// <summary>
-    /// Updates colors for all materials
-    /// </summary>
-    /// <param name="fraction"></param>
-    private void UpdateColors(float fraction)
-    {
-        // Updates the color of the material on Tiles and Floors
-        UpdateColor(tileMaterial, tileColorList, tileIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
-        UpdateColor(floorMaterial, floorColorList, tileIndex, fraction);
-        currentColorDuration = changeColorDuration;
-    }
-
-    /// <summary>
-    /// Updates color for the specified material
-    /// </summary>
-    /// <param name="material"></param>
-    /// <param name="colorList"></param>
-    /// <param name="indice"></param>
-    /// <param name="fraction"></param>
-    private void UpdateColor(Material material, Color[] colorList, ColorIndex indice, float fraction)
-    {
-        material.color = Color.Lerp(colorList[indice.previous], colorList[indice.next], fraction);
-    }
-
-    /// <summary>
-    /// "Blends" one color into another predetermined color 
-    /// </summary>
-    IEnumerator MakeRandomColor()
-    {
-        float elapsedTime = 0f;
-
-        while (true)
-        {
-            SelectNewRandomColorIndices(); // Select the new Colors
-            while (elapsedTime < changeColorTime)
-            {
-                // This loop makes sure the color is updated
-                elapsedTime += Time.deltaTime;
-                float fraction = Mathf.Sin(elapsedTime / changeColorTime);
-
-                UpdateColors(fraction); // Update the actual material colors
-
-                yield return new WaitForSeconds(0);
-            }
-            elapsedTime = 0;
-            yield return new WaitForSeconds(changeColorDuration);
-        }
-    }
-
-    /// <summary>
-    /// To easier keep track of two indices
-    /// </summary>
-    private class ColorIndex
-    {
-        public int previous, next;
-    }
-
     #endregion
 
     #region SET SPECIFIC COLOR METHODS
@@ -264,14 +161,15 @@ public class ColorManager : MonoBehaviour
     public void SetColorMode()
     {
 
-        if (RandomColorsToggleOn)
+        if (randomColorsToggle.isOn)
         {
             ///<summary>
             /// Color Randomization is active and set specific color dropdown is non-interactable
             /// </summary>
 
             // TODO Add new random color method here
-            StartCoroutine(MakeRandomColor());
+            RandomColor.Instance.StartRandomColor();
+            //StartCoroutine(MakeRandomColor());
             colorDropdown.interactable = false;
             randomColorsStatus.text = "ON";
         }
@@ -280,7 +178,8 @@ public class ColorManager : MonoBehaviour
             ///<summary>
             /// Color randomization is inactive and set specific color dropdown is interactable
             /// </summary>
-            StopCoroutine(MakeRandomColor());
+            RandomColor.Instance.StopRandomColor();
+            //StopCoroutine(MakeRandomColor());
             colorDropdown.interactable = true;
             randomColorsStatus.text = "OFF";
         }

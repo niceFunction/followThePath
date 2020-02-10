@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,17 +9,9 @@ using UnityEngine;
 /// <param name="RandomColor"></param>
 public class RandomColor : MonoBehaviour
 {
-    [SerializeField, Tooltip("The material attached to the Tiles")]
-    private Material tileMaterial;
-    [SerializeField, Tooltip("The material attached to the Floors")]
-    private Material floorMaterial;
-
-    [SerializeField, Tooltip("List of colors for the Tiles (In lighter hues)")]
-    private Color[] tileColorList;
-    [SerializeField, Tooltip("List of colors for the Floors (in darker hues)")]
-    private Color[] floorColorList;
 
     private ColorIndex tileIndex = new ColorIndex();
+    private ColorIndex floorIndex = new ColorIndex();
 
     [Tooltip("How fast will the change of color happen? The lower the value, the faster the change happens")]
     [SerializeField, Range(0.1f, 10f)] 
@@ -30,12 +23,13 @@ public class RandomColor : MonoBehaviour
     // How much much of the current time is left until the color changes again?
     private float currentColorDuration;
 
+    public static RandomColor Instance { get; private set; }
+
     void Start()
     {
+        Instance = this;
         SelectNewRandomColorIndices();
         UpdateColors(1f);
-        
-        StartCoroutine(MakeRandomColor());
     }
 
     /// <summary>
@@ -44,8 +38,8 @@ public class RandomColor : MonoBehaviour
     private void SelectNewRandomColorIndices()
     {
         // Cycles the indices in the lists of colors (Tiles and Floors)
-        SetNewColorIndice(tileIndex, tileColorList); // Copy this row and change tileIndex and tileColorList to floor or other, if adding more.
-        SetNewColorIndice(tileIndex, floorColorList);
+        SetNewColorIndice(tileIndex, ColorManager.Instance.TileColorList); // Copy this row and change tileIndex and tileColorList to floor or other, if adding more.
+        SetNewColorIndice(floorIndex, ColorManager.Instance.FloorColorList);
     }
 
     /// <summary>
@@ -58,7 +52,7 @@ public class RandomColor : MonoBehaviour
         // We've completed one full cycle of color fade, so "next" color index should be saved as "previous"
         indice.previous = indice.next;
         // Select a new color from the provided list
-        indice.next = Random.Range(0, colors.Length - 1);
+        indice.next = UnityEngine.Random.Range(0, colors.Length - 1);
     }
 
     /// <summary>
@@ -68,8 +62,8 @@ public class RandomColor : MonoBehaviour
     private void UpdateColors(float fraction)
     {
         // Updates the color of the material on Tiles and Floors
-        UpdateColor(tileMaterial, tileColorList, tileIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
-        UpdateColor(floorMaterial, floorColorList, tileIndex, fraction);
+        UpdateColor(ColorManager.Instance.TileMaterial, ColorManager.Instance.TileColorList, tileIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
+        UpdateColor(ColorManager.Instance.FloorMaterial, ColorManager.Instance.FloorColorList, floorIndex, fraction);
         currentColorDuration = changeColorDuration;
 
     }
@@ -96,11 +90,12 @@ public class RandomColor : MonoBehaviour
         while(true)
         {
             SelectNewRandomColorIndices(); // Select the new Colors
-            while(elapsedTime < changeColorTime)
+            while(elapsedTime <= changeColorTime)
             {
                 // This loop makes sure the color is updated
                 elapsedTime += Time.deltaTime;
-                float fraction = Mathf.Sin(elapsedTime / changeColorTime);
+                //    float fraction = Mathf.Sin(elapsedTime / changeColorTime);
+                float fraction = elapsedTime / changeColorTime;
 
                 UpdateColors(fraction); // Update the actual material colors
 
@@ -117,5 +112,21 @@ public class RandomColor : MonoBehaviour
     private class ColorIndex
     {
         public int previous, next;
+    }
+
+    /// <summary>
+    /// Starts the routine for shifting colors randomly
+    /// </summary>
+    public void StartRandomColor()
+    {
+        StartCoroutine(MakeRandomColor());
+    }
+
+    /// <summary>
+    /// Stops the routine for shifting colors randomly
+    /// </summary>
+    public void StopRandomColor()
+    {
+        StopCoroutine(MakeRandomColor());
     }
 }
