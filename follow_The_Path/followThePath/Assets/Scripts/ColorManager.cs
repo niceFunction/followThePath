@@ -63,10 +63,6 @@ public class ColorManager : MonoBehaviour
     [Tooltip("When colors in the level isn't active, user can specifically set level colors")]
     [SerializeField]
     private TMP_Dropdown colorDropdown;
-    public TMP_Dropdown ColorDropdown { get { return colorDropdown; } }
-
-    // Variables used to set specific colors
-    List<string> colorNames = new List<string>() { "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "VIOLET" };
     #endregion
 
     #region RANDOM COLORS VARIABLES
@@ -166,7 +162,7 @@ public class ColorManager : MonoBehaviour
         SelectNewRandomColorIndices();
         UpdateColors(1f);
         
-        StartCoroutine(MakeRandomColor());
+   //     StartCoroutine(MakeRandomColor());
     }
 
     // Update is called once per frame
@@ -276,7 +272,7 @@ public class ColorManager : MonoBehaviour
 
             // TODO Add new random color method here
             StartCoroutine(MakeRandomColor());
-            ColorDropdown.interactable = false;
+            colorDropdown.interactable = false;
             randomColorsStatus.text = "ON";
         }
         else
@@ -285,25 +281,16 @@ public class ColorManager : MonoBehaviour
             /// Color randomization is inactive and set specific color dropdown is interactable
             /// </summary>
             StopCoroutine(MakeRandomColor());
-            ColorDropdown.interactable = true;
+            colorDropdown.interactable = true;
             randomColorsStatus.text = "OFF";
         }
 
         // if the grayscale toggle is active, make color dropdown not interactable
         if (GrayscaleToggle.isOn == true)
         {
-            ColorDropdown.interactable = false;
+            colorDropdown.interactable = false;
         }
 
-    }
-
-    /// <summary>
-    /// Populates the dropdown UI menu with a list of strings
-    /// </summary>
-    void PopulateColorList()
-    {
-        //ColorDropdown.AddOptions(colorNames);
-        SpecificColor.Instance.PopulateColors();
     }
 
     /// <summary>
@@ -313,52 +300,7 @@ public class ColorManager : MonoBehaviour
 
     public void SetSpecificColor()
     {
-
-        SpecificColor.Instance.ParticularColor(ColorDropdown.value);
-        /*
-        if (index == 0)
-        {
-            // Set colors to RED
-            tileMaterial.color = tileColorList[0];
-            floorMaterial.color = floorColorList[0];
-        }
-        else if (index == 1)
-        {
-            // Set colors to ORANGE
-            tileMaterial.color = tileColorList[1];
-            floorMaterial.color = floorColorList[1];
-        }
-        else if (index == 2)
-        {
-            // Set colors to YELLOW
-            tileMaterial.color = tileColorList[2];
-            floorMaterial.color = floorColorList[2];
-        }
-        else if (index == 3)
-        {
-            // Set colors to GREEN
-            tileMaterial.color = tileColorList[3];
-            floorMaterial.color = floorColorList[3];
-        }
-        else if (index == 4)
-        {
-            // Set colors to BLUE
-            tileMaterial.color = tileColorList[4];
-            floorMaterial.color = floorColorList[4];
-        }
-        else if (index == 5)
-        {
-            // Set colors to INDIGO
-            tileMaterial.color = tileColorList[5];
-            floorMaterial.color = floorColorList[5];
-        }
-        else if (index == 6)
-        {
-            // Set colors to VIOLET
-            tileMaterial.color = tileColorList[6];
-            floorMaterial.color = floorColorList[6];
-        }
-        */
+        SpecificColor.Instance.ParticularColor(colorDropdown.value);
     }
 
     #endregion

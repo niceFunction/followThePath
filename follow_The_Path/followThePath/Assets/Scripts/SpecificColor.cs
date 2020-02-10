@@ -9,38 +9,12 @@ using UnityEngine.UI;
 /// </summary>
 public class SpecificColor : MonoBehaviour
 {
-    /*
-    // colorDropDown and randomizeColorsToggle are used for specifying colors
-    [Tooltip("When colors in the level isn't active, user can specifically set level colors")]
-    [SerializeField]
-    private TMP_Dropdown colorDropdown;
-    public TMP_Dropdown ColorDropdown { get { return colorDropdown; } }
-    */
+    // TODO actually make ColorManager pull this list of colornames and apply to the drop down
+    public readonly List<string> colorNames = new List<string>() { "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "VIOLET" };
 
-    // Variables used to set specific colors
-    List<string> colorNames = new List<string>() { "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "VIOLET" };
+    // TODO define the color list (Color32 color and string name) elsewhere, with color and name, and use that for the color settings (dropdown, random, etc)
 
     public static SpecificColor Instance { get; private set; }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    /// <summary>
-    /// Populates the dropdown UI menu with a list of strings
-    /// </summary>
-    public void PopulateColors()
-    {
-        ColorManager.Instance.ColorDropdown.AddOptions(colorNames);
-    }
 
     /// <summary>
     /// When an "index" in the dropdown menu is chosen, sets materials to that color
@@ -90,6 +64,5 @@ public class SpecificColor : MonoBehaviour
             ColorManager.Instance.TileMaterial.color = ColorManager.Instance.TileColorList[6];
             ColorManager.Instance.FloorMaterial.color = ColorManager.Instance.FloorColorList[6];
         }
-        //Debug.Log("Specific color index is: " + specificIndex);
     }
 }
