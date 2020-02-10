@@ -122,38 +122,8 @@ public class ColorManager : MonoBehaviour
     [SerializeField]
     // Visual text element to show the player if the dyslexic font is active or not
     private TextMeshProUGUI dyslexicFontStatus;
-    public TextMeshProUGUI DyslexicFontStatus { get { return dyslexicFontStatus; } }
 
-    // Regular font variables
-    [SerializeField, Space(5)]
-    private TMP_FontAsset regularFont;
-    public TMP_FontAsset RegularFont { get { return regularFont; } }
-    [SerializeField]
-    [Range(0.01f, 1)]
-    [Tooltip("Sets the scale on the regular font")]
-    private float regularFontScale;
-    public float RegularFontScale { get { return regularFontScale; } }
-
-    // Dyslexic font variables
-    [SerializeField]
-    [Range(0.01f, 1)]
-    [Tooltip("Sets the scale on the dyslexic font")]
-    private float dyslexicFontScale;
-    public float DyslexicFontScale { get { return dyslexicFontScale; } }
-    [SerializeField, Space(5)]
-    private TMP_FontAsset dyslexicFont;
-    public TMP_FontAsset DyslexicFont { get { return dyslexicFont; } }
-
-    // Sets what ever is the current active font and its current scale
-    public TMP_FontAsset currentFont { get; private set; }
-
-    public float currentScale { get; private set; }
     #endregion
-
-    private Accessibility accessibility;
-
-    // Currently used to affect font size but can have other areas to be used
-    private TextMeshPro TMP;
 
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
@@ -404,11 +374,11 @@ public class ColorManager : MonoBehaviour
         // Update the GUI
         if (dyslexicFontToggle.isOn)
         {
-            ColorManager.Instance.DyslexicFontStatus.text = "ON";
+            dyslexicFontStatus.text = "ON";
         }
         else
         {
-            ColorManager.Instance.DyslexicFontStatus.text = "OFF";
+            dyslexicFontStatus.text = "OFF";
         }
             // Update all text
         Accessibility.Instance.DyslexicFontMode(dyslexicFontToggle.isOn);
