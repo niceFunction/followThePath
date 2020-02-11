@@ -9,9 +9,8 @@ using UnityEngine;
 /// <param name="RandomColor"></param>
 public class RandomColor : MonoBehaviour
 {
-
-    private ColorIndex tileIndex = new ColorIndex();
-    private ColorIndex floorIndex = new ColorIndex();
+    // Both of tile/floor uses the same index so that the colors matches the same index on the lists of colors
+    private ColorIndex randomColorIndex = new ColorIndex();
 
     [Tooltip("How fast will the change of color happen? The lower the value, the faster the change happens")]
     [SerializeField, Range(0.1f, 10f)] 
@@ -38,8 +37,8 @@ public class RandomColor : MonoBehaviour
     private void SelectNewRandomColorIndices()
     {
         // Cycles the indices in the lists of colors (Tiles and Floors)
-        SetNewColorIndice(tileIndex, ColorManager.Instance.TileColorList); // Copy this row and change tileIndex and tileColorList to floor or other, if adding more.
-        SetNewColorIndice(floorIndex, ColorManager.Instance.FloorColorList);
+        SetNewColorIndice(randomColorIndex, ColorManager.Instance.TileColorList); // Copy this row and change tileIndex and tileColorList to floor or other, if adding more.
+        SetNewColorIndice(randomColorIndex, ColorManager.Instance.FloorColorList);
     }
 
     /// <summary>
@@ -62,8 +61,8 @@ public class RandomColor : MonoBehaviour
     private void UpdateColors(float fraction)
     {
         // Updates the color of the material on Tiles and Floors
-        UpdateColor(ColorManager.Instance.TileMaterial, ColorManager.Instance.TileColorList, tileIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
-        UpdateColor(ColorManager.Instance.FloorMaterial, ColorManager.Instance.FloorColorList, floorIndex, fraction);
+        UpdateColor(ColorManager.Instance.TileMaterial, ColorManager.Instance.TileColorList, randomColorIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
+        UpdateColor(ColorManager.Instance.FloorMaterial, ColorManager.Instance.FloorColorList, randomColorIndex, fraction);
         currentColorDuration = changeColorDuration;
 
     }
@@ -94,7 +93,7 @@ public class RandomColor : MonoBehaviour
             {
                 // This loop makes sure the color is updated
                 elapsedTime += Time.deltaTime;
-                //    float fraction = Mathf.Sin(elapsedTime / changeColorTime);
+                // float fraction = Mathf.Sin(elapsedTime / changeColorTime);
                 float fraction = elapsedTime / changeColorTime;
 
                 UpdateColors(fraction); // Update the actual material colors

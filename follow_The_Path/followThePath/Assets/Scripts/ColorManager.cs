@@ -63,6 +63,8 @@ public class ColorManager : MonoBehaviour
     [Tooltip("When colors in the level isn't active, user can specifically set level colors")]
     [SerializeField]
     private TMP_Dropdown colorDropdown;
+
+    public TMP_Dropdown ColorDropdown { get { return colorDropdown; } }
     #endregion
 
     #region RANDOM COLORS VARIABLES
@@ -161,26 +163,19 @@ public class ColorManager : MonoBehaviour
     public void SetColorMode()
     {
 
-        if (randomColorsToggle.isOn)
+        if (RandomColorsToggle.isOn)
         {
-            ///<summary>
-            /// Color Randomization is active and set specific color dropdown is non-interactable
-            /// </summary>
-
+            // Color Randomization is active and set specific color dropdown is non-interactable
             // TODO Add new random color method here
             RandomColor.Instance.StartRandomColor();
-            //StartCoroutine(MakeRandomColor());
-            colorDropdown.interactable = false;
+            ColorDropdown.interactable = false;
             randomColorsStatus.text = "ON";
         }
         else
         {
-            ///<summary>
-            /// Color randomization is inactive and set specific color dropdown is interactable
-            /// </summary>
+            // Color randomization is inactive and set specific color dropdown is interactable
             RandomColor.Instance.StopRandomColor();
-            //StopCoroutine(MakeRandomColor());
-            colorDropdown.interactable = true;
+            ColorDropdown.interactable = true;
             randomColorsStatus.text = "OFF";
         }
 
@@ -191,20 +186,24 @@ public class ColorManager : MonoBehaviour
         }
 
     }
-
+    
+    // TODO rework summary (note for self)
     /// <summary>
     /// When an "index" in the dropdown menu is chosen, sets materials to that color
     /// </summary>
     /// <param name="index"></param>
-
     public void SetSpecificColor()
     {
-        SpecificColor.Instance.ParticularColor(colorDropdown.value);
+        SpecificColor.Instance.ParticularColor(SpecificColor.Instance.colorNames.Count);
     }
 
     #endregion
 
     // Accessibility Methods
+
+    /// <summary>
+    /// Overlays an Image filter over the player camera
+    /// </summary>
     public void SetGrayscaleOverlay()
     {
         Accessibility.Instance.GrayscaleOverlay();
@@ -221,7 +220,7 @@ public class ColorManager : MonoBehaviour
         {
             dyslexicFontStatus.text = "OFF";
         }
-            // Update all text
+        // Update all text
         Accessibility.Instance.DyslexicFontMode(dyslexicFontToggle.isOn);
     }
 }

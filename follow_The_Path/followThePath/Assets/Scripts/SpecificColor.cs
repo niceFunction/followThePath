@@ -12,7 +12,8 @@ public class SpecificColor : MonoBehaviour
     // TODO actually make ColorManager pull this list of colornames and apply to the drop down
     public readonly List<string> colorNames = new List<string>() { "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "VIOLET" };
 
-    // TODO define the color list (Color32 color and string name) elsewhere, with color and name, and use that for the color settings (dropdown, random, etc)
+    // TODO 6a define the color list (Color32 color and string name) elsewhere,
+    // TODO 6b with color and name, and use that for the color settings (dropdown, random, etc)
 
     public static SpecificColor Instance { get; private set; }
 

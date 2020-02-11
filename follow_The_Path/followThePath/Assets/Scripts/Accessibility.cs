@@ -80,8 +80,7 @@ public class Accessibility : MonoBehaviour
     /// Creates a grayscale overlay "over" the player camera
     /// </summary>
     public void GrayscaleOverlay()
-    {
-        
+    { 
         // NOTE: Keep in mind to see if enabling an image effect on the camera is too costly 
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
