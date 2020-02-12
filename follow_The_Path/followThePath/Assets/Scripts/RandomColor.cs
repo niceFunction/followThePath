@@ -24,9 +24,14 @@ public class RandomColor : MonoBehaviour
 
     public static RandomColor Instance { get; private set; }
 
-    void Start()
+
+    private void Awake()
     {
         Instance = this;
+    }
+
+    void Start()
+    {
         SelectNewRandomColorIndices();
         UpdateColors(1f);
     }
@@ -39,6 +44,7 @@ public class RandomColor : MonoBehaviour
         // Cycles the indices in the lists of colors (Tiles and Floors)
         SetNewColorIndice(randomColorIndex, ColorManager.Instance.TileColorList); // Copy this row and change tileIndex and tileColorList to floor or other, if adding more.
         SetNewColorIndice(randomColorIndex, ColorManager.Instance.FloorColorList);
+        SetNewColorIndice(randomColorIndex, ColorManager.Instance.ColorList.Length);
     }
 
     /// <summary>
@@ -46,7 +52,7 @@ public class RandomColor : MonoBehaviour
     /// </summary>
     /// <param name="indice">The indice to update</param>
     /// <param name="colors">The list of colors to choose from</param>
-    private void SetNewColorIndice(ColorIndex indice, Color[] colors)
+    private void SetNewColorIndice(ColorIndex indice, Colors.ColorGroup[] colors)
     {
         // We've completed one full cycle of color fade, so "next" color index should be saved as "previous"
         indice.previous = indice.next;

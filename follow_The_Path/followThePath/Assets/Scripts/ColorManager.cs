@@ -35,6 +35,12 @@ public class ColorManager : MonoBehaviour
 
 
     [Space(5)]
+
+    [SerializeField]
+    private Colors.ColorGroup[] colorList;
+
+    public Colors.ColorGroup[] ColorList { get { return colorList; }}
+
     /// <summary>
     /// The Color arrays size are specified in the Inspector.
     /// In this case, colors of the Rainbow and the colors for the floor
@@ -44,6 +50,7 @@ public class ColorManager : MonoBehaviour
     [Tooltip("Creates an Array of Colors for Tiles")]
     private Color[] tileColorList;
     public Color[] TileColorList { get { return tileColorList; } }
+
 
 
     [SerializeField]
