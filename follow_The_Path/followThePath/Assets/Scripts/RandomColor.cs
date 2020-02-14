@@ -42,9 +42,9 @@ public class RandomColor : MonoBehaviour
     private void SelectNewRandomColorIndices()
     {
         // Cycles the indices in the lists of colors (Tiles and Floors)
-        SetNewColorIndice(randomColorIndex, ColorManager.Instance.TileColorList); // Copy this row and change tileIndex and tileColorList to floor or other, if adding more.
-        SetNewColorIndice(randomColorIndex, ColorManager.Instance.FloorColorList);
-        SetNewColorIndice(randomColorIndex, ColorManager.Instance.ColorList.Length);
+        //SetNewColorIndice(randomColorIndex, ColorManager.Instance.TileColorList); // Copy this row and change tileIndex and tileColorList to floor or other, if adding more.
+        //SetNewColorIndice(randomColorIndex, ColorManager.Instance.FloorColorList);
+        SetNewColorIndice(randomColorIndex, );
     }
 
     /// <summary>
