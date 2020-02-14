@@ -54,10 +54,11 @@ public class RandomColor : MonoBehaviour
     /// <param name="colors">The list of colors to choose from</param>
     private void SetNewColorIndice(ColorIndex indice, Colors.ColorGroup[] colors)
     {
+        int maxValue = colors.Length - 1;
         // We've completed one full cycle of color fade, so "next" color index should be saved as "previous"
         indice.previous = indice.next;
         // Select a new color from the provided list
-        indice.next = UnityEngine.Random.Range(0, colors.Length - 1);
+        indice.next = UnityEngine.Random.Range(0, maxValue);
     }
 
     /// <summary>
