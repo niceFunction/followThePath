@@ -22,8 +22,6 @@ public class RandomColor : MonoBehaviour
     // How much much of the current time is left until the color changes again?
     private float currentColorDuration;
 
-    private int maxColorValue = ColorManager.Instance.ColorList.Length - 1;
-
     public static RandomColor Instance { get; private set; }
 
 
@@ -44,8 +42,7 @@ public class RandomColor : MonoBehaviour
     private void SelectNewRandomColorIndices()
     {
         // Cycles the indices in the lists of colors (Tiles and Floors)
-        //SetNewColorIndice(randomColorIndex, ColorManager.Instance.TileColorList); // Copy this row and change tileIndex and tileColorList to floor or other, if adding more.
-        //SetNewColorIndice(randomColorIndex, ColorManager.Instance.FloorColorList);
+        // Copy this row and change tileIndex and tileColorList to floor or other, if adding more.
         SetNewColorIndice(randomColorIndex, ColorManager.Instance.ColorList);
     }
 
@@ -70,22 +67,34 @@ public class RandomColor : MonoBehaviour
     private void UpdateColors(float fraction)
     {
         // Updates the color of the material on Tiles and Floors
-        UpdateColor(ColorManager.Instance.TileMaterial, ColorManager.Instance.TileColorList, randomColorIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
-        UpdateColor(ColorManager.Instance.FloorMaterial, ColorManager.Instance.FloorColorList, randomColorIndex, fraction);
+        UpdateTileColor(ColorManager.Instance.TileMaterial, ColorManager.Instance.ColorList, randomColorIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
+        UpdateFloorColor(ColorManager.Instance.FloorMaterial, ColorManager.Instance.ColorList, randomColorIndex, fraction);
         currentColorDuration = changeColorDuration;
 
     }
 
     /// <summary>
-    /// Updates color for the specified material
+    /// Updates color for the Tile material
     /// </summary>
     /// <param name="material"></param>
     /// <param name="colorList"></param>
     /// <param name="indice"></param>
     /// <param name="fraction"></param>
-    private void UpdateColor(Material material, Color[] colorList, ColorIndex indice, float fraction)
+    private void UpdateTileColor(Material material, Colors.ColorGroup[] colorList, ColorIndex indice, float fraction)
     {
-        material.color = Color.Lerp(colorList[indice.previous], colorList[indice.next], fraction);
+        material.color = Color.Lerp(colorList[indice.previous].TileColor, colorList[indice.next].TileColor,fraction);   
+    }
+
+    /// <summary>
+    /// Updates color for the Floor material
+    /// </summary>
+    /// <param name="material"></param>
+    /// <param name="colorList"></param>
+    /// <param name="indice"></param>
+    /// <param name="fraction"></param>
+    private void UpdateFloorColor(Material material, Colors.ColorGroup[] colorList, ColorIndex indice, float fraction)
+    {
+        material.color = Color.Lerp(colorList[indice.previous].FloorColor, colorList[indice.next].FloorColor, fraction);
     }
 
     /// <summary>

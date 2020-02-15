@@ -35,28 +35,16 @@ public class ColorManager : MonoBehaviour
 
 
     [Space(5)]
-
+    /*
+     The size of the color list is specified in the Inspector,
+     in that array Name of the color and adding 2 colors for
+     Tile and Floor can be added
+    */
     [SerializeField]
+    [Tooltip("Creates an array for specifying name and color for Tiles/Floors")]
     private Colors.ColorGroup[] colorList;
 
     public Colors.ColorGroup[] ColorList { get { return colorList; }}
-
-    /// <summary>
-    /// The Color arrays size are specified in the Inspector.
-    /// In this case, colors of the Rainbow and the colors for the floor
-    /// is in a darker hue.
-    /// </summary>
-    [SerializeField]
-    [Tooltip("Creates an Array of Colors for Tiles")]
-    private Color[] tileColorList;
-    public Color[] TileColorList { get { return tileColorList; } }
-
-
-
-    [SerializeField]
-    [Tooltip("Create an Array of Colors for Floors")]
-    private Color[] floorColorList;
-    public Color[] FloorColorList { get { return floorColorList; } }
 
     // Used to get/set the current Color
     private Color currentTileColor;
@@ -149,8 +137,8 @@ public class ColorManager : MonoBehaviour
     void Start()
     {
         // To be removed (find out if it is some or all of them
-        currentTileColor = tileMaterial.color;
-        currentFloorColor = floorMaterial.color;
+        currentTileColor = TileMaterial.color;
+        currentFloorColor = FloorMaterial.color;
 
         SetColorMode();
     }
