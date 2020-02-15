@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// A temporary class for testing new method of randomizing order of colors from predetermined "list" of colors
+/// Class that when active shifts the colors on Tiles/Floors into new colors from predetermined list of colors
 /// </summary>
 /// <param name="RandomColor"></param>
 public class RandomColor : MonoBehaviour
@@ -22,8 +22,7 @@ public class RandomColor : MonoBehaviour
     // How much much of the current time is left until the color changes again?
     private float currentColorDuration;
 
-    private int maxColorValue;
-
+    private int maxColorValue = ColorManager.Instance.ColorList.Length - 1;
 
     public static RandomColor Instance { get; private set; }
 
@@ -65,7 +64,7 @@ public class RandomColor : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates colors for all materials
+    /// Updates colors for all materials by choosing a random index and shifts it over time
     /// </summary>
     /// <param name="fraction"></param>
     private void UpdateColors(float fraction)
@@ -90,7 +89,7 @@ public class RandomColor : MonoBehaviour
     }
 
     /// <summary>
-    /// "Blends" one color into another predetermined color 
+    /// Coroutine that shifts colors randomly
     /// </summary>
     IEnumerator MakeRandomColor()
     {
