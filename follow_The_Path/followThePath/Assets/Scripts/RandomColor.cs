@@ -22,6 +22,9 @@ public class RandomColor : MonoBehaviour
     // How much much of the current time is left until the color changes again?
     private float currentColorDuration;
 
+    private int maxColorValue;
+
+
     public static RandomColor Instance { get; private set; }
 
 
@@ -44,7 +47,7 @@ public class RandomColor : MonoBehaviour
         // Cycles the indices in the lists of colors (Tiles and Floors)
         //SetNewColorIndice(randomColorIndex, ColorManager.Instance.TileColorList); // Copy this row and change tileIndex and tileColorList to floor or other, if adding more.
         //SetNewColorIndice(randomColorIndex, ColorManager.Instance.FloorColorList);
-        SetNewColorIndice(randomColorIndex, );
+        SetNewColorIndice(randomColorIndex, ColorManager.Instance.ColorList);
     }
 
     /// <summary>
