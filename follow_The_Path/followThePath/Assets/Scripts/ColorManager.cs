@@ -131,7 +131,7 @@ public class ColorManager : MonoBehaviour
         currentTileColor = TileMaterial.color;
         currentFloorColor = FloorMaterial.color;
 
-        ColorDropdown.AddOptions(SpecificColor.Instance.colorNames);
+        //ColorDropdown.AddOptions(SpecificColor.Instance.colorNames);
 
         SetColorMode();
     }
