@@ -10,8 +10,9 @@ using UnityEngine.UI;
 public class SpecificColor : MonoBehaviour
 {
     // TODO actually make ColorManager pull this list of colornames and apply to the drop down
-    public readonly List<string> colorNames = new List<string>() { "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "VIOLET" };
+    public List<string> colorNames = new List<string>() { "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "VIOLET" };
 
+    private List<string> storeColorNames = new List<string>();
     // TODO 6a define the color list (Color32 color and string name) elsewhere,
     // TODO 6b with color and name, and use that for the color settings (dropdown, random, etc)
 
@@ -22,6 +23,15 @@ public class SpecificColor : MonoBehaviour
 
     public static SpecificColor Instance { get; private set; }
 
+    private void Awake()
+    {
+        ColorManager.Instance.ColorDropdown.options.Clear();
+        foreach (string c in colorNames)
+        {
+            // https://forum.unity.com/threads/load-dropdown-with-data-from-list.412860/
+            ColorManager.Instance.ColorDropdown.AddOptions(new List<TMP_Dropdown.OptionData>(colorNames = c));
+        }
+    }
 
     public void PopulateColorNames()
     {
@@ -36,7 +46,7 @@ public class SpecificColor : MonoBehaviour
         if (index == 0)
         {
             // Set colors to RED
-            ColorManager.Instance.ColorDropdown.AddOptions(ColorManager.Instance.ColorList[0].Name);
+            //ColorManager.Instance.ColorDropdown.AddOptions(ColorManager.Instance.ColorList[0].Name);
             ColorManager.Instance.TileMaterial.color = ColorManager.Instance.ColorList[0].TileColor;
             ColorManager.Instance.FloorMaterial.color = ColorManager.Instance.ColorList[0].FloorColor;
         }
