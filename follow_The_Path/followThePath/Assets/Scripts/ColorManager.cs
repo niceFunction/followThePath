@@ -108,15 +108,6 @@ public class ColorManager : MonoBehaviour
     
 
     public static ColorManager Instance { get; private set; } 
-/*
-    public static void newUxActive()
-    {
-        if (onActiveUX != null)
-        {
-            onActiveUX();
-        }
-    }
-*/
 
     #region GENERIC METHODS
     void Awake()
@@ -136,9 +127,11 @@ public class ColorManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // To be removed (find out if it is some or all of them
+        // Note: To be removed (find out if it is some or all of them
         currentTileColor = TileMaterial.color;
         currentFloorColor = FloorMaterial.color;
+
+        ColorDropdown.AddOptions(SpecificColor.Instance.colorNames);
 
         SetColorMode();
     }
@@ -146,7 +139,7 @@ public class ColorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Debug.Log(SpecificColor.Instance.colorNames.Count);
     }
     #endregion
 
@@ -189,7 +182,9 @@ public class ColorManager : MonoBehaviour
     /// <param name="index"></param>
     public void SetSpecificColor()
     {
-        SpecificColor.Instance.ParticularColor(SpecificColor.Instance.colorNames.Count);
+        //SpecificColor.Instance.ParticularColor(SpecificColor.Instance.colorNames);
+        //SpecificColor.Instance.ParticularColor(SpecificColor.Instance.colorNames.Count);
+        
     }
 
     #endregion

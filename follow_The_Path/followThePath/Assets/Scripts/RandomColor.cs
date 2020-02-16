@@ -82,7 +82,7 @@ public class RandomColor : MonoBehaviour
     /// <param name="fraction"></param>
     private void UpdateTileColor(Material material, Colors.ColorGroup[] colorList, ColorIndex indice, float fraction)
     {
-        material.color = Color.Lerp(colorList[indice.previous].TileColor, colorList[indice.next].TileColor,fraction);   
+        material.color = Color.Lerp(colorList[indice.previous].TileColor, colorList[indice.next].TileColor, fraction);   
     }
 
     /// <summary>
