@@ -137,7 +137,7 @@ public class ColorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Debug.Log("Current Time: " + RandomColor.Instance.ElapsedTime);
     }
     #endregion
 
@@ -148,7 +148,6 @@ public class ColorManager : MonoBehaviour
     /// </summary>
     public void SetColorMode()
     {
-
         if (RandomColorsToggle.isOn)
         {
             // Color Randomization is active and set specific color dropdown is non-interactable
@@ -170,7 +169,6 @@ public class ColorManager : MonoBehaviour
         {
             colorDropdown.interactable = false;
         }
-
     }
     
     // TODO rework summary (note for self)
@@ -180,7 +178,7 @@ public class ColorManager : MonoBehaviour
     /// <param name="index"></param>
     public void SetSpecificColor()
     {
-           
+        // Do I even need this method?
     }
 
     #endregion

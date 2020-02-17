@@ -22,6 +22,9 @@ public class RandomColor : MonoBehaviour
     // How much much of the current time is left until the color changes again?
     private float currentColorDuration;
 
+    private float elapsedTime = 0f;
+    public float ElapsedTime { get { return elapsedTime; } }
+
     public static RandomColor Instance { get; private set; }
 
 
@@ -34,6 +37,11 @@ public class RandomColor : MonoBehaviour
     {
         SelectNewRandomColorIndices();
         UpdateColors(1f);
+    }
+
+    private void Update()
+    {
+        Debug.Log("Current elapsed time: " + (elapsedTime += Time.deltaTime));
     }
 
     /// <summary>
@@ -102,8 +110,8 @@ public class RandomColor : MonoBehaviour
     /// </summary>
     IEnumerator MakeRandomColor()
     {
-        float elapsedTime = 0f;
-        
+        // TODO 1a. Time still counts down, create variables to start and restart time
+        // TODO 1b. figure out if stopping you should stop time here or somewhere else.
         while(true)
         {
             SelectNewRandomColorIndices(); // Select the new Colors

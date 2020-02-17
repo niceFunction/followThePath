@@ -3479,12 +3479,12 @@ PrefabInstance:
     - target: {fileID: 3941759333624630605, guid: 76279ea77ec4dc54ea28351d82425128,
         type: 3}
       propertyPath: colorList.Array.data[5].Name
-      value: INDIGO
+      value: PURPLE
       objectReference: {fileID: 0}
     - target: {fileID: 3941759333624630605, guid: 76279ea77ec4dc54ea28351d82425128,
         type: 3}
       propertyPath: colorList.Array.data[6].Name
-      value: VIOLET
+      value: PINK
       objectReference: {fileID: 0}
     - target: {fileID: 3941759333624630605, guid: 76279ea77ec4dc54ea28351d82425128,
         type: 3}

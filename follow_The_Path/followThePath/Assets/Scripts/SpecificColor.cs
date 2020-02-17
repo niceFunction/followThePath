@@ -14,17 +14,12 @@ public class SpecificColor : MonoBehaviour
 
     private List<string> storeColorNames = new List<string>();
 
+    public static SpecificColor Instance { get; private set; }
+
     private void Start()
     {
-        for (int i = 0; i < ColorManager.Instance.ColorList.Length; i++)
-        {
-            ColorManager.Instance.ColorDropdown.ClearOptions();
-            storeColorNames.Add(ColorManager.Instance.ColorList[i].Name);
-            ColorManager.Instance.ColorDropdown.AddOptions(storeColorNames);
-        }
+        AddColorNamesToDropdown();
     }
-
-    public static SpecificColor Instance { get; private set; }
 
     private void Awake()
     {
@@ -34,7 +29,6 @@ public class SpecificColor : MonoBehaviour
     /// <summary>
     /// Populates the "SetSpecificColor" dropdown with the names of colors from ColorList
     /// </summary>
-    /* Unnecessary?
     private void AddColorNamesToDropdown() // For reference: This could be any items that uses List
     {
         for (int i = 0; i < ColorManager.Instance.ColorList.Length; i++)
@@ -43,8 +37,7 @@ public class SpecificColor : MonoBehaviour
             storeColorNames.Add(ColorManager.Instance.ColorList[i].Name);
             ColorManager.Instance.ColorDropdown.AddOptions(storeColorNames);
         }
-    }
-    */
+    }    
 
     /// <summary>
     /// When an "index" in the dropdown menu is chosen, sets materials to that color
