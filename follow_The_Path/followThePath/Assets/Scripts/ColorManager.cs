@@ -131,15 +131,13 @@ public class ColorManager : MonoBehaviour
         currentTileColor = TileMaterial.color;
         currentFloorColor = FloorMaterial.color;
 
-        //ColorDropdown.AddOptions(SpecificColor.Instance.colorNames);
-
         SetColorMode();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(SpecificColor.Instance.colorNames.Count);
+
     }
     #endregion
 
@@ -182,9 +180,7 @@ public class ColorManager : MonoBehaviour
     /// <param name="index"></param>
     public void SetSpecificColor()
     {
-        //SpecificColor.Instance.ParticularColor(SpecificColor.Instance.colorNames);
-        //SpecificColor.Instance.ParticularColor(SpecificColor.Instance.colorNames.Count);
-        
+           
     }
 
     #endregion

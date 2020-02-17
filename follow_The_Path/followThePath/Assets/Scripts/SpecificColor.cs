@@ -13,42 +13,39 @@ public class SpecificColor : MonoBehaviour
     public List<string> colorNames = new List<string>() { "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "VIOLET" };
 
     private List<string> storeColorNames = new List<string>();
-    // TODO 6a define the color list (Color32 color and string name) elsewhere,
-    // TODO 6b with color and name, and use that for the color settings (dropdown, random, etc)
 
     private void Start()
     {
-
+        for (int i = 0; i < ColorManager.Instance.ColorList.Length; i++)
+        {
+            ColorManager.Instance.ColorDropdown.ClearOptions();
+            storeColorNames.Add(ColorManager.Instance.ColorList[i].Name);
+            ColorManager.Instance.ColorDropdown.AddOptions(storeColorNames);
+        }
     }
 
     public static SpecificColor Instance { get; private set; }
 
     private void Awake()
     {
-        //ColorManager.Instance.ColorDropdown.options.Clear();
-        //ColorManager.Instance.ColorDropdown.AddOptions(new List<TMP_Dropdown.OptionData>());
-        /*
-        foreach (string c in storeColorNames)
-        {
-            // https://forum.unity.com/threads/load-dropdown-with-data-from-list.412860/
-            ColorManager.Instance.ColorDropdown.AddOptions(ColorManager.Instance.ColorList[].Name);
-
-        }
-        */
-        for(int i = 0; i < ColorManager.Instance.ColorList.Length; i++)
-        {
-            foreach(Colors.ColorGroup c in ColorManager.Instance.ColorList)
-            {
-                c.Name.ToString();
-            }
-        }
 
     }
 
-    public void PopulateColorNames()
+    /// <summary>
+    /// Populates the "SetSpecificColor" dropdown with the names of colors from ColorList
+    /// </summary>
+    /* Unnecessary?
+    private void AddColorNamesToDropdown() // For reference: This could be any items that uses List
     {
-        //ColorManager.Instance.ColorDropdown.A
+        for (int i = 0; i < ColorManager.Instance.ColorList.Length; i++)
+        {
+            ColorManager.Instance.ColorDropdown.ClearOptions();
+            storeColorNames.Add(ColorManager.Instance.ColorList[i].Name);
+            ColorManager.Instance.ColorDropdown.AddOptions(storeColorNames);
+        }
     }
+    */
+
     /// <summary>
     /// When an "index" in the dropdown menu is chosen, sets materials to that color
     /// </summary>
@@ -58,7 +55,6 @@ public class SpecificColor : MonoBehaviour
         if (index == 0)
         {
             // Set colors to RED
-            //ColorManager.Instance.ColorDropdown.AddOptions(ColorManager.Instance.ColorList[0].Name);
             ColorManager.Instance.TileMaterial.color = ColorManager.Instance.ColorList[0].TileColor;
             ColorManager.Instance.FloorMaterial.color = ColorManager.Instance.ColorList[0].FloorColor;
         }
