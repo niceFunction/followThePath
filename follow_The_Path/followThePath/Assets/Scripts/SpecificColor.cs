@@ -26,13 +26,23 @@ public class SpecificColor : MonoBehaviour
     private void Awake()
     {
         //ColorManager.Instance.ColorDropdown.options.Clear();
-        ColorManager.Instance.ColorDropdown.AddOptions(new List<TMP_Dropdown.OptionData>());
-        foreach (string c in colorNames)
+        //ColorManager.Instance.ColorDropdown.AddOptions(new List<TMP_Dropdown.OptionData>());
+        /*
+        foreach (string c in storeColorNames)
         {
             // https://forum.unity.com/threads/load-dropdown-with-data-from-list.412860/
             ColorManager.Instance.ColorDropdown.AddOptions(ColorManager.Instance.ColorList[].Name);
 
         }
+        */
+        for(int i = 0; i < ColorManager.Instance.ColorList.Length; i++)
+        {
+            foreach(Colors.ColorGroup c in ColorManager.Instance.ColorList)
+            {
+                c.Name.ToString();
+            }
+        }
+
     }
 
     public void PopulateColorNames()
