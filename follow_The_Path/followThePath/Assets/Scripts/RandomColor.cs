@@ -17,16 +17,10 @@ public class RandomColor : MonoBehaviour
     private float changeColorTime = 1f;
 
     private float colorDuration;
-    //private float currentColorDuration;
     [Tooltip("Duration of time left until the color on materials will change")]
     [SerializeField, Range(10f, 300f)]
-    private float currentColorDuration = 30f;
-    private float stopColorDuration = 0;
     // How much much of the current time is left until the color changes again?
-
-    //public IEnumerator RandomColorCoroutine { get { return MakeRandomColor(); } }
-
-    //private float elapsedTime = 0f;
+    private float currentColorDuration = 30f;
 
     public static RandomColor Instance { get; private set; }
     Coroutine MakingRandomColor;
@@ -40,11 +34,6 @@ public class RandomColor : MonoBehaviour
     {
         SelectNewRandomColorIndices();
         UpdateColors(1f);
-    }
-
-    private void Update()
-    {
-        //Debug.Log("Current elapsed time: " + (elapsedTime += Time.deltaTime));
     }
 
     /// <summary>
@@ -113,7 +102,6 @@ public class RandomColor : MonoBehaviour
     /// </summary>
     IEnumerator MakeRandomColor()
     {
-        //IEnumerator colorCoroutine = MakeRandomColor();
         // TODO 1a. Time still counts down, create variables to start and restart time
         // TODO 1b. figure out if stopping you should stop time here or somewhere else.
         while(true)
@@ -134,7 +122,6 @@ public class RandomColor : MonoBehaviour
             elapsedTime = 0;
             yield return new WaitForSeconds(currentColorDuration);
         }
-        
     }
 
     /// <summary>
@@ -150,7 +137,6 @@ public class RandomColor : MonoBehaviour
     /// </summary>
     public void StartRandomColor()
     {
-        //StartCoroutine(RandomColorCoroutine);
         //StartCoroutine(MakeRandomColor());
         MakingRandomColor = StartCoroutine(MakeRandomColor());
         Debug.Log("Corutine started!");
@@ -161,7 +147,7 @@ public class RandomColor : MonoBehaviour
     /// </summary>
     public void StopRandomColor()
     {
-        //StopCoroutine(RandomColorCoroutine);
+        //StopCoroutine(MakeRandomColor());
         StopCoroutine(MakingRandomColor);
         Debug.Log("Coroutine stopped!");
     }
