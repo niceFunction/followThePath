@@ -3650,7 +3650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeColorTime: 1
-  changeColorDuration: 10
+  currentColorDuration: 10
 --- !u!1 &742615920
 GameObject:
   m_ObjectHideFlags: 0

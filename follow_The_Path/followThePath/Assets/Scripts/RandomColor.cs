@@ -24,7 +24,9 @@ public class RandomColor : MonoBehaviour
     private float stopColorDuration = 0;
     // How much much of the current time is left until the color changes again?
 
-    private float elapsedTime = 0f;
+    public IEnumerator RandomColorCoroutine { get { return MakeRandomColor(); } }
+
+    //private float elapsedTime = 0f;
 
     public static RandomColor Instance { get; private set; }
 
@@ -36,17 +38,14 @@ public class RandomColor : MonoBehaviour
 
     void Start()
     {
-        //currentColorDuration = startColorDuration;
         SelectNewRandomColorIndices();
         UpdateColors(1f);
     }
 
     private void Update()
     {
-        Debug.Log("Current elapsed time: " + (elapsedTime += Time.deltaTime));
+        //Debug.Log("Current elapsed time: " + (elapsedTime += Time.deltaTime));
     }
-
-    //private void
 
     /// <summary>
     /// Updates color indices for all indices
@@ -114,10 +113,12 @@ public class RandomColor : MonoBehaviour
     /// </summary>
     IEnumerator MakeRandomColor()
     {
+        //IEnumerator colorCoroutine = MakeRandomColor();
         // TODO 1a. Time still counts down, create variables to start and restart time
         // TODO 1b. figure out if stopping you should stop time here or somewhere else.
         while(true)
         {
+            float elapsedTime = 0f;
             SelectNewRandomColorIndices(); // Select the new Colors
             while(elapsedTime <= changeColorTime)
             {
@@ -132,7 +133,8 @@ public class RandomColor : MonoBehaviour
             }
             elapsedTime = 0;
             yield return new WaitForSeconds(currentColorDuration);
-        }  
+        }
+        
     }
 
     /// <summary>
@@ -148,7 +150,9 @@ public class RandomColor : MonoBehaviour
     /// </summary>
     public void StartRandomColor()
     {
+        //StartCoroutine(RandomColorCoroutine);
         StartCoroutine(MakeRandomColor());
+        Debug.Log("Corutine started!");
     }
 
     /// <summary>
@@ -156,6 +160,8 @@ public class RandomColor : MonoBehaviour
     /// </summary>
     public void StopRandomColor()
     {
+        //StopCoroutine(RandomColorCoroutine);
         StopCoroutine(MakeRandomColor());
+        Debug.Log("Coroutine stopped!");
     }
 }

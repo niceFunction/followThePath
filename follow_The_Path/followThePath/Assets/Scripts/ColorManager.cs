@@ -170,17 +170,6 @@ public class ColorManager : MonoBehaviour
             colorDropdown.interactable = false;
         }
     }
-    
-    // TODO rework summary (note for self)
-    /// <summary>
-    /// When an "index" in the dropdown menu is chosen, sets materials to that color
-    /// </summary>
-    /// <param name="index"></param>
-    public void SetSpecificColor()
-    {
-        // Do I even need this method?
-    }
-
     #endregion
 
     // Accessibility Methods
