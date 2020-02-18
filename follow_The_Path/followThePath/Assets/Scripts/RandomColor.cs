@@ -24,12 +24,12 @@ public class RandomColor : MonoBehaviour
     private float stopColorDuration = 0;
     // How much much of the current time is left until the color changes again?
 
-    public IEnumerator RandomColorCoroutine { get { return MakeRandomColor(); } }
+    //public IEnumerator RandomColorCoroutine { get { return MakeRandomColor(); } }
 
     //private float elapsedTime = 0f;
 
     public static RandomColor Instance { get; private set; }
-
+    Coroutine MakingRandomColor;
 
     private void Awake()
     {
@@ -151,7 +151,8 @@ public class RandomColor : MonoBehaviour
     public void StartRandomColor()
     {
         //StartCoroutine(RandomColorCoroutine);
-        StartCoroutine(MakeRandomColor());
+        //StartCoroutine(MakeRandomColor());
+        MakingRandomColor = StartCoroutine(MakeRandomColor());
         Debug.Log("Corutine started!");
     }
 
@@ -161,7 +162,7 @@ public class RandomColor : MonoBehaviour
     public void StopRandomColor()
     {
         //StopCoroutine(RandomColorCoroutine);
-        StopCoroutine(MakeRandomColor());
+        StopCoroutine(MakingRandomColor);
         Debug.Log("Coroutine stopped!");
     }
 }
