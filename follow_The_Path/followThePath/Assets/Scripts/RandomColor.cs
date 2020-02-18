@@ -20,7 +20,7 @@ public class RandomColor : MonoBehaviour
     //private float currentColorDuration;
     [Tooltip("Duration of time left until the color on materials will change")]
     [SerializeField, Range(10f, 300f)]
-    private float startColorDuration = 30f;
+    private float currentColorDuration = 30f;
     private float stopColorDuration = 0;
     // How much much of the current time is left until the color changes again?
 
@@ -81,7 +81,7 @@ public class RandomColor : MonoBehaviour
         // Updates the color of the material on Tiles and Floors
         UpdateTileColor(ColorManager.Instance.TileMaterial, ColorManager.Instance.ColorList, randomColorIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
         UpdateFloorColor(ColorManager.Instance.FloorMaterial, ColorManager.Instance.ColorList, randomColorIndex, fraction);
-        colorDuration = startColorDuration;
+        colorDuration = currentColorDuration;
 
     }
 
@@ -123,7 +123,7 @@ public class RandomColor : MonoBehaviour
             {
                 // This loop makes sure the color is updated)
                 elapsedTime += Time.deltaTime;
-                // float fraction = Mathf.Sin(elapsedTime / changeColorTime);
+
                 float fraction = elapsedTime / changeColorTime;
 
                 UpdateColors(fraction); // Update the actual material colors
@@ -131,7 +131,7 @@ public class RandomColor : MonoBehaviour
                 yield return new WaitForSeconds(0);
             }
             elapsedTime = 0;
-            yield return new WaitForSeconds(startColorDuration);
+            yield return new WaitForSeconds(currentColorDuration);
         }  
     }
 
