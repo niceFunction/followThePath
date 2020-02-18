@@ -16,14 +16,15 @@ public class RandomColor : MonoBehaviour
     [SerializeField, Range(0.1f, 10f)] 
     private float changeColorTime = 1f;
 
+    private float colorDuration;
+    //private float currentColorDuration;
     [Tooltip("Duration of time left until the color on materials will change")]
     [SerializeField, Range(10f, 300f)]
-    private float changeColorDuration = 30f;
+    private float startColorDuration = 30f;
+    private float stopColorDuration = 0;
     // How much much of the current time is left until the color changes again?
-    private float currentColorDuration;
 
     private float elapsedTime = 0f;
-    public float ElapsedTime { get { return elapsedTime; } }
 
     public static RandomColor Instance { get; private set; }
 
@@ -35,6 +36,7 @@ public class RandomColor : MonoBehaviour
 
     void Start()
     {
+        //currentColorDuration = startColorDuration;
         SelectNewRandomColorIndices();
         UpdateColors(1f);
     }
@@ -43,6 +45,8 @@ public class RandomColor : MonoBehaviour
     {
         Debug.Log("Current elapsed time: " + (elapsedTime += Time.deltaTime));
     }
+
+    //private void
 
     /// <summary>
     /// Updates color indices for all indices
@@ -77,7 +81,7 @@ public class RandomColor : MonoBehaviour
         // Updates the color of the material on Tiles and Floors
         UpdateTileColor(ColorManager.Instance.TileMaterial, ColorManager.Instance.ColorList, randomColorIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
         UpdateFloorColor(ColorManager.Instance.FloorMaterial, ColorManager.Instance.ColorList, randomColorIndex, fraction);
-        currentColorDuration = changeColorDuration;
+        colorDuration = startColorDuration;
 
     }
 
@@ -117,7 +121,7 @@ public class RandomColor : MonoBehaviour
             SelectNewRandomColorIndices(); // Select the new Colors
             while(elapsedTime <= changeColorTime)
             {
-                // This loop makes sure the color is updated
+                // This loop makes sure the color is updated)
                 elapsedTime += Time.deltaTime;
                 // float fraction = Mathf.Sin(elapsedTime / changeColorTime);
                 float fraction = elapsedTime / changeColorTime;
@@ -127,7 +131,7 @@ public class RandomColor : MonoBehaviour
                 yield return new WaitForSeconds(0);
             }
             elapsedTime = 0;
-            yield return new WaitForSeconds(changeColorDuration);
+            yield return new WaitForSeconds(startColorDuration);
         }  
     }
 
