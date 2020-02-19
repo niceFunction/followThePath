@@ -45,6 +45,7 @@ public class SpecificColor : MonoBehaviour
     /// <param name="index"></param>
     public void ParticularColor(int index)
     {
+        //TODO: when specifying colors is inactive, replace the "SpecificColorsDropdown" strings with a string that says "Select a Color" or something
         if (index == 0)
         {
             // Set colors to RED

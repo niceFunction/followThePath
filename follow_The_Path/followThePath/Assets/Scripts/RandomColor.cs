@@ -23,7 +23,7 @@ public class RandomColor : MonoBehaviour
     private float currentColorDuration = 30f;
 
     public static RandomColor Instance { get; private set; }
-    Coroutine MakingRandomColor;
+    private Coroutine InitiateRandomColors;
 
     private void Awake()
     {
@@ -42,8 +42,7 @@ public class RandomColor : MonoBehaviour
     private void SelectNewRandomColorIndices()
     {
         // Cycles the indices in the lists of colors (Tiles and Floors)
-        // Copy this row and change tileIndex and tileColorList to floor or other, if adding more.
-        SetNewColorIndice(randomColorIndex, ColorManager.Instance.ColorList);
+        SetNewColorIndice(randomColorIndex, ColorManager.Instance.ColorList); // Copy this row and change tileIndex and tileColorList to floor or other, if adding more.
     }
 
     /// <summary>
@@ -70,7 +69,6 @@ public class RandomColor : MonoBehaviour
         UpdateTileColor(ColorManager.Instance.TileMaterial, ColorManager.Instance.ColorList, randomColorIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
         UpdateFloorColor(ColorManager.Instance.FloorMaterial, ColorManager.Instance.ColorList, randomColorIndex, fraction);
         colorDuration = currentColorDuration;
-
     }
 
     /// <summary>
@@ -102,8 +100,6 @@ public class RandomColor : MonoBehaviour
     /// </summary>
     IEnumerator MakeRandomColor()
     {
-        // TODO 1a. Time still counts down, create variables to start and restart time
-        // TODO 1b. figure out if stopping you should stop time here or somewhere else.
         while(true)
         {
             float elapsedTime = 0f;
@@ -112,11 +108,9 @@ public class RandomColor : MonoBehaviour
             {
                 // This loop makes sure the color is updated)
                 elapsedTime += Time.deltaTime;
-
                 float fraction = elapsedTime / changeColorTime;
 
                 UpdateColors(fraction); // Update the actual material colors
-
                 yield return new WaitForSeconds(0);
             }
             elapsedTime = 0;
@@ -137,9 +131,8 @@ public class RandomColor : MonoBehaviour
     /// </summary>
     public void StartRandomColor()
     {
-        //StartCoroutine(MakeRandomColor());
-        MakingRandomColor = StartCoroutine(MakeRandomColor());
-        Debug.Log("Corutine started!");
+        // Properly starts the coroutine
+        InitiateRandomColors = StartCoroutine(MakeRandomColor());
     }
 
     /// <summary>
@@ -147,8 +140,7 @@ public class RandomColor : MonoBehaviour
     /// </summary>
     public void StopRandomColor()
     {
-        //StopCoroutine(MakeRandomColor());
-        StopCoroutine(MakingRandomColor);
-        Debug.Log("Coroutine stopped!");
+        // Properly stops the coroutine
+        StopCoroutine(InitiateRandomColors);
     }
 }

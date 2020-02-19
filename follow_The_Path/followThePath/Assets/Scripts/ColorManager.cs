@@ -10,10 +10,6 @@ using TMPro;
 //TODO will change class name to "UxManager" instead in the future
 public class ColorManager : MonoBehaviour
 {
-    /*
-    public delegate void UxEventHandler();
-    public static event UxEventHandler onActiveUX;
-    */
     public delegate void ChangeFontHandler(TMP_FontAsset newFont, float scaleFont);
     public event ChangeFontHandler onChangeFont;
 
@@ -23,10 +19,8 @@ public class ColorManager : MonoBehaviour
     /// </summary>
     [Tooltip("Used to change color on the Tiles")]
     [SerializeField]
-    // TODO personal note: keep in mind if tile/floor material needs to be public again if other objects needs to access them
     private Material tileMaterial;
     public Material TileMaterial { get { return tileMaterial; } }
-
 
     [Tooltip("Used to change the color of the Floor")]
     [SerializeField]
@@ -54,11 +48,9 @@ public class ColorManager : MonoBehaviour
     #region SET SPECIFIC COLORS VARIABLES
     [Space(5)]
     // colorDropDown and randomizeColorsToggle are used for specifying colors
-    // NOTE: Save "colorDropdown" and "ColorDropdown"
     [Tooltip("When colors in the level isn't active, user can specifically set level colors")]
     [SerializeField]
     private TMP_Dropdown colorDropdown;
-
     public TMP_Dropdown ColorDropdown { get { return colorDropdown; } }
     #endregion
 
@@ -105,11 +97,8 @@ public class ColorManager : MonoBehaviour
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
 
-    
-
     public static ColorManager Instance { get; private set; } 
 
-    #region GENERIC METHODS
     void Awake()
     {
         if (Instance == null)
@@ -137,11 +126,9 @@ public class ColorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("Current Time: " + RandomColor.Instance.ElapsedTime);
-    }
-    #endregion
 
-    #region SET SPECIFIC COLOR METHODS
+    }
+
     /// <summary>
     /// If randomizationToggle.isOn is set to true, colors are randomized
     /// if false, user can set specific color on materials
@@ -151,7 +138,6 @@ public class ColorManager : MonoBehaviour
         if (RandomColorsToggle.isOn)
         {
             // Color Randomization is active and set specific color dropdown is non-interactable
-            // TODO Add new random color method here
             RandomColor.Instance.StartRandomColor();
             ColorDropdown.interactable = false;
             randomColorsStatus.text = "ON";
@@ -164,15 +150,12 @@ public class ColorManager : MonoBehaviour
             randomColorsStatus.text = "OFF";
         }
 
-        // if the grayscale toggle is active, make color dropdown not interactable
+        // If the grayscale toggle is active, make color dropdown not interactable
         if (GrayscaleToggle.isOn == true)
         {
             colorDropdown.interactable = false;
         }
     }
-    #endregion
-
-    // Accessibility Methods
 
     /// <summary>
     /// Overlays an Image filter over the player camera
@@ -193,7 +176,7 @@ public class ColorManager : MonoBehaviour
         {
             dyslexicFontStatus.text = "OFF";
         }
-        // Update all text
+        // Update all text objects
         Accessibility.Instance.DyslexicFontMode(dyslexicFontToggle.isOn);
     }
 }
