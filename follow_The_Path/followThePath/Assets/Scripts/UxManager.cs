@@ -8,7 +8,7 @@ using TMPro;
 /// Manager class used to affect colors on materials, change fonts or improve user experience
 /// </summary>
 //TODO will change class name to "UxManager" instead in the future
-public class ColorManager : MonoBehaviour
+public class UxManager : MonoBehaviour
 {
     public delegate void ChangeFontHandler(TMP_FontAsset newFont, float scaleFont);
     public event ChangeFontHandler onChangeFont;
@@ -97,7 +97,7 @@ public class ColorManager : MonoBehaviour
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
 
-    public static ColorManager Instance { get; private set; } 
+    public static UxManager Instance { get; private set; } 
 
     void Awake()
     {

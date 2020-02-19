@@ -65,15 +65,10 @@ public class Accessibility : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
+        
+        // TODO Make "Accessibility" remember what font is active: regular or dyslexic
         currentFont = RegularFont;
         currentScale = RegularFontScale;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
     }
 
     ///<summary>
@@ -84,22 +79,31 @@ public class Accessibility : MonoBehaviour
         // NOTE: Keep in mind to see if enabling an image effect on the camera is too costly 
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
-        if (ColorManager.Instance.GrayscaleToggleOn)
+        if (UxManager.Instance.GrayscaleToggleOn)
         {
             // If grayscale toggle object is on, activate grayscale camera overlay.
             playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
 
-            ColorManager.Instance.RandomColorsToggle.isOn = false;
-            ColorManager.Instance.RandomColorsToggle.interactable = false;
-            ColorManager.Instance.GrayscaleStatus.text = "ON";
+            // Turns off Random color toggle and makes it non-interactable
+            UxManager.Instance.RandomColorsToggle.isOn = false;
+            UxManager.Instance.RandomColorsToggle.interactable = false;
+            
+            // Makes the Color drop down non-interactable
+            UxManager.Instance.ColorDropdown.interactable = false;
+            
+            UxManager.Instance.GrayscaleStatus.text = "ON";
         }
         else
         {
             // If grayscale toggle object is NOT on, deactivate grayscale camera overlay.
             playerCamera.GetComponent<GrayscaleCamera>().enabled = false;
 
-            ColorManager.Instance.RandomColorsToggle.interactable = true;
-            ColorManager.Instance.GrayscaleStatus.text = "OFF";
+            // Random color toggle can be interacted with again
+            UxManager.Instance.RandomColorsToggle.interactable = true;
+            // Color dropdown can be interacted with again
+            UxManager.Instance.ColorDropdown.interactable = true;
+
+            UxManager.Instance.GrayscaleStatus.text = "OFF";
         }
     }
 

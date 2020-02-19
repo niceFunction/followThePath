@@ -42,7 +42,7 @@ public class RandomColor : MonoBehaviour
     private void SelectNewRandomColorIndices()
     {
         // Cycles the indices in the lists of colors (Tiles and Floors)
-        SetNewColorIndice(randomColorIndex, ColorManager.Instance.ColorList); // Copy this row and change tileIndex and tileColorList to floor or other, if adding more.
+        SetNewColorIndice(randomColorIndex, UxManager.Instance.ColorList); // Copy this row and change tileIndex and tileColorList to floor or other, if adding more.
     }
 
     /// <summary>
@@ -66,8 +66,8 @@ public class RandomColor : MonoBehaviour
     private void UpdateColors(float fraction)
     {
         // Updates the color of the material on Tiles and Floors
-        UpdateTileColor(ColorManager.Instance.TileMaterial, ColorManager.Instance.ColorList, randomColorIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
-        UpdateFloorColor(ColorManager.Instance.FloorMaterial, ColorManager.Instance.ColorList, randomColorIndex, fraction);
+        UpdateTileColor(UxManager.Instance.TileMaterial, UxManager.Instance.ColorList, randomColorIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
+        UpdateFloorColor(UxManager.Instance.FloorMaterial, UxManager.Instance.ColorList, randomColorIndex, fraction);
         colorDuration = currentColorDuration;
     }
 
