@@ -66,7 +66,8 @@ public class Accessibility : MonoBehaviour
             return;
         }
         
-        // TODO Make "Accessibility" remember what font is active: regular or dyslexic
+        // TODO 1a Make "Accessibility" remember what font is active: regular or dyslexic
+        // TODO 2a by using PlayerPrefs, when the game loads, use the last saved value, if a PlayerPrefs hasn't been saved use default (which is Regular)
         currentFont = RegularFont;
         currentScale = RegularFontScale;
     }

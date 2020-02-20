@@ -7,16 +7,32 @@ using TMPro;
 /// <summary>
 /// Manager class used to affect colors on materials, change fonts or improve user experience
 /// </summary>
-//TODO will change class name to "UxManager" instead in the future
 public class UxManager : MonoBehaviour
 {
     public delegate void ChangeFontHandler(TMP_FontAsset newFont, float scaleFont);
     public event ChangeFontHandler onChangeFont;
 
+
+    /*
+     * For PlayerPrefs
+     - Create private int(s)
+     - or
+     - Create a struct?
+
+        int colorValue // Saves if either random or specific is active
+        // if (randomValue == 1) Random Colors are active
+        // if (randomValue == 0) Random Colors aren't active but Specufic Color is
+      
+        int colorListValue // Refers to specific colors
+        // Take the index value from SpecificColor or the ColorList?
+        // Should every color in the list of ParticularColor have its own int value?
+
+        int grayscaleValue // Saves the grayscale overlay, disables random colors or specific colors
+        int accessibleValue // Saves if changing font is on
+    */
+
     #region COLORS AND MATERIALS VARIABLES
-    /// <summary>
-    /// The Materials are added to the references in the Inspector
-    /// </summary>
+    // The Materials are added to the references in the Inspector
     [Tooltip("Used to change color on the Tiles")]
     [SerializeField]
     private Material tileMaterial;
@@ -110,13 +126,12 @@ public class UxManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        // DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        // Note: To be removed (find out if it is some or all of them
         currentTileColor = TileMaterial.color;
         currentFloorColor = FloorMaterial.color;
 
