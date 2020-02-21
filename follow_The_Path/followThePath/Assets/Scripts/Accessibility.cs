@@ -9,6 +9,9 @@ using UnityEngine.UI;
 /// </summary>
 public class Accessibility : MonoBehaviour
 {
+
+    //PlayerPrefs set bool: http://wiki.unity3d.com/index.php?title=BoolPrefs&oldid=18094
+
     public delegate void UxEventHandler();
     public static event UxEventHandler onActiveUX;
 
