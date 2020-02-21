@@ -65,7 +65,7 @@ public class Accessibility : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
+
         // TODO 1a Make "Accessibility" remember what font is active: regular or dyslexic
         // TODO 2a by using PlayerPrefs, when the game loads, use the last saved value, if a PlayerPrefs hasn't been saved use default (which is Regular)
         currentFont = RegularFont;
@@ -93,6 +93,7 @@ public class Accessibility : MonoBehaviour
             UxManager.Instance.ColorDropdown.interactable = false;
             
             UxManager.Instance.GrayscaleStatus.text = "ON";
+
         }
         else
         {
