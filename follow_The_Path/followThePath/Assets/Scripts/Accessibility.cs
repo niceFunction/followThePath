@@ -74,7 +74,9 @@ public class Accessibility : MonoBehaviour
     private void Start()
     {
 
-        UxManager.Instance.DyslexicFontToggle.isOn = PlayerPrefsX.GetBool(currentFontKey);
+        //UxManager.Instance.DyslexicFontToggle.isOn = PlayerPrefsX.GetBool(currentFontKey);
+        
+        UxManager.Instance.DyslexicFontToggle.isOn = PlayerPrefsX.GetBool(currentFontKey, currentFontKeyValue);
     }
 
     private void Awake()
@@ -142,7 +144,10 @@ public class Accessibility : MonoBehaviour
             currentFont = DyslexicFont;
             currentScale = DyslexicFontScale;
 
-            PlayerPrefsX.SetBool(currentFontKey = dyslexicFontKey, currentFontKeyValue = UxManager.Instance.DyslexicFontToggle.isOn = dyslexicFontKeyValue);
+            //PlayerPrefsX.SetBool(currentFontKey = dyslexicFontKey, currentFontKeyValue = UxManager.Instance.DyslexicFontToggle.isOn = dyslexicFontKeyValue);
+            //currentFontKey = dyslexicFontKey;
+            PlayerPrefsX.SetBool(currentFontKey = dyslexicFontKey, currentFontKeyValue = (UxManager.Instance.DyslexicFontToggle.isOn = dyslexicFontKeyValue));
+            //currentFontKey = dyslexicFontKey;
             PlayerPrefs.Save();
         }
         else
@@ -151,7 +156,10 @@ public class Accessibility : MonoBehaviour
             currentFont = RegularFont;
             currentScale = RegularFontScale;
 
-            PlayerPrefsX.SetBool(currentFontKey = regularFontKey, currentFontKeyValue = UxManager.Instance.DyslexicFontToggle.isOn = regularFontKeyValue);
+            //currentFontKey = regularFontKey;
+            PlayerPrefsX.SetBool(currentFontKey = regularFontKey, currentFontKeyValue = (UxManager.Instance.DyslexicFontToggle.isOn = regularFontKeyValue));
+
+            //PlayerPrefsX.SetBool(currentFontKey = regularFontKey, currentFontKeyValue = UxManager.Instance.DyslexicFontToggle.isOn = regularFontKeyValue);
             PlayerPrefs.Save();
         }
 
