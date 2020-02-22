@@ -111,8 +111,6 @@ public class UxManager : MonoBehaviour
 
     #endregion
 
-    private bool accessibilityKeyValue;
-
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
 
@@ -187,6 +185,7 @@ public class UxManager : MonoBehaviour
 
     public void SetDyslexicFont()
     {
+
         // Update the GUI
         if (DyslexicFontToggle.isOn)
         {

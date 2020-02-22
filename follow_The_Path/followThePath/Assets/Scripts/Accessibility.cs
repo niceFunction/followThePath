@@ -49,8 +49,18 @@ public class Accessibility : MonoBehaviour
     private GameObject playerCamera;
 
 
-    private bool dyslexicKeyValue;
-    private string dyslexicKey;
+    //private bool dyslexicKeyValue;
+    //private string dyslexicKey = "dyslexicKey";
+
+    [SerializeField]
+    private string currentFontKey;
+    private string regularFontKey = "regularFontValue";
+    private string dyslexicFontKey = "dyslexicFontValue";
+
+    [SerializeField]
+    private bool currentFontKeyValue;
+    private bool regularFontKeyValue = false;
+    private bool dyslexicFontKeyValue = true;
 
     public static Accessibility Instance { get; set; }
     public static void newUxActive()
@@ -59,6 +69,12 @@ public class Accessibility : MonoBehaviour
         {
             onActiveUX();
         }
+    }
+
+    private void Start()
+    {
+
+        UxManager.Instance.DyslexicFontToggle.isOn = PlayerPrefsX.GetBool(currentFontKey);
     }
 
     private void Awake()
@@ -73,14 +89,11 @@ public class Accessibility : MonoBehaviour
             return;
         }
 
-        PlayerPrefsX.GetBool(dyslexicKey);
         // TODO 1a Make "Accessibility" remember what font is active: regular or dyslexic
         // TODO 2a by using PlayerPrefs, when the game loads, use the last saved value, if a PlayerPrefs hasn't been saved use default (which is Regular)
         //currentFont = RegularFont;
         //currentScale = RegularFontScale;
-        //accessibilityKeyValue = (UxManager.Instance.DyslexicFontToggle.isOn = false);
-        //PlayerPrefsX.GetBool("accessibilityKey");
-        //accessibilityKeyValue = PlayerPrefs.GetInt("accessibilityKey") > 0;
+
     }
 
     ///<summary>
@@ -122,28 +135,15 @@ public class Accessibility : MonoBehaviour
 
     public void DyslexicFontMode(bool toggleOn)
     {
-        //accessibilityKeyValue = UxManager.Instance.DyslexicFontToggle.isOn = false;
-        //dyslexicKeyValue = UxManager.Instance.DyslexicFontToggle.isOn;
+
         if (toggleOn)
         {
             // If dyslexic toggle IS on, set the current font to the dyslexic font
             currentFont = DyslexicFont;
             currentScale = DyslexicFontScale;
 
-
-            // accessibilityKeyValue = (UxManager.Instance.DyslexicFontToggle.isOn = true);
-            //accessibilityKeyValue = true;
-            //PlayerPrefs.SetInt("accessibilityKey", accessibilityKeyValue ? 1 : 0);
-            //PlayerPrefsX.SetBool("accessibilityKey", accessibilityKeyValue);
-            // PlayerPrefsX.SetBool("accessibilityKey", accessibilityKeyValue);// = (UxManager.Instance.DyslexicFontToggle.isOn = true));
-            //PlayerPrefsX.SetBool("accessibilityKey", accessibilityKeyValue =
-            // PlayerPrefs.Save();
-
-            dyslexicKey = "dyslexicKeyTrue";
-            dyslexicKeyValue = UxManager.Instance.DyslexicFontToggle.isOn = true;
-            PlayerPrefsX.SetBool(dyslexicKey, dyslexicKeyValue);
+            PlayerPrefsX.SetBool(currentFontKey = dyslexicFontKey, currentFontKeyValue = UxManager.Instance.DyslexicFontToggle.isOn = dyslexicFontKeyValue);
             PlayerPrefs.Save();
-            Debug.Log("dyslexic key: " + PlayerPrefsX.GetBool(dyslexicKey));
         }
         else
         {
@@ -151,20 +151,8 @@ public class Accessibility : MonoBehaviour
             currentFont = RegularFont;
             currentScale = RegularFontScale;
 
-
-            dyslexicKey = "dyslexicKeyFalse";
-            dyslexicKeyValue = UxManager.Instance.DyslexicFontToggle.isOn = false;
-            PlayerPrefsX.SetBool(dyslexicKey, dyslexicKeyValue);
+            PlayerPrefsX.SetBool(currentFontKey = regularFontKey, currentFontKeyValue = UxManager.Instance.DyslexicFontToggle.isOn = regularFontKeyValue);
             PlayerPrefs.Save();
-
-            //accessibilityKeyValue = (UxManager.Instance.DyslexicFontToggle.isOn = false);
-            //accessibilityKeyValue = false;
-            //PlayerPrefs.SetInt("accessibilityKey", accessibilityKeyValue ? 1 : 0);
-            //PlayerPrefsX.SetBool("accessibilityKey", accessibilityKeyValue = false);
-            //PlayerPrefsX.SetBool("accessibilityKey", accessibilityKeyValue); // = (UxManager.Instance.DyslexicFontToggle.isOn = false));
-            //PlayerPrefs.Save();
-
-            Debug.Log("dyslexic key: " + PlayerPrefsX.GetBool(dyslexicKey));
         }
 
         /*
