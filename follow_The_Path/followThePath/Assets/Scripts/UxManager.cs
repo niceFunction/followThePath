@@ -103,12 +103,15 @@ public class UxManager : MonoBehaviour
     [SerializeField]
     // Toggle UI object
     private Toggle dyslexicFontToggle;
+    public Toggle DyslexicFontToggle { get { return dyslexicFontToggle; } }
 
     [SerializeField]
     // Visual text element to show the player if the dyslexic font is active or not
     private TextMeshProUGUI dyslexicFontStatus;
 
     #endregion
+
+    private bool accessibilityKeyValue;
 
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
@@ -126,6 +129,8 @@ public class UxManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        
+
         DontDestroyOnLoad(gameObject);
     }
 
@@ -134,7 +139,7 @@ public class UxManager : MonoBehaviour
     {
         currentTileColor = TileMaterial.color;
         currentFloorColor = FloorMaterial.color;
-
+        
         SetColorMode();
     }
 
@@ -183,7 +188,7 @@ public class UxManager : MonoBehaviour
     public void SetDyslexicFont()
     {
         // Update the GUI
-        if (dyslexicFontToggle.isOn)
+        if (DyslexicFontToggle.isOn)
         {
             dyslexicFontStatus.text = "ON";
         }
@@ -192,6 +197,6 @@ public class UxManager : MonoBehaviour
             dyslexicFontStatus.text = "OFF";
         }
         // Update all text objects
-        Accessibility.Instance.DyslexicFontMode(dyslexicFontToggle.isOn);
+        Accessibility.Instance.DyslexicFontMode(DyslexicFontToggle.isOn);
     }
 }
