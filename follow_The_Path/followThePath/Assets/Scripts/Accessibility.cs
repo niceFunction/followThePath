@@ -82,19 +82,20 @@ public class Accessibility : MonoBehaviour
         //UxManager.Instance.DyslexicFontToggle.isOn = PlayerPrefsX.GetBool(currentFontKey);
         //PlayerPrefsX.GetBool(USE_DYSLEXIC_FONT);
         //PlayerPrefs.GetInt();
+        /*
         if (useDyslexicFont = dyslexicFontKeyValue)
         {
             currentFont = DyslexicFont;
             currentScale = DyslexicFontScale;
-            UxManager.Instance.DyslexicFontToggle.isOn = true;
+            //UxManager.Instance.DyslexicFontToggle.isOn = true;
         }
-        if (useRegularFont = regularFontKeyValue)
+        else if (useDyslexicFont = regularFontKeyValue)
         {
             currentFont = RegularFont;
             currentScale = RegularFontScale;
-            UxManager.Instance.DyslexicFontToggle.isOn = false;
+            //UxManager.Instance.DyslexicFontToggle.isOn = false;
         }
-        
+        */
         //UxManager.Instance.DyslexicFontToggle.isOn = PlayerPrefsX.GetBool(currentFontKey, currentFontKeyValue);
     }
 
@@ -167,6 +168,8 @@ public class Accessibility : MonoBehaviour
             PlayerPrefsX.SetBool(USE_DYSLEXIC_FONT, useDyslexicFont);
             PlayerPrefs.Save();
 
+            Debug.Log(useDyslexicFont);
+
         }
         else
         {
@@ -174,10 +177,12 @@ public class Accessibility : MonoBehaviour
             currentFont = RegularFont;
             currentScale = RegularFontScale;
 
-            useRegularFont = PlayerPrefsX.GetBool(USE_REGULAR_FONT);
+            useDyslexicFont = PlayerPrefsX.GetBool(USE_REGULAR_FONT);
             //PlayerPrefsX.SetBool(USE_REGULAR_FONT, useDyslexicFont);
-            PlayerPrefsX.SetBool(USE_REGULAR_FONT, useRegularFont);
+            PlayerPrefsX.SetBool(USE_REGULAR_FONT, useDyslexicFont);
             PlayerPrefs.Save();
+
+            Debug.Log(useDyslexicFont);
         }
 
         /*
