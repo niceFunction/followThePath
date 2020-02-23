@@ -48,24 +48,8 @@ public class Accessibility : MonoBehaviour
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
 
-
-    //private bool dyslexicKeyValue;
-    //private string dyslexicKey = "dyslexicKey";
-
-    [SerializeField]
-    private string currentFontKey;
-    private string regularFontKey = "regularFontValue";
-    private string dyslexicFontKey = "dyslexicFontValue";
-
-    [SerializeField]
-    private bool currentFontKeyValue;
-    private bool regularFontKeyValue = false;
-    private bool dyslexicFontKeyValue = true;
-
     readonly string USE_DYSLEXIC_FONT = "USE_DYSLEXIC_FONT";
-    readonly string USE_REGULAR_FONT = "USE_REGULAR_FONT";
     bool useDyslexicFont;
-    bool useRegularFont;
 
     public static Accessibility Instance { get; set; }
     public static void newUxActive()
@@ -78,25 +62,7 @@ public class Accessibility : MonoBehaviour
 
     private void Start()
     {
-
-        //UxManager.Instance.DyslexicFontToggle.isOn = PlayerPrefsX.GetBool(currentFontKey);
-        //PlayerPrefsX.GetBool(USE_DYSLEXIC_FONT);
-        //PlayerPrefs.GetInt();
-        /*
-        if (useDyslexicFont = dyslexicFontKeyValue)
-        {
-            currentFont = DyslexicFont;
-            currentScale = DyslexicFontScale;
-            //UxManager.Instance.DyslexicFontToggle.isOn = true;
-        }
-        else if (useDyslexicFont = regularFontKeyValue)
-        {
-            currentFont = RegularFont;
-            currentScale = RegularFontScale;
-            //UxManager.Instance.DyslexicFontToggle.isOn = false;
-        }
-        */
-        //UxManager.Instance.DyslexicFontToggle.isOn = PlayerPrefsX.GetBool(currentFontKey, currentFontKeyValue);
+        GetSavedPlayerPrefs();
     }
 
     private void Awake()
@@ -116,6 +82,24 @@ public class Accessibility : MonoBehaviour
         //currentFont = RegularFont;
         //currentScale = RegularFontScale;
 
+    }
+
+    private void GetSavedPlayerPrefs()
+    {
+        useDyslexicFont = PlayerPrefsX.GetBool(USE_DYSLEXIC_FONT);
+
+        if (useDyslexicFont)
+        {
+            currentFont = DyslexicFont;
+            currentScale = DyslexicFontScale;
+            UxManager.Instance.DyslexicFontToggle.isOn = true;
+        }
+        else
+        {
+            currentFont = RegularFont;
+            currentScale = RegularFontScale;
+            UxManager.Instance.DyslexicFontToggle.isOn = false;
+        }
     }
 
     ///<summary>
@@ -161,29 +145,20 @@ public class Accessibility : MonoBehaviour
         if (toggleOn)
         {
             // If dyslexic toggle IS on, set the current font to the dyslexic font
+            useDyslexicFont = true;
             currentFont = DyslexicFont;
             currentScale = DyslexicFontScale;
-
-            useDyslexicFont = PlayerPrefsX.GetBool(USE_DYSLEXIC_FONT);
-            PlayerPrefsX.SetBool(USE_DYSLEXIC_FONT, useDyslexicFont);
-            PlayerPrefs.Save();
-
-            Debug.Log(useDyslexicFont);
-
         }
         else
         {
             // If dyslexic toggle object is not on, set current font to the regular font
+            useDyslexicFont = false;
             currentFont = RegularFont;
             currentScale = RegularFontScale;
-
-            useDyslexicFont = PlayerPrefsX.GetBool(USE_REGULAR_FONT);
-            //PlayerPrefsX.SetBool(USE_REGULAR_FONT, useDyslexicFont);
-            PlayerPrefsX.SetBool(USE_REGULAR_FONT, useDyslexicFont);
-            PlayerPrefs.Save();
-
-            Debug.Log(useDyslexicFont);
         }
+
+        PlayerPrefsX.SetBool(USE_DYSLEXIC_FONT, useDyslexicFont);
+        PlayerPrefs.Save();
 
         /*
         This null check is important, because if no listeners are registered, 
