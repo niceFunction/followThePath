@@ -22,9 +22,10 @@ public class RandomColor : MonoBehaviour
     // How much much of the current time is left until the color changes again?
     private float currentColorDuration = 30f;
 
-    public static RandomColor Instance { get; private set; }
     private Coroutine InitiateRandomColors;
 
+    public static RandomColor Instance { get; private set; }
+  
     private void Awake()
     {
         Instance = this;
@@ -34,6 +35,11 @@ public class RandomColor : MonoBehaviour
     {
         SelectNewRandomColorIndices();
         UpdateColors(1f);
+    }
+
+    private void Update()
+    {
+
     }
 
     /// <summary>
@@ -103,6 +109,7 @@ public class RandomColor : MonoBehaviour
         while(true)
         {
             float elapsedTime = 0f;
+            //elapsedTime = 0f;
             SelectNewRandomColorIndices(); // Select the new Colors
             while(elapsedTime <= changeColorTime)
             {

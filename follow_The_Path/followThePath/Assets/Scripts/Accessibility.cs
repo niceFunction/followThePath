@@ -48,8 +48,12 @@ public class Accessibility : MonoBehaviour
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
 
+    // If the DyslexicToggle.isON is either true/false, it saves the changes when the application is shut down
     readonly string USE_DYSLEXIC_FONT = "USE_DYSLEXIC_FONT";
     bool useDyslexicFont;
+
+    readonly string USE_GRAYSCALE_MODE = "USE_GRAYSCALE_MODE";
+    bool useGrayscalemode;
 
     public static Accessibility Instance { get; set; }
     public static void newUxActive()
@@ -76,17 +80,17 @@ public class Accessibility : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
-        // TODO 1a Make "Accessibility" remember what font is active: regular or dyslexic
-        // TODO 2a by using PlayerPrefs, when the game loads, use the last saved value, if a PlayerPrefs hasn't been saved use default (which is Regular)
-        //currentFont = RegularFont;
-        //currentScale = RegularFontScale;
-
     }
 
+    /// <summary>
+    /// Gets the saved PlayerPrefs values in "Accessibility"
+    /// </summary>
     private void GetSavedPlayerPrefs()
     {
         useDyslexicFont = PlayerPrefsX.GetBool(USE_DYSLEXIC_FONT);
+        useGrayscalemode = PlayerPrefsX.GetBool(USE_GRAYSCALE_MODE);
+
+        playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
         if (useDyslexicFont)
         {
@@ -100,6 +104,48 @@ public class Accessibility : MonoBehaviour
             currentScale = RegularFontScale;
             UxManager.Instance.DyslexicFontToggle.isOn = false;
         }
+
+        if (useGrayscalemode)
+        {
+            // If grayscale toggle object is on, activate grayscale camera overlay.
+            playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
+            UxManager.Instance.GrayscaleToggle.isOn = true;
+
+            // Turns off Random color toggle and makes it non-interactable
+            //UxManager.Instance.RandomColorsToggle.isOn = false;
+            //UxManager.Instance.RandomColorsToggle.interactable = false;
+            //RandomColor.Instance.StopRandomColor();
+
+            /*
+            // Turns off Random color toggle and makes it non-interactable
+            
+            UxManager.Instance.RandomColorsToggle.interactable = false;
+
+            // Makes the Color drop down non-interactable
+            UxManager.Instance.ColorDropdown.interactable = false;
+            */
+        }
+        else
+        {
+            // If grayscale toggle object is NOT on, deactivate grayscale camera overlay.
+            playerCamera.GetComponent<GrayscaleCamera>().enabled = false;
+            
+            UxManager.Instance.GrayscaleToggle.isOn = false;
+            
+            // Random color toggle can be interacted with again
+            //UxManager.Instance.RandomColorsToggle.interactable = true;
+            // Color dropdown can be interacted with again
+            //UxManager.Instance.ColorDropdown.interactable = true;
+            
+            
+            //RandomColor.Instance.StartRandomColor();
+            /*
+            // Random color toggle can be interacted with again
+            UxManager.Instance.RandomColorsToggle.interactable = true;
+            // Color dropdown can be interacted with again
+            UxManager.Instance.ColorDropdown.interactable = true;
+            */
+        }
     }
 
     ///<summary>
@@ -110,8 +156,10 @@ public class Accessibility : MonoBehaviour
         // NOTE: Keep in mind to see if enabling an image effect on the camera is too costly 
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
-        if (UxManager.Instance.GrayscaleToggleOn)
+        if (UxManager.Instance.GrayscaleToggle.isOn)
         {
+            useGrayscalemode = true;
+
             // If grayscale toggle object is on, activate grayscale camera overlay.
             playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
 
@@ -121,12 +169,10 @@ public class Accessibility : MonoBehaviour
             
             // Makes the Color drop down non-interactable
             UxManager.Instance.ColorDropdown.interactable = false;
-            
-            UxManager.Instance.GrayscaleStatus.text = "ON";
-
         }
         else
         {
+            useGrayscalemode = false;
             // If grayscale toggle object is NOT on, deactivate grayscale camera overlay.
             playerCamera.GetComponent<GrayscaleCamera>().enabled = false;
 
@@ -134,9 +180,9 @@ public class Accessibility : MonoBehaviour
             UxManager.Instance.RandomColorsToggle.interactable = true;
             // Color dropdown can be interacted with again
             UxManager.Instance.ColorDropdown.interactable = true;
-
-            UxManager.Instance.GrayscaleStatus.text = "OFF";
         }
+
+        PlayerPrefsX.SetBool(USE_GRAYSCALE_MODE, useGrayscalemode);
     }
 
     public void DyslexicFontMode(bool toggleOn)

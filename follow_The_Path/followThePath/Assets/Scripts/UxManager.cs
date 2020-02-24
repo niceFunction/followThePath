@@ -12,25 +12,6 @@ public class UxManager : MonoBehaviour
     public delegate void ChangeFontHandler(TMP_FontAsset newFont, float scaleFont);
     public event ChangeFontHandler onChangeFont;
 
-
-    /*
-     * For PlayerPrefs
-     - Create private int(s)
-     - or
-     - Create a struct?
-
-        int colorValue // Saves if either random or specific is active
-        // if (randomValue == 1) Random Colors are active
-        // if (randomValue == 0) Random Colors aren't active but Specufic Color is
-      
-        int colorListValue // Refers to specific colors
-        // Take the index value from SpecificColor or the ColorList?
-        // Should every color in the list of ParticularColor have its own int value?
-
-        int grayscaleValue // Saves the grayscale overlay, disables random colors or specific colors
-        int accessibleValue // Saves if changing font is on
-    */
-
     #region COLORS AND MATERIALS VARIABLES
     // The Materials are added to the references in the Inspector
     [Tooltip("Used to change color on the Tiles")]
@@ -89,7 +70,7 @@ public class UxManager : MonoBehaviour
     [SerializeField]
     private Toggle grayscaleToggle;
     public Toggle GrayscaleToggle { get { return grayscaleToggle; } }
-    public bool GrayscaleToggleOn { get { return grayscaleToggle.isOn; } }
+    //public bool GrayscaleToggleOn { get { return grayscaleToggle.isOn; } }
 
     [Tooltip("Visual element that the user can see if grayscale 'overlay' is active or not")]
     [SerializeField]
@@ -108,11 +89,15 @@ public class UxManager : MonoBehaviour
     [SerializeField]
     // Visual text element to show the player if the dyslexic font is active or not
     private TextMeshProUGUI dyslexicFontStatus;
+    public TextMeshProUGUI DyslexicFontStatus { get { return dyslexicFontStatus; } }
 
     #endregion
 
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
+
+    private string USE_RANDOM_COLORS = "USE_RANDOM_COLORS";
+    private bool useRandomColors;
 
     public static UxManager Instance { get; private set; } 
 
@@ -155,6 +140,7 @@ public class UxManager : MonoBehaviour
     {
         if (RandomColorsToggle.isOn)
         {
+            //useRandomColors = true;
             // Color Randomization is active and set specific color dropdown is non-interactable
             RandomColor.Instance.StartRandomColor();
             ColorDropdown.interactable = false;
@@ -162,17 +148,19 @@ public class UxManager : MonoBehaviour
         }
         else
         {
+            //useRandomColors = false;
             // Color randomization is inactive and set specific color dropdown is interactable
             RandomColor.Instance.StopRandomColor();
             ColorDropdown.interactable = true;
             randomColorsStatus.text = "OFF";
         }
-
+        
         // If the grayscale toggle is active, make color dropdown not interactable
         if (GrayscaleToggle.isOn == true)
         {
             colorDropdown.interactable = false;
         }
+        //PlayerPrefsX.SetBool(USE_RANDOM_COLORS, useRandomColors);
     }
 
     /// <summary>
@@ -180,21 +168,33 @@ public class UxManager : MonoBehaviour
     /// </summary>
     public void SetGrayscaleOverlay()
     {
+        // Update the status if Grayscale mode is active or not
+        if (GrayscaleToggle.isOn)
+        {
+            GrayscaleStatus.text = "ON";
+        }
+        else
+        {
+            GrayscaleStatus.text = "OFF";
+        }
+
+        // Adds an "overlay" over the player camera, turning the screen in different shades of gray
         Accessibility.Instance.GrayscaleOverlay();
     }
 
     public void SetDyslexicFont()
     {
 
-        // Update the GUI
+        // Update the status if Dyslexic font mode is active or not
         if (DyslexicFontToggle.isOn)
         {
-            dyslexicFontStatus.text = "ON";
+            DyslexicFontStatus.text = "ON";
         }
         else
         {
-            dyslexicFontStatus.text = "OFF";
+            DyslexicFontStatus.text = "OFF";
         }
+
         // Update all text objects
         Accessibility.Instance.DyslexicFontMode(DyslexicFontToggle.isOn);
     }
