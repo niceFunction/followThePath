@@ -22,7 +22,8 @@ public class RandomColor : MonoBehaviour
     // How much much of the current time is left until the color changes again?
     private float currentColorDuration = 30f;
 
-    private Coroutine InitiateRandomColors;
+    private Coroutine initiateRandomColors;
+    public Coroutine InitiateRandomColors { get { return initiateRandomColors; } }
 
     public static RandomColor Instance { get; private set; }
   
@@ -139,7 +140,7 @@ public class RandomColor : MonoBehaviour
     public void StartRandomColor()
     {
         // Properly starts the coroutine
-        InitiateRandomColors = StartCoroutine(MakeRandomColor());
+        initiateRandomColors = StartCoroutine(MakeRandomColor());
     }
 
     /// <summary>
@@ -148,6 +149,6 @@ public class RandomColor : MonoBehaviour
     public void StopRandomColor()
     {
         // Properly stops the coroutine
-        StopCoroutine(InitiateRandomColors);
+        StopCoroutine(initiateRandomColors);
     }
 }

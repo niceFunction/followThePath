@@ -110,7 +110,7 @@ public class Accessibility : MonoBehaviour
             // If grayscale toggle object is on, activate grayscale camera overlay.
             playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
             UxManager.Instance.GrayscaleToggle.isOn = true;
-
+            StopCoroutine(RandomColor.Instance.InitiateRandomColors);
             // Turns off Random color toggle and makes it non-interactable
             //UxManager.Instance.RandomColorsToggle.isOn = false;
             //UxManager.Instance.RandomColorsToggle.interactable = false;
@@ -169,6 +169,7 @@ public class Accessibility : MonoBehaviour
             
             // Makes the Color drop down non-interactable
             UxManager.Instance.ColorDropdown.interactable = false;
+            StopCoroutine(RandomColor.Instance.InitiateRandomColors);
         }
         else
         {
