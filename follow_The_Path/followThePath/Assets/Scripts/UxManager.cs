@@ -61,7 +61,6 @@ public class UxManager : MonoBehaviour
     [Tooltip("Visual element that the user can see if randomizing colors are active or not")]
     [SerializeField]
     private TextMeshProUGUI randomColorsStatus;
-
     #endregion
 
     #region GRAYSCALE VARIABLES
@@ -70,7 +69,6 @@ public class UxManager : MonoBehaviour
     [SerializeField]
     private Toggle grayscaleToggle;
     public Toggle GrayscaleToggle { get { return grayscaleToggle; } }
-    //public bool GrayscaleToggleOn { get { return grayscaleToggle.isOn; } }
 
     [Tooltip("Visual element that the user can see if grayscale 'overlay' is active or not")]
     [SerializeField]
@@ -96,6 +94,7 @@ public class UxManager : MonoBehaviour
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
 
+    // Key & Value for PlayerPrefs (Random Color)
     private string USE_RANDOM_COLORS = "USE_RANDOM_COLORS";
     private bool useRandomColors;
 

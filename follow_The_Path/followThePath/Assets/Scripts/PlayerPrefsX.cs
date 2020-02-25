@@ -18,7 +18,7 @@ public class PlayerPrefsX : MonoBehaviour
 	}
 
 	/// <summary>
-	/// 
+	/// Get the Key (which should be a string)
 	/// </summary>
 	/// <param name="name">Get the name of the key (must be the same name as the Set- Key name)</param>
 	/// <returns></returns>
