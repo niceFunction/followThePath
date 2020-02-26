@@ -57,6 +57,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -304,6 +305,7 @@ MonoBehaviour:
   - {fileID: 6605387719196314318, guid: 238b1342d2e23f6499a1c5180fe97796, type: 3}
   - {fileID: -7002974025882673163, guid: ff7d18cbad450d24fb3b5e19c9ebb633, type: 3}
   - {fileID: -450174970065340565, guid: 91cd790632bc25d4988c35a7fb97f4fd, type: 3}
+  - {fileID: 4631901083238880457, guid: 9777f3cf2525c2f46ab13f90e98752ad, type: 3}
   length: 20
 --- !u!1 &6266081642651570166
 GameObject:
@@ -360,6 +362,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -404,11 +407,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6273375029371292340}
     m_Modifications:
-    - target: {fileID: 6312220051230753146, guid: c8ed3fb0b7fdb8a45a725c3dcf1d8f45,
-        type: 3}
-      propertyPath: m_Name
-      value: collectibleParent
-      objectReference: {fileID: 0}
     - target: {fileID: 6312220051230753140, guid: c8ed3fb0b7fdb8a45a725c3dcf1d8f45,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -473,6 +471,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312220051230753146, guid: c8ed3fb0b7fdb8a45a725c3dcf1d8f45,
+        type: 3}
+      propertyPath: m_Name
+      value: collectibleParent
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8ed3fb0b7fdb8a45a725c3dcf1d8f45, type: 3}
