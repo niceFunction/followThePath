@@ -96,6 +96,7 @@ MonoBehaviour:
   - {fileID: 4293288189466454470, guid: 8c7b908dae59a4d448d42ba17bc11a9b, type: 3}
   - {fileID: 7929489349442135356, guid: defedc3492d8fe74fbdebd98e30e19fb, type: 3}
   - {fileID: 4278453681766858396, guid: 87ddef71fb0f71540b4c0d6a1d43c223, type: 3}
+  - {fileID: 7901198584081341601, guid: bf4616f1c5b5a91469468b25a98dd199, type: 3}
   length: 20
 --- !u!1 &6020240352407601016
 GameObject:
@@ -152,6 +153,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -323,16 +325,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4598262825159204047}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 3e8058b34a41d304ab10f89e2be9bed2,
-        type: 3}
-      propertyPath: m_Name
-      value: mdl_LeftEnter_RightExit
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 3e8058b34a41d304ab10f89e2be9bed2,
-        type: 3}
-      propertyPath: m_TagString
-      value: Tile
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3e8058b34a41d304ab10f89e2be9bed2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -393,6 +385,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4d8578f5c15b97e47ae1c6829242da8a, type: 2}
+    - target: {fileID: -927199367670048503, guid: 3e8058b34a41d304ab10f89e2be9bed2,
+        type: 3}
+      propertyPath: m_Name
+      value: mdl_LeftEnter_RightExit
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 3e8058b34a41d304ab10f89e2be9bed2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Tile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e8058b34a41d304ab10f89e2be9bed2, type: 3}
 --- !u!1 &6918160394184982528 stripped
@@ -414,11 +416,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4598262825159204047}
     m_Modifications:
-    - target: {fileID: 6312220051230753146, guid: c8ed3fb0b7fdb8a45a725c3dcf1d8f45,
-        type: 3}
-      propertyPath: m_Name
-      value: collectibleParent
-      objectReference: {fileID: 0}
     - target: {fileID: 6312220051230753140, guid: c8ed3fb0b7fdb8a45a725c3dcf1d8f45,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -483,6 +480,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312220051230753146, guid: c8ed3fb0b7fdb8a45a725c3dcf1d8f45,
+        type: 3}
+      propertyPath: m_Name
+      value: collectibleParent
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8ed3fb0b7fdb8a45a725c3dcf1d8f45, type: 3}

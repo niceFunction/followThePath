@@ -182,6 +182,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -315,6 +316,7 @@ MonoBehaviour:
   - {fileID: 2045572963078092356, guid: 50fbf02a24cd5c24497c50a415375904, type: 3}
   - {fileID: 4293288189466454470, guid: 8c7b908dae59a4d448d42ba17bc11a9b, type: 3}
   - {fileID: 7929489349442135356, guid: defedc3492d8fe74fbdebd98e30e19fb, type: 3}
+  - {fileID: 7901198584081341601, guid: bf4616f1c5b5a91469468b25a98dd199, type: 3}
   length: 20
 --- !u!1001 &1645210495278082044
 PrefabInstance:
@@ -323,11 +325,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3480796463763476487}
     m_Modifications:
-    - target: {fileID: 6312220051230753146, guid: c8ed3fb0b7fdb8a45a725c3dcf1d8f45,
-        type: 3}
-      propertyPath: m_Name
-      value: collectibleParent
-      objectReference: {fileID: 0}
     - target: {fileID: 6312220051230753140, guid: c8ed3fb0b7fdb8a45a725c3dcf1d8f45,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -393,6 +390,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 6312220051230753146, guid: c8ed3fb0b7fdb8a45a725c3dcf1d8f45,
+        type: 3}
+      propertyPath: m_Name
+      value: collectibleParent
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8ed3fb0b7fdb8a45a725c3dcf1d8f45, type: 3}
 --- !u!4 &4705545329888355976 stripped
@@ -408,16 +410,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3480796463763476487}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 8c6a2dbefc4ebf44880df2925ead503b,
-        type: 3}
-      propertyPath: m_Name
-      value: mdl_LeftCurveEnter_RightStraightExit
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 8c6a2dbefc4ebf44880df2925ead503b,
-        type: 3}
-      propertyPath: m_TagString
-      value: Tile
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8c6a2dbefc4ebf44880df2925ead503b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -478,6 +470,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4d8578f5c15b97e47ae1c6829242da8a, type: 2}
+    - target: {fileID: -927199367670048503, guid: 8c6a2dbefc4ebf44880df2925ead503b,
+        type: 3}
+      propertyPath: m_Name
+      value: mdl_LeftCurveEnter_RightStraightExit
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 8c6a2dbefc4ebf44880df2925ead503b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Tile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c6a2dbefc4ebf44880df2925ead503b, type: 3}
 --- !u!1 &1734223417835908243 stripped

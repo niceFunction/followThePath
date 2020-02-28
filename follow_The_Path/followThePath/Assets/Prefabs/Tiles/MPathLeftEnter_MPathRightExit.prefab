@@ -189,23 +189,8 @@ MonoBehaviour:
   - {fileID: 4293288189466454470, guid: 8c7b908dae59a4d448d42ba17bc11a9b, type: 3}
   - {fileID: 7929489349442135356, guid: defedc3492d8fe74fbdebd98e30e19fb, type: 3}
   - {fileID: 4278453681766858396, guid: 87ddef71fb0f71540b4c0d6a1d43c223, type: 3}
+  - {fileID: 7901198584081341601, guid: bf4616f1c5b5a91469468b25a98dd199, type: 3}
   length: 20
---- !u!114 &2166699897342911942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5857979692333540095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 121de18df4027f34f80fea05a4d9747b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionClips:
-  - {fileID: 8300000, guid: 787d6579297f26c4d898b5426e398467, type: 3}
-  - {fileID: 8300000, guid: d3b8f82c45e972444b5ccd037194c4af, type: 3}
-  - {fileID: 8300000, guid: a49666c479d8d104fb969e9a9c9af65b, type: 3}
 --- !u!82 &9127403162735289399
 AudioSource:
   m_ObjectHideFlags: 0
@@ -303,6 +288,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2166699897342911942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5857979692333540095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 121de18df4027f34f80fea05a4d9747b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionClips:
+  - {fileID: 8300000, guid: 787d6579297f26c4d898b5426e398467, type: 3}
+  - {fileID: 8300000, guid: d3b8f82c45e972444b5ccd037194c4af, type: 3}
+  - {fileID: 8300000, guid: a49666c479d8d104fb969e9a9c9af65b, type: 3}
+--- !u!64 &8649507047469717055
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5857979692333540095}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2782344899982329795, guid: 47b43becf073ab843b19eec520876ca1, type: 3}
 --- !u!1001 &2479887351161125878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -380,6 +395,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4d8578f5c15b97e47ae1c6829242da8a, type: 2}
+    - target: {fileID: -1504981713932161579, guid: 47b43becf073ab843b19eec520876ca1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 47b43becf073ab843b19eec520876ca1,
         type: 3}
       propertyPath: m_Name
