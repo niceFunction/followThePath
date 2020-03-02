@@ -78,16 +78,16 @@ public class Collectible : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && !collectSource.isPlaying)
         {
-            ///<summary>
-            /// Disable the collectible renderer before invoking "DestroyObject" method, 
-            /// so that the AudioClip can finish playing.
-            /// </summary> 
+            /*
+            Disable the collectible renderer before invoking "DestroyObject" method, 
+            so that the AudioClip can finish playing.
+            */
             collectibleMesh.enabled = false;
-
-            ///<summary>
-            /// Disable the collectible Box Collider before invoking "DestroyObject" method, 
-            /// to ensure no more collision happens.
-            /// </summary> 
+            
+            /* 
+            Disable the collectible Box Collider before invoking "DestroyObject" method, 
+            to ensure no more collision happens.
+            */
             collectibleCollider.enabled = false;
             Explode();
             // Invoke DestroyObject method
