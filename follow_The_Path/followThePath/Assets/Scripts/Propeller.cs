@@ -5,7 +5,7 @@ using UnityEngine;
 public class Propeller : MonoBehaviour
 {
     //TODO personal note: Keep in mind that sound may repeat quickly if the player is colliding with Tile AND Propeller
-
+    //TODO personal note: Increase the thickness of the propeller to prevent Players to "slink" through
     [SerializeField, Tooltip("Object to be rotated")]
     private GameObject rotateObject;
     public GameObject RotateObject { get { return rotateObject; } }
@@ -19,9 +19,6 @@ public class Propeller : MonoBehaviour
         "Shouldn't be 0.")]
     private int direction = 0;
     public int Direction { get { return direction; } set { direction = value; } }
-
-    //private int stopDirection = 0;
-    //public int StopDirection { get { return stopDirection; } }
 
     public static Propeller Instance { get; private set; }
 
@@ -41,7 +38,7 @@ public class Propeller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Direction: " + direction);
+
     }
 
     // Update is called once per frame
