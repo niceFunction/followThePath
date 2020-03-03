@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class StopPropeller : MonoBehaviour
 {
-    [SerializeField, Tooltip("Stop the rotation of the propeller object\n" +
-        "(Can be found in RoundAboutMidEnter objects)")]
-    private GameObject propellerObject;
-    public GameObject PropellerObject { get { return propellerObject; } }
+    [SerializeField, Tooltip("Stop the rotation of the propeller object.\n" +
+        "Will delete itself after Player object collides with itself")]
+    private GameObject stopPropellerObject;
+    public GameObject StopPropellerObject { get { return stopPropellerObject; } }
 
-    private bool havePlayerEntered;
+
+    [SerializeField, Tooltip("Add Gameobjects with TrailRenderers\n" +
+        "For the Propeller, it should be 2, one for each propeller")]
+    private TrailRenderer[] propellerTrailGroup;
 
     // Start is called before the first frame update
     void Start()
@@ -29,11 +32,16 @@ public class StopPropeller : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("Player has Entered");
-            havePlayerEntered = true;
-        }
-        else
-        {
-            havePlayerEntered = false;
+            Propeller.Instance.Direction = 0;
+            propellerTrailGroup[0].emitting = false;
+            propellerTrailGroup[1].emitting = false;
+            DestroyObject();
         }
     }
+ 
+    private void DestroyObject()
+    {
+        Object.Destroy(StopPropellerObject);
+    }
+ 
 }

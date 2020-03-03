@@ -96,7 +96,7 @@ public class Collectible : MonoBehaviour
             collectSource.PlayOneShot(collectSource.clip = collectClip);
 
             gameManager.AddScore(collectibleScore);
-            Debug.Log("Player collided with Collectible");
+            //Debug.Log("Player collided with Collectible");
         }
     }
 
