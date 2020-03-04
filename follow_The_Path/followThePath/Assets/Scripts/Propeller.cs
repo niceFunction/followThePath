@@ -5,7 +5,6 @@ using UnityEngine;
 public class Propeller : MonoBehaviour
 {
     //TODO personal note: Keep in mind that sound may repeat quickly if the player is colliding with Tile AND Propeller
-    //TODO personal note: Increase the thickness of the propeller to prevent Players to "slink" through
     [SerializeField, Tooltip("Object to be rotated")]
     private GameObject rotateObject;
     public GameObject RotateObject { get { return rotateObject; } }
