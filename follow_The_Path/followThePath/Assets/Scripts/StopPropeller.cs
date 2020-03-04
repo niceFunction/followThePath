@@ -35,6 +35,8 @@ public class StopPropeller : MonoBehaviour
             Propeller.Instance.Direction = 0;
             propellerTrailGroup[0].emitting = false;
             propellerTrailGroup[1].emitting = false;
+            propellerTrailGroup[2].emitting = false;
+            propellerTrailGroup[3].emitting = false;
             DestroyObject();
         }
     }

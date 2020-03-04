@@ -141,7 +141,7 @@ PrefabInstance:
     - target: {fileID: 9154867312178150107, guid: 1febbe1a2843e964d80ce5d625983321,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.106606
+      value: 11.78
       objectReference: {fileID: 0}
     - target: {fileID: 9154867312178150107, guid: 1febbe1a2843e964d80ce5d625983321,
         type: 3}
@@ -627,11 +627,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3575780154452496512, guid: 3cadece42566cc745bb01adbe30f2417,
+        type: 3}
+      propertyPath: propellerTrailGroup.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3575780154452496512, guid: 3cadece42566cc745bb01adbe30f2417,
+        type: 3}
+      propertyPath: propellerTrailGroup.Array.data[2]
+      value: 
+      objectReference: {fileID: 1994162122}
+    - target: {fileID: 3575780154452496512, guid: 3cadece42566cc745bb01adbe30f2417,
+        type: 3}
+      propertyPath: propellerTrailGroup.Array.data[3]
+      value: 
+      objectReference: {fileID: 1994162121}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cadece42566cc745bb01adbe30f2417, type: 3}
 --- !u!4 &1994162120 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3575780153488233083, guid: 3cadece42566cc745bb01adbe30f2417,
+    type: 3}
+  m_PrefabInstance: {fileID: 1994162119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!96 &1994162121 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 2860459721237929637, guid: 3cadece42566cc745bb01adbe30f2417,
+    type: 3}
+  m_PrefabInstance: {fileID: 1994162119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!96 &1994162122 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 2615073189500514620, guid: 3cadece42566cc745bb01adbe30f2417,
     type: 3}
   m_PrefabInstance: {fileID: 1994162119}
   m_PrefabAsset: {fileID: 0}
