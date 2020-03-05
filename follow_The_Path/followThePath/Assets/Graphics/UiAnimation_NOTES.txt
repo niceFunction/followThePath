@@ -1,0 +1,13 @@
+Introduction to Unity UI - Part 1
+https://www.raywenderlich.com/6570-introduction-to-unity-ui-part-1
+
+Introduction to Unity UI - Part 2
+https://www.raywenderlich.com/6569-introduction-to-unity-ui-part-2#toc-anchor-001
+
+
+Notes:
+
+BackButton for How to Play Menu
+X: 0 Y: -850.9999 Z: 0
+
+Width: 330 Height: 125
