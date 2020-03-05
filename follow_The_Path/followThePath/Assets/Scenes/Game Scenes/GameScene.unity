@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -398,8 +399,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 318418684}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
@@ -1019,6 +1021,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 118363635}
     m_Modifications:
+    - target: {fileID: -1247893802609552284, guid: 40965167264009a4fa37baacba136d6c,
+        type: 3}
+      propertyPath: length
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1882914710240246826, guid: 40965167264009a4fa37baacba136d6c,
         type: 3}
       propertyPath: m_Name
@@ -1028,11 +1035,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Tile
-      objectReference: {fileID: 0}
-    - target: {fileID: -1247893802609552284, guid: 40965167264009a4fa37baacba136d6c,
-        type: 3}
-      propertyPath: length
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7589039226730762048, guid: 40965167264009a4fa37baacba136d6c,
         type: 3}
@@ -3453,6 +3455,81 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: pauseMenuUI
+      value: 
+      objectReference: {fileID: 331015479}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: countdownText
+      value: 
+      objectReference: {fileID: 1479986332}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: triggerCountdownTimer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 664361994}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: gameOverTimerObject
+      value: 
+      objectReference: {fileID: 187852343}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: countDownTextObject
+      value: 
+      objectReference: {fileID: 187852343}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: gameOverTimeAmount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: gameOverTimer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: gameOverMenuObject
+      value: 
+      objectReference: {fileID: 486319623}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: backgroundTimer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: insideGameScene
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: minimumSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: highscore
+      value: 
+      objectReference: {fileID: 1937331654}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: currentScore
+      value: 
+      objectReference: {fileID: 1562704469}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: gameOverScore
+      value: 
+      objectReference: {fileID: 1579474144}
     - target: {fileID: 3596900844643142633, guid: 7f099ccd50ca071438eed6eb291dbe6e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3558,81 +3635,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
-        type: 3}
-      propertyPath: pauseMenuUI
-      value: 
-      objectReference: {fileID: 331015479}
-    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
-        type: 3}
-      propertyPath: countdownText
-      value: 
-      objectReference: {fileID: 1479986332}
-    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
-        type: 3}
-      propertyPath: triggerCountdownTimer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
-        type: 3}
-      propertyPath: Ball
-      value: 
-      objectReference: {fileID: 664361994}
-    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
-        type: 3}
-      propertyPath: gameOverTimerObject
-      value: 
-      objectReference: {fileID: 187852343}
-    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
-        type: 3}
-      propertyPath: countDownTextObject
-      value: 
-      objectReference: {fileID: 187852343}
-    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
-        type: 3}
-      propertyPath: gameOverTimeAmount
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
-        type: 3}
-      propertyPath: gameOverTimer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
-        type: 3}
-      propertyPath: gameOverMenuObject
-      value: 
-      objectReference: {fileID: 486319623}
-    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
-        type: 3}
-      propertyPath: backgroundTimer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
-        type: 3}
-      propertyPath: insideGameScene
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
-        type: 3}
-      propertyPath: minimumSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
-        type: 3}
-      propertyPath: highscore
-      value: 
-      objectReference: {fileID: 1937331654}
-    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
-        type: 3}
-      propertyPath: currentScore
-      value: 
-      objectReference: {fileID: 1562704469}
-    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
-        type: 3}
-      propertyPath: gameOverScore
-      value: 
-      objectReference: {fileID: 1579474144}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f099ccd50ca071438eed6eb291dbe6e, type: 3}
 --- !u!224 &1878075112 stripped
@@ -3800,11 +3802,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 9154867312178150118, guid: 1febbe1a2843e964d80ce5d625983321,
+    - target: {fileID: 1035931702865606904, guid: 1febbe1a2843e964d80ce5d625983321,
         type: 3}
-      propertyPath: m_Name
-      value: Player
+      propertyPath: m_audioClip
+      value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1035931702865606904, guid: 1febbe1a2843e964d80ce5d625983321,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 8847755045331049598, guid: 505d13918522d914bafb17cc446e6e52,
+        type: 2}
     - target: {fileID: 9154867312178150107, guid: 1febbe1a2843e964d80ce5d625983321,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3860,10 +3868,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1035931702865606904, guid: 1febbe1a2843e964d80ce5d625983321,
+    - target: {fileID: 9154867312178150118, guid: 1febbe1a2843e964d80ce5d625983321,
         type: 3}
-      propertyPath: m_audioClip
-      value: 
+      propertyPath: m_Name
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1febbe1a2843e964d80ce5d625983321, type: 3}
@@ -4500,11 +4508,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7814342569133564051, guid: 9588edca2a8a1a04aac87bb19166b19a,
-        type: 3}
-      propertyPath: m_Name
-      value: TilePool
-      objectReference: {fileID: 0}
     - target: {fileID: 3983698995973681774, guid: 9588edca2a8a1a04aac87bb19166b19a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4560,6 +4563,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7814342569133564051, guid: 9588edca2a8a1a04aac87bb19166b19a,
+        type: 3}
+      propertyPath: m_Name
+      value: TilePool
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9588edca2a8a1a04aac87bb19166b19a, type: 3}
 --- !u!1001 &6580692546112117102
@@ -4569,11 +4577,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6580692546672935206, guid: 4afbb2300ee0391449484bbdea68b07d,
-        type: 3}
-      propertyPath: m_Name
-      value: MainCamera
-      objectReference: {fileID: 0}
     - target: {fileID: 6580692546672935202, guid: 4afbb2300ee0391449484bbdea68b07d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4629,11 +4632,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6580692546672935207, guid: 4afbb2300ee0391449484bbdea68b07d,
-        type: 3}
-      propertyPath: m_Target
-      value: 
-      objectReference: {fileID: 1912563230}
     - target: {fileID: 6580692546672935205, guid: 4afbb2300ee0391449484bbdea68b07d,
         type: 3}
       propertyPath: near clip plane
@@ -4649,5 +4647,15 @@ PrefabInstance:
       propertyPath: field of view
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 6580692546672935206, guid: 4afbb2300ee0391449484bbdea68b07d,
+        type: 3}
+      propertyPath: m_Name
+      value: MainCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580692546672935207, guid: 4afbb2300ee0391449484bbdea68b07d,
+        type: 3}
+      propertyPath: m_Target
+      value: 
+      objectReference: {fileID: 1912563230}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4afbb2300ee0391449484bbdea68b07d, type: 3}

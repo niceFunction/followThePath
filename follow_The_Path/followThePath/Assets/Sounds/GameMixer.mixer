@@ -15,7 +15,7 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 524563988530548404}
-  m_UserColorIndex: 0
+  m_UserColorIndex: 6
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
@@ -43,7 +43,6 @@ AudioMixerGroupController:
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 49b12df0daa53ab40ad1e5534ef446ca
   m_Children:
-  - {fileID: -2040460229823727546}
   - {fileID: 886420012097903980}
   - {fileID: -1390268276201431080}
   m_Volume: cc68d38ad3bdbfb48bcf7e56368e7380
@@ -51,43 +50,10 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -6015550240639223052}
-  m_UserColorIndex: 0
+  m_UserColorIndex: 1
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
---- !u!243 &-2040460229823727546
-AudioMixerGroupController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: BallRoll
-  m_AudioMixer: {fileID: 24100000}
-  m_GroupID: 34f9bb8834db79744bded0fac37f0449
-  m_Children: []
-  m_Volume: aa58f04b82f879b489c6d2025c7072ba
-  m_Pitch: 1f5b6553220cda34e828b9d0b3ec7d27
-  m_Send: 00000000000000000000000000000000
-  m_Effects:
-  - {fileID: -1491003119325611776}
-  m_UserColorIndex: 0
-  m_Mute: 0
-  m_Solo: 0
-  m_BypassEffects: 0
---- !u!244 &-1491003119325611776
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: 696e02f31fa335f44a109515f00e3186
-  m_EffectName: Attenuation
-  m_MixLevel: fe9ed74a775921043a25b938d8ac4a50
-  m_Parameters: []
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
 --- !u!243 &-1390268276201431080
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -103,7 +69,7 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 1448269325019834714}
-  m_UserColorIndex: 0
+  m_UserColorIndex: 2
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
@@ -123,6 +89,8 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
+  - guid: 9dd4b87ea8d599f479e884cac7e39082
+    name: ballVolume
   - guid: df6ab844d6580d5469175b2e92eef3b2
     name: masterVolume
   - guid: 1339c5f1b29267545b8db5d0ad2d5ca6
@@ -134,9 +102,9 @@ AudioMixerController:
     - 8229742ec1124be42870733eb5d2a561
     - 38b668cfcd9284e4582fc4c5952af98d
     - 49b12df0daa53ab40ad1e5534ef446ca
-    - 34f9bb8834db79744bded0fac37f0449
     - 8a648498f1ca91c4ab5c4274ec688afb
     - 8608fe8474ae5bd4d84f68eef1de9d4b
+    - 6768abce38ec75c4ebd2662b3e9aee24
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -152,6 +120,7 @@ AudioMixerGroupController:
   m_Children:
   - {fileID: -8764282503383309918}
   - {fileID: -4241241104117623869}
+  - {fileID: 8847755045331049598}
   m_Volume: df6ab844d6580d5469175b2e92eef3b2
   m_Pitch: 0abdb7fb233706547a1a394cc53ee73b
   m_Send: 00000000000000000000000000000000
@@ -248,7 +217,7 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 568818455942684420}
-  m_UserColorIndex: 0
+  m_UserColorIndex: 2
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
@@ -280,3 +249,36 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &8534552975519262655
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 77e0ccfd73d5eda4a8dd05bf606285fe
+  m_EffectName: Attenuation
+  m_MixLevel: 27df86bf938897d43a0f0c1a641794fb
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &8847755045331049598
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BallRoll
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 6768abce38ec75c4ebd2662b3e9aee24
+  m_Children: []
+  m_Volume: 9dd4b87ea8d599f479e884cac7e39082
+  m_Pitch: 4818de128d48db54c991dc351395795b
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 8534552975519262655}
+  m_UserColorIndex: 8
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0

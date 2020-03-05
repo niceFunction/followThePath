@@ -11,7 +11,7 @@ public class AudioManager : MonoBehaviour
     /// Each entry in MixerGroup correspond to one exposed volume parameter in the mixer.
     /// Add a new value to this enum for each new volume paramter you expose - with the exact same name!
     /// </summary>
-    public enum MixerVolume { masterVolume, musicVolume, sfxVolume }
+    public enum MixerVolume { masterVolume, musicVolume, sfxVolume, ballVolume }
 
     /// <summary>
     /// Variables used to test if the Ball is moving
