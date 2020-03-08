@@ -149,6 +149,10 @@ public class RandomColor : MonoBehaviour
     public void StopRandomColor()
     {
         // Properly stops the coroutine
-        StopCoroutine(initiateRandomColors);
+        if (InitiateRandomColors != null)
+        {
+            StopCoroutine(initiateRandomColors);
+        }
+
     }
 }
