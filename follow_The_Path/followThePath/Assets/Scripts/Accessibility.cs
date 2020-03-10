@@ -111,40 +111,12 @@ public class Accessibility : MonoBehaviour
             playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
             UxManager.Instance.GrayscaleToggle.isOn = true;
             StopCoroutine(RandomColor.Instance.InitiateRandomColors);
-            // Turns off Random color toggle and makes it non-interactable
-            //UxManager.Instance.RandomColorsToggle.isOn = false;
-            //UxManager.Instance.RandomColorsToggle.interactable = false;
-            //RandomColor.Instance.StopRandomColor();
-
-            /*
-            // Turns off Random color toggle and makes it non-interactable
-            
-            UxManager.Instance.RandomColorsToggle.interactable = false;
-
-            // Makes the Color drop down non-interactable
-            UxManager.Instance.ColorDropdown.interactable = false;
-            */
         }
         else
         {
             // If grayscale toggle object is NOT on, deactivate grayscale camera overlay.
             playerCamera.GetComponent<GrayscaleCamera>().enabled = false;
-            
             UxManager.Instance.GrayscaleToggle.isOn = false;
-            
-            // Random color toggle can be interacted with again
-            //UxManager.Instance.RandomColorsToggle.interactable = true;
-            // Color dropdown can be interacted with again
-            //UxManager.Instance.ColorDropdown.interactable = true;
-            
-            
-            //RandomColor.Instance.StartRandomColor();
-            /*
-            // Random color toggle can be interacted with again
-            UxManager.Instance.RandomColorsToggle.interactable = true;
-            // Color dropdown can be interacted with again
-            UxManager.Instance.ColorDropdown.interactable = true;
-            */
         }
     }
 
