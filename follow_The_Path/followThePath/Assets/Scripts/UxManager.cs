@@ -119,6 +119,8 @@ public class UxManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetSavedPlayerPrefs();
+
         currentTileColor = TileMaterial.color;
         currentFloorColor = FloorMaterial.color;
         
@@ -132,6 +134,29 @@ public class UxManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Gets saved PlayerPrefs values and uses what ever was last chosen, this method should only be accessed in "UxManager"
+    /// </summary>
+    private void GetSavedPlayerPrefs()
+    {
+        useRandomColors = PlayerPrefsX.GetBool(USE_RANDOM_COLORS);
+
+        if (useRandomColors)
+        {
+            RandomColorsToggle.isOn = true;
+            RandomColor.Instance.StartRandomColor();
+            ColorDropdown.interactable = false;
+            randomColorsStatus.text = "ON";
+        }
+        else
+        {
+            RandomColorsToggle.isOn = false;
+            RandomColor.Instance.StopRandomColor();
+            ColorDropdown.interactable = true;
+            randomColorsStatus.text = "OFF";
+        }
+    }
+
+    /// <summary>
     /// If randomizationToggle.isOn is set to true, colors are randomized
     /// if false, user can set specific color on materials
     /// </summary>
@@ -139,17 +164,21 @@ public class UxManager : MonoBehaviour
     {
         if (RandomColorsToggle.isOn)
         {
-            //useRandomColors = true;
+            useRandomColors = true;
+            
             // Color Randomization is active and set specific color dropdown is non-interactable
             RandomColor.Instance.StartRandomColor();
+            //RandomColorsToggle.isOn = true;
             ColorDropdown.interactable = false;
             randomColorsStatus.text = "ON";
         }
         else
-        {
-            //useRandomColors = false;
+        {  
+            useRandomColors = false;
+
             // Color randomization is inactive and set specific color dropdown is interactable
             RandomColor.Instance.StopRandomColor();
+            //RandomColorsToggle.isOn = false;
             ColorDropdown.interactable = true;
             randomColorsStatus.text = "OFF";
         }
@@ -159,7 +188,8 @@ public class UxManager : MonoBehaviour
         {
             colorDropdown.interactable = false;
         }
-        //PlayerPrefsX.SetBool(USE_RANDOM_COLORS, useRandomColors);
+        PlayerPrefsX.SetBool(USE_RANDOM_COLORS, useRandomColors);
+        PlayerPrefs.Save();
     }
 
     /// <summary>

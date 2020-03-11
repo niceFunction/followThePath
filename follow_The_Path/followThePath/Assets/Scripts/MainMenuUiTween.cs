@@ -16,7 +16,7 @@ public class MainMenuUiTween : MonoBehaviour
     private Image backgroundImage;
 
     [SerializeField]
-    private TextMeshProUGUI instructionCanvas;
+    private TextMeshProUGUI instructionCanvasText;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +42,7 @@ public class MainMenuUiTween : MonoBehaviour
         MainMenuTweens[0].TweenTarget.DOAnchorPos(new Vector2(0, MainMenuTweens[0].YPosition), MainMenuTweens[0].TweenTime);
         MainMenuTweens[1].TweenTarget.DOAnchorPos(new Vector2(0, 0), MainMenuTweens[1].TweenTime);
         backgroundImage.DOFade(MainMenuTweens[1].Alpha, MainMenuTweens[1].TweenTime);
-        instructionCanvas.DOFade(1, MainMenuTweens[1].TweenTime);
+        instructionCanvasText.DOFade(1, MainMenuTweens[1].TweenTime);
     }
 
     public void ExitHowToPlayMenu()
@@ -50,6 +50,6 @@ public class MainMenuUiTween : MonoBehaviour
         MainMenuTweens[0].TweenTarget.DOAnchorPos(new Vector2(0, 0), MainMenuTweens[0].TweenTime);
         MainMenuTweens[1].TweenTarget.DOAnchorPos(new Vector2(0, MainMenuTweens[1].YPosition), MainMenuTweens[1].TweenTime);
         backgroundImage.DOFade(MainMenuTweens[0].Alpha, MainMenuTweens[0].TweenTime);
-        instructionCanvas.DOFade(0, MainMenuTweens[0].TweenTime);
+        instructionCanvasText.DOFade(0, MainMenuTweens[0].TweenTime);
     }
 }

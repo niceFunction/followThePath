@@ -83,7 +83,7 @@ public class Accessibility : MonoBehaviour
     }
 
     /// <summary>
-    /// Gets the saved PlayerPrefs values in "Accessibility"
+    /// Gets the saved PlayerPrefs values in "Accessibility", this method should only be accessed in "Accessibility"
     /// </summary>
     private void GetSavedPlayerPrefs()
     {

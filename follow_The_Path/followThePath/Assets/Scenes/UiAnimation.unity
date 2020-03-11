@@ -5518,7 +5518,7 @@ MonoBehaviour:
     XPosition: 1200
     YPosition: 0
   backgroundImage: {fileID: 1575731907}
-  instructionCanvas: {fileID: 402036321}
+  instructionCanvasText: {fileID: 402036321}
 --- !u!4 &1273847783
 Transform:
   m_ObjectHideFlags: 0
