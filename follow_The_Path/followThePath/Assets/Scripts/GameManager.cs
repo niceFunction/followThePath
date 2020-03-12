@@ -11,17 +11,19 @@ using UnityEngine.Audio;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
-
+    //TODO Divide Game related variables/methods and "state" related variables/methods to their own scripts
     // Game "States"
-    public static bool GameIsPaused = false;
-    public static bool isGameOver = false;
+    public static bool GameIsPaused = false; // Related to "GameManager"
+    public static bool isGameOver = false; // Related to "GameManager"
 
-    private AudioSource buttonTapSource;
+    #region Moved to "ActionHandler"
+    private AudioSource buttonTapSource; // Related to "state" or "action"
     [Tooltip("Used to Play an SFX when pressing a button")]
-    public AudioClip buttonTapClip;
-    private float delayButtonSound = 0.2f;
+    public AudioClip buttonTapClip; // Related to "state" or "action"
+    private float delayButtonSound = 0.2f; // Related to "state" or "action"
+    #endregion
 
-
+    #region Game Manager related variables
     private Collectible collectible;
     private int score;
     // currentScoreText displays while game is active
@@ -29,12 +31,12 @@ public class GameManager : MonoBehaviour
     // highscoreText displays when the game is over
     public TextMeshProUGUI highscore;
     
-
+    //TODO turn most (if not all variables) private and add getters for them
     [Space(10)]
     #region GAME OVER VARIABLES
     [Header("Game Over Variables")]
     [Tooltip("True if player is inside a 'active' game scene, false if they aren't")]
-    public bool insideGameScene = false;
+    public bool insideGameScene = false; // if divided, this should be removed
     [Tooltip("Manually get component from Player object")]
     public Ball Ball;
     [Tooltip("GameObject responsible for the countdown text, disabled at the beginning")]
@@ -64,6 +66,9 @@ public class GameManager : MonoBehaviour
     [Tooltip("Display Score on Game Over")]
     public TextMeshProUGUI gameOverScore;
     #endregion
+    #endregion
+
+    public static GameManager Instance { get; private set; }
 
     void Start()
     {
@@ -79,6 +84,7 @@ public class GameManager : MonoBehaviour
         #region Game Over Conditions
         if (insideGameScene == true)
         {
+            // TODO create and move the following content to its own method
             // If the players "velocity" is below a certain value, activate timer
             if (Ball.RB.velocity.magnitude < minimumSpeed)
             {
@@ -107,15 +113,14 @@ public class GameManager : MonoBehaviour
             }
         }
         #endregion
-
     }
 
     private void Awake()
     {
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+        Screen.sleepTimeout = SleepTimeout.NeverSleep; // will probably be removed
     }
 
-    public void Playgame()
+    public void Playgame() // Moved to ActionHandler
     {
         Time.timeScale = 1;
         isGameOver = false;
@@ -125,7 +130,7 @@ public class GameManager : MonoBehaviour
     }
 
     #region Pause Menu Methods
-    public void LoadMainMenu()
+    public void LoadMainMenu() // Moved to ActionHandler
     {
         Time.timeScale = 1;
         isGameOver = false;
@@ -135,12 +140,18 @@ public class GameManager : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Resumes the game and continues game time
+    /// </summary>
     public void Resume()
     {
         Time.timeScale = 1;
         GameIsPaused = false;
     }
 
+    /// <summary>
+    /// Pauses the game and stops game time
+    /// </summary>
     public void Pause()
     {
         Time.timeScale = 0;
@@ -152,7 +163,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         Time.timeScale = 0;
-        isGameOver = true;
+        isGameOver = true; // Will be removed
         countdownText.enabled = false;
         currentScore.enabled = false;
         gameOverMenuObject.SetActive(true);
@@ -160,7 +171,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     //NOTE: Maybe move this method to another script in the future
-    public void QuitGame()
+    public void QuitGame() // Moved to ActionHandler
     {
         Debug.Log("QUIT GAME");
         Application.Quit();
@@ -171,7 +182,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Plays an SFX before opening a scene which is on a delay.
     /// </summary>
-    public void OnPressingQuitGame()
+    public void OnPressingQuitGame() // Moved to ActionHandler
     {
         PlayButtonTapSound();
         Invoke("QuitGame", delayButtonSound);
@@ -179,21 +190,21 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Used to Invoke the Scene in "LoadMainMenu".
     /// </summary>
-    void OpenMainMenu()
+    void OpenMainMenu() // Moved to ActionHandler
     {
         SceneManager.LoadScene("MainMenu");
     }
     /// <summary>
     /// Used to Invoke the Scene in the method "Playgame".
     /// </summary>
-    void OpenPlayGame()
+    void OpenPlayGame() // Moved to ActionHandler
     {
         SceneManager.LoadScene("GameScene");
     }
     #endregion
 
     //TODO: Look into moving this method in UI certain methods
-    public void PlayButtonTapSound()
+    public void PlayButtonTapSound() // Moved to ActionHandler
     {
         buttonTapSource.Stop();
         buttonTapSource.PlayOneShot(buttonTapSource.clip = buttonTapClip);
@@ -212,6 +223,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the score
+    /// </summary>
     void UpdateScore()
     {
         currentScore.text = score.ToString();
@@ -221,7 +235,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Used for Debugging and testing, will be removed in the future.
     /// </summary>
-    public void ResetHighScore()
+    public void ResetHighScore() // Moved to ActionHandler
     {
         PlayerPrefs.DeleteKey("HighScore");
         highscore.text = "0";

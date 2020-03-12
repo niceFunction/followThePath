@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 
+/// <summary>
+/// Uses DOTween to make MainMenu UI elements more interesting
+/// </summary>
 public class MainMenuUiTween : MonoBehaviour
 {
 
