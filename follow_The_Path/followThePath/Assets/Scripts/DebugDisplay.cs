@@ -8,7 +8,7 @@ public class DebugDisplay : MonoBehaviour
 {
 
     [SerializeField]
-    private Ball ball;
+    private Player ball;
 
     float deltaTime = 0.0f;
 

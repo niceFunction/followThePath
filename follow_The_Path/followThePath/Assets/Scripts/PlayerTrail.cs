@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerTrail : MonoBehaviour
 {
     //private bool trailActive = false;
-    private Ball Ball;
+    private Player Ball;
     private TrailRenderer Trail;
 
     [Range(0.1f, 8.0f)]
@@ -14,7 +14,7 @@ public class PlayerTrail : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Ball = GetComponentInParent<Ball>();
+        Ball = GetComponentInParent<Player>();
         Trail = GetComponent<TrailRenderer>();
     }
 

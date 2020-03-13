@@ -8,7 +8,7 @@ using UnityEngine.Audio;
     Introduction to AUDIO in Unity (Brackeys): www.youtube.com/watch?v=6OT43pvUyfY
     Fade Audio in Unity: https://johnleonardfrench.com/articles/how-to-fade-audio-in-unity-i-tested-every-method-this-ones-the-best/
 */
-public class Ball : MonoBehaviour
+public class Player : MonoBehaviour
 {
 
     // Lowpass Filter Related varaibels

@@ -20,5 +20,7 @@ public class Tweens : MonoBehaviour
         public int XPosition;
         [Tooltip("The Y-position the object will have"), Range(-5000, 5000)]
         public int YPosition;
+        [Tooltip("Scale of object"), Range(0, 1)]
+        public float Scale;
     }
 }
