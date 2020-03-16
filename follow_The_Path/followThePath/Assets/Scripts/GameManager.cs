@@ -5,15 +5,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using DG.Tweening;
 
 /// <summary>
 /// Class that manages different states in the game
 /// </summary>
 public class GameManager : MonoBehaviour
 {
-    
+
     //TODO Divide Game related variables/methods and "state" related variables/methods to their own scripts
     // Game "States"
+
+    [SerializeField, Tooltip("Object that tweens Ui element in the Game scene")]
+    private GameObject gameUiTweenObject;
+    [Space(10)]
     public static bool GameIsPaused = false; // Related to "GameManager"
     public static bool isGameOver = false; // Related to "GameManager"
     /*
@@ -24,7 +29,6 @@ public class GameManager : MonoBehaviour
     private float delayButtonSound = 0.2f; // Related to "state" or "action"
     #endregion
     */
-    #region Game Manager related variables
     private Collectible collectible; // Related to "GameManager"
     private int score; // Related to "GameManager"
     [SerializeField, Tooltip("currentScoreText displays while game is active")]
@@ -41,8 +45,8 @@ public class GameManager : MonoBehaviour
     [Space(10)]
     #region GAME OVER VARIABLES
     [Header("Game Over Variables")]
-    [Tooltip("True if player is inside a 'active' game scene, false if they aren't")]
-    public bool insideGameScene = false; // if divided, this should be removed
+    //[Tooltip("True if player is inside a 'active' game scene, false if they aren't")]
+    //public bool insideGameScene = false; // if divided, this should be removed
     
     [SerializeField, Tooltip("Manually get component from Player object")]
     private Player ball;
@@ -84,7 +88,6 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI gameOverScore;
     public TextMeshProUGUI GameOverScore { get { return gameOverScore; } }
     #endregion
-    #endregion
 
     public static GameManager Instance { get; private set; }
 
@@ -99,7 +102,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        GameStatus();
+        //GameStatus();
         /*
         #region Game Over Conditions
         if (insideGameScene == true)
@@ -139,6 +142,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         //Screen.sleepTimeout = SleepTimeout.NeverSleep; // will probably be removed
+        //gameUiTweenObject = GetComponent<GameObject>();
     }
 
     /// <summary>
@@ -216,6 +220,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        //gameUiTweenObject = GetComponent<GameObject>();
+
         Time.timeScale = 0;
         isGameOver = true;
         CountdownText.enabled = false;
