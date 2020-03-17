@@ -88,6 +88,8 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI gameOverScore;
     public TextMeshProUGUI GameOverScore { get { return gameOverScore; } }
     #endregion
+    [SerializeField]
+    private GameUiTween gameUiTween;
 
     public static GameManager Instance { get; private set; }
 
@@ -226,7 +228,7 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         CountdownText.enabled = false;
         CurrentScore.enabled = false;
-        GameUiTween.Instance.OnGameOver();
+        //GameUiTween.Instance.OnGameOver();
         //GameOverMenuObject.SetActive(true);
     }
 

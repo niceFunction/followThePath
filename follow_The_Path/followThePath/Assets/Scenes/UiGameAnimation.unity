@@ -1416,6 +1416,7 @@ MonoBehaviour:
     YPosition: 0
     Scale: 1
   backgroundImage: {fileID: 542681402}
+  gameManager: {fileID: 0}
 --- !u!1 &1024755650
 GameObject:
   m_ObjectHideFlags: 0
@@ -3495,6 +3496,11 @@ PrefabInstance:
       propertyPath: gameUiTweenObject
       value: 
       objectReference: {fileID: 931367912}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: gameUiTween
+      value: 
+      objectReference: {fileID: 931367914}
     - target: {fileID: 3596900844643142633, guid: 7f099ccd50ca071438eed6eb291dbe6e,
         type: 3}
       propertyPath: m_LocalPosition.x

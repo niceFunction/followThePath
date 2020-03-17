@@ -18,9 +18,8 @@ public class GameUiTween : MonoBehaviour
     [SerializeField, Tooltip("The background image in the Game scene")]
     private Image backgroundImage;
     public Image BackgroundImage { get { return backgroundImage; } }
-
-
-    Sequence doPauseMenu = DOTween.Sequence();
+    [SerializeField]
+    private GameObject gameManager;
 
     public static GameUiTween Instance { get; private set; }
 
@@ -29,15 +28,15 @@ public class GameUiTween : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
     }
 
     public void EnterPauseMenu()
     {
         GameUiTweens[0].TweenTarget.DOAnchorPos(new Vector2(GameUiTweens[0].XPosition, 0), GameUiTweens[0].TweenTime);
-        GameUiTweens[1].TweenTarget.DOAnchorPos(new Vector2(0, 0), GameUiTweens[1].TweenTime);
+        GameUiTweens[1].TweenTarget.DOAnchorPos(new Vector2(0, 0), GameUiTweens[1].TweenTime).OnComplete(() => { Time.timeScale = 0; }); 
         BackgroundImage.DOFade(GameUiTweens[1].Alpha, GameUiTweens[1].TweenTime);
-    }
+        }
 
     public void ExitPauseMenu()
     {
@@ -45,8 +44,6 @@ public class GameUiTween : MonoBehaviour
         GameUiTweens[1].TweenTarget.DOAnchorPos(new Vector2(GameUiTweens[1].XPosition, 0), GameUiTweens[1].TweenTime);
 
         BackgroundImage.DOFade(GameUiTweens[0].Alpha, GameUiTweens[0].TweenTime);
-
-
     }
 
     // What will happen to the UI on a Game Over?
