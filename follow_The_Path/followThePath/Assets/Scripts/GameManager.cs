@@ -17,8 +17,8 @@ public class GameManager : MonoBehaviour
     // Game "States"
 
     [SerializeField, Tooltip("Object that tweens Ui element in the Game scene")]
-    private GameObject gameUiTweenObject;
-    [Space(10)]
+    private GameUiTween gameUiTween;
+
     public static bool GameIsPaused = false; // Related to "GameManager"
     public static bool isGameOver = false; // Related to "GameManager"
     /*
@@ -29,12 +29,12 @@ public class GameManager : MonoBehaviour
     private float delayButtonSound = 0.2f; // Related to "state" or "action"
     #endregion
     */
-    private Collectible collectible; // Related to "GameManager"
-    private int score; // Related to "GameManager"
-    [SerializeField, Tooltip("currentScoreText displays while game is active")]
-    private TextMeshProUGUI currentScore; // Related to "GameManager"
+    private Collectible collectible;
+    private int score;
+    [Space(10), SerializeField, Tooltip("currentScoreText displays while game is active")]
+    private TextMeshProUGUI currentScore;
     [SerializeField, Tooltip("highscoreText displays when the game is over")]
-    private TextMeshProUGUI highscore; // Related to "GameManager"
+    private TextMeshProUGUI highscore;
 
     public Collectible Collectible { get { return collectible; } }
     public int Score { get { return score; } }
@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
     //TODO turn most (if not all variables) private and add getters for them
     [Space(10)]
     #region GAME OVER VARIABLES
-    [Header("Game Over Variables")]
     //[Tooltip("True if player is inside a 'active' game scene, false if they aren't")]
     //public bool insideGameScene = false; // if divided, this should be removed
     
@@ -88,8 +87,6 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI gameOverScore;
     public TextMeshProUGUI GameOverScore { get { return gameOverScore; } }
     #endregion
-    [SerializeField]
-    private GameUiTween gameUiTween;
 
     public static GameManager Instance { get; private set; }
 
@@ -104,7 +101,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        //GameStatus();
+        GameStatus();
         /*
         #region Game Over Conditions
         if (insideGameScene == true)
@@ -150,7 +147,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Updates the status of the game
     /// </summary>
-    void GameStatus()
+    public void GameStatus()
     {
         // If the players "velocity" is below a certain value, activate timer
         if (Ball.RB.velocity.magnitude < MinimumSpeed)
@@ -215,7 +212,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void Pause()
     {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
+        //GameUiTween.Instance.EnterPauseMenu();
+        gameUiTween.EnterPauseMenu();
         GameIsPaused = true;
     }
     #endregion
@@ -224,11 +223,12 @@ public class GameManager : MonoBehaviour
     {
         //gameUiTweenObject = GetComponent<GameObject>();
 
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
+        gameUiTween.OnGameOver();
         isGameOver = true;
-        CountdownText.enabled = false;
-        CurrentScore.enabled = false;
-        //GameUiTween.Instance.OnGameOver();
+        //CountdownText.enabled = false;
+        //CurrentScore.enabled = false;
+        
         //GameOverMenuObject.SetActive(true);
     }
 
