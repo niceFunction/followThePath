@@ -10,10 +10,12 @@ using UnityEngine.Audio;
 /// </summary>
 public class ActionHandler : MonoBehaviour
 {
-    private AudioSource buttonTapSource; // Related to "state" or "action"
-    [Tooltip("Used to Play an SFX when pressing a button")]
-    public AudioClip buttonTapClip; // Related to "state" or "action"
-    private float delayButtonSound = 0.2f; // Related to "state" or "action"
+    private AudioSource buttonTapSource;
+    [SerializeField, Tooltip("Sets itself as the 'tapClip', is using SerializeFiled for testing (Will be removed)")]
+    private AudioClip buttonTapClip;
+    [SerializeField,Tooltip("Used to Play an SFX when pressing a button")]
+    private AudioClip tapClip;
+    private float delayButtonSound = 0.2f;
 
 
     public static ActionHandler Instance { get; private set; }
@@ -29,7 +31,11 @@ public class ActionHandler : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
+
+        buttonTapSource = GetComponent<AudioSource>();
+        buttonTapClip = tapClip;
+        buttonTapSource.clip = buttonTapClip;
 
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
@@ -37,7 +43,7 @@ public class ActionHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        buttonTapSource = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -49,8 +55,9 @@ public class ActionHandler : MonoBehaviour
     /// <summary>
     /// "Loads" the game scene
     /// </summary>
-    public void Playgame() // move to ActionHandler?
+    public void Playgame()
     {
+        //TODO Look up how to "kill" tweens
         Time.timeScale = 1;
         //isGameOver = false;
         //backgroundTimer = resetBackgroundTimer;

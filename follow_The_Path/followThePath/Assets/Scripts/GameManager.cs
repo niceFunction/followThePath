@@ -212,8 +212,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void Pause()
     {
-        //Time.timeScale = 0;
-        //GameUiTween.Instance.EnterPauseMenu();
         gameUiTween.EnterPauseMenu();
         GameIsPaused = true;
     }
@@ -226,8 +224,8 @@ public class GameManager : MonoBehaviour
         //Time.timeScale = 0;
         gameUiTween.OnGameOver();
         isGameOver = true;
-        //CountdownText.enabled = false;
-        //CurrentScore.enabled = false;
+        CountdownText.enabled = false;
+        CurrentScore.enabled = false;
         
         //GameOverMenuObject.SetActive(true);
     }
