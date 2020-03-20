@@ -3617,7 +3617,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2081165381}
-        m_MethodName: Playgame
+        m_MethodName: ResetGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4539,6 +4539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8179f710fea49c648bcf80d22e860654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 1746511148}
   buttonTapClip: {fileID: 0}
   tapClip: {fileID: 8300000, guid: d8a875ddef0519c45ada985ef98cc9a4, type: 3}
 --- !u!82 &2081165382

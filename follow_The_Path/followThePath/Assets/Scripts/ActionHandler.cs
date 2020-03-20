@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using DG.Tweening;
 
 [RequireComponent(typeof(AudioSource))]
 /// <summary>
@@ -10,6 +11,9 @@ using UnityEngine.Audio;
 /// </summary>
 public class ActionHandler : MonoBehaviour
 {
+    [SerializeField]
+    private GameManager gameManager;
+
     private AudioSource buttonTapSource;
     [SerializeField, Tooltip("Sets itself as the 'tapClip', is using SerializeFiled for testing (Will be removed)")]
     private AudioClip buttonTapClip;
@@ -58,10 +62,17 @@ public class ActionHandler : MonoBehaviour
     public void Playgame()
     {
         //TODO Look up how to "kill" tweens
+        //DOTween.Clear(true);
         Time.timeScale = 1;
-        //isGameOver = false;
-        //backgroundTimer = resetBackgroundTimer;
-        //gameOverTimer = resetGameOverTimer;
+        Invoke("OpenPlayGame", delayButtonSound);
+    }
+
+    public void ResetGame()
+    {
+        DOTween.Clear(true);
+        Time.timeScale = 1;
+        gameManager.IsGameOver = false;
+
         Invoke("OpenPlayGame", delayButtonSound);
     }
 
@@ -70,10 +81,8 @@ public class ActionHandler : MonoBehaviour
     /// </summary>
     public void LoadMainMenu()
     {
+        DOTween.Clear(true);
         Time.timeScale = 1;
-        //isGameOver = false;
-        //backgroundTimer = resetBackgroundTimer;
-        //gameOverTimer = resetGameOverTimer;
         Invoke("OpenMainMenu", delayButtonSound);
 
     }
@@ -124,7 +133,6 @@ public class ActionHandler : MonoBehaviour
     public void ResetHighScore()
     {
         PlayerPrefs.DeleteKey("HighScore");
-        //highscore.text = "0";
         buttonTapSource.Stop();
         buttonTapSource.PlayOneShot(buttonTapSource.clip = buttonTapClip);
     }

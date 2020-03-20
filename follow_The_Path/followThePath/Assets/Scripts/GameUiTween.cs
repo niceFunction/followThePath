@@ -24,6 +24,11 @@ public class GameUiTween : MonoBehaviour
     /// <summary>
     /// When pressing the "Pause" button, Pause Menu will slide in
     /// </summary>
+
+    public void Start()
+    {
+        DOTween.Clear(true);
+    }
     public void EnterPauseMenu()
     {
         GameUiTweens[0].TweenTarget.DOAnchorPos(new Vector2(0, GameUiTweens[0].YPosition), GameUiTweens[0].TweenTime);
