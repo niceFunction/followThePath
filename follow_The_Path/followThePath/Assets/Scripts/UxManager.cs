@@ -12,6 +12,7 @@ public class UxManager : MonoBehaviour
     public delegate void ChangeFontHandler(TMP_FontAsset newFont, float scaleFont);
     public event ChangeFontHandler onChangeFont;
 
+    //TODO note to self Look up delegates & events
     public delegate void ToggleHandler(Toggle toggleActive);
     public event ToggleHandler onChangeToggle;
 
