@@ -12,6 +12,9 @@ public class UxManager : MonoBehaviour
     public delegate void ChangeFontHandler(TMP_FontAsset newFont, float scaleFont);
     public event ChangeFontHandler onChangeFont;
 
+    public delegate void ToggleHandler(Toggle toggleActive);
+    public event ToggleHandler onChangeToggle;
+
     #region COLORS AND MATERIALS VARIABLES
     // The Materials are added to the references in the Inspector
     [Tooltip("Used to change color on the Tiles")]
