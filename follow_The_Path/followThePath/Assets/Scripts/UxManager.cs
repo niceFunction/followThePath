@@ -13,6 +13,7 @@ public class UxManager : MonoBehaviour
     public event ChangeFontHandler onChangeFont;
 
     //TODO note to self Look up delegates & events
+    // http://www.theappguruz.com/blog/using-delegates-and-events-in-unity
     public delegate void ToggleHandler(Toggle toggleActive);
     public event ToggleHandler onChangeToggle;
 
