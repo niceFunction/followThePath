@@ -80,6 +80,7 @@ public class Accessibility : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        DontDestroyOnLoad(gameObject);
     }
 
     /// <summary>

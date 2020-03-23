@@ -25,7 +25,7 @@ public class SpecificColor : MonoBehaviour
 
     private void Awake()
     {
-
+        DontDestroyOnLoad(gameObject);
     }
 
     /// <summary>
