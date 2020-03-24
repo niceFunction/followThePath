@@ -29,7 +29,6 @@ public class RandomColor : MonoBehaviour
   
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         Instance = this;
     }
 
@@ -150,6 +149,8 @@ public class RandomColor : MonoBehaviour
     public void StopRandomColor()
     {
         // Properly stops the coroutine
+        //TODO 2a. this if-statement probably isn't a permanent solution
+        //TODO 2b. RandomColors needs to be stopped properly if setting specific colors should work properly
         if (InitiateRandomColors != null)
         {
             StopCoroutine(initiateRandomColors);

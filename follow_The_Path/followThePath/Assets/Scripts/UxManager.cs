@@ -117,7 +117,6 @@ public class UxManager : MonoBehaviour
             return;
         }
         
-
         DontDestroyOnLoad(gameObject);
     }
 

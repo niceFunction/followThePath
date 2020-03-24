@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 /// <summary>
 /// Class that specifies a specific chosen color
@@ -18,14 +19,15 @@ public class SpecificColor : MonoBehaviour
 
     private void Start()
     {
-
+        //TODO note to self: look into "AddListener" to the dropdowns "onValueChanged" event?
         AddColorNamesToDropdown();
-        PlayerPrefs.GetInt(USE_SPECIFIC_COLOR);
+        //PlayerPrefs.GetInt(USE_SPECIFIC_COLOR);
+        GetDropdownValue();
     }
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        SetDropdownValue();
     }
 
     /// <summary>
@@ -90,7 +92,19 @@ public class SpecificColor : MonoBehaviour
             UxManager.Instance.TileMaterial.color = UxManager.Instance.ColorList[6].TileColor;
             UxManager.Instance.FloorMaterial.color = UxManager.Instance.ColorList[6].FloorColor;
         }
+    }
+    void SetDropdownValue()
+    {
+        UxManager.Instance.ColorDropdown.onValueChanged.AddListener(new UnityEngine.Events.UnityAction<int>(index =>
+        {
+            PlayerPrefs.SetInt(USE_SPECIFIC_COLOR, UxManager.Instance.ColorDropdown.value);
+            //NOTE TO SELF: This PlayerPrefs.Save() may cause "slow-down" depending on platform
+            PlayerPrefs.Save();
+        }));
+    }
 
-        PlayerPrefs.SetInt(USE_SPECIFIC_COLOR, index);
+    void GetDropdownValue()
+    {
+        UxManager.Instance.ColorDropdown.value = PlayerPrefs.GetInt(USE_SPECIFIC_COLOR, UxManager.Instance.ColorList.Length - 1);
     }
 }
