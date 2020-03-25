@@ -19,9 +19,7 @@ public class SpecificColor : MonoBehaviour
 
     private void Start()
     {
-        //TODO note to self: look into "AddListener" to the dropdowns "onValueChanged" event?
         AddColorNamesToDropdown();
-        //PlayerPrefs.GetInt(USE_SPECIFIC_COLOR);
         GetDropdownValue();
     }
 
@@ -49,7 +47,7 @@ public class SpecificColor : MonoBehaviour
     /// <param name="index"></param>
     public void ParticularColor(int index)
     {
-        //TODO: when specifying colors is inactive, replace the "SpecificColorsDropdown" strings with a string that says "Select a Color" or something
+        //TODO personal note: when specifying colors is inactive, replace the "SpecificColorsDropdown" strings with a string that says "Select a Color" or something
         if (index == 0)
         {
             // Set colors to RED

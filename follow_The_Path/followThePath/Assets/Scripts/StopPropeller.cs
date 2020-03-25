@@ -27,8 +27,6 @@ public class StopPropeller : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        // TODO destroy the attached object when the Player enters it
-
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("Player has Entered");

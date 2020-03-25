@@ -61,8 +61,6 @@ public class ActionHandler : MonoBehaviour
     /// </summary>
     public void Playgame()
     {
-        //TODO Look up how to "kill" tweens
-        //DOTween.Clear(true);
         Time.timeScale = 1;
         Invoke("OpenPlayGame", delayButtonSound);
     }

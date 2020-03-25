@@ -14,30 +14,26 @@ public class UxManager : MonoBehaviour
 
     //TODO note to self Look up delegates & events
     // http://www.theappguruz.com/blog/using-delegates-and-events-in-unity
-    public delegate void ToggleHandler(Toggle toggleActive);
-    public event ToggleHandler onChangeToggle;
+
+    public delegate void GrayscaleHandler(Toggle grayscaleToggle, string grayscaleStatus);
+    public event GrayscaleHandler onGrayscaleMode;
 
     #region COLORS AND MATERIALS VARIABLES
     // The Materials are added to the references in the Inspector
-    [Tooltip("Used to change color on the Tiles")]
-    [SerializeField]
+    [SerializeField, Header("Colors & Materials"),Tooltip("Used to change color on the Tiles")]
     private Material tileMaterial;
     public Material TileMaterial { get { return tileMaterial; } }
 
-    [Tooltip("Used to change the color of the Floor")]
-    [SerializeField]
+    [SerializeField, Tooltip("Used to change the color of the Floor")]
     private Material floorMaterial;
     public Material FloorMaterial { get { return floorMaterial; } }
 
-
-    [Space(5)]
     /*
      The size of the color list is specified in the Inspector,
      in that array Name of the color and adding 2 colors for
      Tile and Floor can be added
     */
-    [SerializeField]
-    [Tooltip("Creates an array for specifying name and color for Tiles/Floors")]
+    [SerializeField, Tooltip("Creates an array for specifying name and color for Tiles/Floors")]
     private Colors.ColorGroup[] colorList;
 
     public Colors.ColorGroup[] ColorList { get { return colorList; }}
@@ -48,19 +44,15 @@ public class UxManager : MonoBehaviour
     #endregion
 
     #region SET SPECIFIC COLORS VARIABLES
-    [Space(5)]
     // colorDropDown and randomizeColorsToggle are used for specifying colors
-    [Tooltip("When colors in the level isn't active, user can specifically set level colors")]
-    [SerializeField]
+    [SerializeField, Header("Specific Color"), Tooltip("When colors in the level isn't active, user can specifically set level colors")]
     private TMP_Dropdown colorDropdown;
     public TMP_Dropdown ColorDropdown { get { return colorDropdown; } }
     #endregion
 
     #region RANDOM COLORS VARIABLES
-    [Tooltip("Randomly changes colors on the level when active")]
-    [SerializeField]
+    [SerializeField, Header("Random Color"), Tooltip("Randomly changes colors on the level when active")]
     private Toggle randomColorsToggle;
-
     public Toggle RandomColorsToggle { get { return randomColorsToggle; } }
 
     [Tooltip("Visual element that the user can see if randomizing colors are active or not")]
@@ -69,28 +61,24 @@ public class UxManager : MonoBehaviour
     #endregion
 
     #region GRAYSCALE VARIABLES
-    [Space(5)]
-    [Tooltip("Toggle grayscale 'overlay' on an off")]
-    [SerializeField]
+    [SerializeField, Header("Grayscale"),Tooltip("Toggle grayscale 'overlay' on an off")]
     private Toggle grayscaleToggle;
     public Toggle GrayscaleToggle { get { return grayscaleToggle; } }
 
-    [Tooltip("Visual element that the user can see if grayscale 'overlay' is active or not")]
-    [SerializeField]
+    [SerializeField, Tooltip("Visual element that the user can see if grayscale 'overlay' is active or not")]
     private TextMeshProUGUI grayscaleStatus;
-
     public TextMeshProUGUI GrayscaleStatus { get { return grayscaleStatus; } }
+
+    private TextMeshProUGUI currentGrayscaleStatus;
     #endregion
 
     #region FONT VARIABLES
-    [Space(5)]
-    [SerializeField]
+    [SerializeField, Header("Dyslexic"),Tooltip("Object that toggles the font of text ON/OFF")]
     // Toggle UI object
     private Toggle dyslexicFontToggle;
     public Toggle DyslexicFontToggle { get { return dyslexicFontToggle; } }
 
-    [SerializeField]
-    // Visual text element to show the player if the dyslexic font is active or not
+    [SerializeField, Tooltip("Visual text element to show the player if the dyslexic font is active or not")]
     private TextMeshProUGUI dyslexicFontStatus;
     public TextMeshProUGUI DyslexicFontStatus { get { return dyslexicFontStatus; } }
 
@@ -117,7 +105,7 @@ public class UxManager : MonoBehaviour
             return;
         }
         
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     // Start is called before the first frame update
@@ -204,15 +192,22 @@ public class UxManager : MonoBehaviour
         // Update the status if Grayscale mode is active or not
         if (GrayscaleToggle.isOn)
         {
-            GrayscaleStatus.text = "ON";
+            currentGrayscaleStatus.text = "ON";
+            GrayscaleStatus.text = currentGrayscaleStatus.text;
         }
         else
         {
-            GrayscaleStatus.text = "OFF";
+            currentGrayscaleStatus.text = "OFF";
+            GrayscaleStatus.text = currentGrayscaleStatus.text;
         }
 
         // Adds an "overlay" over the player camera, turning the screen in different shades of gray
-        Accessibility.Instance.GrayscaleOverlay();
+        Accessibility.Instance.GrayscaleOverlay(GrayscaleToggle.isOn);
+
+        if (onGrayscaleMode != null)
+        {
+            onGrayscaleMode.Invoke(GrayscaleToggle, currentGrayscaleStatus.text);
+        }
     }
 
     public void SetDyslexicFont()

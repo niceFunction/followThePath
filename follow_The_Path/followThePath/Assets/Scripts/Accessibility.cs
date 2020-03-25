@@ -18,6 +18,9 @@ public class Accessibility : MonoBehaviour
     public delegate void ChangeFontHandler(TMP_FontAsset newFont, float scaleFont);
     public event ChangeFontHandler onChangeFont;
 
+    public delegate void GrayscaleHandler(Toggle grayscaleToggle, string grayscaleStatus);
+    public event GrayscaleHandler onGrayscaleMode;
+
     // Regular font variables
     [SerializeField, Space(5)]
     private TMP_FontAsset regularFont;
@@ -123,12 +126,12 @@ public class Accessibility : MonoBehaviour
     ///<summary>
     /// Creates a grayscale overlay "over" the player camera
     /// </summary>
-    public void GrayscaleOverlay()
+    public void GrayscaleOverlay(bool toggleOn)
     { 
         // NOTE: Keep in mind to see if enabling an image effect on the camera is too costly 
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
-        if (UxManager.Instance.GrayscaleToggle.isOn)
+        if (toggleOn)
         {
             useGrayscalemode = true;
 
