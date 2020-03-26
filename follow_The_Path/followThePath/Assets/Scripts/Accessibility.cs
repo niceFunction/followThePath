@@ -126,12 +126,12 @@ public class Accessibility : MonoBehaviour
     ///<summary>
     /// Creates a grayscale overlay "over" the player camera
     /// </summary>
-    public void GrayscaleOverlay(bool toggleOn)
+    public void GrayscaleOverlay()
     { 
         // NOTE: Keep in mind to see if enabling an image effect on the camera is too costly 
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
-        if (toggleOn)
+        if (UxManager.Instance.GrayscaleToggle.isOn)
         {
             useGrayscalemode = true;
 
@@ -159,12 +159,6 @@ public class Accessibility : MonoBehaviour
         }
 
         PlayerPrefsX.SetBool(USE_GRAYSCALE_MODE, useGrayscalemode);
-
-
-        if (onGrayscaleMode != null)
-        {
-            onGrayscaleMode.Invoke(UxManager.Instance.GrayscaleToggle, UxManager.Instance.CurrentGrayscaleStatus.text);
-        }
     }
 
     public void DyslexicFontMode(bool toggleOn)

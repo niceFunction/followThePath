@@ -4390,8 +4390,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 739256840}
-        m_MethodName: SetGrayscaleOverlay
+      - m_Target: {fileID: 1806406738}
+        m_MethodName: UpdateGrayscaleOverlay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

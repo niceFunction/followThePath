@@ -12,12 +12,6 @@ public class UxManager : MonoBehaviour
     public delegate void ChangeFontHandler(TMP_FontAsset newFont, float scaleFont);
     public event ChangeFontHandler onChangeFont;
 
-    //TODO note to self Look up delegates & events
-    // http://www.theappguruz.com/blog/using-delegates-and-events-in-unity
-
-    public delegate void GrayscaleHandler(Toggle grayscaleToggle, TextMeshProUGUI grayscaleStatus);
-    public event GrayscaleHandler onGrayscaleMode;
-
     #region COLORS AND MATERIALS VARIABLES
     // The Materials are added to the references in the Inspector
     [SerializeField, Header("Colors & Materials"),Tooltip("Used to change color on the Tiles")]
@@ -68,9 +62,6 @@ public class UxManager : MonoBehaviour
     [SerializeField, Tooltip("Visual element that the user can see if grayscale 'overlay' is active or not")]
     private TextMeshProUGUI grayscaleStatus;
     public TextMeshProUGUI GrayscaleStatus { get { return grayscaleStatus; } }
-
-    private TextMeshProUGUI currentGrayscaleStatus;
-    public TextMeshProUGUI CurrentGrayscaleStatus { get { return currentGrayscaleStatus;} }
     #endregion
 
     #region FONT VARIABLES
@@ -193,25 +184,15 @@ public class UxManager : MonoBehaviour
         // Update the status if Grayscale mode is active or not
         if (GrayscaleToggle.isOn)
         {
-            //currentGrayscaleStatus.text = "ON";
-            //GrayscaleStatus.text = currentGrayscaleStatus.text;
             GrayscaleStatus.text = "ON";
         }
         else
         {
-            //currentGrayscaleStatus.text = "OFF";
-            //GrayscaleStatus.text = currentGrayscaleStatus.text;
             GrayscaleStatus.text = "OFF";
         }
 
         // Adds an "overlay" over the player camera, turning the screen in different shades of gray
-        Accessibility.Instance.GrayscaleOverlay(GrayscaleToggle.isOn);
-        /*
-        if (onGrayscaleMode != null)
-        {
-            onGrayscaleMode.Invoke(GrayscaleToggle, currentGrayscaleStatus.text);
-        }
-        */
+        Accessibility.Instance.GrayscaleOverlay();
     }
 
     public void SetDyslexicFont()

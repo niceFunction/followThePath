@@ -56,20 +56,7 @@ public class UxController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //UxManager.Instance.on
-        // START HERE
-        if (grayscaleModeToggle == null && grayscaleModeStatus == null)
-        {
-            grayscaleModeToggle.isOn = this.GetComponent<Toggle>();
-        }
 
-        if (grayscaleModeStatus == null)
-        {
-            grayscaleModeStatus = this.GetComponent<TextMeshProUGUI>();
-        }
-
-        UpdateGrayscaleMode(UxManager.Instance.GrayscaleToggle, UxManager.Instance.CurrentGrayscaleStatus);
-        UxManager.Instance.onGrayscaleMode += this.UpdateGrayscaleMode;
     }
 
     // Update is called once per frame
@@ -78,18 +65,12 @@ public class UxController : MonoBehaviour
         
     }
 
-    private void OnDestroy()
+    public void UpdateGrayscaleOverlay()
     {
-        UxManager.Instance.onGrayscaleMode -= this.UpdateGrayscaleMode;
-    }
-
-    public void UpdateGrayscaleMode(Toggle grayscaleToggle, TextMeshProUGUI grayscaleStatus)
-    {
-        //Accessibility.Instance.GrayscaleOverlay
-        grayscaleModeToggle.isOn = grayscaleToggle;
-        grayscaleModeStatus = grayscaleStatus;
-        //UxManager.Instance.GrayscaleToggle.isOn = grayscaleToggle;
-        //UxManager.Instance.GrayscaleStatus = grayscaleStatus;
+        UxManager.Instance.GrayscaleToggle.onValueChanged.AddListener(new UnityAction<bool>(toggleOn =>
+        { 
+            UxManager.Instance.SetGrayscaleOverlay(); 
+        }));
     }
 
     public void UpdateDyslexic()
