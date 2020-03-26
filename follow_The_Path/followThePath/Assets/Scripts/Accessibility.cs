@@ -159,6 +159,12 @@ public class Accessibility : MonoBehaviour
         }
 
         PlayerPrefsX.SetBool(USE_GRAYSCALE_MODE, useGrayscalemode);
+
+
+        if (onGrayscaleMode != null)
+        {
+            onGrayscaleMode.Invoke(UxManager.Instance.GrayscaleToggle, UxManager.Instance.CurrentGrayscaleStatus.text);
+        }
     }
 
     public void DyslexicFontMode(bool toggleOn)

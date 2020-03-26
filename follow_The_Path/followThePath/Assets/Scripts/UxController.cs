@@ -33,13 +33,10 @@ public class UxController : MonoBehaviour
     public delegate void DyslexicModeHandler();
     public static event DyslexicModeHandler onDyslexicMode;
 
-
     private Toggle grayscaleModeToggle;
-
     private TextMeshProUGUI grayscaleModeStatus;
 
     public static UxController Instance { get; private set; }
-
 
     private void Awake()
     {
@@ -61,8 +58,18 @@ public class UxController : MonoBehaviour
     {
         //UxManager.Instance.on
         // START HERE
-        UpdateGrayscale(UxManager.Instance.GrayscaleToggle, UxManager.Instance.GrayscaleStatus);
-        UxManager.Instance.onGrayscaleMode += this.UpdateGrayscale;
+        if (grayscaleModeToggle == null && grayscaleModeStatus == null)
+        {
+            grayscaleModeToggle.isOn = this.GetComponent<Toggle>();
+        }
+
+        if (grayscaleModeStatus == null)
+        {
+            grayscaleModeStatus = this.GetComponent<TextMeshProUGUI>();
+        }
+
+        UpdateGrayscaleMode(UxManager.Instance.GrayscaleToggle, UxManager.Instance.CurrentGrayscaleStatus);
+        UxManager.Instance.onGrayscaleMode += this.UpdateGrayscaleMode;
     }
 
     // Update is called once per frame
@@ -71,11 +78,18 @@ public class UxController : MonoBehaviour
         
     }
 
-    private void UpdateGrayscale(Toggle grayscaleToggle, TextMeshProUGUI grayscaleStatus)
+    private void OnDestroy()
+    {
+        UxManager.Instance.onGrayscaleMode -= this.UpdateGrayscaleMode;
+    }
+
+    public void UpdateGrayscaleMode(Toggle grayscaleToggle, TextMeshProUGUI grayscaleStatus)
     {
         //Accessibility.Instance.GrayscaleOverlay
         grayscaleModeToggle.isOn = grayscaleToggle;
         grayscaleModeStatus = grayscaleStatus;
+        //UxManager.Instance.GrayscaleToggle.isOn = grayscaleToggle;
+        //UxManager.Instance.GrayscaleStatus = grayscaleStatus;
     }
 
     public void UpdateDyslexic()
