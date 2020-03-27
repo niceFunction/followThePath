@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
@@ -155,6 +156,12 @@ public class UxManager : MonoBehaviour
             //RandomColorsToggle.isOn = true;
             ColorDropdown.interactable = false;
             randomColorsStatus.text = "ON";
+            /*
+            ColorDropdown.onValueChanged.RemoveListener(new UnityAction<int>(index => 
+            { 
+                
+            }));
+            */
         }
         else
         {  

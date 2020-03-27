@@ -93,8 +93,9 @@ public class SpecificColor : MonoBehaviour
     }
     void SetDropdownValue()
     {
-        UxManager.Instance.ColorDropdown.onValueChanged.AddListener(new UnityEngine.Events.UnityAction<int>(index =>
+        UxManager.Instance.ColorDropdown.onValueChanged.AddListener(new UnityAction<int>(index =>
         {
+            Debug.Log("Adds a Listener");
             PlayerPrefs.SetInt(USE_SPECIFIC_COLOR, UxManager.Instance.ColorDropdown.value);
             //NOTE TO SELF: This PlayerPrefs.Save() may cause "slow-down" depending on platform
             PlayerPrefs.Save();
