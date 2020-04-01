@@ -5,12 +5,37 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
+[System.Serializable]
+public class ColorValueEvent : UnityEvent<int>
+{
+    /*
+       How to AddListener()featuring an argument?
+       https://forum.unity.com/threads/how-to-addlistener-featuring-an-argument.266934/#post-1764063
+    */
+}
+
 /// <summary>
 /// Class that specifies a specific chosen color
 /// </summary>
 public class SpecificColor : MonoBehaviour
 {
+    /*
+       Event Performance: C# vs UnityEvent
+       https://jacksondunstan.com/articles/3335
+       Removing Event Listeners
+       https://jacksondunstan.com/articles/155
+       UnityAction/UnityEvent - remove listener from within delegate
+       https://answers.unity.com/questions/1492047/unityactionunityevent-remove-listener-from-within.html
+       How to AddListener()featuring an argument?
+       https://forum.unity.com/threads/how-to-addlistener-featuring-an-argument.266934/#post-1764063
+    */
+
     private List<string> storeColorNames = new List<string>();
+
+    public ColorValueEvent onColorValueEvent = new ColorValueEvent();
+
+    UnityEvent colorValueEvent = new UnityEvent();
+    UnityAction<int> colorValueAction = null;
 
     readonly string USE_SPECIFIC_COLOR;
     bool useSpecificColor;
@@ -26,6 +51,7 @@ public class SpecificColor : MonoBehaviour
     private void Awake()
     {
         SetDropdownValue();
+        colorValueAction = new UnityAction<int>(colorValueIndex => { SetColorValue(); });
     }
 
     /// <summary>
@@ -100,6 +126,12 @@ public class SpecificColor : MonoBehaviour
             //NOTE TO SELF: This PlayerPrefs.Save() may cause "slow-down" depending on platform
             PlayerPrefs.Save();
         }));
+    }
+
+    void SetColorValue()
+    {
+        PlayerPrefs.SetInt(USE_SPECIFIC_COLOR, UxManager.Instance.ColorDropdown.value);
+        PlayerPrefs.Save();
     }
 
     void GetDropdownValue()
