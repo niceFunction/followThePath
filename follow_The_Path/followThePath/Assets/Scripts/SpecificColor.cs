@@ -12,6 +12,7 @@ using UnityEngine.Events;
 [System.Serializable]
 public class ColorValueEvent : UnityEvent<int>
 {
+    /*
     public ColorValueEvent onColorValueChange = new ColorValueEvent();
 
     public static ColorValueEvent Instance { get; private set; }
@@ -19,6 +20,7 @@ public class ColorValueEvent : UnityEvent<int>
     {
         onColorValueChange.Invoke(0);
     }
+    */
 }
 public class SpecificColor : MonoBehaviour
 {
