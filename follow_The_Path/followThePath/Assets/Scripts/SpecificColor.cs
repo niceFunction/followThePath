@@ -5,15 +5,6 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-[System.Serializable]
-public class ColorValueEvent : UnityEvent<int>
-{
-    /*
-       How to AddListener()featuring an argument?
-       https://forum.unity.com/threads/how-to-addlistener-featuring-an-argument.266934/#post-1764063
-    */
-}
-
 /// <summary>
 /// Class that specifies a specific chosen color
 /// </summary>
@@ -32,10 +23,12 @@ public class SpecificColor : MonoBehaviour
 
     private List<string> storeColorNames = new List<string>();
 
-    public ColorValueEvent onColorValueEvent = new ColorValueEvent();
+    //ColorValueEvent onColorValueEvent = new ColorValueEvent();
 
-    UnityEvent colorValueEvent = new UnityEvent();
+    //UnityEvent colorValueEvent = new UnityEvent();
     UnityAction<int> colorValueAction = null;
+
+    ColorEvent onColorEvent { get; set; }
 
     readonly string USE_SPECIFIC_COLOR;
     bool useSpecificColor;
@@ -46,12 +39,19 @@ public class SpecificColor : MonoBehaviour
     {
         AddColorNamesToDropdown();
         GetDropdownValue();
+        
     }
 
     private void Awake()
     {
         SetDropdownValue();
-        colorValueAction = new UnityAction<int>(colorValueIndex => { SetColorValue(); });
+
+        //if (colorValueAction == null)
+        //{
+           colorValueAction = new UnityAction<int>(index => { SetColorValue(); });
+        //}
+
+        //Debug.Log(colorValueAction);
     }
 
     /// <summary>
@@ -117,8 +117,11 @@ public class SpecificColor : MonoBehaviour
             UxManager.Instance.FloorMaterial.color = UxManager.Instance.ColorList[6].FloorColor;
         }
     }
-    void SetDropdownValue()
+    public void SetDropdownValue()
     {
+        //onColorEvent.AddListener(colorValueAction);
+        onColorEvent.onColorEventChange.AddListener(colorValueAction);
+        /*
         UxManager.Instance.ColorDropdown.onValueChanged.AddListener(new UnityAction<int>(index =>
         {
             Debug.Log("Setting a Specific Color");
@@ -126,9 +129,11 @@ public class SpecificColor : MonoBehaviour
             //NOTE TO SELF: This PlayerPrefs.Save() may cause "slow-down" depending on platform
             PlayerPrefs.Save();
         }));
+        */
+        //onColorValueEvent.AddListener(colorValueAction);
+        
     }
-
-    void SetColorValue()
+    public void SetColorValue()
     {
         PlayerPrefs.SetInt(USE_SPECIFIC_COLOR, UxManager.Instance.ColorDropdown.value);
         PlayerPrefs.Save();
@@ -143,11 +148,12 @@ public class SpecificColor : MonoBehaviour
     {
         if (UxManager.Instance.RandomColorsToggle.GetComponent<Toggle>().isOn)
         {
+            //onColorValueEvent.RemoveListener(colorValueAction);
             //UxManager.Instance.ColorDropdown.onValueChanged.RemoveListener(new UnityAction<int>(index =>
             //{
                 //UxManager.Instance.ColorDropdown.value = PlayerPrefs.GetInt(USE_SPECIFIC_COLOR, UxManager.Instance.ColorList.Length - 1);
                 //gameObject.GetComponent<Toggle>().                
-                Debug.Log("Removing listener");
+                Debug.Log("Banana Boat");
                 //PlayerPrefs.SetInt(USE_SPECIFIC_COLOR, UxManager.Instance.ColorDropdown.value);
             //}));
         }

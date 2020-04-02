@@ -10786,6 +10786,36 @@ PrefabInstance:
       propertyPath: dyslexicFontScale
       value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: 6218151965424510041, guid: f1f52f8cfe02ee84eaf68273db727b34,
+        type: 3}
+      propertyPath: onColorValueEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6218151965424510041, guid: f1f52f8cfe02ee84eaf68273db727b34,
+        type: 3}
+      propertyPath: onColorValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6218151965424510041, guid: f1f52f8cfe02ee84eaf68273db727b34,
+        type: 3}
+      propertyPath: onColorValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6218151965424510041, guid: f1f52f8cfe02ee84eaf68273db727b34,
+        type: 3}
+      propertyPath: onColorValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 739256843}
+    - target: {fileID: 6218151965424510041, guid: f1f52f8cfe02ee84eaf68273db727b34,
+        type: 3}
+      propertyPath: onColorValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetDropdownValue
+      objectReference: {fileID: 0}
+    - target: {fileID: 6218151965424510041, guid: f1f52f8cfe02ee84eaf68273db727b34,
+        type: 3}
+      propertyPath: onColorValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6218151965424510042, guid: f1f52f8cfe02ee84eaf68273db727b34,
         type: 3}
       propertyPath: colorDropdown
@@ -10821,6 +10851,11 @@ PrefabInstance:
       propertyPath: dyslexicFontStatus
       value: 
       objectReference: {fileID: 173224422}
+    - target: {fileID: 6218151965424510042, guid: f1f52f8cfe02ee84eaf68273db727b34,
+        type: 3}
+      propertyPath: specificColor
+      value: 
+      objectReference: {fileID: 739256843}
     - target: {fileID: 6218151965424510043, guid: f1f52f8cfe02ee84eaf68273db727b34,
         type: 3}
       propertyPath: m_Name

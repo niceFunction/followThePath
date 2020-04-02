@@ -150,7 +150,7 @@ public class UxManager : MonoBehaviour
         if (RandomColorsToggle.isOn)
         {
             useRandomColors = true;
-            
+            //SpecificColor.Instance.RemoveDropdownValue();
             // Color Randomization is active and set specific color dropdown is non-interactable
             RandomColor.Instance.StartRandomColor();
             //RandomColorsToggle.isOn = true;
