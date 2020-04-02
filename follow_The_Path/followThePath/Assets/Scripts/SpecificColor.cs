@@ -8,6 +8,18 @@ using UnityEngine.Events;
 /// <summary>
 /// Class that specifies a specific chosen color
 /// </summary>
+
+[System.Serializable]
+public class ColorValueEvent : UnityEvent<int>
+{
+    public ColorValueEvent onColorValueChange = new ColorValueEvent();
+
+    public static ColorValueEvent Instance { get; private set; }
+    public void ColorValueAction()
+    {
+        onColorValueChange.Invoke(0);
+    }
+}
 public class SpecificColor : MonoBehaviour
 {
     /*
@@ -25,10 +37,8 @@ public class SpecificColor : MonoBehaviour
 
     //ColorValueEvent onColorValueEvent = new ColorValueEvent();
 
-    //UnityEvent colorValueEvent = new UnityEvent();
-    UnityAction<int> colorValueAction = null;
-
-    ColorEvent onColorEvent { get; set; }
+    //ColorValueEvent onColorValueEvent = new ColorValueEvent();
+    //UnityAction<int> colorValueAction = null;
 
     readonly string USE_SPECIFIC_COLOR;
     bool useSpecificColor;
@@ -45,10 +55,18 @@ public class SpecificColor : MonoBehaviour
     private void Awake()
     {
         SetDropdownValue();
-
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
         //if (colorValueAction == null)
         //{
-           colorValueAction = new UnityAction<int>(index => { SetColorValue(); });
+        //colorValueAction = new UnityAction<int>(index => { SetColorValue(); });
         //}
 
         //Debug.Log(colorValueAction);
@@ -119,8 +137,10 @@ public class SpecificColor : MonoBehaviour
     }
     public void SetDropdownValue()
     {
-        //onColorEvent.AddListener(colorValueAction);
-        onColorEvent.onColorEventChange.AddListener(colorValueAction);
+        //ColorValueEvent.Instance.ColorValueAction(SetColorValue());
+        //onColorValueEvent.AddListener(colorValueAction);
+        
+        //onColorEvent.onColorEventChange.AddListener(colorValueAction);
         /*
         UxManager.Instance.ColorDropdown.onValueChanged.AddListener(new UnityAction<int>(index =>
         {
