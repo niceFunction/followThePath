@@ -35,10 +35,8 @@ public class SpecificColor : MonoBehaviour
 
     private List<string> storeColorNames = new List<string>();
 
-    //ColorValueEvent onColorValueEvent = new ColorValueEvent();
-
-    //ColorValueEvent onColorValueEvent = new ColorValueEvent();
-    //UnityAction<int> colorValueAction = null;
+    ColorValueEvent onColorValueEvent = new ColorValueEvent();
+    UnityAction<int> colorValueAction = null;
 
     readonly string USE_SPECIFIC_COLOR;
     bool useSpecificColor;
@@ -137,10 +135,8 @@ public class SpecificColor : MonoBehaviour
     }
     public void SetDropdownValue()
     {
-        //ColorValueEvent.Instance.ColorValueAction(SetColorValue());
-        //onColorValueEvent.AddListener(colorValueAction);
-        
-        //onColorEvent.onColorEventChange.AddListener(colorValueAction);
+        onColorValueEvent.AddListener(colorValueAction);
+
         /*
         UxManager.Instance.ColorDropdown.onValueChanged.AddListener(new UnityAction<int>(index =>
         {
