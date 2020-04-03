@@ -21,6 +21,7 @@ public class SpecificColor : MonoBehaviour
     private List<string> storeColorNames = new List<string>();
 
     readonly string USE_SPECIFIC_COLOR;
+    readonly string USE_SPECIFIC_COLOR_INDEX;
     bool useSpecificColor;
 
     public static SpecificColor Instance { get; private set; }
@@ -28,6 +29,7 @@ public class SpecificColor : MonoBehaviour
     private void Start()
     {
         AddColorNamesToDropdown();
+        PlayerPrefs.GetInt(USE_SPECIFIC_COLOR_INDEX);
         GetDropdownValue();
     }
 
@@ -66,6 +68,8 @@ public class SpecificColor : MonoBehaviour
         // THIS COLOR IS NEVER SAVED
         UxManager.Instance.TileMaterial.color = UxManager.Instance.ColorList[index].TileColor;
         UxManager.Instance.FloorMaterial.color = UxManager.Instance.ColorList[index].FloorColor;
+        
+        PlayerPrefs.SetInt(USE_SPECIFIC_COLOR_INDEX, index);
         SaveColorValue();
     }
 

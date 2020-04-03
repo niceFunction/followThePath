@@ -21,6 +21,9 @@ public class OldColorValueEvent : UnityEvent<int>
     }
     */
 }
+/// <summary>
+/// Duplicate script that will be removed
+/// </summary>
 public class OldSpecificColor : MonoBehaviour
 {
     /*
@@ -36,7 +39,7 @@ public class OldSpecificColor : MonoBehaviour
 
     private List<string> storeColorNames = new List<string>();
 
-    ColorValueEvent onColorValueEvent = new ColorValueEvent();
+    OldColorValueEvent onColorValueEvent = new OldColorValueEvent();
     UnityAction<int> colorValueAction = null;
 
     readonly string USE_SPECIFIC_COLOR;
