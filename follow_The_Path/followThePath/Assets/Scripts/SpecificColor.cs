@@ -19,6 +19,7 @@ public class SpecificColor : MonoBehaviour
     */
 
     private List<string> storeColorNames = new List<string>();
+    private List<Sprite> storeColorSprites = new List<Sprite>();
 
     readonly string USE_SPECIFIC_COLOR;
     readonly string USE_SPECIFIC_COLOR_INDEX;
@@ -54,11 +55,15 @@ public class SpecificColor : MonoBehaviour
         for (int i = 0; i < UxManager.Instance.ColorList.Length; i++)
         {
             UxManager.Instance.ColorDropdown.ClearOptions();
+            
             storeColorNames.Add(UxManager.Instance.ColorList[i].Name);
+            storeColorSprites.Add(UxManager.Instance.ColorList[i].ColorSprite);
+
+            //UxManager.Instance.ColorDropdown.AddOptions(storeColorNames, storeColorSprites);
             UxManager.Instance.ColorDropdown.AddOptions(storeColorNames);
         }
-    }    
-
+    }
+    
     /// <summary>
     /// When an "index" in the dropdown menu is chosen, sets materials to that color
     /// </summary>
