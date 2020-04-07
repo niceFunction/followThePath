@@ -149,7 +149,7 @@ public class RandomColor : MonoBehaviour
     public void StopRandomColor()
     {
         // Properly stops the coroutine
-        //TODO Reminder: this if-statement probably isn't a permanent solution
+        //TODO Personal Note: this if-statement probably isn't a permanent solution
         if (InitiateRandomColors != null)
         {
             StopCoroutine(initiateRandomColors);

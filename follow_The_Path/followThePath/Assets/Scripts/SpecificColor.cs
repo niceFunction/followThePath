@@ -7,19 +7,6 @@ using UnityEngine.Events;
 
 public class SpecificColor : MonoBehaviour
 {
-    /*
-       Event Performance: C# vs UnityEvent
-       https://jacksondunstan.com/articles/3335
-       Removing Event Listeners
-       https://jacksondunstan.com/articles/155
-       UnityAction/UnityEvent - remove listener from within delegate
-       https://answers.unity.com/questions/1492047/unityactionunityevent-remove-listener-from-within.html
-       How to AddListener()featuring an argument?
-       https://forum.unity.com/threads/how-to-addlistener-featuring-an-argument.266934/#post-1764063
-    */
-
-    private List<string> storeColorNames = new List<string>();
-    private List<Sprite> storeColorSprites = new List<Sprite>();
 
     readonly string USE_SPECIFIC_COLOR;
     readonly string USE_SPECIFIC_COLOR_INDEX;
@@ -52,16 +39,24 @@ public class SpecificColor : MonoBehaviour
     /// </summary>
     private void AddColorNamesToDropdown() // For reference: This could be any items that uses List
     {
+        // Clear current options
+        UxManager.Instance.ColorDropdown.ClearOptions();
+
+        // Intialize list of new options
+        List<TMP_Dropdown.OptionData> dropdownData = new List<TMP_Dropdown.OptionData>();
+
+        // Loop thtough all colors and add to new list
         for (int i = 0; i < UxManager.Instance.ColorList.Length; i++)
         {
-            UxManager.Instance.ColorDropdown.ClearOptions();
-            
-            storeColorNames.Add(UxManager.Instance.ColorList[i].Name);
-            storeColorSprites.Add(UxManager.Instance.ColorList[i].ColorSprite);
+            // Retrive one entry from the Colorlist
+            Colors.ColorGroup c = UxManager.Instance.ColorList[i];
 
-            //UxManager.Instance.ColorDropdown.AddOptions(storeColorNames, storeColorSprites);
-            UxManager.Instance.ColorDropdown.AddOptions(storeColorNames);
+            // A new OptionData to the new data list
+            dropdownData.Add(new TMP_Dropdown.OptionData(c.Name, c.ColorSprite));
         }
+
+        // Set new list as current options
+        UxManager.Instance.ColorDropdown.AddOptions(dropdownData);
     }
     
     /// <summary>

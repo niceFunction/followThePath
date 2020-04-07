@@ -202,6 +202,9 @@ public class UxManager : MonoBehaviour
         Accessibility.Instance.GrayscaleOverlay();
     }
 
+    /// <summary>
+    /// Changes the font to dyslexic when on, changes to regular font when off
+    /// </summary>
     public void SetDyslexicFont()
     {
 

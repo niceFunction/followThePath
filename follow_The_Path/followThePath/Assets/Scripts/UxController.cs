@@ -67,10 +67,12 @@ public class UxController : MonoBehaviour
 
     public void UpdateGrayscaleOverlay()
     {
+        /*
         UxManager.Instance.GrayscaleToggle.onValueChanged.AddListener(new UnityAction<bool>(toggleOn =>
         { 
             UxManager.Instance.SetGrayscaleOverlay(); 
         }));
+        */
     }
 
     public void UpdateDyslexic()

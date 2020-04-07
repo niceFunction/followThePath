@@ -21,14 +21,15 @@ public class GameUiTween : MonoBehaviour
 
     public static GameUiTween Instance { get; private set; }
 
-    /// <summary>
-    /// When pressing the "Pause" button, Pause Menu will slide in
-    /// </summary>
-
     public void Start()
     {
         DOTween.Clear(true);
     }
+
+    /// <summary>
+    /// When pressing the "Pause" button, Pause Menu will slide in
+    /// </summary>
+
     public void EnterPauseMenu()
     {
         GameUiTweens[0].TweenTarget.DOAnchorPos(new Vector2(0, GameUiTweens[0].YPosition), GameUiTweens[0].TweenTime);
