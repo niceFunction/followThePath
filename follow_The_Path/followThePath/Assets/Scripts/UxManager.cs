@@ -131,6 +131,8 @@ public class UxManager : MonoBehaviour
             RandomColor.Instance.StartRandomColor();
             ColorDropdown.interactable = false;
             randomColorsStatus.text = "ON";
+            // Fades dropdown objects to indicate the object is not interactable
+            MainMenuUiTween.Instance.FadeDropdownObjects();
         }
         else
         {
@@ -138,6 +140,8 @@ public class UxManager : MonoBehaviour
             RandomColor.Instance.StopRandomColor();
             ColorDropdown.interactable = true;
             randomColorsStatus.text = "OFF";
+            // Fades the dropdown objects back to indicate the object can be interactable
+            MainMenuUiTween.Instance.FadeBackDropdownObjects();
         }
     }
 
@@ -156,12 +160,8 @@ public class UxManager : MonoBehaviour
             //RandomColorsToggle.isOn = true;
             ColorDropdown.interactable = false;
             randomColorsStatus.text = "ON";
-            /*
-            ColorDropdown.onValueChanged.RemoveListener(new UnityAction<int>(index => 
-            { 
-              
-            }));
-            */
+            // Fades dropdown objects to indicate the object is not interactable
+            MainMenuUiTween.Instance.FadeDropdownObjects();
         }
         else
         {  
@@ -172,6 +172,8 @@ public class UxManager : MonoBehaviour
             //RandomColorsToggle.isOn = false;
             ColorDropdown.interactable = true;
             randomColorsStatus.text = "OFF";
+            // Fades the dropdown objects back to indicate the object can be interactable
+            MainMenuUiTween.Instance.FadeBackDropdownObjects();
         }
         
         // If the grayscale toggle is active, make color dropdown not interactable

@@ -141,7 +141,9 @@ public class Accessibility : MonoBehaviour
             // Turns off Random color toggle and makes it non-interactable
             UxManager.Instance.RandomColorsToggle.isOn = false;
             UxManager.Instance.RandomColorsToggle.interactable = false;
-            
+            // Fades dropdown objects to indicate the object is not interactable
+            MainMenuUiTween.Instance.FadeDropdownObjects();
+
             // Makes the Color drop down non-interactable
             UxManager.Instance.ColorDropdown.interactable = false;
             StopCoroutine(RandomColor.Instance.InitiateRandomColors);
@@ -156,6 +158,8 @@ public class Accessibility : MonoBehaviour
             UxManager.Instance.RandomColorsToggle.interactable = true;
             // Color dropdown can be interacted with again
             UxManager.Instance.ColorDropdown.interactable = true;
+            // Fades the dropdown objects back to indicate the object can be interactable
+            MainMenuUiTween.Instance.FadeBackDropdownObjects();
         }
 
         PlayerPrefsX.SetBool(USE_GRAYSCALE_MODE, useGrayscalemode);
