@@ -1260,6 +1260,12 @@ MonoBehaviour:
     DropdownCaptionImage: {fileID: 113950343}
     TweenTime: 0.5
     Alpha: 0.5
+  toggleItemsGroup:
+  - ToggleName: Random Color Items
+    ToggleActiveText: {fileID: 392640127}
+    ToggleBackgroundImage: {fileID: 254039560}
+    TweenTime: 0.5
+    Alpha: 0.5
 --- !u!1 &227500530
 GameObject:
   m_ObjectHideFlags: 0

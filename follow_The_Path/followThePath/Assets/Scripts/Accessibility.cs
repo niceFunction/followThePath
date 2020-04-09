@@ -113,6 +113,11 @@ public class Accessibility : MonoBehaviour
             // If grayscale toggle object is on, activate grayscale camera overlay.
             playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
             UxManager.Instance.GrayscaleToggle.isOn = true;
+
+            // Fades certain UI objects to indicate the object is not interactable
+            MainMenuUiTween.Instance.FadeDropdownObjects();
+            MainMenuUiTween.Instance.FadeRandomColorToggleObject();
+
             StopCoroutine(RandomColor.Instance.InitiateRandomColors);
         }
         else
@@ -120,6 +125,10 @@ public class Accessibility : MonoBehaviour
             // If grayscale toggle object is NOT on, deactivate grayscale camera overlay.
             playerCamera.GetComponent<GrayscaleCamera>().enabled = false;
             UxManager.Instance.GrayscaleToggle.isOn = false;
+
+            // Fades caertain UI objects back to indicate the object can be interactable
+            MainMenuUiTween.Instance.FadeBackDropdownObjects();
+            MainMenuUiTween.Instance.FadeBackRandomColorToggleObject();
         }
     }
 
@@ -141,8 +150,9 @@ public class Accessibility : MonoBehaviour
             // Turns off Random color toggle and makes it non-interactable
             UxManager.Instance.RandomColorsToggle.isOn = false;
             UxManager.Instance.RandomColorsToggle.interactable = false;
-            // Fades dropdown objects to indicate the object is not interactable
+            // Fades certain UI objects to indicate the object is not interactable
             MainMenuUiTween.Instance.FadeDropdownObjects();
+            MainMenuUiTween.Instance.FadeRandomColorToggleObject();
 
             // Makes the Color drop down non-interactable
             UxManager.Instance.ColorDropdown.interactable = false;
@@ -158,8 +168,9 @@ public class Accessibility : MonoBehaviour
             UxManager.Instance.RandomColorsToggle.interactable = true;
             // Color dropdown can be interacted with again
             UxManager.Instance.ColorDropdown.interactable = true;
-            // Fades the dropdown objects back to indicate the object can be interactable
+            // Fades caertain UI objects back to indicate the object can be interactable
             MainMenuUiTween.Instance.FadeBackDropdownObjects();
+            MainMenuUiTween.Instance.FadeBackRandomColorToggleObject();
         }
 
         PlayerPrefsX.SetBool(USE_GRAYSCALE_MODE, useGrayscalemode);

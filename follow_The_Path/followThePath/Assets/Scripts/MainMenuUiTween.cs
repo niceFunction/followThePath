@@ -22,7 +22,10 @@ public class MainMenuUiTween : MonoBehaviour
     private TextMeshProUGUI instructionCanvasText;
 
     [SerializeField, Header("Dropdown menu items"), Tooltip("Objects found in the dropdown menu")]
-    private DropdownItems.DropdownGroup dropdownItemGroup;
+    private UiItems.DropdownGroup dropdownItemGroup;
+
+    [SerializeField, Header("Toggle items"), Tooltip("Certain objects found in a Toggle object")]
+    private UiItems.ToggleGroup[] toggleItemsGroup;
 
     public static MainMenuUiTween Instance { get; private set; }
 
@@ -39,12 +42,6 @@ public class MainMenuUiTween : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-    
     /// <summary>
     /// The Settings menu will be the "active" object on screen
     /// </summary>
@@ -105,5 +102,23 @@ public class MainMenuUiTween : MonoBehaviour
         dropdownItemGroup.DropdownText.DOFade(1, dropdownItemGroup.TweenTime);
         dropdownItemGroup.DropdownArrowImage.DOFade(1, dropdownItemGroup.TweenTime);
         dropdownItemGroup.DropdownCaptionImage.DOFade(1, dropdownItemGroup.TweenTime);
+    }
+
+    /// <summary>
+    /// Fades the toggle object for "Random Level Color" away to indicate the object can't be interacted with
+    /// </summary>
+    public void FadeRandomColorToggleObject()
+    {
+        toggleItemsGroup[0].ToggleActiveText.DOFade(toggleItemsGroup[0].Alpha, toggleItemsGroup[0].TweenTime);
+        toggleItemsGroup[0].ToggleBackgroundImage.DOFade(toggleItemsGroup[0].Alpha, toggleItemsGroup[0].TweenTime);
+    }
+
+    /// <summary>
+    /// Fades the toggle object for "Random Level Color" back to indicate the object can be interacted with
+    /// </summary>
+    public void FadeBackRandomColorToggleObject()
+    {
+        toggleItemsGroup[0].ToggleActiveText.DOFade(1, toggleItemsGroup[0].TweenTime);
+        toggleItemsGroup[0].ToggleBackgroundImage.DOFade(1, toggleItemsGroup[0].TweenTime);
     }
 }
