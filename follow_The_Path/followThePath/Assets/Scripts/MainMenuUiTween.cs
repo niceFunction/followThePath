@@ -13,7 +13,9 @@ public class MainMenuUiTween : MonoBehaviour
 
     [SerializeField, Header("Tween-able Main Menu Objects"),Tooltip("Elements of tween-able objects")]
     private Tweens.UIGroup[] mainMenuTweens;
-    public Tweens.UIGroup[] MainMenuTweens { get { return mainMenuTweens; } }
+    // TODO the objects in mainMenuTweens are different objects. For clarify, declare them as different objects, instead of in an array. That will make all the code clearer.
+    // Example: settings.TweenTarget.DOAnchorPos(...) instead of mainMenuTweens[2]...
+    public Tweens.UIGroup[] MainMenuTweens { get { return mainMenuTweens; } } // TODO remove this, no other object should directly access the main menu tweens defined in this
 
     [SerializeField, Header("Background Image"),Tooltip("The background image in the Main Menu")]
     private Image backgroundImage;
@@ -25,7 +27,7 @@ public class MainMenuUiTween : MonoBehaviour
     private UiItems.DropdownGroup dropdownItemGroup;
 
     [SerializeField, Header("Toggle items"), Tooltip("Certain objects found in a Toggle object")]
-    private UiItems.ToggleGroup[] toggleItemsGroup;
+    private UiItems.ToggleGroup[] toggleItemsGroup; // TODO same as for mainMenuTweens. Also ,this seems to always be empty.
 
     public static MainMenuUiTween Instance { get; private set; }
 
