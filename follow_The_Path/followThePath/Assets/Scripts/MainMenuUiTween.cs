@@ -10,12 +10,20 @@ using TMPro;
 /// </summary>
 public class MainMenuUiTween : MonoBehaviour
 {
-
-    [SerializeField, Header("Tween-able Main Menu Objects"),Tooltip("Elements of tween-able objects")]
-    private Tweens.UIGroup[] mainMenuTweens;
     // TODO the objects in mainMenuTweens are different objects. For clarify, declare them as different objects, instead of in an array. That will make all the code clearer.
     // Example: settings.TweenTarget.DOAnchorPos(...) instead of mainMenuTweens[2]...
-    public Tweens.UIGroup[] MainMenuTweens { get { return mainMenuTweens; } } // TODO remove this, no other object should directly access the main menu tweens defined in this
+
+    [SerializeField, Header("Tween-able Main Menu Objects")]
+    private Tweens.MainMenu mainMenuObject;
+    public Tweens.MainMenu MainMenuObject { get { return mainMenuObject; } }
+
+    [SerializeField]
+    private Tweens.HowToPlayMenu howToPlayMenuObject;
+    public Tweens.HowToPlayMenu HowToPlayMenuObject { get { return howToPlayMenuObject; } }
+
+    [SerializeField]
+    private Tweens.SettingsMenu settingsMenuObject;
+    public Tweens.SettingsMenu SettingsMenuObject { get { return settingsMenuObject; } }
 
     [SerializeField, Header("Background Image"),Tooltip("The background image in the Main Menu")]
     private Image backgroundImage;
@@ -49,9 +57,11 @@ public class MainMenuUiTween : MonoBehaviour
     /// </summary>
     public void EnterSettingsMenu()
     {
-        MainMenuTweens[0].TweenTarget.DOAnchorPos(new Vector2(0, MainMenuTweens[0].YPosition), MainMenuTweens[0].TweenTime);
-        MainMenuTweens[2].TweenTarget.DOAnchorPos(new Vector2(0, 0), MainMenuTweens[2].TweenTime);
-        backgroundImage.DOFade(MainMenuTweens[2].Alpha, MainMenuTweens[2].TweenTime);
+        MainMenuObject.TweenTarget.DOAnchorPos(new Vector2(0, MainMenuObject.YPosition), MainMenuObject.TweenTime);
+        SettingsMenuObject.TweenTarget.DOAnchorPos(new Vector2(0, 0), SettingsMenuObject.TweenTime);
+
+        backgroundImage.DOFade(SettingsMenuObject.Alpha, SettingsMenuObject.TweenTime);
+
     }
 
     /// <summary>
@@ -59,9 +69,10 @@ public class MainMenuUiTween : MonoBehaviour
     /// </summary>
     public void ExitSettingsMenu()
     {
-        MainMenuTweens[0].TweenTarget.DOAnchorPos(new Vector2(0, 0), MainMenuTweens[0].TweenTime);
-        MainMenuTweens[2].TweenTarget.DOAnchorPos(new Vector2(MainMenuTweens[2].XPosition, 0), MainMenuTweens[2].TweenTime);
-        backgroundImage.DOFade(MainMenuTweens[0].Alpha, MainMenuTweens[0].TweenTime);
+        MainMenuObject.TweenTarget.DOAnchorPos(new Vector2(0, 0), MainMenuObject.TweenTime);
+        SettingsMenuObject.TweenTarget.DOAnchorPos(new Vector2(SettingsMenuObject.XPosition, 0), SettingsMenuObject.TweenTime);
+
+        backgroundImage.DOFade(MainMenuObject.Alpha, MainMenuObject.TweenTime);
     }
 
     /// <summary>
@@ -69,10 +80,12 @@ public class MainMenuUiTween : MonoBehaviour
     /// </summary>
     public void EnterHowToPlayMenu()
     {
-        MainMenuTweens[0].TweenTarget.DOAnchorPos(new Vector2(0, MainMenuTweens[0].YPosition), MainMenuTweens[0].TweenTime);
-        MainMenuTweens[1].TweenTarget.DOAnchorPos(new Vector2(0, 0), MainMenuTweens[1].TweenTime);
-        backgroundImage.DOFade(MainMenuTweens[1].Alpha, MainMenuTweens[1].TweenTime);
-        instructionCanvasText.DOFade(1, MainMenuTweens[1].TweenTime);
+        MainMenuObject.TweenTarget.DOAnchorPos(new Vector2(0, MainMenuObject.YPosition), MainMenuObject.TweenTime);
+        HowToPlayMenuObject.TweenTarget.DOAnchorPos(new Vector2(0, 0), HowToPlayMenuObject.TweenTime);
+
+        backgroundImage.DOFade(HowToPlayMenuObject.Alpha, HowToPlayMenuObject.TweenTime);
+        instructionCanvasText.DOFade(1, HowToPlayMenuObject.TweenTime);
+
     }
 
     /// <summary>
@@ -80,10 +93,11 @@ public class MainMenuUiTween : MonoBehaviour
     /// </summary>
     public void ExitHowToPlayMenu()
     {
-        MainMenuTweens[0].TweenTarget.DOAnchorPos(new Vector2(0, 0), MainMenuTweens[0].TweenTime);
-        MainMenuTweens[1].TweenTarget.DOAnchorPos(new Vector2(0, MainMenuTweens[1].YPosition), MainMenuTweens[1].TweenTime);
-        backgroundImage.DOFade(MainMenuTweens[0].Alpha, MainMenuTweens[0].TweenTime);
-        instructionCanvasText.DOFade(0, MainMenuTweens[0].TweenTime);
+        MainMenuObject.TweenTarget.DOAnchorPos(new Vector2(0, 0), MainMenuObject.TweenTime);
+        HowToPlayMenuObject.TweenTarget.DOAnchorPos(new Vector2(0, HowToPlayMenuObject.YPosition), HowToPlayMenuObject.TweenTime);
+
+        backgroundImage.DOFade(MainMenuObject.Alpha, MainMenuObject.TweenTime);
+        instructionCanvasText.DOFade(0, MainMenuObject.TweenTime);
     }
 
     /// <summary>
@@ -91,6 +105,7 @@ public class MainMenuUiTween : MonoBehaviour
     /// </summary>
     public void FadeDropdownObjects()
     {
+        //TODO Personal reminder: rename dropdownItemGroup to something like "specificColor"?
         dropdownItemGroup.DropdownText.DOFade(dropdownItemGroup.Alpha, dropdownItemGroup.TweenTime);
         dropdownItemGroup.DropdownArrowImage.DOFade(dropdownItemGroup.Alpha, dropdownItemGroup.TweenTime);
         dropdownItemGroup.DropdownCaptionImage.DOFade(dropdownItemGroup.Alpha, dropdownItemGroup.TweenTime);
@@ -111,6 +126,7 @@ public class MainMenuUiTween : MonoBehaviour
     /// </summary>
     public void FadeRandomColorToggleObject()
     {
+        //TODO Personal reminder: rename FadeRandomColorToggleObject to something easier to remember?
         toggleItemsGroup[0].ToggleActiveText.DOFade(toggleItemsGroup[0].Alpha, toggleItemsGroup[0].TweenTime);
         toggleItemsGroup[0].ToggleBackgroundImage.DOFade(toggleItemsGroup[0].Alpha, toggleItemsGroup[0].TweenTime);
     }
