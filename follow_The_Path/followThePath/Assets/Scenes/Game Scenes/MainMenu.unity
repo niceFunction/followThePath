@@ -1237,28 +1237,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43905483a3c74ac468e12399108f6023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenuTweens:
-  - TweenName: MainMenu
+  mainMenuObject:
     TweenTarget: {fileID: 1560017737}
     TweenTime: 1
     Alpha: 0.47
     XPosition: 0
     YPosition: 5000
-    Scale: 1
-  - TweenName: HowToPlayMenu
+  howToPlayMenuObject:
     TweenTarget: {fileID: 923045863}
     TweenTime: 0.75
     Alpha: 0
     XPosition: 0
     YPosition: -2000
-    Scale: 1
-  - TweenName: SettingsMenu
+  settingsMenuObject:
     TweenTarget: {fileID: 1243699631}
     TweenTime: 1
     Alpha: 0.88
     XPosition: 1200
     YPosition: 0
-    Scale: 1
   backgroundImage: {fileID: 1685957898}
   instructionCanvasText: {fileID: 402036321}
   dropdownItemGroup:
