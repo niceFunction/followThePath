@@ -55,9 +55,6 @@ public class Accessibility : MonoBehaviour
     readonly string USE_DYSLEXIC_FONT = "USE_DYSLEXIC_FONT";
     bool useDyslexicFont;
 
-    readonly string USE_GRAYSCALE_MODE = "USE_GRAYSCALE_MODE";
-    bool useGrayscalemode;
-
     public static Accessibility Instance { get; set; }
     public static void newUxActive()
     {
@@ -91,7 +88,6 @@ public class Accessibility : MonoBehaviour
     private void GetSavedPlayerPrefs()
     {
         useDyslexicFont = PlayerPrefsX.GetBool(USE_DYSLEXIC_FONT);
-        useGrayscalemode = PlayerPrefsX.GetBool(USE_GRAYSCALE_MODE);
 
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
@@ -108,7 +104,7 @@ public class Accessibility : MonoBehaviour
             UxManager.Instance.DyslexicFontToggle.isOn = false;
         }
 
-        if (useGrayscalemode)
+        if (ColorController.Instance.UseGrayscaleMode)
         {
             // If grayscale toggle object is on, activate grayscale camera overlay.
             playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
@@ -140,10 +136,10 @@ public class Accessibility : MonoBehaviour
         // NOTE: Keep in mind to see if enabling an image effect on the camera is too costly 
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
-        if (UxManager.Instance.GrayscaleToggle.isOn)
-        {
-            useGrayscalemode = true;
+        ColorController.Instance.SetUseGrayscaleOverlay(UxManager.Instance.GrayscaleToggle.isOn);
 
+        if (ColorController.Instance.UseGrayscaleMode)
+        {
             // If grayscale toggle object is on, activate grayscale camera overlay.
             playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
 
@@ -160,7 +156,6 @@ public class Accessibility : MonoBehaviour
         }
         else
         {
-            useGrayscalemode = false;
             // If grayscale toggle object is NOT on, deactivate grayscale camera overlay.
             playerCamera.GetComponent<GrayscaleCamera>().enabled = false;
 
@@ -172,8 +167,6 @@ public class Accessibility : MonoBehaviour
             MainMenuUiTween.Instance.FadeBackDropdownObjects();
             MainMenuUiTween.Instance.FadeBackRandomColorToggleObject();
         }
-
-        PlayerPrefsX.SetBool(USE_GRAYSCALE_MODE, useGrayscalemode);
     }
 
     public void DyslexicFontMode(bool toggleOn)

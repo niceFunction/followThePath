@@ -80,9 +80,6 @@ public class UxManager : MonoBehaviour
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
 
-    // Key & Value for PlayerPrefs (Random Color)
-    private string USE_RANDOM_COLORS = "USE_RANDOM_COLORS";
-    private bool useRandomColors;
 
     public static UxManager Instance { get; private set; } 
 
@@ -123,9 +120,7 @@ public class UxManager : MonoBehaviour
     /// </summary>
     private void GetSavedPlayerPrefs()
     {
-        useRandomColors = PlayerPrefsX.GetBool(USE_RANDOM_COLORS);
-
-        if (useRandomColors)
+        if (ColorController.Instance.UseRandomColors)
         {
             RandomColorsToggle.isOn = true;
             RandomColor.Instance.StartRandomColor();
@@ -151,9 +146,10 @@ public class UxManager : MonoBehaviour
     /// </summary>
     public void SetColorMode()
     {
-        if (RandomColorsToggle.isOn)
+        ColorController.Instance.SetUseRandomColors(RandomColorsToggle.isOn);
+
+        if (ColorController.Instance.UseRandomColors)
         {
-            useRandomColors = true;
             //SpecificColor.Instance.RemoveDropdownValue();
             // Color Randomization is active and set specific color dropdown is non-interactable
             RandomColor.Instance.StartRandomColor();
@@ -165,8 +161,6 @@ public class UxManager : MonoBehaviour
         }
         else
         {  
-            useRandomColors = false;
-
             // Color randomization is inactive and set specific color dropdown is interactable
             RandomColor.Instance.StopRandomColor();
             //RandomColorsToggle.isOn = false;
@@ -181,8 +175,6 @@ public class UxManager : MonoBehaviour
         {
             colorDropdown.interactable = false;
         }
-        PlayerPrefsX.SetBool(USE_RANDOM_COLORS, useRandomColors);
-        PlayerPrefs.Save();
     }
 
     /// <summary>
