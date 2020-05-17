@@ -21,39 +21,11 @@ public class Accessibility : MonoBehaviour
     public delegate void GrayscaleHandler(Toggle grayscaleToggle, string grayscaleStatus);
     public event GrayscaleHandler onGrayscaleMode;
 
-    // Regular font variables
-    [SerializeField, Space(5)]
-    private TMP_FontAsset regularFont;
-    public TMP_FontAsset RegularFont { get { return regularFont; } }
-    [SerializeField]
-    [Range(0.01f, 1)]
-    [Tooltip("Sets the scale on the regular font")]
-    private float regularFontScale;
-    public float RegularFontScale { get { return regularFontScale; } }
-
-    // Dyslexic font variables
-    [SerializeField]
-    [Range(0.01f, 1)]
-    [Tooltip("Sets the scale on the dyslexic font")]
-    private float dyslexicFontScale;
-    public float DyslexicFontScale { get { return dyslexicFontScale; } }
-    [SerializeField, Space(5)]
-    private TMP_FontAsset dyslexicFont;
-    public TMP_FontAsset DyslexicFont { get { return dyslexicFont; } }
-
-    // Sets what ever is the current active font and its current scale
-    public TMP_FontAsset currentFont { get; private set; }
-    public float currentScale { get; private set; }
-
     // Currently used to affect font size but can have other areas to be used
     private TextMeshPro TMP;
 
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
-
-    // If the DyslexicToggle.isON is either true/false, it saves the changes when the application is shut down
-    readonly string USE_DYSLEXIC_FONT = "USE_DYSLEXIC_FONT";
-    bool useDyslexicFont;
 
     public static Accessibility Instance { get; set; }
     public static void newUxActive()
@@ -87,22 +59,9 @@ public class Accessibility : MonoBehaviour
     /// </summary>
     private void GetSavedPlayerPrefs()
     {
-        useDyslexicFont = PlayerPrefsX.GetBool(USE_DYSLEXIC_FONT);
-
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
-        if (useDyslexicFont)
-        {
-            currentFont = DyslexicFont;
-            currentScale = DyslexicFontScale;
-            UxManager.Instance.DyslexicFontToggle.isOn = true;
-        }
-        else
-        {
-            currentFont = RegularFont;
-            currentScale = RegularFontScale;
-            UxManager.Instance.DyslexicFontToggle.isOn = false;
-        }
+        DyslexicFontMode(FontController.Instance.UseDyslexicFont);
 
         if (ColorController.Instance.UseGrayscaleMode)
         {
@@ -171,25 +130,9 @@ public class Accessibility : MonoBehaviour
 
     public void DyslexicFontMode(bool toggleOn)
     {
+        FontController.Instance.SetDyslexicFontMode(toggleOn);
 
-        if (toggleOn)
-        {
-            // If dyslexic toggle IS on, set the current font to the dyslexic font
-            useDyslexicFont = true;
-            currentFont = DyslexicFont;
-            currentScale = DyslexicFontScale;
-        }
-        else
-        {
-            // If dyslexic toggle object is not on, set current font to the regular font
-            useDyslexicFont = false;
-            currentFont = RegularFont;
-            currentScale = RegularFontScale;
-        }
-
-        PlayerPrefsX.SetBool(USE_DYSLEXIC_FONT, useDyslexicFont);
-        PlayerPrefs.Save();
-
+        UxManager.Instance.DyslexicFontToggle.isOn = FontController.Instance.UseDyslexicFont;
         /*
         This null check is important, because if no listeners are registered, 
         it will result in an NPE.
@@ -197,7 +140,7 @@ public class Accessibility : MonoBehaviour
         if (onChangeFont != null) // 
         {
             // Inform text objects with ChangeFont class attached to update to the new font
-            onChangeFont.Invoke(currentFont, currentScale);
+            onChangeFont.Invoke(FontController.Instance.CurrentFont, FontController.Instance.CurrentScale);
         }
     }
 }

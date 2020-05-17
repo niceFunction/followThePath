@@ -31,7 +31,7 @@ public class ChangeFont : MonoBehaviour
             originalFontSize = textObject.GetComponent<TextMeshProUGUI>().fontSize;
         }
 
-        UpdateFont(Accessibility.Instance.currentFont, Accessibility.Instance.currentScale);
+        UpdateFont(FontController.Instance.CurrentFont, FontController.Instance.CurrentScale);
         Accessibility.Instance.onChangeFont += this.UpdateFont;
     }
 
