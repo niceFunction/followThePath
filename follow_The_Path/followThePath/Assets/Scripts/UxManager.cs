@@ -29,10 +29,6 @@ public class UxManager : MonoBehaviour
     private Colors.ColorGroup[] colorList;
 
     public Colors.ColorGroup[] ColorList { get { return colorList; }}
-
-    // Used to get/set the current Color
-    private Color currentTileColor;
-    private Color currentFloorColor;
     #endregion
 
     #region SET SPECIFIC COLORS VARIABLES
@@ -97,9 +93,6 @@ public class UxManager : MonoBehaviour
     void Start()
     {
         GetSavedPlayerPrefs();
-
-        currentTileColor = TileMaterial.color;
-        currentFloorColor = FloorMaterial.color;
 
         dyslexicFontToggle.isOn = FontController.Instance.UseDyslexicFont;
         dyslexicFontStatus.text = FontController.Instance.UseDyslexicFont ? "ON" : "OFF";

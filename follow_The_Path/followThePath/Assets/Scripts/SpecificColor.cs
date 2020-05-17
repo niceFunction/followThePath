@@ -8,16 +8,11 @@ using UnityEngine.Events;
 public class SpecificColor : MonoBehaviour
 {
 
-    readonly string USE_SPECIFIC_COLOR;
-    readonly string USE_SPECIFIC_COLOR_INDEX;
-    bool useSpecificColor;
-
     public static SpecificColor Instance { get; private set; }
 
     private void Start()
     {
         AddColorNamesToDropdown();
-        PlayerPrefs.GetInt(USE_SPECIFIC_COLOR_INDEX);
         GetDropdownValue();
     }
 
@@ -65,26 +60,17 @@ public class SpecificColor : MonoBehaviour
     /// <param name="index"></param>
     public void ParticularColor(int index)
     {
+        ColorController.Instance.SetSpecificColor(index);
+
         // THIS COLOR IS NEVER SAVED
         UxManager.Instance.TileMaterial.color = UxManager.Instance.ColorList[index].TileColor;
         UxManager.Instance.FloorMaterial.color = UxManager.Instance.ColorList[index].FloorColor;
-        
-        PlayerPrefs.SetInt(USE_SPECIFIC_COLOR_INDEX, index);
-        SaveColorValue();
     }
 
-    /// <summary>
-    /// Saves the currently set color to player preferences.
-    /// </summary>
-    public void SaveColorValue()
-    {
-        PlayerPrefs.SetInt(USE_SPECIFIC_COLOR, UxManager.Instance.ColorDropdown.value);
-        PlayerPrefs.Save();
-    }
 
     void GetDropdownValue()
     {
-        UxManager.Instance.ColorDropdown.value = PlayerPrefs.GetInt(USE_SPECIFIC_COLOR, UxManager.Instance.ColorList.Length - 1);
+        UxManager.Instance.ColorDropdown.value = ColorController.Instance.SpecificColorIndex;
     }
 
 }
