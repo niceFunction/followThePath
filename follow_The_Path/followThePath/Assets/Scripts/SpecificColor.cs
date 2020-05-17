@@ -7,26 +7,10 @@ using UnityEngine.Events;
 
 public class SpecificColor : MonoBehaviour
 {
-
-    public static SpecificColor Instance { get; private set; }
-
     private void Start()
     {
         AddColorNamesToDropdown();
         GetDropdownValue();
-    }
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
     }
 
     /// <summary>
@@ -60,8 +44,6 @@ public class SpecificColor : MonoBehaviour
     /// <param name="index"></param>
     public void ParticularColor(int index)
     {
-        ColorController.Instance.SetSpecificColor(index);
-
         // THIS COLOR IS NEVER SAVED
         UxManager.Instance.TileMaterial.color = UxManager.Instance.ColorList[index].TileColor;
         UxManager.Instance.FloorMaterial.color = UxManager.Instance.ColorList[index].FloorColor;

@@ -97,7 +97,7 @@ public class UxManager : MonoBehaviour
         dyslexicFontToggle.isOn = FontController.Instance.UseDyslexicFont;
         dyslexicFontStatus.text = FontController.Instance.UseDyslexicFont ? "ON" : "OFF";
 
-        SetColorMode();
+        SetColorMode(ColorController.Instance.UseRandomColors);
     }
 
     // Update is called once per frame
@@ -111,22 +111,16 @@ public class UxManager : MonoBehaviour
     /// </summary>
     private void GetSavedPlayerPrefs()
     {
+        RandomColorsToggle.isOn = ColorController.Instance.UseRandomColors;
+        ColorDropdown.interactable = !ColorController.Instance.UseRandomColors;
+        randomColorsStatus.text = ColorController.Instance.UseRandomColors ? "ON" : "OFF";
+
         if (ColorController.Instance.UseRandomColors)
         {
-            RandomColorsToggle.isOn = true;
-            RandomColor.Instance.StartRandomColor();
-            ColorDropdown.interactable = false;
-            randomColorsStatus.text = "ON";
-            // Fades dropdown objects to indicate the object is not interactable
             MainMenuUiTween.Instance.FadeDropdownObjects();
         }
         else
         {
-            RandomColorsToggle.isOn = false;
-            RandomColor.Instance.StopRandomColor();
-            ColorDropdown.interactable = true;
-            randomColorsStatus.text = "OFF";
-            // Fades the dropdown objects back to indicate the object can be interactable
             MainMenuUiTween.Instance.FadeBackDropdownObjects();
         }
     }
@@ -135,15 +129,14 @@ public class UxManager : MonoBehaviour
     /// If randomizationToggle.isOn is set to true, colors are randomized
     /// if false, user can set specific color on materials
     /// </summary>
-    public void SetColorMode()
+    public void SetColorMode(bool on)
     {
-        ColorController.Instance.SetUseRandomColors(RandomColorsToggle.isOn);
+        ColorController.Instance.SetRandomColorMode(on);
 
         if (ColorController.Instance.UseRandomColors)
         {
             //SpecificColor.Instance.RemoveDropdownValue();
             // Color Randomization is active and set specific color dropdown is non-interactable
-            RandomColor.Instance.StartRandomColor();
             //RandomColorsToggle.isOn = true;
             ColorDropdown.interactable = false;
             randomColorsStatus.text = "ON";
@@ -153,7 +146,6 @@ public class UxManager : MonoBehaviour
         else
         {  
             // Color randomization is inactive and set specific color dropdown is interactable
-            RandomColor.Instance.StopRandomColor();
             //RandomColorsToggle.isOn = false;
             ColorDropdown.interactable = true;
             randomColorsStatus.text = "OFF";
@@ -166,6 +158,11 @@ public class UxManager : MonoBehaviour
         {
             colorDropdown.interactable = false;
         }
+    }
+
+    public void SetSpecificColor(int index)
+    {
+        ColorController.Instance.SetSpecificColor(index);
     }
 
     /// <summary>

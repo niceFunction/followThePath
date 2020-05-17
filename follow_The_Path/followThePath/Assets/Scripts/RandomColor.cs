@@ -18,29 +18,17 @@ public class RandomColor : MonoBehaviour
 
     private float colorDuration;
     [Tooltip("Duration of time left until the color on materials will change")]
-    [SerializeField, Range(10f, 300f)]
+    [SerializeField, Range(1f, 300f)]
     // How much much of the current time is left until the color changes again?
     private float currentColorDuration = 30f;
 
     private Coroutine initiateRandomColors;
     public Coroutine InitiateRandomColors { get { return initiateRandomColors; } }
 
-    public static RandomColor Instance { get; private set; }
-  
-    private void Awake()
-    {
-        Instance = this;
-    }
-
     void Start()
     {
         SelectNewRandomColorIndices();
         UpdateColors(1f);
-    }
-
-    private void Update()
-    {
-
     }
 
     /// <summary>
@@ -109,6 +97,7 @@ public class RandomColor : MonoBehaviour
     {
         while(true)
         {
+            Debug.Log("Starting new random color");
             float elapsedTime = 0f;
             //elapsedTime = 0f;
             SelectNewRandomColorIndices(); // Select the new Colors

@@ -36,6 +36,7 @@ public class SettingsController : MonoBehaviour
 
     public void UpdateColorMode()
     {
+        /*
         if (UxManager.Instance.RandomColorsToggle.isOn)
         {
             RandomColor.Instance.StartRandomColor();
@@ -44,6 +45,7 @@ public class SettingsController : MonoBehaviour
         {
             RandomColor.Instance.StopRandomColor();
         }
+        */
     }
 
     public void UpdateGrayscaleMode()

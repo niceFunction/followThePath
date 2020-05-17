@@ -67,8 +67,6 @@ public class Accessibility : MonoBehaviour
             // Fades certain UI objects to indicate the object is not interactable
             MainMenuUiTween.Instance.FadeDropdownObjects();
             MainMenuUiTween.Instance.FadeRandomColorToggleObject();
-
-            StopCoroutine(RandomColor.Instance.InitiateRandomColors);
         }
         else
         {
@@ -106,7 +104,7 @@ public class Accessibility : MonoBehaviour
 
             // Makes the Color drop down non-interactable
             UxManager.Instance.ColorDropdown.interactable = false;
-            StopCoroutine(RandomColor.Instance.InitiateRandomColors);
+            ColorController.Instance.StopRandomColor();
         }
         else
         {

@@ -1750,6 +1750,8 @@ GameObject:
   m_Component:
   - component: {fileID: 290959182}
   - component: {fileID: 290959183}
+  - component: {fileID: 290959185}
+  - component: {fileID: 290959184}
   m_Layer: 0
   m_Name: ColorController
   m_TagString: Untagged
@@ -1783,6 +1785,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86073a8b9f8534a8f6ec7f03a8896c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  randomColor: {fileID: 290959185}
+  specificColor: {fileID: 290959184}
+  ColorMode: 0
+--- !u!114 &290959184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290959181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3c1bdbe07e7b44581c80936988b1f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &290959185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290959181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a69da2b9361864998b899ff3141b99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeColorTime: 1
+  currentColorDuration: 1
 --- !u!1 &291651755
 GameObject:
   m_ObjectHideFlags: 0
@@ -3219,18 +3250,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfd806a12a17b04f9d10da9dcc85c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &739256843 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6218151965424510041, guid: f1f52f8cfe02ee84eaf68273db727b34,
-    type: 3}
-  m_PrefabInstance: {fileID: 6218151965090008658}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c3c1bdbe07e7b44581c80936988b1f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &742615920
 GameObject:
   m_ObjectHideFlags: 0
@@ -4400,8 +4419,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 739256843}
-        m_MethodName: ParticularColor
+      - m_Target: {fileID: 6218151965424510042, guid: f1f52f8cfe02ee84eaf68273db727b34,
+          type: 3}
+        m_MethodName: SetSpecificColor
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8887,7 +8907,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 739256840}
         m_MethodName: SetColorMode
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11244,41 +11264,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6218151965424510040, guid: f1f52f8cfe02ee84eaf68273db727b34,
-        type: 3}
-      propertyPath: dyslexicFontScale
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218151965424510041, guid: f1f52f8cfe02ee84eaf68273db727b34,
-        type: 3}
-      propertyPath: onColorValueEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218151965424510041, guid: f1f52f8cfe02ee84eaf68273db727b34,
-        type: 3}
-      propertyPath: onColorValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218151965424510041, guid: f1f52f8cfe02ee84eaf68273db727b34,
-        type: 3}
-      propertyPath: onColorValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218151965424510041, guid: f1f52f8cfe02ee84eaf68273db727b34,
-        type: 3}
-      propertyPath: onColorValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 739256843}
-    - target: {fileID: 6218151965424510041, guid: f1f52f8cfe02ee84eaf68273db727b34,
-        type: 3}
-      propertyPath: onColorValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDropdownValue
-      objectReference: {fileID: 0}
-    - target: {fileID: 6218151965424510041, guid: f1f52f8cfe02ee84eaf68273db727b34,
-        type: 3}
-      propertyPath: onColorValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 6218151965424510042, guid: f1f52f8cfe02ee84eaf68273db727b34,
         type: 3}
       propertyPath: colorDropdown
@@ -11314,58 +11299,6 @@ PrefabInstance:
       propertyPath: dyslexicFontStatus
       value: 
       objectReference: {fileID: 173224422}
-    - target: {fileID: 6218151965424510042, guid: f1f52f8cfe02ee84eaf68273db727b34,
-        type: 3}
-      propertyPath: specificColor
-      value: 
-      objectReference: {fileID: 739256843}
-    - target: {fileID: 6218151965424510042, guid: f1f52f8cfe02ee84eaf68273db727b34,
-        type: 3}
-      propertyPath: colorList.Array.data[0].ColorSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 151060e2839f14e4f9c69113f357169c,
-        type: 3}
-    - target: {fileID: 6218151965424510042, guid: f1f52f8cfe02ee84eaf68273db727b34,
-        type: 3}
-      propertyPath: colorList.Array.data[1].ColorSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 4edc61e806dd7ec458eda22ac7ff2e56,
-        type: 3}
-    - target: {fileID: 6218151965424510042, guid: f1f52f8cfe02ee84eaf68273db727b34,
-        type: 3}
-      propertyPath: colorList.Array.data[2].ColorSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 761c1f728d36072418d6b314caf1be0b,
-        type: 3}
-    - target: {fileID: 6218151965424510042, guid: f1f52f8cfe02ee84eaf68273db727b34,
-        type: 3}
-      propertyPath: colorList.Array.data[3].ColorSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 8d939d0a8ddf70142a316c45dd900959,
-        type: 3}
-    - target: {fileID: 6218151965424510042, guid: f1f52f8cfe02ee84eaf68273db727b34,
-        type: 3}
-      propertyPath: colorList.Array.data[5].ColorSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f89d0e48e3e03ed44b7036e02e93d5cb,
-        type: 3}
-    - target: {fileID: 6218151965424510042, guid: f1f52f8cfe02ee84eaf68273db727b34,
-        type: 3}
-      propertyPath: colorList.Array.data[4].ColorSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 45998f02919282742bd949963a5fbef7,
-        type: 3}
-    - target: {fileID: 6218151965424510042, guid: f1f52f8cfe02ee84eaf68273db727b34,
-        type: 3}
-      propertyPath: colorList.Array.data[6].ColorSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 419d7f48567613e46ba0586f07f042a7,
-        type: 3}
-    - target: {fileID: 6218151965424510042, guid: f1f52f8cfe02ee84eaf68273db727b34,
-        type: 3}
-      propertyPath: colorList.Array.data[0].ColorImage
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6218151965424510043, guid: f1f52f8cfe02ee84eaf68273db727b34,
         type: 3}
       propertyPath: m_Name
