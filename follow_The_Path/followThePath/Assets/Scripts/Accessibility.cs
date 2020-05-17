@@ -15,9 +15,6 @@ public class Accessibility : MonoBehaviour
     public delegate void UxEventHandler();
     public static event UxEventHandler onActiveUX;
 
-    public delegate void ChangeFontHandler(TMP_FontAsset newFont, float scaleFont);
-    public event ChangeFontHandler onChangeFont;
-
     public delegate void GrayscaleHandler(Toggle grayscaleToggle, string grayscaleStatus);
     public event GrayscaleHandler onGrayscaleMode;
 
@@ -60,8 +57,6 @@ public class Accessibility : MonoBehaviour
     private void GetSavedPlayerPrefs()
     {
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
-
-        DyslexicFontMode(FontController.Instance.UseDyslexicFont);
 
         if (ColorController.Instance.UseGrayscaleMode)
         {
@@ -132,15 +127,10 @@ public class Accessibility : MonoBehaviour
     {
         FontController.Instance.SetDyslexicFontMode(toggleOn);
 
-        UxManager.Instance.DyslexicFontToggle.isOn = FontController.Instance.UseDyslexicFont;
+        
         /*
         This null check is important, because if no listeners are registered, 
         it will result in an NPE.
         */
-        if (onChangeFont != null) // 
-        {
-            // Inform text objects with ChangeFont class attached to update to the new font
-            onChangeFont.Invoke(FontController.Instance.CurrentFont, FontController.Instance.CurrentScale);
-        }
     }
 }

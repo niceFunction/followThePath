@@ -7,6 +7,9 @@ public class FontController : MonoBehaviour
 {
     readonly string USE_DYSLEXIC_FONT = "USE_DYSLEXIC_FONT";
 
+    public delegate void ChangeFontHandler(TMP_FontAsset newFont, float scaleFont);
+    public event ChangeFontHandler OnChangeFont;
+
     public static FontController Instance { get; private set; }
 
     public TMP_FontAsset CurrentFont { get; private set; }
@@ -46,7 +49,7 @@ public class FontController : MonoBehaviour
     /// </summary>
     public void Initialize()
     {
-
+        SetDyslexicFontMode(UseDyslexicFont);
     }
 
     public void SetDyslexicFontMode(bool on)
@@ -64,6 +67,12 @@ public class FontController : MonoBehaviour
         {
             CurrentFont = regular.Font;
             CurrentScale = regular.Scale;
+        }
+
+        if (OnChangeFont != null) // 
+        {
+            // Inform text objects with ChangeFont class attached to update to the new font
+            OnChangeFont.Invoke(CurrentFont, CurrentScale);
         }
     }
 

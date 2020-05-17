@@ -10,9 +10,6 @@ using TMPro;
 /// </summary>
 public class UxManager : MonoBehaviour
 {
-    public delegate void ChangeFontHandler(TMP_FontAsset newFont, float scaleFont);
-    public event ChangeFontHandler onChangeFont;
-
     #region COLORS AND MATERIALS VARIABLES
     // The Materials are added to the references in the Inspector
     [SerializeField, Header("Colors & Materials"),Tooltip("Used to change color on the Tiles")]
@@ -69,11 +66,9 @@ public class UxManager : MonoBehaviour
     [SerializeField, Header("Dyslexic"),Tooltip("Object that toggles the font of text ON/OFF")]
     // Toggle UI object
     private Toggle dyslexicFontToggle;
-    public Toggle DyslexicFontToggle { get { return dyslexicFontToggle; } }
 
     [SerializeField, Tooltip("Visual text element to show the player if the dyslexic font is active or not")]
     private TextMeshProUGUI dyslexicFontStatus;
-    public TextMeshProUGUI DyslexicFontStatus { get { return dyslexicFontStatus; } }
 
     #endregion
 
@@ -105,7 +100,10 @@ public class UxManager : MonoBehaviour
 
         currentTileColor = TileMaterial.color;
         currentFloorColor = FloorMaterial.color;
-        
+
+        dyslexicFontToggle.isOn = FontController.Instance.UseDyslexicFont;
+        dyslexicFontStatus.text = FontController.Instance.UseDyslexicFont ? "ON" : "OFF";
+
         SetColorMode();
     }
 
@@ -199,20 +197,11 @@ public class UxManager : MonoBehaviour
     /// <summary>
     /// Changes the font to dyslexic when on, changes to regular font when off
     /// </summary>
-    public void SetDyslexicFont()
-    {
+    public void SetDyslexicFont(bool on)
+    { 
+        FontController.Instance.SetDyslexicFontMode(on);
 
-        // Update the status if Dyslexic font mode is active or not
-        if (DyslexicFontToggle.isOn)
-        {
-            DyslexicFontStatus.text = "ON";
-        }
-        else
-        {
-            DyslexicFontStatus.text = "OFF";
-        }
-
-        // Update all text objects
-        Accessibility.Instance.DyslexicFontMode(DyslexicFontToggle.isOn);
+        dyslexicFontToggle.isOn = FontController.Instance.UseDyslexicFont;
+        dyslexicFontStatus.text = FontController.Instance.UseDyslexicFont ? "ON" : "OFF";
     }
 }

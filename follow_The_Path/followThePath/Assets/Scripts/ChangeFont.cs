@@ -32,13 +32,13 @@ public class ChangeFont : MonoBehaviour
         }
 
         UpdateFont(FontController.Instance.CurrentFont, FontController.Instance.CurrentScale);
-        Accessibility.Instance.onChangeFont += this.UpdateFont;
+        FontController.Instance.OnChangeFont += this.UpdateFont;
     }
 
     void OnDestroy()
     {
         // Remove listener when destroyed
-        Accessibility.Instance.onChangeFont -= this.UpdateFont;
+        FontController.Instance.OnChangeFont -= this.UpdateFont;
     }
 
     private void UpdateFont(TMP_FontAsset newFont, float scaleFont)

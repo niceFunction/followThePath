@@ -53,7 +53,7 @@ public class SettingsController : MonoBehaviour
 
     public void UpdateGameFont()
     {
-        Accessibility.Instance.DyslexicFontMode(true);
+        //Accessibility.Instance.DyslexicFontMode(true);
     }
 
 }
