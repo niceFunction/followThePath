@@ -13,15 +13,12 @@ public class ColorController : MonoBehaviour
 
     public static ColorController Instance { get; private set; }
 
-    readonly string USE_RANDOM_COLORS = "USE_RANDOM_COLORS";
-    readonly string USE_GRAYSCALE_MODE = "USE_GRAYSCALE_MODE";
-    readonly string USE_SPECIFIC_COLOR = "USE_SPECIFIC_COLOR";
     readonly string SPECIFIC_COLOR_INDEX = "SPECIFIC_COLOR_INDEX";
     readonly string COLOR_MODE = "COLOR_MODE";
 
-    public bool UseRandomColors { get; private set; } = true;
-    public bool UseGrayscaleMode { get; private set; } = false;
-    public bool UseSpecificColor { get; private set; } = false;
+    public bool UseRandomColors { get { return ColorMode == ColorModes.RANDOM; } }
+    public bool UseGrayscaleMode { get { return ColorMode == ColorModes.GRAYSCALE; } }
+    public bool UseSpecificColor { get { return ColorMode == ColorModes.SPECIFIC; } }
     public int SpecificColorIndex { get; private set; } = 0;
 
 
@@ -52,9 +49,6 @@ public class ColorController : MonoBehaviour
     private void LoadPlayerPrefs()
     {
         ColorMode = (ColorModes)PlayerPrefs.GetInt(COLOR_MODE, 0);
-        UseRandomColors = PlayerPrefsX.GetBool(USE_RANDOM_COLORS, UseRandomColors);
-        UseGrayscaleMode = PlayerPrefsX.GetBool(USE_GRAYSCALE_MODE, UseGrayscaleMode);
-        UseSpecificColor = PlayerPrefsX.GetBool(USE_SPECIFIC_COLOR, UseSpecificColor);
         SpecificColorIndex = PlayerPrefs.GetInt(SPECIFIC_COLOR_INDEX, 0);
     }
 
@@ -71,9 +65,7 @@ public class ColorController : MonoBehaviour
 
     public void SetUseGrayscaleOverlay(bool on)
     {
-        UseGrayscaleMode = on;
         SetColorMode(ColorModes.GRAYSCALE);
-        PlayerPrefsX.SetBool(USE_GRAYSCALE_MODE, UseGrayscaleMode);
         PlayerPrefs.Save();
     }
 
@@ -81,11 +73,9 @@ public class ColorController : MonoBehaviour
     {
         Debug.Log("Set specific color");
         SpecificColorIndex = index;
-        UseSpecificColor = true;
 
         SetColorMode(ColorModes.SPECIFIC);
         PlayerPrefs.SetInt(SPECIFIC_COLOR_INDEX, SpecificColorIndex);
-        PlayerPrefsX.SetBool(USE_SPECIFIC_COLOR, UseSpecificColor);
         PlayerPrefs.Save();
 
         specificColor.ParticularColor(index);
@@ -98,9 +88,7 @@ public class ColorController : MonoBehaviour
 
     public void SetRandomColorMode(bool on)
     {
-        UseRandomColors = on;
         SetColorMode(on ? ColorModes.RANDOM : ColorModes.SPECIFIC);
-        PlayerPrefsX.SetBool(USE_RANDOM_COLORS, UseRandomColors);
         PlayerPrefs.Save();
 
         if (on)
