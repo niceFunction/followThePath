@@ -1787,6 +1787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   randomColor: {fileID: 290959185}
   specificColor: {fileID: 290959184}
+  colorList: {fileID: 11400000, guid: 9863836a5b1f8844ab71b520c1b88c4d, type: 2}
   ColorMode: 0
 --- !u!114 &290959184
 MonoBehaviour:

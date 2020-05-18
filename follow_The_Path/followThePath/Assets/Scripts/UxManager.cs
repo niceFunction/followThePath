@@ -20,15 +20,6 @@ public class UxManager : MonoBehaviour
     private Material floorMaterial;
     public Material FloorMaterial { get { return floorMaterial; } }
 
-    /*
-     The size of the color list is specified in the Inspector,
-     in that array Name of the color and adding 2 colors for
-     Tile and Floor can be added
-    */
-    [SerializeField, Tooltip("Creates an array for specifying name and color for Tiles/Floors")]
-    private Colors.ColorGroup[] colorList;
-
-    public Colors.ColorGroup[] ColorList { get { return colorList; }}
     #endregion
 
     #region SET SPECIFIC COLORS VARIABLES

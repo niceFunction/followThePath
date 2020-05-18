@@ -25,10 +25,10 @@ public class SpecificColor : MonoBehaviour
         List<TMP_Dropdown.OptionData> dropdownData = new List<TMP_Dropdown.OptionData>();
 
         // Loop thtough all colors and add to new list
-        for (int i = 0; i < UxManager.Instance.ColorList.Length; i++)
+        for (int i = 0; i < ColorController.Instance.Colors.Length; i++)
         {
             // Retrive one entry from the Colorlist
-            Colors.ColorGroup c = UxManager.Instance.ColorList[i];
+            Colors.ColorGroup c = ColorController.Instance.Colors[i];
 
             // A new OptionData to the new data list
             dropdownData.Add(new TMP_Dropdown.OptionData(c.Name, c.ColorSprite));
@@ -45,8 +45,8 @@ public class SpecificColor : MonoBehaviour
     public void ParticularColor(int index)
     {
         // THIS COLOR IS NEVER SAVED
-        UxManager.Instance.TileMaterial.color = UxManager.Instance.ColorList[index].TileColor;
-        UxManager.Instance.FloorMaterial.color = UxManager.Instance.ColorList[index].FloorColor;
+        UxManager.Instance.TileMaterial.color = ColorController.Instance.Colors[index].TileColor;
+        UxManager.Instance.FloorMaterial.color = ColorController.Instance.Colors[index].FloorColor;
     }
 
 

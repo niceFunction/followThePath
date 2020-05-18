@@ -10,6 +10,7 @@ public class ColorController : MonoBehaviour
 {
     [SerializeField] private RandomColor randomColor;
     [SerializeField] private SpecificColor specificColor;
+    [SerializeField] private ColorList colorList;
 
     public static ColorController Instance { get; private set; }
 
@@ -20,6 +21,7 @@ public class ColorController : MonoBehaviour
     public bool UseGrayscaleMode { get { return ColorMode == ColorModes.GRAYSCALE; } }
     public bool UseSpecificColor { get { return ColorMode == ColorModes.SPECIFIC; } }
     public int SpecificColorIndex { get; private set; } = 0;
+    public Colors.ColorGroup[] Colors { get { return colorList.Colors; } }
 
 
     public enum ColorModes { RANDOM = 0, SPECIFIC = 1, GRAYSCALE = 2 }
