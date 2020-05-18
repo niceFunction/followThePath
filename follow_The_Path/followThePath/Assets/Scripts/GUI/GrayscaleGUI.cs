@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class GrayscaleGUI : MonoBehaviour
 {
+    [SerializeField] private Toggle toggle;
     [SerializeField] private TMPro.TextMeshProUGUI statusText;
 
     private void Start()
@@ -21,10 +23,12 @@ public class GrayscaleGUI : MonoBehaviour
         if (newMode == ColorController.Modes.GRAYSCALE)
         {
             statusText.text = "ON";
+            toggle.isOn = true;
         }
         else
         {
             statusText.text = "OFF";
+            toggle.isOn = false;
         }
     }
 
