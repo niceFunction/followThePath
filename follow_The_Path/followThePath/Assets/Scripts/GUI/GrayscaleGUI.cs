@@ -6,17 +6,17 @@ public class GrayscaleGUI : MonoBehaviour
 
     private void Start()
     {
-        ColorController.Instance.OnModeChange += ChangeColorMode;
+        ColorController.Instance.OnModeChange += OnChangeColorMode;
 
         // Fake color mode change to get the correct start value
-        ChangeColorMode(ColorController.Instance.ColorMode);
+        OnChangeColorMode(ColorController.Instance.ColorMode);
     }
     private void OnDestroy()
     {
-        ColorController.Instance.OnModeChange -= ChangeColorMode;
+        ColorController.Instance.OnModeChange -= OnChangeColorMode;
     }
 
-    private void ChangeColorMode(ColorController.Modes newMode)
+    private void OnChangeColorMode(ColorController.Modes newMode)
     {
         if (newMode == ColorController.Modes.GRAYSCALE)
         {
@@ -28,7 +28,10 @@ public class GrayscaleGUI : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Called from Unity GUI
+    /// </summary>
+    /// <param name="on"></param>
     public void SetGrayscale(bool on)
     {
         if (on)

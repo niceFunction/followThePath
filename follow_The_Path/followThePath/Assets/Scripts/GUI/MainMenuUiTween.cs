@@ -34,9 +34,6 @@ public class MainMenuUiTween : MonoBehaviour
     [SerializeField, Header("Dropdown menu items"), Tooltip("Objects found in the dropdown menu")]
     private UiItems.DropdownGroup dropdownItemGroup;
 
-    [SerializeField, Header("Toggle items"), Tooltip("Certain objects found in a Toggle object")]
-    private UiItems.ToggleGroup[] toggleItemsGroup; // TODO same as for mainMenuTweens. Also ,this seems to always be empty.
-
     public static MainMenuUiTween Instance { get; private set; }
 
     private void Awake()
@@ -100,43 +97,5 @@ public class MainMenuUiTween : MonoBehaviour
         instructionCanvasText.DOFade(0, MainMenuObject.TweenTime);
     }
 
-    /// <summary>
-    /// Used to make certain objects inside the dropdown menu transparent to indicate the object isn't interactable
-    /// </summary>
-    public void FadeDropdownObjects()
-    {
-        //TODO Personal reminder: rename dropdownItemGroup to something like "specificColor"?
-        dropdownItemGroup.DropdownText.DOFade(dropdownItemGroup.Alpha, dropdownItemGroup.TweenTime);
-        dropdownItemGroup.DropdownArrowImage.DOFade(dropdownItemGroup.Alpha, dropdownItemGroup.TweenTime);
-        dropdownItemGroup.DropdownCaptionImage.DOFade(dropdownItemGroup.Alpha, dropdownItemGroup.TweenTime);
-    }
 
-    /// <summary>
-    ///  Used to make certain objects inside the dropdown menu transparent to indicate the object can be interacted with again
-    /// </summary>
-    public void FadeBackDropdownObjects()
-    {
-        dropdownItemGroup.DropdownText.DOFade(1, dropdownItemGroup.TweenTime);
-        dropdownItemGroup.DropdownArrowImage.DOFade(1, dropdownItemGroup.TweenTime);
-        dropdownItemGroup.DropdownCaptionImage.DOFade(1, dropdownItemGroup.TweenTime);
-    }
-
-    /// <summary>
-    /// Fades the toggle object for "Random Level Color" away to indicate the object can't be interacted with
-    /// </summary>
-    public void FadeRandomColorToggleObject()
-    {
-        //TODO Personal reminder: rename FadeRandomColorToggleObject to something easier to remember?
-        toggleItemsGroup[0].ToggleActiveText.DOFade(toggleItemsGroup[0].Alpha, toggleItemsGroup[0].TweenTime);
-        toggleItemsGroup[0].ToggleBackgroundImage.DOFade(toggleItemsGroup[0].Alpha, toggleItemsGroup[0].TweenTime);
-    }
-
-    /// <summary>
-    /// Fades the toggle object for "Random Level Color" back to indicate the object can be interacted with
-    /// </summary>
-    public void FadeBackRandomColorToggleObject()
-    {
-        toggleItemsGroup[0].ToggleActiveText.DOFade(1, toggleItemsGroup[0].TweenTime);
-        toggleItemsGroup[0].ToggleBackgroundImage.DOFade(1, toggleItemsGroup[0].TweenTime);
-    }
 }

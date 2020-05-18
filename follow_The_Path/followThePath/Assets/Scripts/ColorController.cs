@@ -11,7 +11,7 @@ public class ColorController : MonoBehaviour
     [SerializeField] private RandomColor randomColor;
     [SerializeField] private SpecificColor specificColor;
     [SerializeField] private ColorList colorList;
-
+    [SerializeField] private Material tileMaterial, floorMaterial;
     public static ColorController Instance { get; private set; }
 
     readonly string SPECIFIC_COLOR_INDEX = "SPECIFIC_COLOR_INDEX";
@@ -21,6 +21,8 @@ public class ColorController : MonoBehaviour
     public bool UseGrayscaleMode { get { return ColorMode == Modes.GRAYSCALE; } }
     public bool UseSpecificColor { get { return ColorMode == Modes.SPECIFIC; } }
     public int SpecificColorIndex { get; private set; } = 0;
+    public Material TileMaterial { get { return tileMaterial; } }
+    public Material FloorMaterial { get { return floorMaterial; } }
     public Colors.ColorGroup[] Colors { get { return colorList.Colors; } }
 
     public delegate void ColorModeHandler(Modes newMode);

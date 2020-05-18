@@ -3054,6 +3054,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorDropdown: {fileID: 1437221361907437143}
+  dropdownItemGroup:
+    DropdownText: {fileID: 1437221361751770392}
+    DropdownArrowImage: {fileID: 1437221362320817713}
+    DropdownCaptionImage: {fileID: 1437221362724891149}
+    TweenTime: 0.5
+    Alpha: 0.5
 --- !u!1 &1437221361313631899
 GameObject:
   m_ObjectHideFlags: 0
@@ -6371,6 +6377,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toggle: {fileID: 1437221361200167203}
   statusText: {fileID: 1437221362467627765}
+  tweenObjects:
+    ToggleName: 
+    ToggleActiveText: {fileID: 1437221362467627765}
+    ToggleBackgroundImage: {fileID: 1437221362866258562}
+    TweenTime: 0.5
+    Alpha: 0.5
 --- !u!1 &1437221361903814459
 GameObject:
   m_ObjectHideFlags: 0
@@ -7041,7 +7053,6 @@ GameObject:
   - component: {fileID: 1437221362113697313}
   - component: {fileID: 1437221362113697312}
   - component: {fileID: 1437221362113697315}
-  - component: {fileID: 1437221362113697319}
   - component: {fileID: 3255272671788151471}
   - component: {fileID: 2157377208715311885}
   m_Layer: 5
@@ -7135,24 +7146,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1437221362113697319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437221362113697314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddfd806a12a17b04f9d10da9dcc85c16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tileMaterial: {fileID: 2100000, guid: 4d8578f5c15b97e47ae1c6829242da8a, type: 2}
-  floorMaterial: {fileID: 2100000, guid: 43e941050e0180e4e9bbda3792ed6646, type: 2}
-  colorDropdown: {fileID: 1437221361907437143}
-  grayscaleToggle: {fileID: 1437221361989272766}
-  dyslexicFontToggle: {fileID: 1437221361426356544}
-  dyslexicFontStatus: {fileID: 1437221362782987628}
 --- !u!114 &3255272671788151471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7201,12 +7194,6 @@ MonoBehaviour:
     DropdownText: {fileID: 1437221361751770392}
     DropdownArrowImage: {fileID: 1437221362320817713}
     DropdownCaptionImage: {fileID: 1437221362724891149}
-    TweenTime: 0.5
-    Alpha: 0.5
-  toggleItemsGroup:
-  - ToggleName: Random Color Items
-    ToggleActiveText: {fileID: 1437221362467627765}
-    ToggleBackgroundImage: {fileID: 1437221362866258562}
     TweenTime: 0.5
     Alpha: 0.5
 --- !u!1 &1437221362120025420

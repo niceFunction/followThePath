@@ -33,6 +33,10 @@ public class DyslexicFontGUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called from Unity GUI
+    /// </summary>
+    /// <param name="on"></param>
     public void SetDyslexicFont(bool on)
     {
         FontController.Instance.SetDyslexicFontMode(on);

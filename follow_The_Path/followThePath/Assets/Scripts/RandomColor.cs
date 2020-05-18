@@ -61,8 +61,8 @@ public class RandomColor : MonoBehaviour
     private void UpdateColors(float fraction)
     {
         // Updates the color of the material on Tiles and Floors
-        UpdateTileColor(UxManager.Instance.TileMaterial, ColorController.Instance.Colors, randomColorIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
-        UpdateFloorColor(UxManager.Instance.FloorMaterial, ColorController.Instance.Colors, randomColorIndex, fraction);
+        UpdateTileColor(ColorController.Instance.TileMaterial, ColorController.Instance.Colors, randomColorIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
+        UpdateFloorColor(ColorController.Instance.FloorMaterial, ColorController.Instance.Colors, randomColorIndex, fraction);
         colorDuration = currentColorDuration;
     }
 

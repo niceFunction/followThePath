@@ -12,20 +12,10 @@ public class Accessibility : MonoBehaviour
 
     //PlayerPrefs set bool: http://wiki.unity3d.com/index.php?title=BoolPrefs&oldid=18094
 
-    public delegate void UxEventHandler();
-    public static event UxEventHandler onActiveUX;
-
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
 
     public static Accessibility Instance { get; set; }
-    public static void newUxActive()
-    {
-        if (onActiveUX != null)
-        {
-            onActiveUX();
-        }
-    }
 
     private void Start()
     {
@@ -58,8 +48,8 @@ public class Accessibility : MonoBehaviour
             playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
 
             // Fades certain UI objects to indicate the object is not interactable
-            MainMenuUiTween.Instance.FadeDropdownObjects();
-            MainMenuUiTween.Instance.FadeRandomColorToggleObject();
+      //      MainMenuUiTween.Instance.FadeDropdownObjects();
+      //      MainMenuUiTween.Instance.FadeRandomColorToggleObject();
         }
         else
         {
@@ -67,8 +57,8 @@ public class Accessibility : MonoBehaviour
             playerCamera.GetComponent<GrayscaleCamera>().enabled = false;
 
             // Fades caertain UI objects back to indicate the object can be interactable
-            MainMenuUiTween.Instance.FadeBackDropdownObjects();
-            MainMenuUiTween.Instance.FadeBackRandomColorToggleObject();
+      //      MainMenuUiTween.Instance.FadeBackDropdownObjects();
+      //      MainMenuUiTween.Instance.FadeBackRandomColorToggleObject();
         }
     }
 
@@ -86,8 +76,7 @@ public class Accessibility : MonoBehaviour
             playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
 
             // Fades certain UI objects to indicate the object is not interactable
-            MainMenuUiTween.Instance.FadeDropdownObjects();
-            MainMenuUiTween.Instance.FadeRandomColorToggleObject();
+       //     MainMenuUiTween.Instance.FadeDropdownObjects();
 
         }
         else
@@ -96,8 +85,7 @@ public class Accessibility : MonoBehaviour
             playerCamera.GetComponent<GrayscaleCamera>().enabled = false;
 
             // Fades caertain UI objects back to indicate the object can be interactable
-            MainMenuUiTween.Instance.FadeBackDropdownObjects();
-            MainMenuUiTween.Instance.FadeBackRandomColorToggleObject();
+     //       MainMenuUiTween.Instance.FadeBackDropdownObjects();
         }
     }
 }
