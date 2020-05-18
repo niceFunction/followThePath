@@ -5,6 +5,8 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
+// TODO this object in Scene lies outside the GUI objects, but manipulates them.
+
 /// <summary>
 /// Manager class used to affect colors on materials, change fonts or improve user experience
 /// </summary>

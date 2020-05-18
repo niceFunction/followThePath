@@ -108,5 +108,11 @@ public class ColorController : MonoBehaviour
         ColorMode = mode;
         PlayerPrefs.SetInt(COLOR_MODE, (int)ColorMode);
         PlayerPrefs.Save();
+
+        /*
+         * TODO rewrite RandomColor, SpecificColor, and Grayscale into
+         * using an interface with a Start and Stop.
+         * Then we can handle them easily.
+         */
     }
 }

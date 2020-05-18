@@ -18,7 +18,7 @@ public class SpecificColor : MonoBehaviour
     /// </summary>
     private void AddColorNamesToDropdown() // For reference: This could be any items that uses List
     {
-        // Clear current options
+        // TODO object A should not use object B to set things in object C.
         UxManager.Instance.ColorDropdown.ClearOptions();
 
         // Intialize list of new options
@@ -34,7 +34,7 @@ public class SpecificColor : MonoBehaviour
             dropdownData.Add(new TMP_Dropdown.OptionData(c.Name, c.ColorSprite));
         }
 
-        // Set new list as current options
+        // TODO object A should not use object B to set things in object C.
         UxManager.Instance.ColorDropdown.AddOptions(dropdownData);
     }
     
@@ -44,7 +44,7 @@ public class SpecificColor : MonoBehaviour
     /// <param name="index"></param>
     public void ParticularColor(int index)
     {
-        // THIS COLOR IS NEVER SAVED
+        // TODO object A should not use object B to set things in object C.
         UxManager.Instance.TileMaterial.color = ColorController.Instance.Colors[index].TileColor;
         UxManager.Instance.FloorMaterial.color = ColorController.Instance.Colors[index].FloorColor;
     }
@@ -52,6 +52,7 @@ public class SpecificColor : MonoBehaviour
 
     void GetDropdownValue()
     {
+        // TODO object A should not use object B to set things in object C.
         UxManager.Instance.ColorDropdown.value = ColorController.Instance.SpecificColorIndex;
     }
 
