@@ -78,7 +78,7 @@ public class SpecificColorGUI : MonoBehaviour
     /// <summary>
     /// Used to make certain objects inside the dropdown menu transparent to indicate the object isn't interactable
     /// </summary>
-    public void FadeDropdownObjects()
+    private void FadeDropdownObjects()
     {
         //TODO Personal reminder: rename dropdownItemGroup to something like "specificColor"?
         dropdownItemGroup.DropdownText.DOFade(dropdownItemGroup.Alpha, dropdownItemGroup.TweenTime);
@@ -89,7 +89,7 @@ public class SpecificColorGUI : MonoBehaviour
     /// <summary>
     ///  Used to make certain objects inside the dropdown menu transparent to indicate the object can be interacted with again
     /// </summary>
-    public void FadeBackDropdownObjects()
+    private void FadeBackDropdownObjects()
     {
         dropdownItemGroup.DropdownText.DOFade(1, dropdownItemGroup.TweenTime);
         dropdownItemGroup.DropdownArrowImage.DOFade(1, dropdownItemGroup.TweenTime);

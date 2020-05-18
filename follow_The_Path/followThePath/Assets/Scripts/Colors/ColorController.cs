@@ -10,6 +10,8 @@ public class ColorController : MonoBehaviour
 {
     [SerializeField] private RandomColor randomColor;
     [SerializeField] private SpecificColor specificColor;
+    [SerializeField] private Grayscale grayscale;
+
     [SerializeField] private ColorList colorList;
     [SerializeField] private Material tileMaterial, floorMaterial;
     public static ColorController Instance { get; private set; }
@@ -46,6 +48,10 @@ public class ColorController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         LoadPlayerPrefs();
+    }
+
+    private void Start()
+    {
         Initialize();
     }
 
@@ -63,9 +69,31 @@ public class ColorController : MonoBehaviour
     /// </summary>
     public void Initialize()
     {
-        if (UseRandomColors)
+        grayscale.Stop();
+        randomColor.Stop();
+        specificColor.Stop();
+
+        GetCurrentMode().Begin();
+    }
+
+    private IColorMode GetCurrentMode()
+    {
+        if (ColorMode == Modes.GRAYSCALE)
         {
-            randomColor.StartRandomColor();
+            return grayscale;
+        }
+        else if (ColorMode == Modes.RANDOM)
+        {
+            return randomColor;
+        }
+        else if (ColorMode == Modes.SPECIFIC)
+        {
+            return specificColor;
+        }
+        else
+        {
+            Debug.LogError("Unknown color mode " + ColorMode);
+            return null;
         }
     }
 
@@ -74,16 +102,19 @@ public class ColorController : MonoBehaviour
         if (newMode == ColorMode)
             return;
 
-        /*
-         * TODO rewrite RandomColor, SpecificColor, and Grayscale into
-         * using an interface with a Start and Stop.
-         * Then we can handle them easily.
-         */
-
         Debug.Log("From " + ColorMode + " to " + newMode);
+
+        // Stop the current mode, before switching
+        GetCurrentMode().Stop();
+        
         ColorMode = newMode;
+
+        // Start the new mode
+        GetCurrentMode().Begin();
+
         PlayerPrefs.SetInt(COLOR_MODE, (int)ColorMode);
         PlayerPrefs.Save();
+
 
         if(OnModeChange != null)
         {
@@ -102,7 +133,7 @@ public class ColorController : MonoBehaviour
         PlayerPrefs.SetInt(SPECIFIC_COLOR_INDEX, SpecificColorIndex);
         PlayerPrefs.Save();
 
-
-        specificColor.ParticularColor(index);
+        specificColor.Begin();
+        //specificColor.ParticularColor(index);
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8892269940857156224}
   - component: {fileID: 8892269940857156254}
   - component: {fileID: 8892269940857156255}
+  - component: {fileID: 290959182}
   m_Layer: 0
   m_Name: ColorController
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   randomColor: {fileID: 8892269940857156254}
   specificColor: {fileID: 8892269940857156255}
+  grayscale: {fileID: 290959182}
   colorList: {fileID: 11400000, guid: 9863836a5b1f8844ab71b520c1b88c4d, type: 2}
   tileMaterial: {fileID: 2100000, guid: 43e941050e0180e4e9bbda3792ed6646, type: 2}
   floorMaterial: {fileID: 2100000, guid: 4d8578f5c15b97e47ae1c6829242da8a, type: 2}
@@ -75,5 +77,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c3c1bdbe07e7b44581c80936988b1f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &290959182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8892269940857156226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950608f4a818bc2489346a62ef9380e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
