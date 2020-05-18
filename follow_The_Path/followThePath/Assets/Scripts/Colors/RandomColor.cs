@@ -7,7 +7,7 @@ using UnityEngine;
 /// Class that when active shifts the colors on Tiles/Floors into new colors from predetermined list of colors
 /// </summary>
 /// <param name="RandomColor"></param>
-public class RandomColor : MonoBehaviour
+public class RandomColor : MonoBehaviour, IColorMode
 {
     // Both of tile/floor uses the same index so that the colors matches the same index on the lists of colors
     private ColorIndex randomColorIndex = new ColorIndex();
@@ -16,32 +16,13 @@ public class RandomColor : MonoBehaviour
     [SerializeField, Range(0.1f, 10f)] 
     private float changeColorTime = 1f;
 
-    private float colorDuration;
     [Tooltip("Duration of time left until the color on materials will change")]
-    [SerializeField, Range(10f, 300f)]
+    [SerializeField, Range(1f, 300f)]
     // How much much of the current time is left until the color changes again?
     private float currentColorDuration = 30f;
 
     private Coroutine initiateRandomColors;
-    public Coroutine InitiateRandomColors { get { return initiateRandomColors; } }
 
-    public static RandomColor Instance { get; private set; }
-  
-    private void Awake()
-    {
-        Instance = this;
-    }
-
-    void Start()
-    {
-        SelectNewRandomColorIndices();
-        UpdateColors(1f);
-    }
-
-    private void Update()
-    {
-
-    }
 
     /// <summary>
     /// Updates color indices for all indices
@@ -49,7 +30,7 @@ public class RandomColor : MonoBehaviour
     private void SelectNewRandomColorIndices()
     {
         // Cycles the indices in the lists of colors (Tiles and Floors)
-        SetNewColorIndice(randomColorIndex, UxManager.Instance.ColorList); // Copy this row and change tileIndex and tileColorList to floor or other, if adding more.
+        SetNewColorIndice(randomColorIndex, ColorController.Instance.Colors); // Copy this row and change tileIndex and tileColorList to floor or other, if adding more.
     }
 
     /// <summary>
@@ -73,9 +54,8 @@ public class RandomColor : MonoBehaviour
     private void UpdateColors(float fraction)
     {
         // Updates the color of the material on Tiles and Floors
-        UpdateTileColor(UxManager.Instance.TileMaterial, UxManager.Instance.ColorList, randomColorIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
-        UpdateFloorColor(UxManager.Instance.FloorMaterial, UxManager.Instance.ColorList, randomColorIndex, fraction);
-        colorDuration = currentColorDuration;
+        UpdateTileColor(ColorController.Instance.TileMaterial, ColorController.Instance.Colors, randomColorIndex, fraction); // Copy this row and change tileMaterial, tileIndex and tileColorList to floor or other, if adding more.
+        UpdateFloorColor(ColorController.Instance.FloorMaterial, ColorController.Instance.Colors, randomColorIndex, fraction);
     }
 
     /// <summary>
@@ -134,26 +114,18 @@ public class RandomColor : MonoBehaviour
         public int previous, next;
     }
 
-    /// <summary>
-    /// Starts the routine for shifting colors randomly
-    /// </summary>
-    public void StartRandomColor()
+
+    public void Begin()
     {
-        // Properly starts the coroutine
+        SelectNewRandomColorIndices();
         initiateRandomColors = StartCoroutine(MakeRandomColor());
     }
 
-    /// <summary>
-    /// Stops the routine for shifting colors randomly
-    /// </summary>
-    public void StopRandomColor()
+    public void Stop()
     {
-        // Properly stops the coroutine
-        //TODO Personal Note: this if-statement probably isn't a permanent solution
-        if (InitiateRandomColors != null)
+        if (initiateRandomColors != null)
         {
             StopCoroutine(initiateRandomColors);
         }
-
     }
 }

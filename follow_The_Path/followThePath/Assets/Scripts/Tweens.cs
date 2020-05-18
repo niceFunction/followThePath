@@ -25,6 +25,25 @@ public class Tweens : MonoBehaviour
     }
 
     [System.Serializable]
+    public struct MenuTween
+    {
+        [Tooltip("The RectTransform of the Main Menu object")]
+        public RectTransform TweenTarget;
+
+        [Tooltip("The amount of time for the tween of the Menu to happen"), Range(0.01f, 2f)]
+        public float TweenTime;
+
+        [Tooltip("The final alpha the background image will have for the Menu"), Range(0.0f, 1f)]
+        public float Alpha;
+
+        [Tooltip("The X-position the Menu will have"), Range(-5000, 5000)]
+        public int XPosition;
+
+        [Tooltip("The Y-position the Menu will have"), Range(-5000, 5000)]
+        public int YPosition;
+    }
+
+    [System.Serializable]
     public struct MainMenu
     {
         [Tooltip("The RectTransform of the Main Menu object")]

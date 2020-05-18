@@ -31,14 +31,14 @@ public class ChangeFont : MonoBehaviour
             originalFontSize = textObject.GetComponent<TextMeshProUGUI>().fontSize;
         }
 
-        UpdateFont(Accessibility.Instance.currentFont, Accessibility.Instance.currentScale);
-        Accessibility.Instance.onChangeFont += this.UpdateFont;
+        UpdateFont(FontController.Instance.CurrentFont, FontController.Instance.CurrentScale);
+        FontController.Instance.OnChangeFont += this.UpdateFont;
     }
 
     void OnDestroy()
     {
         // Remove listener when destroyed
-        Accessibility.Instance.onChangeFont -= this.UpdateFont;
+        FontController.Instance.OnChangeFont -= this.UpdateFont;
     }
 
     private void UpdateFont(TMP_FontAsset newFont, float scaleFont)
