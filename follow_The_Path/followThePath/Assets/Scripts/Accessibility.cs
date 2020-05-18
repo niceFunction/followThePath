@@ -15,12 +15,6 @@ public class Accessibility : MonoBehaviour
     public delegate void UxEventHandler();
     public static event UxEventHandler onActiveUX;
 
-    public delegate void GrayscaleHandler(Toggle grayscaleToggle, string grayscaleStatus);
-    public event GrayscaleHandler onGrayscaleMode;
-
-    // Currently used to affect font size but can have other areas to be used
-    private TextMeshPro TMP;
-
     // Used to access "Grayscale Camera" component on MainCamera
     private GameObject playerCamera;
 
@@ -62,7 +56,6 @@ public class Accessibility : MonoBehaviour
         {
             // If grayscale toggle object is on, activate grayscale camera overlay.
             playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
-            UxManager.Instance.GrayscaleToggle.isOn = true;
 
             // Fades certain UI objects to indicate the object is not interactable
             MainMenuUiTween.Instance.FadeDropdownObjects();
@@ -72,7 +65,6 @@ public class Accessibility : MonoBehaviour
         {
             // If grayscale toggle object is NOT on, deactivate grayscale camera overlay.
             playerCamera.GetComponent<GrayscaleCamera>().enabled = false;
-            UxManager.Instance.GrayscaleToggle.isOn = false;
 
             // Fades caertain UI objects back to indicate the object can be interactable
             MainMenuUiTween.Instance.FadeBackDropdownObjects();
@@ -86,57 +78,26 @@ public class Accessibility : MonoBehaviour
     public void GrayscaleOverlay()
     { 
         // NOTE: Keep in mind to see if enabling an image effect on the camera is too costly 
-        playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
-
-        if (UxManager.Instance.GrayscaleToggle.isOn)
-        {
-            ColorController.Instance.SetUseGrayscaleOverlay();
-        }
-        else
-        {
-            ColorController.Instance.SetRandomColorMode(true);
-        }
-        
+        playerCamera = GameObject.FindGameObjectWithTag("MainCamera");        
 
         if (ColorController.Instance.UseGrayscaleMode)
         {
             // If grayscale toggle object is on, activate grayscale camera overlay.
             playerCamera.GetComponent<GrayscaleCamera>().enabled = true;
 
-            // Turns off Random color toggle and makes it non-interactable
-            UxManager.Instance.RandomColorsToggle.isOn = false;
-            UxManager.Instance.RandomColorsToggle.interactable = false;
             // Fades certain UI objects to indicate the object is not interactable
             MainMenuUiTween.Instance.FadeDropdownObjects();
             MainMenuUiTween.Instance.FadeRandomColorToggleObject();
 
-            // Makes the Color drop down non-interactable
-            UxManager.Instance.ColorDropdown.interactable = false;
-            ColorController.Instance.StopRandomColor();
         }
         else
         {
             // If grayscale toggle object is NOT on, deactivate grayscale camera overlay.
             playerCamera.GetComponent<GrayscaleCamera>().enabled = false;
 
-            // Random color toggle can be interacted with again
-            UxManager.Instance.RandomColorsToggle.interactable = true;
-            // Color dropdown can be interacted with again
-            UxManager.Instance.ColorDropdown.interactable = true;
             // Fades caertain UI objects back to indicate the object can be interactable
             MainMenuUiTween.Instance.FadeBackDropdownObjects();
             MainMenuUiTween.Instance.FadeBackRandomColorToggleObject();
         }
-    }
-
-    public void DyslexicFontMode(bool toggleOn)
-    {
-        FontController.Instance.SetDyslexicFontMode(toggleOn);
-
-        
-        /*
-        This null check is important, because if no listeners are registered, 
-        it will result in an NPE.
-        */
     }
 }

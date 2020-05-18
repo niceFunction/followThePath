@@ -31,24 +31,12 @@ public class UxManager : MonoBehaviour
     public TMP_Dropdown ColorDropdown { get { return colorDropdown; } }
     #endregion
 
-    #region RANDOM COLORS VARIABLES
-    [SerializeField, Header("Random Color"), Tooltip("Randomly changes colors on the level when active")]
-    private Toggle randomColorsToggle;
-    public Toggle RandomColorsToggle { get { return randomColorsToggle; } }
-
-    [Tooltip("Visual element that the user can see if randomizing colors are active or not")]
-    [SerializeField]
-    private TextMeshProUGUI randomColorsStatus;
-    #endregion
 
     #region GRAYSCALE VARIABLES
     [SerializeField, Header("Grayscale"),Tooltip("Toggle grayscale 'overlay' on an off")]
     private Toggle grayscaleToggle;
     public Toggle GrayscaleToggle { get { return grayscaleToggle; } }
 
-    [SerializeField, Tooltip("Visual element that the user can see if grayscale 'overlay' is active or not")]
-    private TextMeshProUGUI grayscaleStatus;
-    public TextMeshProUGUI GrayscaleStatus { get { return grayscaleStatus; } }
     #endregion
 
     #region FONT VARIABLES
@@ -87,26 +75,18 @@ public class UxManager : MonoBehaviour
     {
         GetSavedPlayerPrefs();
 
-        dyslexicFontToggle.isOn = FontController.Instance.UseDyslexicFont;
-        dyslexicFontStatus.text = FontController.Instance.UseDyslexicFont ? "ON" : "OFF";
-
         SetColorMode(ColorController.Instance.UseRandomColors);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     /// <summary>
     /// Gets saved PlayerPrefs values and uses what ever was last chosen, this method should only be accessed in "UxManager"
     /// </summary>
     private void GetSavedPlayerPrefs()
     {
-        RandomColorsToggle.isOn = ColorController.Instance.UseRandomColors;
-        ColorDropdown.interactable = !ColorController.Instance.UseRandomColors;
-        randomColorsStatus.text = ColorController.Instance.UseRandomColors ? "ON" : "OFF";
+        //RandomColorsToggle.isOn = ColorController.Instance.UseRandomColors;
+       // ColorDropdown.interactable = !ColorController.Instance.UseRandomColors;
+      //  randomColorsStatus.text = ColorController.Instance.UseRandomColors ? "ON" : "OFF";
 
         if (ColorController.Instance.UseRandomColors)
         {
@@ -124,67 +104,19 @@ public class UxManager : MonoBehaviour
     /// </summary>
     public void SetColorMode(bool on)
     {
-        ColorController.Instance.SetRandomColorMode(on);
+     //   ColorController.Instance.SetRandomColorMode(on);
 
         if (ColorController.Instance.UseRandomColors)
         {
-            //SpecificColor.Instance.RemoveDropdownValue();
-            // Color Randomization is active and set specific color dropdown is non-interactable
-            //RandomColorsToggle.isOn = true;
             ColorDropdown.interactable = false;
-            randomColorsStatus.text = "ON";
             // Fades dropdown objects to indicate the object is not interactable
             MainMenuUiTween.Instance.FadeDropdownObjects();
         }
         else
         {  
-            // Color randomization is inactive and set specific color dropdown is interactable
-            //RandomColorsToggle.isOn = false;
-            ColorDropdown.interactable = true;
-            randomColorsStatus.text = "OFF";
+
             // Fades the dropdown objects back to indicate the object can be interactable
             MainMenuUiTween.Instance.FadeBackDropdownObjects();
         }
-        
-        // If the grayscale toggle is active, make color dropdown not interactable
-        if (GrayscaleToggle.isOn == true)
-        {
-            colorDropdown.interactable = false;
-        }
-    }
-
-    public void SetSpecificColor(int index)
-    {
-        ColorController.Instance.SetSpecificColor(index);
-    }
-
-    /// <summary>
-    /// Overlays an Image filter over the player camera
-    /// </summary>
-    public void SetGrayscaleOverlay()
-    {
-        // Update the status if Grayscale mode is active or not
-        if (GrayscaleToggle.isOn)
-        {
-            GrayscaleStatus.text = "ON";
-        }
-        else
-        {
-            GrayscaleStatus.text = "OFF";
-        }
-
-        // Adds an "overlay" over the player camera, turning the screen in different shades of gray
-        Accessibility.Instance.GrayscaleOverlay();
-    }
-
-    /// <summary>
-    /// Changes the font to dyslexic when on, changes to regular font when off
-    /// </summary>
-    public void SetDyslexicFont(bool on)
-    { 
-        FontController.Instance.SetDyslexicFontMode(on);
-
-        dyslexicFontToggle.isOn = FontController.Instance.UseDyslexicFont;
-        dyslexicFontStatus.text = FontController.Instance.UseDyslexicFont ? "ON" : "OFF";
     }
 }

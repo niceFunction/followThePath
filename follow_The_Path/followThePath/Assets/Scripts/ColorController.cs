@@ -17,15 +17,17 @@ public class ColorController : MonoBehaviour
     readonly string SPECIFIC_COLOR_INDEX = "SPECIFIC_COLOR_INDEX";
     readonly string COLOR_MODE = "COLOR_MODE";
 
-    public bool UseRandomColors { get { return ColorMode == ColorModes.RANDOM; } }
-    public bool UseGrayscaleMode { get { return ColorMode == ColorModes.GRAYSCALE; } }
-    public bool UseSpecificColor { get { return ColorMode == ColorModes.SPECIFIC; } }
+    public bool UseRandomColors { get { return ColorMode == Modes.RANDOM; } }
+    public bool UseGrayscaleMode { get { return ColorMode == Modes.GRAYSCALE; } }
+    public bool UseSpecificColor { get { return ColorMode == Modes.SPECIFIC; } }
     public int SpecificColorIndex { get; private set; } = 0;
     public Colors.ColorGroup[] Colors { get { return colorList.Colors; } }
 
+    public delegate void ColorModeHandler(Modes newMode);
+    public event ColorModeHandler OnModeChange;
 
-    public enum ColorModes { RANDOM = 0, SPECIFIC = 1, GRAYSCALE = 2 }
-    public ColorModes ColorMode;
+    public enum Modes { RANDOM = 0, SPECIFIC = 1, GRAYSCALE = 2 }
+    public Modes ColorMode;
 
     private void Awake()
     {
@@ -50,7 +52,7 @@ public class ColorController : MonoBehaviour
     /// </summary>
     private void LoadPlayerPrefs()
     {
-        ColorMode = (ColorModes)PlayerPrefs.GetInt(COLOR_MODE, 0);
+        ColorMode = (Modes)PlayerPrefs.GetInt(COLOR_MODE, 0);
         SpecificColorIndex = PlayerPrefs.GetInt(SPECIFIC_COLOR_INDEX, 0);
     }
 
@@ -65,54 +67,40 @@ public class ColorController : MonoBehaviour
         }
     }
 
-    public void SetUseGrayscaleOverlay()
+    public void SetColorMode(Modes newMode)
     {
-        SetColorMode(ColorModes.GRAYSCALE);
-    }
-
-    public void SetSpecificColor(int index)
-    {
-        Debug.Log("Set specific color");
-        SpecificColorIndex = index;
-
-        SetColorMode(ColorModes.SPECIFIC);
-        PlayerPrefs.SetInt(SPECIFIC_COLOR_INDEX, SpecificColorIndex);
-        PlayerPrefs.Save();
-
-        specificColor.ParticularColor(index);
-    }
-
-    public void StopRandomColor()
-    {
-        StopCoroutine(randomColor.InitiateRandomColors);
-    }
-
-    public void SetRandomColorMode(bool on)
-    {
-        SetColorMode(on ? ColorModes.RANDOM : ColorModes.SPECIFIC);
-        PlayerPrefs.Save();
-
-        if (on)
-        {
-            randomColor.StartRandomColor();
-        }
-        else
-        {
-            randomColor.StopRandomColor();
-        }
-    }
-
-    void SetColorMode(ColorModes mode)
-    {
-        Debug.Log(mode);
-        ColorMode = mode;
-        PlayerPrefs.SetInt(COLOR_MODE, (int)ColorMode);
-        PlayerPrefs.Save();
+        if (newMode == ColorMode)
+            return;
 
         /*
          * TODO rewrite RandomColor, SpecificColor, and Grayscale into
          * using an interface with a Start and Stop.
          * Then we can handle them easily.
          */
+
+        Debug.Log("From " + ColorMode + " to " + newMode);
+        ColorMode = newMode;
+        PlayerPrefs.SetInt(COLOR_MODE, (int)ColorMode);
+        PlayerPrefs.Save();
+
+        if(OnModeChange != null)
+        {
+            OnModeChange.Invoke(ColorMode);
+        }
+    }
+
+    public void SetSpecificColor(int index)
+    {
+        Debug.Log("Set specific color");
+
+      //  SetColorMode(Modes.SPECIFIC);
+
+        SpecificColorIndex = index;
+
+        PlayerPrefs.SetInt(SPECIFIC_COLOR_INDEX, SpecificColorIndex);
+        PlayerPrefs.Save();
+
+
+        specificColor.ParticularColor(index);
     }
 }

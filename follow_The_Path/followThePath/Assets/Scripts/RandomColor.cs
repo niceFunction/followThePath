@@ -97,7 +97,6 @@ public class RandomColor : MonoBehaviour
     {
         while(true)
         {
-            Debug.Log("Starting new random color");
             float elapsedTime = 0f;
             //elapsedTime = 0f;
             SelectNewRandomColorIndices(); // Select the new Colors
