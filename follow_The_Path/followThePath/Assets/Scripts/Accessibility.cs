@@ -88,7 +88,15 @@ public class Accessibility : MonoBehaviour
         // NOTE: Keep in mind to see if enabling an image effect on the camera is too costly 
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
-        ColorController.Instance.SetUseGrayscaleOverlay(UxManager.Instance.GrayscaleToggle.isOn);
+        if (UxManager.Instance.GrayscaleToggle.isOn)
+        {
+            ColorController.Instance.SetUseGrayscaleOverlay();
+        }
+        else
+        {
+            ColorController.Instance.SetRandomColorMode(true);
+        }
+        
 
         if (ColorController.Instance.UseGrayscaleMode)
         {

@@ -63,10 +63,9 @@ public class ColorController : MonoBehaviour
         }
     }
 
-    public void SetUseGrayscaleOverlay(bool on)
+    public void SetUseGrayscaleOverlay()
     {
         SetColorMode(ColorModes.GRAYSCALE);
-        PlayerPrefs.Save();
     }
 
     public void SetSpecificColor(int index)
@@ -106,5 +105,6 @@ public class ColorController : MonoBehaviour
         Debug.Log(mode);
         ColorMode = mode;
         PlayerPrefs.SetInt(COLOR_MODE, (int)ColorMode);
+        PlayerPrefs.Save();
     }
 }
