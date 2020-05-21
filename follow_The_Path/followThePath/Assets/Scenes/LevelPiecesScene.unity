@@ -586,7 +586,7 @@ PrefabInstance:
     - target: {fileID: 9154867312178150107, guid: 1febbe1a2843e964d80ce5d625983321,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 9154867312178150107, guid: 1febbe1a2843e964d80ce5d625983321,
         type: 3}
@@ -2235,7 +2235,7 @@ Transform:
   - {fileID: 3213511376406654057}
   - {fileID: 1265543779}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &596912511
 PrefabInstance:
@@ -2308,6 +2308,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mdl_RightCurveEnter_LeftStraightExit
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 999fb3e561cb1bf478b9d2386b8134ac,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 999fb3e561cb1bf478b9d2386b8134ac, type: 3}
@@ -2524,7 +2529,7 @@ Transform:
   - {fileID: 6438674504004745337}
   - {fileID: 1994162120}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &695258239
 PrefabInstance:
@@ -2802,7 +2807,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: efd0bdce824bd744791869140653ca52,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: efd0bdce824bd744791869140653ca52,
         type: 3}
@@ -3364,7 +3369,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: dd65e1e224f02224e8b0b9337f345541,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dd65e1e224f02224e8b0b9337f345541,
         type: 3}
@@ -3394,7 +3399,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: dd65e1e224f02224e8b0b9337f345541,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd65e1e224f02224e8b0b9337f345541, type: 3}
@@ -3555,7 +3560,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 180f8abf861073747bf74df8ed8bd344,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 180f8abf861073747bf74df8ed8bd344,
         type: 3}
@@ -3585,7 +3590,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 180f8abf861073747bf74df8ed8bd344,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 180f8abf861073747bf74df8ed8bd344, type: 3}
@@ -6196,6 +6201,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mdl_RightCurveEnter_LeftStraightExit_Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 6d707e0a0e6781141a0149437961904a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d707e0a0e6781141a0149437961904a, type: 3}
