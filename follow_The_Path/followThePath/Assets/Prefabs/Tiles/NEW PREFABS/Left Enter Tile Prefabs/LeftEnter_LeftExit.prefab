@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1419109042422555664}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.95, y: 2, z: 0}
-  m_LocalScale: {x: 6, y: 1, z: 20}
+  m_LocalPosition: {x: -4, y: 2, z: 0}
+  m_LocalScale: {x: 12, y: 1, z: 20}
   m_Children: []
   m_Father: {fileID: 8973729066008547742}
   m_RootOrder: 0
@@ -90,22 +90,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1f208203daac04c91a3fa0d8d45438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectsTo: []
+  connectsTo:
+  - {fileID: 5785250070412444340, guid: 57e37f7f36c03954d968e7a472f937cc, type: 3}
+  - {fileID: 6178310061465298569}
+  - {fileID: 164612522420549971, guid: a518ee26c3a375b449dca03913460805, type: 3}
+  - {fileID: 3069469982567074451, guid: a25055baf6d4eef4f9ad13cf88e2f4f7, type: 3}
+  - {fileID: 7479927946533156953, guid: f6ba0f1a88635e34997d965b6fe6b67e, type: 3}
   length: 20
---- !u!64 &5784694426144142692
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3955075089667315818}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6526470200468111493, guid: 080c65d2c6687eb429d520182066a1d8, type: 3}
 --- !u!82 &2968427801780749004
 AudioSource:
   m_ObjectHideFlags: 0
@@ -219,6 +210,20 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 787d6579297f26c4d898b5426e398467, type: 3}
   - {fileID: 8300000, guid: d3b8f82c45e972444b5ccd037194c4af, type: 3}
   - {fileID: 8300000, guid: a49666c479d8d104fb969e9a9c9af65b, type: 3}
+--- !u!64 &4074960840337094627
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3955075089667315818}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3534713047287444302, guid: 080c65d2c6687eb429d520182066a1d8, type: 3}
 --- !u!65 &3797689051133793583
 BoxCollider:
   m_ObjectHideFlags: 0
