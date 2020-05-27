@@ -114,13 +114,18 @@ public class RandomColor : MonoBehaviour, IColorMode
         public int previous, next;
     }
 
-
+    /// <summary>
+    /// Begins randomizing colors
+    /// </summary>
     public void Begin()
     {
         SelectNewRandomColorIndices();
         initiateRandomColors = StartCoroutine(MakeRandomColor());
     }
 
+    /// <summary>
+    /// Stops the randomisation of colors
+    /// </summary>
     public void Stop()
     {
         if (initiateRandomColors != null)
