@@ -12,21 +12,28 @@ public class ColorController : MonoBehaviour
     [SerializeField] private SpecificColor specificColor;
     [SerializeField] private Grayscale grayscale;
 
+    // Get a list of pre-defined colors
     [SerializeField] private ColorList colorList;
+    // Get the materials used on the Tiles & Floors
     [SerializeField] private Material tileMaterial, floorMaterial;
     public static ColorController Instance { get; private set; }
 
+    // A key used to save the current index in the list of pre-defined colors
     readonly string SPECIFIC_COLOR_INDEX = "SPECIFIC_COLOR_INDEX";
+    // A key used to save what color mode should be active
     readonly string COLOR_MODE = "COLOR_MODE";
 
     public bool UseRandomColors { get { return ColorMode == Modes.RANDOM; } }
     public bool UseGrayscaleMode { get { return ColorMode == Modes.GRAYSCALE; } }
     public bool UseSpecificColor { get { return ColorMode == Modes.SPECIFIC; } }
+    // All colors in the Colorlist are individual index, starting from 0 and ending at 6
     public int SpecificColorIndex { get; private set; } = 0;
+
     public Material TileMaterial { get { return tileMaterial; } }
     public Material FloorMaterial { get { return floorMaterial; } }
     public Colors.ColorGroup[] Colors { get { return colorList.Colors; } }
 
+    // What mode is currently active?
     public delegate void ColorModeHandler(Modes newMode);
     public event ColorModeHandler OnModeChange;
 
@@ -76,6 +83,7 @@ public class ColorController : MonoBehaviour
         GetCurrentMode().Begin();
     }
 
+
     private IColorMode GetCurrentMode()
     {
         if (ColorMode == Modes.GRAYSCALE)
@@ -99,6 +107,7 @@ public class ColorController : MonoBehaviour
 
     public void SetColorMode(Modes newMode)
     {
+        // Sets "newMode" to whatever new mode is active
         if (newMode == ColorMode)
             return;
 

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class FontController : MonoBehaviour
 {
+    // Key used for PlayerPrefs, used to save the current status of the dyslexic font and it if its used or not
     readonly string USE_DYSLEXIC_FONT = "USE_DYSLEXIC_FONT";
 
     public delegate void ChangeFontHandler(TMP_FontAsset newFont, float scaleFont);
@@ -12,8 +13,11 @@ public class FontController : MonoBehaviour
 
     public static FontController Instance { get; private set; }
 
+    // Get the current "active" font
     public TMP_FontAsset CurrentFont { get; private set; }
+    // Get the current "active" fonts scale
     public float CurrentScale { get; private set; }
+    // Should the font use the dyslexic font?
     public bool UseDyslexicFont { get; private set; } = false;
 
     [SerializeField] private FontSettings regular, dyslexic;
@@ -52,6 +56,10 @@ public class FontController : MonoBehaviour
         SetDyslexicFontMode(UseDyslexicFont);
     }
 
+    /// <summary>
+    /// Sets the current state of the dyslexic font
+    /// </summary>
+    /// <param name="on"></param>
     public void SetDyslexicFontMode(bool on)
     {
         UseDyslexicFont = on;
@@ -60,11 +68,13 @@ public class FontController : MonoBehaviour
 
         if (UseDyslexicFont)
         {
+            // Íf the dyslexic font option is on, the current font & scale will be the dyslexic font
             CurrentFont = dyslexic.Font;
             CurrentScale = dyslexic.Scale;
         }
         else
         {
+            // If the dyslexic font option isn't on, the current font & scale will be the regular font
             CurrentFont = regular.Font;
             CurrentScale = regular.Scale;
         }
