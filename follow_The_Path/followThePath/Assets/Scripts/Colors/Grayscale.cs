@@ -6,11 +6,11 @@ public class Grayscale : MonoBehaviour, IColorMode
 {
     public void Begin()
     {
-
+        // To be added
     }
 
     public void Stop()
     {
-
+        // To be added
     }
 }
