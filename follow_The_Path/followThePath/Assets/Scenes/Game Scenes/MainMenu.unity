@@ -1350,6 +1350,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b5b10683bd60154d885cf92a2ae04ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tapClip: {fileID: 8300000, guid: d8a875ddef0519c45ada985ef98cc9a4, type: 3}
+  delayButtonSound: 0.2
 --- !u!4 &1493589955
 Transform:
   m_ObjectHideFlags: 0
