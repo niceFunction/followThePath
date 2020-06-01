@@ -18,7 +18,6 @@ public class ButtonManager : MonoBehaviour
     public AudioClip TapClip { get { return tapClip; } }
     
     // Sets itself to use "tapClip" at runtime
-    [SerializeField, Tooltip("TESTING, this SerializeField will be removed")]
     private AudioClip useTapClip;
     public AudioClip UseTapClip { get { return useTapClip; } }
 
