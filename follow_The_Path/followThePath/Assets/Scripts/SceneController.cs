@@ -37,7 +37,7 @@ public class SceneController : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
+        DontDestroyOnLoad(gameObject);
     }
 
 
@@ -86,9 +86,11 @@ public class SceneController : MonoBehaviour
     /// </summary>
     public void ReloadGame()
     {
+        //TODO Note to self: When using (if using it in this class) set DOTween.Clear(true)
         // Reminder to self: If timeScale has been set to 0, be sure to set timeScale to 1 again
         Time.timeScale = 1;
         //TODO reminder to self: Opt to slighly delay opening the Game Scene to delay button opening sound, if yes use Invoke
+
         OpenGame();
     }
 }
