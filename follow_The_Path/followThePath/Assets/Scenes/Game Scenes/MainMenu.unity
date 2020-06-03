@@ -945,7 +945,7 @@ PrefabInstance:
     - target: {fileID: 1437221361763088812, guid: 02aa0526433d6e54094007bbbda5883d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenGame
+      value: LoadGame
       objectReference: {fileID: 0}
     - target: {fileID: 1437221361763088815, guid: 02aa0526433d6e54094007bbbda5883d,
         type: 3}
@@ -1366,7 +1366,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tapClip: {fileID: 8300000, guid: d8a875ddef0519c45ada985ef98cc9a4, type: 3}
-  useTapClip: {fileID: 0}
   delayButtonSound: 0.2
 --- !u!4 &1493589955
 Transform:
