@@ -5,24 +5,17 @@ using UnityEngine.UI;
 using UnityEngine.Audio;
 
 /// <summary>
-/// Manages the buttons and when the button sound should be played
+/// Controls when buttons are clicked
 /// </summary>
-public class ButtonManager : MonoBehaviour
+public class ButtonClickController : MonoBehaviour
 {
-
-    private AudioSource tapSource;
-    public AudioSource TapSource { get { return tapSource; } }
-
-    [SerializeField, Tooltip("SFX to be played when a  button has been pressed")]
-    private AudioClip tapClip;
-    public AudioClip TapClip { get { return tapClip; } }
 
     [SerializeField, Tooltip("Adds enough time for the SFX to play before a scene opens"), Range(0f, 1f)]
     private float delayButtonSound = 0.2f;
     // Note to self: Added incase the value needs to be adjusted
     public float DelayButtonSound { get { return delayButtonSound; } }
 
-    public static ButtonManager Instance { get; private set; }
+    public static ButtonClickController Instance { get; private set; }
 
     private void Awake()
     {
@@ -37,8 +30,6 @@ public class ButtonManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
-
-        tapSource = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -54,18 +45,10 @@ public class ButtonManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Plays the SFX on button presses
+    /// Calls on the "Begin" method in the "PlayButtonSFX" and plays it
     /// </summary>
-    public void PlayButtonSFX()
+    public void PlaySFXOnButton()
     {
-        TapSource.Stop();
-        TapSource.PlayOneShot(TapSource.clip = TapClip);
+        PlayButtonSFX.Instance.Begin();
     }
-
-    public void QuitGame()
-    {
-        Debug.Log("QUIT GAME");
-        Application.Quit();
-    }
-
 }
