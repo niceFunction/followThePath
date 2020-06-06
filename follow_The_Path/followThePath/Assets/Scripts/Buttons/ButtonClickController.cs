@@ -51,9 +51,10 @@ public class ButtonClickController : MonoBehaviour
     {
         Debug.Log("Button Pressed SFX Played");
         
+        // Stops all audio sources
         ButtonPressedSource.Stop();
         
-
+        // Plays the audio clip
         ButtonPressedSource.PlayOneShot(ButtonPressedSource.clip = ButtonPressedClip);
     }
 }
