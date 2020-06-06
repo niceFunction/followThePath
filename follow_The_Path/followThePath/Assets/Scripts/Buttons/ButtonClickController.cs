@@ -10,6 +10,12 @@ using UnityEngine.Audio;
 public class ButtonClickController : MonoBehaviour
 {
 
+    private AudioSource buttonPressedSource;
+    public AudioSource ButtonPressedSource { get { return buttonPressedSource; } }
+    [SerializeField, Tooltip("SFX that plays when a button has been pressed")]
+    private AudioClip buttonPressedClip;
+    public AudioClip ButtonPressedClip { get { return buttonPressedClip; } }
+
     [SerializeField, Tooltip("Adds enough time for the SFX to play before a scene opens"), Range(0f, 1f)]
     private float delayButtonSound = 0.2f;
     // Note to self: Added incase the value needs to be adjusted
@@ -35,20 +41,19 @@ public class ButtonClickController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        buttonPressedSource = GetComponent<AudioSource>();
     }
 
     /// <summary>
-    /// Calls on the "Begin" method in the "PlayButtonSFX" and plays it
+    /// Begins the playback of the button SFX
     /// </summary>
-    public void PlaySFXOnButton()
+    public void BeginButtonSFX()
     {
-        PlayButtonSFX.Instance.Begin();
+        Debug.Log("Button Pressed SFX Played");
+        
+        ButtonPressedSource.Stop();
+        
+
+        ButtonPressedSource.PlayOneShot(ButtonPressedSource.clip = ButtonPressedClip);
     }
 }

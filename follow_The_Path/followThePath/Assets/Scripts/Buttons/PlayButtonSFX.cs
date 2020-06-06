@@ -45,4 +45,9 @@ public class PlayButtonSFX : MonoBehaviour
         ButtonTapSource.PlayOneShot(ButtonTapSource.clip = ButtonTapClip);
     }
 
+    public void BeginPressedSFX()
+    {
+        ButtonClickController.Instance.BeginButtonSFX();
+    }
+
 }
