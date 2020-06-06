@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 13441904}
   - component: {fileID: 13441903}
   - component: {fileID: 13441902}
+  - component: {fileID: 13441905}
   m_Layer: 5
   m_Name: MainMenuButton
   m_TagString: Untagged
@@ -214,8 +215,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2081165381}
-        m_MethodName: PlayButtonTapSound
+      - m_Target: {fileID: 13441905}
+        m_MethodName: BeginPressedSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -262,6 +263,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13441900}
   m_CullTransparentMesh: 0
+--- !u!114 &13441905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13441900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e493cecf83bb9499aa623288a9ca2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &101466469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1802,6 +1815,7 @@ GameObject:
   - component: {fileID: 1024755654}
   - component: {fileID: 1024755653}
   - component: {fileID: 1024755652}
+  - component: {fileID: 1024755655}
   m_Layer: 5
   m_Name: PauseButton
   m_TagString: Untagged
@@ -1883,8 +1897,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2081165381}
-        m_MethodName: PlayButtonTapSound
+      - m_Target: {fileID: 1024755655}
+        m_MethodName: BeginPressedSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1931,6 +1945,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024755650}
   m_CullTransparentMesh: 0
+--- !u!114 &1024755655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024755650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e493cecf83bb9499aa623288a9ca2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1045428197
 GameObject:
   m_ObjectHideFlags: 0
@@ -2211,6 +2237,7 @@ GameObject:
   - component: {fileID: 1148596462}
   - component: {fileID: 1148596461}
   - component: {fileID: 1148596460}
+  - component: {fileID: 1148596463}
   m_Layer: 5
   m_Name: ContinueButton
   m_TagString: Untagged
@@ -2292,8 +2319,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2081165381}
-        m_MethodName: PlayButtonTapSound
+      - m_Target: {fileID: 1256180246}
+        m_MethodName: ExitPauseMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2303,8 +2330,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1256180246}
-        m_MethodName: ExitPauseMenu
+      - m_Target: {fileID: 1148596463}
+        m_MethodName: BeginPressedSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2351,6 +2378,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1148596458}
   m_CullTransparentMesh: 0
+--- !u!114 &1148596463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148596458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e493cecf83bb9499aa623288a9ca2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1158885868
 GameObject:
   m_ObjectHideFlags: 0
@@ -3468,6 +3507,7 @@ GameObject:
   - component: {fileID: 1594773226}
   - component: {fileID: 1594773225}
   - component: {fileID: 1594773224}
+  - component: {fileID: 1594773227}
   m_Layer: 5
   m_Name: ReplayButton
   m_TagString: Untagged
@@ -3549,8 +3589,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2081165381}
-        m_MethodName: PlayButtonTapSound
+      - m_Target: {fileID: 1594773227}
+        m_MethodName: BeginPressedSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3597,6 +3637,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1594773222}
   m_CullTransparentMesh: 0
+--- !u!114 &1594773227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594773222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e493cecf83bb9499aa623288a9ca2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1657823119
 GameObject:
   m_ObjectHideFlags: 0
@@ -4153,6 +4205,7 @@ GameObject:
   - component: {fileID: 1901498813}
   - component: {fileID: 1901498812}
   - component: {fileID: 1901498811}
+  - component: {fileID: 1901498814}
   m_Layer: 5
   m_Name: MainMenuButton
   m_TagString: Untagged
@@ -4234,8 +4287,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2081165381}
-        m_MethodName: PlayButtonTapSound
+      - m_Target: {fileID: 1901498814}
+        m_MethodName: BeginPressedSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4282,6 +4335,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901498809}
   m_CullTransparentMesh: 0
+--- !u!114 &1901498814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901498809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e493cecf83bb9499aa623288a9ca2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1901955061
 PrefabInstance:
   m_ObjectHideFlags: 0
