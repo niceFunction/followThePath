@@ -19,6 +19,9 @@ public class Propeller : MonoBehaviour
     private int direction = 0; // If direction IS 0, the propeller won't rotate at all
     public int Direction { get { return direction; } set { direction = value; } }
 
+    [SerializeField, Range(0, 100), Tooltip("Propeller will spin depending how close the PLayer is")]
+    private float playerProximity = 10f;
+
     public static Propeller Instance { get; private set; }
 
     private void Awake()
@@ -43,11 +46,27 @@ public class Propeller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RotatePropeller();
+        if (PlayerIsNear())
+        {
+            RotatePropeller();
+        }
+        else
+        {
+            // Personal note: Either do something or nothing at all
+        }
     }
 
     public void RotatePropeller()
     {
         RotateObject.transform.Rotate(0, (RotationSpeed * Direction) * Time.deltaTime, 0);
+    }
+
+    /// <summary>
+    /// If the player is within a certain distance, rotate the propeller, if not, don't
+    /// </summary>
+    /// <returns></returns>
+    private bool PlayerIsNear()
+    {
+        return Vector3.SqrMagnitude(transform.position - Player.Instance.transform.position) < (playerProximity * playerProximity);
     }
 }
