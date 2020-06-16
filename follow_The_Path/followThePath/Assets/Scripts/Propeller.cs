@@ -16,7 +16,7 @@ public class Propeller : MonoBehaviour
     [SerializeField, Range(-1, 1), Tooltip("The direction the properller is rotating.\n " +
         "1 = clockwise, -1 = counterclockwise.\n" +
         "Shouldn't be 0.")]
-    private int direction = 0;
+    private int direction = 0; // If direction IS 0, the propeller won't rotate at all
     public int Direction { get { return direction; } set { direction = value; } }
 
     public static Propeller Instance { get; private set; }

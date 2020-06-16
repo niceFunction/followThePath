@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3134d8a6776bf8f419f78b7c4b03d3f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopPropellerObject: {fileID: 0}
+  stopPropellerObject: {fileID: 5577759819891357778}
   propellerTrailGroup:
   - {fileID: 0}
   - {fileID: 0}
