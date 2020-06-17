@@ -307,6 +307,7 @@ MonoBehaviour:
   rotateObject: {fileID: 2210559492965415289}
   rotationSpeed: 10
   direction: -1
+  playerProximity: 25
 --- !u!1 &2210559493667901972
 GameObject:
   m_ObjectHideFlags: 0
