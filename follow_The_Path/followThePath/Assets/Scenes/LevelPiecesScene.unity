@@ -1040,11 +1040,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoundAboutMidEnter_LeftExit
       objectReference: {fileID: 0}
-    - target: {fileID: 2996354760008438836, guid: 4ee5d3e344ecb3d4db2326f445e73df3,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2996354760008438837, guid: 4ee5d3e344ecb3d4db2326f445e73df3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1100,8 +1095,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5383127399436647247, guid: 4ee5d3e344ecb3d4db2326f445e73df3,
+        type: 3}
+      propertyPath: rotateObject
+      value: 
+      objectReference: {fileID: 2996354759472964877}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ee5d3e344ecb3d4db2326f445e73df3, type: 3}
+--- !u!1 &2996354759472964877 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8595131611712478096, guid: 4ee5d3e344ecb3d4db2326f445e73df3,
+    type: 3}
+  m_PrefabInstance: {fileID: 2996354759472964876}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3964430221268566789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1704,6 +1710,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StartTile
+      objectReference: {fileID: 0}
+    - target: {fileID: 7130066072231596575, guid: 86867a3e632fb304fa118b9a76a471a3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86867a3e632fb304fa118b9a76a471a3, type: 3}
