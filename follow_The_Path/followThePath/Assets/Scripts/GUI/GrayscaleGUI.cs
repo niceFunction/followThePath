@@ -18,6 +18,10 @@ public class GrayscaleGUI : MonoBehaviour
         ColorController.Instance.OnModeChange -= OnChangeColorMode;
     }
 
+    /// <summary>
+    /// What happens when GRAYSCALE mode is on or not
+    /// </summary>
+    /// <param name="newMode"></param>
     private void OnChangeColorMode(ColorController.Modes newMode)
     {
         if (newMode == ColorController.Modes.GRAYSCALE)
