@@ -204,7 +204,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2081165381}
+      - m_Target: {fileID: 2619282360144436122, guid: 59cbb774a5f647b4b90ebde4f5037d05,
+          type: 3}
         m_MethodName: LoadMainMenu
         m_Mode: 1
         m_Arguments:
@@ -3578,8 +3579,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2081165381}
-        m_MethodName: ResetGame
+      - m_Target: {fileID: 2619282360144436122, guid: 59cbb774a5f647b4b90ebde4f5037d05,
+          type: 3}
+        m_MethodName: LoadGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4276,7 +4278,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2081165381}
+      - m_Target: {fileID: 2619282360144436122, guid: 59cbb774a5f647b4b90ebde4f5037d05,
+          type: 3}
         m_MethodName: LoadMainMenu
         m_Mode: 1
         m_Arguments:

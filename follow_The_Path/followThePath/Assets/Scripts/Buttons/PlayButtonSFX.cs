@@ -7,6 +7,12 @@ using UnityEngine;
 /// </summary>
 public class PlayButtonSFX : MonoBehaviour
 {
+
+    public void Start()
+    {
+
+    }
+
     /// <summary>
     /// Plays the button SFX from "ButtonClickController"
     /// </summary>

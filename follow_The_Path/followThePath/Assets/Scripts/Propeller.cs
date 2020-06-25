@@ -22,25 +22,6 @@ public class Propeller : MonoBehaviour
     [SerializeField, Range(0, 100), Tooltip("Propeller will spin depending how close the Player is")]
     private float playerProximity = 10f;
 
-    
-
-    //public static Propeller Instance { get; private set; }
-
-    private void Awake()
-    {
-        /*
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-        */
-    }
-
     // Start is called before the first frame update
     void Start()
     {
