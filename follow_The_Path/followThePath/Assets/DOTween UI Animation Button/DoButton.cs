@@ -14,6 +14,8 @@ namespace SamuelEinheri.UI
     public class DoButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
         IPointerClickHandler
     {
+        // https://connect.unity.com/p/building-a-better-button-with-dotween
+
         [SerializeField, Tooltip("Get transform of Button, Parent object")]
         private Transform buttonTransform;
         public Transform ButtonTransform { get { return buttonTransform; } }
