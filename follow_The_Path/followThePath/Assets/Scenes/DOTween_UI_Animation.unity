@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 550716614}
   - component: {fileID: 550716613}
   m_Layer: 5
-  m_Name: BTN_Background
+  m_Name: IMG_Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6d2e8455263e85b409e4e0c70d35c56e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 1574323389}
   - component: {fileID: 1574323388}
   m_Layer: 5
-  m_Name: BTN_Text
+  m_Name: TMP_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -427,8 +427,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1645575030}
   - component: {fileID: 1645575031}
+  - component: {fileID: 1645575033}
+  - component: {fileID: 1645575032}
   m_Layer: 5
-  m_Name: Samuel Button
+  m_Name: DBTN_Play
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -452,7 +454,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -14, y: 12}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1645575031
@@ -467,6 +469,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9440971f843647488e4603c39119b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonTransform: {fileID: 1645575030}
+  background: {fileID: 550716613}
+  text: {fileID: 1574323388}
+--- !u!114 &1645575032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645575029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ca85c2b5064c4e44bfe0b575af8d31c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: Banana Boat comes to shore!
+--- !u!114 &1645575033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645575029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04c24b3e1fa258a49bd3723753f05f27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HiLiteColorPrimary:
+    serializedVersion: 2
+    rgba: 11337925
+  HiLiteColorSecondary:
+    serializedVersion: 2
+    rgba: 2996480
+  growth: 0.774
 --- !u!1 &1722174109
 GameObject:
   m_ObjectHideFlags: 0
