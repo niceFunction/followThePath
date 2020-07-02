@@ -6,7 +6,7 @@ using TMPro;
 
 namespace SamuelEinheri.UI
 {
-    public class HiLite : MonoBehaviour
+    public class HiLite : MonoBehaviour, IAnimatable
     {
         public Color32 HiLiteColorPrimary;
         public Color32 HiLiteColorSecondary;

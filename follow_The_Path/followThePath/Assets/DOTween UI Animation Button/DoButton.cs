@@ -15,6 +15,7 @@ namespace SamuelEinheri.UI
         IPointerClickHandler
     {
         // https://connect.unity.com/p/building-a-better-button-with-dotween
+        // NOTE: Implement "OnPointerEnter" and "OnPointerExit" in "DoButton" and in "IAnimatable"
 
         [SerializeField, Tooltip("Get transform of Button, Parent object")]
         private Transform buttonTransform;
