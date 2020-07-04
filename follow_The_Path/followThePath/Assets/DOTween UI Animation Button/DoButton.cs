@@ -16,6 +16,7 @@ namespace SamuelEinheri.UI
     {
         // https://connect.unity.com/p/building-a-better-button-with-dotween
         // NOTE: Implement "OnPointerEnter" and "OnPointerExit" in "DoButton" and in "IAnimatable"
+        // Custom Unity Events https://danielilett.com/2020-07-04-unity-tips-7-events/
 
         [SerializeField, Tooltip("Get transform of Button, Parent object")]
         private Transform buttonTransform;
