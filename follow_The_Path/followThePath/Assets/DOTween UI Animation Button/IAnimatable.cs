@@ -4,7 +4,7 @@
     {
         void OnDown(DoButton doButton);
         void OnUp(DoButton doButton);
-        //void OnOver(DoButton doButton);
-        //void OnOut(DoButton doButton);
+        void OnEnter(DoButton doButton);
+        void OnExit(DoButton doButton);
     }
 }

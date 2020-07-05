@@ -472,6 +472,9 @@ MonoBehaviour:
   buttonTransform: {fileID: 1645575030}
   background: {fileID: 550716613}
   text: {fileID: 1574323388}
+  doButtonEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1645575032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,13 +500,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c24b3e1fa258a49bd3723753f05f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HiLiteColorPrimary:
-    serializedVersion: 2
-    rgba: 11337925
-  HiLiteColorSecondary:
-    serializedVersion: 2
-    rgba: 2996480
-  growth: 0.774
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  pressedColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
+  scaleAmount: 0.9
+  scaleDuration: 0.42
 --- !u!1 &1722174109
 GameObject:
   m_ObjectHideFlags: 0

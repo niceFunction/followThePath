@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
-
+using UnityEngine.Events;
 
 namespace SamuelEinheri.UI
 {
@@ -18,7 +18,7 @@ namespace SamuelEinheri.UI
         // NOTE: Implement "OnPointerEnter" and "OnPointerExit" in "DoButton" and in "IAnimatable"
         // Custom Unity Events https://danielilett.com/2020-07-04-unity-tips-7-events/
 
-        [SerializeField, Tooltip("Get transform of Button, Parent object")]
+        [SerializeField, Tooltip("Get transform of Button, Parent object"), Header("Button Components")]
         private Transform buttonTransform;
         public Transform ButtonTransform { get { return buttonTransform; } }
 
@@ -29,6 +29,9 @@ namespace SamuelEinheri.UI
         [SerializeField, Tooltip("Get Text of Button, child of Parent object")]
         private TextMeshProUGUI text;
         public TextMeshProUGUI Text { get { return text; } }
+
+        [Header("Events")]
+        public UnityEvent onButtonEvent;
 
         private Stack<IActionable> _actionStack = new Stack<IActionable>();
         private IActionable _actionable;
@@ -62,6 +65,16 @@ namespace SamuelEinheri.UI
         public void OnPointerUp(PointerEventData eventData)
         {
             Animatable.OnUp(this);
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            Animatable.OnEnter(this);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            Animatable.OnExit(this);
         }
 
         public void OnPointerClick(PointerEventData eventData)
