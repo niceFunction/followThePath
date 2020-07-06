@@ -18,6 +18,11 @@ namespace SamuelEinheri.UI
         // NOTE: Implement "OnPointerEnter" and "OnPointerExit" in "DoButton" and in "IAnimatable"
         // Custom Unity Events https://danielilett.com/2020-07-04-unity-tips-7-events/
 
+        [SerializeField]
+        private bool isInteractable;
+
+        public Button getButton;
+
         [SerializeField, Tooltip("Get transform of Button, Parent object"), Header("Button Components")]
         private Transform buttonTransform;
         public Transform ButtonTransform { get { return buttonTransform; } }
@@ -29,6 +34,14 @@ namespace SamuelEinheri.UI
         [SerializeField, Tooltip("Get Text of Button, child of Parent object")]
         private TextMeshProUGUI text;
         public TextMeshProUGUI Text { get { return text; } }
+
+        [SerializeField, Tooltip("Buttons normal color"), Header("Colors")]
+        private Color normalColor;
+        public Color NormalColor { get { return normalColor; } }
+
+        [SerializeField, Tooltip("Buttons pressed color")]
+        private Color pressedColor;
+        public Color PressedColor { get { return pressedColor; } }
 
         [Header("Events")]
         public UnityEvent onButtonEvent;
