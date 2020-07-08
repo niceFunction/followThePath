@@ -14,7 +14,7 @@ namespace SamuelEinheri.UI
 
     public class PulseEffect : MonoBehaviour, IAnimatable
     {
-        [SerializeField, Range(0.5f, 1.5f), Tooltip("How much scaling will happen over time, \n" +
+        [SerializeField, Range(0.4f, 1.5f), Tooltip("How much scaling will happen over time, \n" +
             "Scale will become smaller below 1 & bigger if above 1"), Header("Button Scale")]
         private float scaleAmount;
 
