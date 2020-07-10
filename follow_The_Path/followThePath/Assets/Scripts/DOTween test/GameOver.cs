@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using DG.Tweening;
 
-public class OnGameOver : MonoBehaviour
+public class GameOver : MonoBehaviour
 {
     //TODO GameOver 1: look into breaking things out from "GameManager" that's related to "Game Over"
     //TODO GameOver 2: And call(?) those variables in "OnGameOver" from "GameManger" instead (maybe?)
 
+    #region Game Over Components
     [SerializeField, Tooltip("Game Over Menu transform (MAY NOT BE NEEDED)"), Header("Visual")]
     private Transform gameOverTransform;
     public Transform GameOverTransform { get { return gameOverTransform; } }
@@ -27,7 +30,7 @@ public class OnGameOver : MonoBehaviour
     [SerializeField, Tooltip("Amount of time needed to trigger the Game Over timer"), Range(1, 60), Header("Timers")]
     private float backgroundTimer = 5.0f;
     public float BackgroundTimer { get { return backgroundTimer; } }
-    
+
     [SerializeField, Tooltip("Sets the 'setBackgroundTimer' to 'backgroundTimer', (USED FOR TESTING)")]
     private float setBackgroundTimer;
     public float SetBackgroundTimer { get { return setBackgroundTimer; } }
@@ -42,15 +45,38 @@ public class OnGameOver : MonoBehaviour
     [SerializeField, Tooltip("Minimum amount of speed to trigger the backgroundTimer"), Range(0.01f, 5.0f), Header("Minimum Speed")]
     private float minimumSpeed = 1.0f;
     public float MinimumSpeed { get { return minimumSpeed; } }
+    #endregion
+
+    // Related to Tweens
+    private Tween gameOverTween;
+
+    [SerializeField, Tooltip("Determine if it's Game Over or not"), Header("Related to Tweens")]
+    private bool showGameOver;
+
+    [SerializeField, Tooltip("How much time will pass until the 'gameOverMenuObject' pops up?"), Range(0.01f, 1f)]
+    private float gameOverTweenDuration;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    /// <summary>
+    /// "Plays" the Tween animation
+    /// </summary>
+    private void OnGameOver()
+    {
+        gameOverTween.Kill();
+        gameOverTween = DOTween.Sequence()
+            .Join(BackgroundImage.DOFade(0.85f, gameOverTweenDuration))
+            .Join(GameOverMenuObject.transform.DOScale(1, gameOverTweenDuration));
+
     }
 }
+
