@@ -3993,13 +3993,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6ac2c7b5649e1479cf8c23a46f553e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverTransform: {fileID: 486319624}
-  gameOverMenuObject: {fileID: 486319623}
-  gameOverTimerObject: {fileID: 187852343}
-  backgroundTimer: 5
+  gameOverItemGroup:
+    GameOverMenuObject: {fileID: 486319623}
+    GameOverTransform: {fileID: 486319624}
+    Background: {fileID: 771584289}
+    Alpha: 0.85
+    GameOverTimerObject: {fileID: 187852343}
+    MinimumSpeed: 1
+    BackgroundTimer: 5
+    GameOverTimer: 5
   setBackgroundTimer: 0
-  gameOverTimer: 5
-  minimumSpeed: 1
   gameOverTweenDuration: 0
 --- !u!4 &1864823522
 Transform:

@@ -9,62 +9,78 @@ public class GameOver : MonoBehaviour
 {
     //TODO GameOver 1: look into breaking things out from "GameManager" that's related to "Game Over"
     //TODO GameOver 2: And call(?) those variables in "OnGameOver" from "GameManger" instead (maybe?)
-
     #region Game Over Components
-    [SerializeField, Tooltip("Game Over Menu transform (MAY NOT BE NEEDED)"), Header("Visual")]
-    private Transform gameOverTransform;
-    public Transform GameOverTransform { get { return gameOverTransform; } }
 
-    [SerializeField, Tooltip("The black & semi-transparent background used in GameOver/Paused")]
-    private Image backgroundImage;
-    public Image BackgroundImage { get { return backgroundImage; } }
-
-    [SerializeField, Tooltip("Game Over Menu object"), Header("GameObjects")]
-    private GameObject gameOverMenuObject;
-    public GameObject GameOverMenuObject { get { return gameOverMenuObject; } }
-
-    [SerializeField, Tooltip("GameObject that starts counting down")]
-    private GameObject gameOverTimerObject;
-    public GameObject GameOverTimerObject { get { return gameOverTimerObject; } }
-
-    [SerializeField, Tooltip("Amount of time needed to trigger the Game Over timer"), Range(1, 60), Header("Timers")]
-    private float backgroundTimer = 5.0f;
-    public float BackgroundTimer { get { return backgroundTimer; } }
+    [SerializeField, Tooltip("Variables for Game Over state")]
+    private GameOverItems.GameOverGroup gameOverItemGroup;
+    public GameOverItems.GameOverGroup GameOverItemGroup { get { return gameOverItemGroup; } }
 
     [SerializeField, Tooltip("Sets the 'setBackgroundTimer' to 'backgroundTimer', (USED FOR TESTING)")]
-    private float setBackgroundTimer;
-    public float SetBackgroundTimer { get { return setBackgroundTimer; } }
+    private float setBackgroundTimer; // SAVE THIS VARIABLE
+    //public float SetBackgroundTimer { get { return setBackgroundTimer; } }
 
-    [SerializeField, Tooltip("Amount of time until 'Game Over' (will show up on screen)"), Range(1, 60)]
-    private float gameOverTimer = 5.0f;
-    public float GameOverTimer { get { return gameOverTimer; } }
     // Resets the 'Game Over' timer
-    private float resetGameOverTimer;
-    public float ResetGameOverTimer { get { return resetGameOverTimer; } }
+    private float resetGameOverTimer; // SAVE THIS VARIABLE
+    //public float ResetGameOverTimer { get { return resetGameOverTimer; } }
 
-    [SerializeField, Tooltip("Minimum amount of speed to trigger the backgroundTimer"), Range(0.01f, 5.0f), Header("Minimum Speed")]
-    private float minimumSpeed = 1.0f;
-    public float MinimumSpeed { get { return minimumSpeed; } }
     #endregion
 
     // Related to Tweens
     private Tween gameOverTween;
 
-    [SerializeField, Tooltip("Determine if it's Game Over or not"), Header("Related to Tweens")]
-    private bool showGameOver;
+    //[SerializeField, Tooltip("Determine if it's Game Over or not"), Header("Related to Tweens")]
+    //private bool showGameOver;
 
     [SerializeField, Tooltip("How much time will pass until the 'gameOverMenuObject' pops up?"), Range(0.01f, 1f)]
     private float gameOverTweenDuration;
     // Start is called before the first frame update
-    void Start()
-    {
 
+    public static GameOver Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetTimers()
     {
+        setBackgroundTimer = gameOverItemGroup.BackgroundTimer;
+        resetGameOverTimer = gameOverItemGroup.GameOverTimer;
+    }
 
+    public void GameStatus()
+    {
+        if (GameManager.Instance.Ball.RB.velocity.magnitude < gameOverItemGroup.MinimumSpeed)
+        {
+            gameOverItemGroup.BackgroundTimer -= Time.deltaTime;
+            if(gameOverItemGroup.BackgroundTimer <= 0)
+            {
+                gameOverItemGroup.BackgroundTimer = 0;
+                gameOverItemGroup.GameOverTimerObject.SetActive(true);
+                gameOverItemGroup.GameOverTimer -= Time.deltaTime;
+                GameManager.Instance.CountdownText.text = gameOverItemGroup.GameOverTimer.ToString("F0");
+                
+                if (gameOverItemGroup.GameOverTimer <= 0)
+                {
+                    GameManager.Instance.IsGameOver = true;
+                    OnGameOver();
+                }
+            }
+        }
+        else if (GameManager.Instance.Ball.RB.velocity.magnitude > gameOverItemGroup.MinimumSpeed)
+        {
+            gameOverItemGroup.GameOverTimerObject.SetActive(false);
+            gameOverItemGroup.BackgroundTimer = setBackgroundTimer;
+            gameOverItemGroup.GameOverTimer = resetGameOverTimer;
+        }
     }
 
     /// <summary>
@@ -74,8 +90,9 @@ public class GameOver : MonoBehaviour
     {
         gameOverTween.Kill();
         gameOverTween = DOTween.Sequence()
-            .Join(BackgroundImage.DOFade(0.85f, gameOverTweenDuration))
-            .Join(GameOverMenuObject.transform.DOScale(1, gameOverTweenDuration));
+            .Join(gameOverItemGroup.Background.DOFade(0.85f, gameOverTweenDuration))
+            .Join(gameOverItemGroup.GameOverMenuObject.transform.DOScale(1, gameOverTweenDuration).OnComplete(() =>
+            { Time.timeScale = 0; }));
 
     }
 }
