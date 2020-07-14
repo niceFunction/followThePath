@@ -3994,6 +3994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverItemGroup:
+    Ball: {fileID: 664361994}
     GameOverMenuObject: {fileID: 486319623}
     GameOverTransform: {fileID: 486319624}
     Background: {fileID: 771584289}
@@ -4002,8 +4003,9 @@ MonoBehaviour:
     MinimumSpeed: 1
     BackgroundTimer: 5
     GameOverTimer: 5
+    CountdownText: {fileID: 1479986332}
   setBackgroundTimer: 0
-  gameOverTweenDuration: 0
+  gameOverTweenDuration: 0.046
 --- !u!4 &1864823522
 Transform:
   m_ObjectHideFlags: 0

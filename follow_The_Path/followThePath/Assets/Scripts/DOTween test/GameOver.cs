@@ -50,32 +50,35 @@ public class GameOver : MonoBehaviour
         }
     }
 
-    public void SetTimers()
+    public void SetBaseValues()
     {
+        gameOverItemGroup.IsGameOver = false;
+
         setBackgroundTimer = gameOverItemGroup.BackgroundTimer;
         resetGameOverTimer = gameOverItemGroup.GameOverTimer;
     }
 
     public void GameStatus()
     {
-        if (GameManager.Instance.Ball.RB.velocity.magnitude < gameOverItemGroup.MinimumSpeed)
+        if (gameOverItemGroup.Ball.RB.velocity.magnitude < gameOverItemGroup.MinimumSpeed)
         {
+            
             gameOverItemGroup.BackgroundTimer -= Time.deltaTime;
             if(gameOverItemGroup.BackgroundTimer <= 0)
             {
                 gameOverItemGroup.BackgroundTimer = 0;
                 gameOverItemGroup.GameOverTimerObject.SetActive(true);
                 gameOverItemGroup.GameOverTimer -= Time.deltaTime;
-                GameManager.Instance.CountdownText.text = gameOverItemGroup.GameOverTimer.ToString("F0");
+                gameOverItemGroup.CountdownText.text = gameOverItemGroup.GameOverTimer.ToString("F0");
                 
                 if (gameOverItemGroup.GameOverTimer <= 0)
                 {
-                    GameManager.Instance.IsGameOver = true;
+                    gameOverItemGroup.IsGameOver = true;
                     OnGameOver();
                 }
             }
         }
-        else if (GameManager.Instance.Ball.RB.velocity.magnitude > gameOverItemGroup.MinimumSpeed)
+        else if (gameOverItemGroup.Ball.RB.velocity.magnitude > gameOverItemGroup.MinimumSpeed)
         {
             gameOverItemGroup.GameOverTimerObject.SetActive(false);
             gameOverItemGroup.BackgroundTimer = setBackgroundTimer;

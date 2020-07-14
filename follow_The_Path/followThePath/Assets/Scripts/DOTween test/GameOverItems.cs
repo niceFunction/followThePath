@@ -10,7 +10,10 @@ public class GameOverItems : MonoBehaviour
     [System.Serializable]
     public struct GameOverGroup
     {
-        [Tooltip("Game Over Menu object"), Header("GameObject")]
+        [Tooltip("Manually get components from Player"), Header("Player")]
+        public Player Ball;
+
+        [Tooltip("Game Over Menu object"), Header("Game Over Objects")]
         public GameObject GameOverMenuObject;
 
         [Tooltip("Game Over Menu transform (MAY NOT BE NEEDED)")]
@@ -23,6 +26,12 @@ public class GameOverItems : MonoBehaviour
         public float Alpha;
 
         [Tooltip("GameObject that shows up & starts counting down"), Header("Game Over State")]
+        public bool IsGameOver;
+
+        [Tooltip("The countdown timer text")]
+        public TextMeshProUGUI CountdownText;
+
+        [Tooltip("GameObject that shows up & starts counting down")]
         public GameObject GameOverTimerObject;
 
         [Tooltip("Minimum amount of speed to trigger the BackgroundTimer"), Range(0.01f, 5.0f)]
