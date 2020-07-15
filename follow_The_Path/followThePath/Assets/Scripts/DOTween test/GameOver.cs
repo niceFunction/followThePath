@@ -7,8 +7,7 @@ using DG.Tweening;
 
 public class GameOver : MonoBehaviour
 {
-    //TODO GameOver 1: look into breaking things out from "GameManager" that's related to "Game Over"
-    //TODO GameOver 2: And call(?) those variables in "OnGameOver" from "GameManger" instead (maybe?)
+    //TODO On Game Over, ensure that the game IS paused and the Ball can't move
     #region Game Over Components
 
     [SerializeField, Tooltip("Variables for Game Over state")]
@@ -16,20 +15,14 @@ public class GameOver : MonoBehaviour
     public GameOverItems.GameOverGroup GameOverItemGroup { get { return gameOverItemGroup; } }
 
     [SerializeField, Tooltip("Sets the 'setBackgroundTimer' to 'backgroundTimer', (USED FOR TESTING)")]
-    private float setBackgroundTimer; // SAVE THIS VARIABLE
-    //public float SetBackgroundTimer { get { return setBackgroundTimer; } }
+    private float setBackgroundTimer;
 
     // Resets the 'Game Over' timer
-    private float resetGameOverTimer; // SAVE THIS VARIABLE
-    //public float ResetGameOverTimer { get { return resetGameOverTimer; } }
-
+    private float resetGameOverTimer;
     #endregion
 
     // Related to Tweens
     private Tween gameOverTween;
-
-    //[SerializeField, Tooltip("Determine if it's Game Over or not"), Header("Related to Tweens")]
-    //private bool showGameOver;
 
     [SerializeField, Tooltip("How much time will pass until the 'gameOverMenuObject' pops up?"), Range(0.01f, 1f)]
     private float gameOverTweenDuration;
@@ -50,6 +43,9 @@ public class GameOver : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// "Restores" basic values to their starting values
+    /// </summary>
     public void SetBaseValues()
     {
         gameOverItemGroup.IsGameOver = false;
@@ -58,12 +54,18 @@ public class GameOver : MonoBehaviour
         resetGameOverTimer = gameOverItemGroup.GameOverTimer;
     }
 
+    /// <summary>
+    /// Depending how fast the Player is moving, update the current status of the game
+    /// </summary>
     public void GameStatus()
     {
+        // If the Player's movement speed is too low, start the BackgroundTimer
         if (gameOverItemGroup.Ball.RB.velocity.magnitude < gameOverItemGroup.MinimumSpeed)
         {
-            
+            // BackgroundTimer starts counting down
             gameOverItemGroup.BackgroundTimer -= Time.deltaTime;
+
+            // When BackgroundTimer is 0, GameOverTimer shows up & starts counting down
             if(gameOverItemGroup.BackgroundTimer <= 0)
             {
                 gameOverItemGroup.BackgroundTimer = 0;
@@ -71,6 +73,7 @@ public class GameOver : MonoBehaviour
                 gameOverItemGroup.GameOverTimer -= Time.deltaTime;
                 gameOverItemGroup.CountdownText.text = gameOverItemGroup.GameOverTimer.ToString("F0");
                 
+                // Game is Over if the GameOverTimer reaches 0
                 if (gameOverItemGroup.GameOverTimer <= 0)
                 {
                     gameOverItemGroup.IsGameOver = true;
@@ -78,6 +81,7 @@ public class GameOver : MonoBehaviour
                 }
             }
         }
+        // If the Player's movement speed is above the minimum speed threshold, restore & hide timers
         else if (gameOverItemGroup.Ball.RB.velocity.magnitude > gameOverItemGroup.MinimumSpeed)
         {
             gameOverItemGroup.GameOverTimerObject.SetActive(false);
@@ -96,6 +100,10 @@ public class GameOver : MonoBehaviour
             .Join(gameOverItemGroup.Background.DOFade(0.85f, gameOverTweenDuration))
             .Join(gameOverItemGroup.GameOverMenuObject.transform.DOScale(1, gameOverTweenDuration).OnComplete(() =>
             { Time.timeScale = 0; }));
+
+        // Set the GameOverTimer to 0 & hide it         
+        gameOverItemGroup.GameOverTimer = 0;
+        gameOverItemGroup.CountdownText.enabled = false;
 
     }
 }

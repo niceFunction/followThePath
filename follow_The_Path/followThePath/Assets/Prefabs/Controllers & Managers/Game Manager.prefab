@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 3596900844643142630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2851852, y: 0.2851852, z: 0.2851852}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -49,17 +49,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622a7e7703b18f64da35b6d9e372dc96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonTapClip: {fileID: 8300000, guid: d8a875ddef0519c45ada985ef98cc9a4, type: 3}
-  currentScoreText: {fileID: 0}
-  highscoreText: {fileID: 0}
-  insideGameScene: 0
-  Ball: {fileID: 0}
-  gameOverTimerObject: {fileID: 0}
-  gameOverMenuObject: {fileID: 0}
+  gameOver: {fileID: 0}
+  gameUiTween: {fileID: 0}
+  currentScore: {fileID: 0}
+  highscore: {fileID: 0}
   countdownText: {fileID: 0}
-  backgroundTimer: 5
-  gameOverTimer: 5
-  minimumSpeed: 1
+  gameOverScore: {fileID: 0}
 --- !u!82 &2685521929021703128
 AudioSource:
   m_ObjectHideFlags: 0
