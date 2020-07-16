@@ -39,6 +39,8 @@ public class Collectible : MonoBehaviour
     public AudioClip collectClip;
 
     // Start is called before the first frame update
+
+    //TODO personal note: this class could be removed, saved for now
     void Start()
     {
         GameObject GameManagerObject = GameObject.FindWithTag("GameManager");
@@ -95,7 +97,7 @@ public class Collectible : MonoBehaviour
             collectSource.Stop();
             collectSource.PlayOneShot(collectSource.clip = collectClip);
 
-            gameManager.AddScore(collectibleScore);
+            //gameManager.AddScore(collectibleScore);
             //Debug.Log("Player collided with Collectible");
         }
     }

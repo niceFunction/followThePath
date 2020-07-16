@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public bool IsGameOver { get { return isGameOver = false; } set { isGameOver = value; } }
 
     private Collectible collectible;
+   /*
     private int score;
     [Space(10), SerializeField, Tooltip("currentScoreText displays while game is active")]
     private TextMeshProUGUI currentScore;
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour
     public int Score { get { return score; } }
     public TextMeshProUGUI CurrentScore { get { return currentScore; } }
     public TextMeshProUGUI Highscore { get { return highscore; } }
-
+    */
     [Space(10)]
     #region GAME OVER VARIABLES
 
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour
 
         GameOver.Instance.SetBaseValues();
 
-        Highscore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
+        //Highscore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
     }
 
     void Update()
@@ -89,6 +90,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    /*
     #region Score specific methods
     public void AddScore(int newScoreValue)
     {
@@ -109,5 +111,7 @@ public class GameManager : MonoBehaviour
         CurrentScore.text = Score.ToString();
         GameOverScore.text = Score.ToString();
     }
+
     #endregion
+    */
 }

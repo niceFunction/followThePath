@@ -95,6 +95,8 @@ public class GameOver : MonoBehaviour
     /// </summary>
     private void OnGameOver()
     {
+        // TODO GameOver 1: on Game Over, set player velocity.magnitude to 0, 
+        // TODO GameOver 2: but remember to restore it (if necessary)
         gameOverTween.Kill();
         gameOverTween = DOTween.Sequence()
             .Join(gameOverItemGroup.Background.DOFade(0.85f, gameOverTweenDuration))
