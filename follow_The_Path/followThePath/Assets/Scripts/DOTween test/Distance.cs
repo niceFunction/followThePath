@@ -41,6 +41,10 @@ public class Distance : MonoBehaviour
 
     public static Distance Instance { get; private set; }
 
+    //TODO Distance 1: Distance is increased when rolling along the Z-axis
+    //TODO Distance 2: Distance only increases whenever player is rolling FORWARDS & never backwards
+    //TODO Distance 3: Distance will be measured in Meters but as a "Setting", can be changed to Imperial instead
+
     private void Awake()
     {
         if (Instance == null)
