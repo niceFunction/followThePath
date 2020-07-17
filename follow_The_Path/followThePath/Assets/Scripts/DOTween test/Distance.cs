@@ -6,6 +6,17 @@ using TMPro;
 
 public class Distance : MonoBehaviour
 {
+    /*
+     Points by distance:
+    Unity Manual: https://docs.unity3d.com/Manual/DirectionDistanceFromOneObjectToAnother.html
+    StackOverflow Scoring by distance: https://stackoverflow.com/questions/53176261/c-sharp-unity-scoring-system-by-distance
+    distance based scoring system: https://answers.unity.com/questions/923146/distance-based-score-system.html
+    Associate time & distance for a score system: https://answers.unity.com/questions/1120708/associate-time-and-distance-for-a-score-system.html
+    Reddit Z-axis increases by 500: https://www.reddit.com/r/Unity3D/comments/ddn4et/how_can_i_create_a_very_simple_point_scoring/?sort=top
+    how to make the number of points equal to distance traveled: https://answers.unity.com/questions/1505643/how-to-make-the-number-of-points-equal-to-the-dist.html
+
+    */
+
     // NOTE: This class should (probably) work together with "GameOver" class
     [SerializeField, Tooltip("Get the Ball to measure the Players distance")]
     private Player ball;
