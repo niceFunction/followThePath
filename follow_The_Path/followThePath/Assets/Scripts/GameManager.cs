@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         GameOver.Instance.GameStatus();
+        Distance.Instance.MeasureDistance();
     }
 
     private void Awake()

@@ -79,7 +79,7 @@ public class Distance : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //MeasureDistance();
     }
 
     /// <summary>
@@ -87,6 +87,16 @@ public class Distance : MonoBehaviour
     /// </summary>
     public void MeasureDistance()
     {
+        // NOTE: In here, prevent the "MeasureDistance" from going down & only go up
+        /* NOTE: ensure that the ball is "increasing" in value
+        if(ball.RB.velocity.z)
+        {
+
+        }
+        */
+        playerDistance = Vector3.Distance(ball.transform.position, transform.position);
+
+        currentPlayerDistance.text = playerDistance.ToString("F1");
 
     }
 
@@ -99,7 +109,7 @@ public class Distance : MonoBehaviour
         // NOTE: This method could change
 
         playerDistance += newDistanceValue;
-        UpdateDistance(); // <-- Necessary?
+        UpdateDistanceText(); // <-- Necessary?
 
         if (playerDistance > PlayerPrefs.GetFloat("Distance", 0))
         {
@@ -111,7 +121,7 @@ public class Distance : MonoBehaviour
     /// <summary>
     /// Updates the current distance
     /// </summary>
-    public void UpdateDistance()
+    public void UpdateDistanceText()
     {
         // NOTE: This method could change
         CurrentPlayerDistance.text = playerDistance.ToString();
