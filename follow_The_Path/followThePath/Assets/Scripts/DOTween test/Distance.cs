@@ -57,7 +57,7 @@ public class Distance : MonoBehaviour
         playerLastPosition = ball.transform.position.z;
 
         // NOTE: Get this variable/function in their own method?
-        currentPlayerDistance.text = PlayerPrefs.GetFloat("Distance", 0).ToString();
+        PreviousPlayerDistance.text = PlayerPrefs.GetFloat("Distance", 0).ToString();
     }
 
     // Update is called once per frame
@@ -81,6 +81,7 @@ public class Distance : MonoBehaviour
             playerDistance = Vector3.Distance(ball.transform.position, transform.position);
         }
         
+        // TODO for the future when adding "M" or "FT" use + "whatDistanceFormat" at the end of this function
         currentPlayerDistance.text = playerDistance.ToString("F1");
 
     }
@@ -108,9 +109,9 @@ public class Distance : MonoBehaviour
     /// </summary>
     public void UpdateDistanceText()
     {
-        // NOTE: This method could change
-        CurrentPlayerDistance.text = playerDistance.ToString();
-        PreviousPlayerDistance.text = playerDistance.ToString();
+        // TODO Ensure that "Distance" highscore is displaying correctly, test it by moving it to the Game Scene
+        FinalPlayerDistance.text = playerDistance.ToString("F1");
+        PreviousPlayerDistance.text = playerDistance.ToString("F1");
     }
     /*
          #region Score specific methods
