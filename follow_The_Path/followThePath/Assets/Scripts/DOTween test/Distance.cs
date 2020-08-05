@@ -17,6 +17,8 @@ public class Distance : MonoBehaviour
 
     // The Players distance value
     private float playerDistance;
+
+    private float addHighscoreDistance;
     // Player's last "known" position
     private float playerLastPosition;
 
@@ -24,13 +26,13 @@ public class Distance : MonoBehaviour
     private TextMeshProUGUI currentPlayerDistance;
     public TextMeshProUGUI CurrentPlayerDistance { get { return currentPlayerDistance; } }
 
-    [SerializeField, Tooltip("On Game Over, shows the Players final distance")]
+    [SerializeField, Tooltip("On Game Over, shows the Players final distance"), Header("Displayed on GameOver")]
     private TextMeshProUGUI finalPlayerDistance; // Happens on the Game Over object in the Game scene, shows on top
     public TextMeshProUGUI FinalPlayerDistance { get { return finalPlayerDistance; } }
 
     [SerializeField, Tooltip("On Game Over, shows the previous final distance")]
-    private TextMeshProUGUI previousPlayerDistance; // Shown at the same time as the final distance, shows on bottom
-    public TextMeshProUGUI PreviousPlayerDistance { get { return previousPlayerDistance; } }
+    private TextMeshProUGUI longestPlayerDistance; // Shown at the same time as the final distance, shows on bottom
+    public TextMeshProUGUI LongestPlayerDistance { get { return longestPlayerDistance; } }
 
     public static Distance Instance { get; private set; }
 
@@ -54,16 +56,25 @@ public class Distance : MonoBehaviour
     void Start()
     {
         // What is the Ball's last position on Z-axis
-        playerLastPosition = ball.transform.position.z;
+        //playerLastPosition = ball.transform.position.z;
 
         // NOTE: Get this variable/function in their own method?
-        PreviousPlayerDistance.text = PlayerPrefs.GetFloat("Distance", 0).ToString();
+        //LongestPlayerDistance.text = PlayerPrefs.GetFloat("Distance", 0).ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
+        MeasureDistance();
+    }
 
+    public void SetBaseValues()
+    {
+        // What is the Ball's last position on Z-axis
+        playerLastPosition = ball.transform.position.z;
+
+        // NOTE: Get this variable/function in their own method?
+        LongestPlayerDistance.text = PlayerPrefs.GetFloat("DistanceScore", 0).ToString();
     }
 
     /// <summary>
@@ -73,14 +84,14 @@ public class Distance : MonoBehaviour
     {
         // NOTE 1: Ball's value is now only increasing aslong as it moves further along Z-axis
         // NOTE 2: however, its updating "playerLastPosition" every frame(?), can that be "healthy"?
-
+        //AddScoreDistance(playerDistance);
         // Increases the distance as long as the Ball is moving further on the Z-axis
         if(ball.transform.position.z > playerLastPosition)
         {
             playerLastPosition = ball.transform.position.z;
             playerDistance = Vector3.Distance(ball.transform.position, transform.position);
         }
-        
+
         // TODO for the future when adding "M" or "FT" use + "whatDistanceFormat" at the end of this function
         currentPlayerDistance.text = playerDistance.ToString("F1");
 
@@ -90,7 +101,7 @@ public class Distance : MonoBehaviour
     /// Adds to the current distance
     /// </summary>
     /// <param name="newDistanceValue"></param>
-    public void CalculateDistance(float newDistanceValue)
+    public void AddScoreDistance(float newDistanceValue)
     {
         // NOTE: This method could change
 
@@ -99,7 +110,9 @@ public class Distance : MonoBehaviour
 
         if (playerDistance > PlayerPrefs.GetFloat("Distance", 0))
         {
-            PlayerPrefs.SetFloat("Distance", playerDistance);
+            PlayerPrefs.SetFloat("DistanceScore", playerDistance);
+            LongestPlayerDistance.text = playerDistance.ToString();
+            //PlayerPrefs.Save();
 
         }
     }
@@ -111,7 +124,7 @@ public class Distance : MonoBehaviour
     {
         // TODO Ensure that "Distance" highscore is displaying correctly, test it by moving it to the Game Scene
         FinalPlayerDistance.text = playerDistance.ToString("F1");
-        PreviousPlayerDistance.text = playerDistance.ToString("F1");
+        LongestPlayerDistance.text = playerDistance.ToString("F1");
     }
     /*
          #region Score specific methods
