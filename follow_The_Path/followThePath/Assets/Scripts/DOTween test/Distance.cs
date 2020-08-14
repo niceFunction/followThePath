@@ -59,7 +59,7 @@ public class Distance : MonoBehaviour
         //playerLastPosition = ball.transform.position.z;
 
         // NOTE: Get this variable/function in their own method?
-        //LongestPlayerDistance.text = PlayerPrefs.GetFloat("Distance", 0).ToString();
+        LongestPlayerDistance.text = PlayerPrefs.GetFloat("DistanceScore", 0).ToString("F1");
     }
 
     // Update is called once per frame
@@ -92,9 +92,11 @@ public class Distance : MonoBehaviour
             playerDistance = Vector3.Distance(ball.transform.position, transform.position);
         }
 
+        
+
         // TODO for the future when adding "M" or "FT" use + "whatDistanceFormat" at the end of this function
         currentPlayerDistance.text = playerDistance.ToString("F1");
-
+        AddScoreDistance(addHighscoreDistance);
     }
 
     /// <summary>
@@ -108,11 +110,11 @@ public class Distance : MonoBehaviour
         playerDistance += newDistanceValue;
         UpdateDistanceText(); // <-- Necessary?
 
-        if (playerDistance > PlayerPrefs.GetFloat("Distance", 0))
+        if (playerDistance > PlayerPrefs.GetFloat("DistanceScore", 0))
         {
-            PlayerPrefs.SetFloat("DistanceScore", playerDistance);
-            LongestPlayerDistance.text = playerDistance.ToString();
-            //PlayerPrefs.Save();
+            PlayerPrefs.SetFloat("DistanceScore", addHighscoreDistance);
+            FinalPlayerDistance.text = playerDistance.ToString("F1");
+            PlayerPrefs.Save();
 
         }
     }

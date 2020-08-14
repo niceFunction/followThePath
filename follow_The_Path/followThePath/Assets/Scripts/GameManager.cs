@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameOver gameOver;
 
-    private float gameOverDistanceScore;
+    public float gameOverDistanceScore;
 
     [SerializeField, Tooltip("Object that tweens Ui element in the Game scene")]
     private GameUiTween gameUiTween;
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         
-        Distance.Instance.SetBaseValues();
+        //Distance.Instance.SetBaseValues();
         GameOver.Instance.SetBaseValues();
 
         //Highscore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
@@ -67,7 +67,8 @@ public class GameManager : MonoBehaviour
     {
         GameOver.Instance.GameStatus();
         //Distance.Instance.MeasureDistance();
-        Distance.Instance.AddScoreDistance(gameOverDistanceScore);
+        //Distance.Instance.AddScoreDistance(gameOverDistanceScore);
+
     }
 
     private void Awake()
