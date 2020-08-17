@@ -15,6 +15,9 @@ public class Distance : MonoBehaviour
     [SerializeField, Tooltip("Get the Ball to measure the Players distance")]
     private Player ball;
 
+    //TODO Distance 1, Consider either: renaming variable so its more clear whats what
+    //TODO Distance 2, or separate the variables & move them to their own objects
+
     // The Players distance value
     private float playerDistance;
 
@@ -96,19 +99,19 @@ public class Distance : MonoBehaviour
 
         // TODO for the future when adding "M" or "FT" use + "whatDistanceFormat" at the end of this function
         currentPlayerDistance.text = playerDistance.ToString("F1");
-        AddScoreDistance(addHighscoreDistance);
+        SetScore(addHighscoreDistance);
     }
 
     /// <summary>
     /// Adds to the current distance
     /// </summary>
     /// <param name="newDistanceValue"></param>
-    public void AddScoreDistance(float newDistanceValue)
+    public void SetScore(float newDistanceValue)
     {
         // NOTE: This method could change
 
         playerDistance += newDistanceValue;
-        UpdateDistanceText(); // <-- Necessary?
+        UpdateText(); // <-- Necessary?
 
         if (playerDistance > PlayerPrefs.GetFloat("DistanceScore", 0))
         {
@@ -122,9 +125,9 @@ public class Distance : MonoBehaviour
     /// <summary>
     /// Updates the current distance
     /// </summary>
-    public void UpdateDistanceText()
+    public void UpdateText()
     {
-        // TODO Ensure that "Distance" highscore is displaying correctly, test it by moving it to the Game Scene
+        // TODO For self: move this Method to a different object?
         FinalPlayerDistance.text = playerDistance.ToString("F1");
         LongestPlayerDistance.text = playerDistance.ToString("F1");
     }
