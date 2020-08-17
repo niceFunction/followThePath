@@ -105,7 +105,7 @@ public class GameOver : MonoBehaviour
 
         // Set the GameOverTimer to 0 & hide it         
         gameOverItemGroup.GameOverTimer = 0;
-        Distance.Instance.UpdateDistanceText();
+        Distance.Instance.UpdateText();
         gameOverItemGroup.CountdownText.enabled = false;
 
     }
