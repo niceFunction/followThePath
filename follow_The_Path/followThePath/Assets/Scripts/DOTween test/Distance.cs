@@ -20,6 +20,7 @@ public class Distance : MonoBehaviour
 
     // The Players distance value
     private float playerDistance;
+    readonly string DISTANCE_SCORE = "DistanceScore";
 
     private float addHighscoreDistance;
     // Player's last "known" position
@@ -62,7 +63,7 @@ public class Distance : MonoBehaviour
         //playerLastPosition = ball.transform.position.z;
 
         // NOTE: Get this variable/function in their own method?
-        LongestPlayerDistance.text = PlayerPrefs.GetFloat("DistanceScore", 0).ToString("F1");
+        LongestPlayerDistance.text = PlayerPrefs.GetFloat(DISTANCE_SCORE, 0).ToString("F1");
     }
 
     // Update is called once per frame
@@ -77,7 +78,7 @@ public class Distance : MonoBehaviour
         playerLastPosition = ball.transform.position.z;
 
         // NOTE: Get this variable/function in their own method?
-        LongestPlayerDistance.text = PlayerPrefs.GetFloat("DistanceScore", 0).ToString();
+        LongestPlayerDistance.text = PlayerPrefs.GetFloat(DISTANCE_SCORE, 0).ToString();
     }
 
     /// <summary>
@@ -113,9 +114,9 @@ public class Distance : MonoBehaviour
         playerDistance += newDistanceValue;
         UpdateText(); // <-- Necessary?
 
-        if (playerDistance > PlayerPrefs.GetFloat("DistanceScore", 0))
+        if (playerDistance > PlayerPrefs.GetFloat(DISTANCE_SCORE, 0))
         {
-            PlayerPrefs.SetFloat("DistanceScore", addHighscoreDistance);
+            PlayerPrefs.SetFloat(DISTANCE_SCORE, addHighscoreDistance);
             FinalPlayerDistance.text = playerDistance.ToString("F1");
             PlayerPrefs.Save();
 
