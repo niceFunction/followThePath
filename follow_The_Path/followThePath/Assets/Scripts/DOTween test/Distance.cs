@@ -20,11 +20,15 @@ public class Distance : MonoBehaviour
 
     // The Players distance value
     private float playerDistance;
-    readonly string DISTANCE_SCORE = "DistanceScore";
+    public float PlayerDistance { get { return playerDistance; } }
+    //readonly string DISTANCE_SCORE = "DistanceScore";
 
     private float addHighscoreDistance;
+    public float AddHighscoreDistance { get { return addHighscoreDistance; } }
+
     // Player's last "known" position
     private float playerLastPosition;
+    public float PlayerLastPosition { get { return playerLastPosition; } }
 
     [SerializeField, Tooltip("Shows the Players (upper left corner) current distance")]
     private TextMeshProUGUI currentPlayerDistance;
@@ -63,7 +67,7 @@ public class Distance : MonoBehaviour
         //playerLastPosition = ball.transform.position.z;
 
         // NOTE: Get this variable/function in their own method?
-        LongestPlayerDistance.text = PlayerPrefs.GetFloat(DISTANCE_SCORE, 0).ToString("F1");
+        //LongestPlayerDistance.text = PlayerPrefs.GetFloat(DISTANCE_SCORE, 0).ToString("F1");
     }
 
     // Update is called once per frame
@@ -78,7 +82,7 @@ public class Distance : MonoBehaviour
         playerLastPosition = ball.transform.position.z;
 
         // NOTE: Get this variable/function in their own method?
-        LongestPlayerDistance.text = PlayerPrefs.GetFloat(DISTANCE_SCORE, 0).ToString();
+        //LongestPlayerDistance.text = PlayerPrefs.GetFloat(DISTANCE_SCORE, 0).ToString();
     }
 
     /// <summary>
@@ -90,7 +94,7 @@ public class Distance : MonoBehaviour
         // NOTE 2: however, its updating "playerLastPosition" every frame(?), can that be "healthy"?
         //AddScoreDistance(playerDistance);
         // Increases the distance as long as the Ball is moving further on the Z-axis
-        if(ball.transform.position.z > playerLastPosition)
+        if(ball.transform.position.z > PlayerLastPosition)
         {
             playerLastPosition = ball.transform.position.z;
             playerDistance = Vector3.Distance(ball.transform.position, transform.position);
@@ -114,6 +118,7 @@ public class Distance : MonoBehaviour
         playerDistance += newDistanceValue;
         UpdateText(); // <-- Necessary?
 
+        /*
         if (playerDistance > PlayerPrefs.GetFloat(DISTANCE_SCORE, 0))
         {
             PlayerPrefs.SetFloat(DISTANCE_SCORE, addHighscoreDistance);
@@ -121,6 +126,7 @@ public class Distance : MonoBehaviour
             PlayerPrefs.Save();
 
         }
+        */
     }
 
     /// <summary>

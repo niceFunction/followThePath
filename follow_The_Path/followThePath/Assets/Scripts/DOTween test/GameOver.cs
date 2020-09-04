@@ -26,7 +26,9 @@ public class GameOver : MonoBehaviour
 
     [SerializeField, Tooltip("How much time will pass until the 'gameOverMenuObject' pops up?"), Range(0.01f, 1f)]
     private float gameOverTweenDuration;
-    // Start is called before the first frame update
+
+    // Used to save "Distance" score
+    readonly string DISTANCE_SCORE = "DistanceScore";
 
     public static GameOver Instance { get; private set; }
 
@@ -52,6 +54,8 @@ public class GameOver : MonoBehaviour
 
         setBackgroundTimer = gameOverItemGroup.BackgroundTimer;
         resetGameOverTimer = gameOverItemGroup.GameOverTimer;
+
+        Distance.Instance.LongestPlayerDistance.text = PlayerPrefs.GetFloat(DISTANCE_SCORE, 0).ToString();
     }
 
     /// <summary>
@@ -76,6 +80,13 @@ public class GameOver : MonoBehaviour
                 // Game is Over if the GameOverTimer reaches 0
                 if (gameOverItemGroup.GameOverTimer <= 0)
                 {
+                    if (Distance.Instance.PlayerDistance > PlayerPrefs.GetFloat(DISTANCE_SCORE, 0))
+                    {
+                        PlayerPrefs.SetFloat(DISTANCE_SCORE, Distance.Instance.AddHighscoreDistance);
+                        Distance.Instance.FinalPlayerDistance.text = Distance.Instance.PlayerDistance.ToString("F1");
+                        PlayerPrefs.Save();
+
+                    }
                     gameOverItemGroup.IsGameOver = true;
                     OnGameOver();
                 }
