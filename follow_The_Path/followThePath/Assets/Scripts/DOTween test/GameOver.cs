@@ -27,6 +27,24 @@ public class GameOver : MonoBehaviour
     [SerializeField, Tooltip("How much time will pass until the 'gameOverMenuObject' pops up?"), Range(0.01f, 1f)]
     private float gameOverTweenDuration;
 
+    [SerializeField, Header("Player Variables"), Tooltip("Get the Ball to get the distance between this object & the Player")]
+    private Player ball;
+
+    // Player's current distance
+    private float playerDistance;
+    private float playersLastPosition;
+    private float distanceScore;
+
+
+    [SerializeField, Tooltip("Shows the Players current distance in game")]
+    private TextMeshProUGUI currentPlayerDistance;
+
+    [SerializeField, Header("Displayed on Game Over"), Tooltip("On GAME OVER, shows the Players final distance")]
+    private TextMeshProUGUI finalPlayerDistance;
+
+    [SerializeField, Tooltip("On GAME OVER, show previous longest distance")]
+    private TextMeshProUGUI longestPlayerDistance;
+
     // Used to save "Distance" score
     readonly string DISTANCE_SCORE = "DistanceScore";
 
@@ -45,6 +63,16 @@ public class GameOver : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        playersLastPosition = ball.transform.position.z;
+        longestPlayerDistance.text = PlayerPrefs.GetFloat(DISTANCE_SCORE, 0).ToString("F1");
+    }
+
+    private void Update()
+    {
+        MeasureDistance();
+    }
     /// <summary>
     /// "Restores" basic values to their starting values
     /// </summary>
@@ -55,7 +83,8 @@ public class GameOver : MonoBehaviour
         setBackgroundTimer = gameOverItemGroup.BackgroundTimer;
         resetGameOverTimer = gameOverItemGroup.GameOverTimer;
 
-        Distance.Instance.LongestPlayerDistance.text = PlayerPrefs.GetFloat(DISTANCE_SCORE, 0).ToString();
+        //Distance.Instance.LongestPlayerDistance.text = PlayerPrefs.GetFloat(DISTANCE_SCORE, 0).ToString();
+        Debug.Log("GETS Distance score: " + DISTANCE_SCORE);
     }
 
     /// <summary>
@@ -80,13 +109,19 @@ public class GameOver : MonoBehaviour
                 // Game is Over if the GameOverTimer reaches 0
                 if (gameOverItemGroup.GameOverTimer <= 0)
                 {
+
+                    //Distance.Instance.SetScore();
+                    /*
                     if (Distance.Instance.PlayerDistance > PlayerPrefs.GetFloat(DISTANCE_SCORE, 0))
                     {
-                        PlayerPrefs.SetFloat(DISTANCE_SCORE, Distance.Instance.AddHighscoreDistance);
                         Distance.Instance.FinalPlayerDistance.text = Distance.Instance.PlayerDistance.ToString("F1");
+                        PlayerPrefs.SetFloat(DISTANCE_SCORE, Distance.Instance.AddHighscoreDistance);
+                        Debug.Log("SETS Distance score: " + DISTANCE_SCORE);
                         PlayerPrefs.Save();
 
                     }
+                    */
+                    SetScore(distanceScore);
                     gameOverItemGroup.IsGameOver = true;
                     OnGameOver();
                 }
@@ -116,9 +151,41 @@ public class GameOver : MonoBehaviour
 
         // Set the GameOverTimer to 0 & hide it         
         gameOverItemGroup.GameOverTimer = 0;
-        Distance.Instance.UpdateText();
+        //Distance.Instance.UpdateText();
         gameOverItemGroup.CountdownText.enabled = false;
 
+    }
+
+    public void MeasureDistance()
+    {
+        if (ball.transform.position.z > playersLastPosition)
+        {
+            playersLastPosition = ball.transform.position.z;
+            playerDistance = Vector3.Distance(ball.transform.position, transform.position);
+        }
+
+        currentPlayerDistance.text = playerDistance.ToString("F1");
+    }
+
+    public void SetScore(float newDistanceValue)
+    {
+        //Distance.Instance.PlayerDistance += newDistanceValue;
+        playerDistance += newDistanceValue;
+        UpdateText();
+
+        if (playerDistance > PlayerPrefs.GetFloat(DISTANCE_SCORE, 0))
+        {
+            finalPlayerDistance.text = playerDistance.ToString("F1");
+            PlayerPrefs.SetFloat(DISTANCE_SCORE, playerDistance);
+            Debug.Log("SETS Distance score: " + DISTANCE_SCORE);
+            PlayerPrefs.Save();
+        }
+    }
+
+    public void UpdateText()
+    {
+        finalPlayerDistance.text = playerDistance.ToString("F1");
+        longestPlayerDistance.text = playerDistance.ToString("F1");
     }
 }
 

@@ -73,7 +73,7 @@ public class Distance : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MeasureDistance();
+        //MeasureDistance();
     }
 
     public void SetBaseValues()
@@ -104,9 +104,9 @@ public class Distance : MonoBehaviour
 
         // TODO for the future when adding "M" or "FT" use + "whatDistanceFormat" at the end of this function
         currentPlayerDistance.text = playerDistance.ToString("F1");
-        SetScore(addHighscoreDistance);
+        //SetScore(addHighscoreDistance);
     }
-
+    /*
     /// <summary>
     /// Adds to the current distance
     /// </summary>
@@ -126,17 +126,19 @@ public class Distance : MonoBehaviour
             PlayerPrefs.Save();
 
         }
-        */
+      
     }
-
+    */
+    
+    /*
     /// <summary>
     /// Updates the current distance
     /// </summary>
     public void UpdateText()
     {
         // TODO For self: move this Method to a different object?
-        FinalPlayerDistance.text = playerDistance.ToString("F1");
-        LongestPlayerDistance.text = playerDistance.ToString("F1");
+       // FinalPlayerDistance.text = playerDistance.ToString("F1");
+        //LongestPlayerDistance.text = playerDistance.ToString("F1");
     }
     /*
          #region Score specific methods
