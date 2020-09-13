@@ -105,10 +105,13 @@ public class GameOver : MonoBehaviour
                 gameOverItemGroup.GameOverTimerObject.SetActive(true);
                 gameOverItemGroup.GameOverTimer -= Time.deltaTime;
                 gameOverItemGroup.CountdownText.text = gameOverItemGroup.GameOverTimer.ToString("F0");
-                
+
+                //Debug.Log("Background Timer SHOULD be zero");
+
                 // Game is Over if the GameOverTimer reaches 0
                 if (gameOverItemGroup.GameOverTimer <= 0)
                 {
+                    //Debug.Log("Game Should be Over");
 
                     //Distance.Instance.SetScore();
                     /*
@@ -172,18 +175,23 @@ public class GameOver : MonoBehaviour
         //Distance.Instance.PlayerDistance += newDistanceValue;
         playerDistance += newDistanceValue;
         UpdateText();
+        Debug.Log("Banana Bar");
+        //Debug.Log("Distance score SHOULD be SET: " + DISTANCE_SCORE);
 
         if (playerDistance > PlayerPrefs.GetFloat(DISTANCE_SCORE, 0))
         {
             finalPlayerDistance.text = playerDistance.ToString("F1");
+            
             PlayerPrefs.SetFloat(DISTANCE_SCORE, playerDistance);
-            Debug.Log("SETS Distance score: " + DISTANCE_SCORE);
+            //Debug.Log("SETS Distance score: " + DISTANCE_SCORE);
             PlayerPrefs.Save();
         }
+        Debug.Log("Banana Boat");
     }
 
     public void UpdateText()
     {
+        //Debug.Log("TEXT UPDATED");
         finalPlayerDistance.text = playerDistance.ToString("F1");
         longestPlayerDistance.text = playerDistance.ToString("F1");
     }
