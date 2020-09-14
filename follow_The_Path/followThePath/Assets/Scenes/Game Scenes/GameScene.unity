@@ -2060,6 +2060,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2e493cecf83bb9499aa623288a9ca2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1040875963 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8377312157736546341, guid: 689f3c811c087be408b60fbb8f4812ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 1641704424}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d6ac2c7b5649e1479cf8c23a46f553e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1045428197
 GameObject:
   m_ObjectHideFlags: 0
@@ -3889,6 +3901,11 @@ PrefabInstance:
       propertyPath: gameUiTween
       value: 
       objectReference: {fileID: 1256180246}
+    - target: {fileID: 3596900844643142632, guid: 7f099ccd50ca071438eed6eb291dbe6e,
+        type: 3}
+      propertyPath: gameOver
+      value: 
+      objectReference: {fileID: 1040875963}
     - target: {fileID: 3596900844643142633, guid: 7f099ccd50ca071438eed6eb291dbe6e,
         type: 3}
       propertyPath: m_LocalPosition.x

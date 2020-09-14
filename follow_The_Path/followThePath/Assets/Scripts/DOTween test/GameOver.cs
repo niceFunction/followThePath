@@ -34,6 +34,7 @@ public class GameOver : MonoBehaviour
     private float playerDistance;
     private float playersLastPosition;
     private float distanceScore;
+    private float previousPlayerDistance;
 
 
     [SerializeField, Tooltip("Shows the Players current distance in game")]
@@ -179,6 +180,7 @@ public class GameOver : MonoBehaviour
 
         if (playerDistance > PlayerPrefs.GetFloat(DISTANCE_SCORE, 0))
         {
+            previousPlayerDistance = playerDistance;
             finalPlayerDistance.text = playerDistance.ToString("F1");
             
             PlayerPrefs.SetFloat(DISTANCE_SCORE, playerDistance);
@@ -189,9 +191,8 @@ public class GameOver : MonoBehaviour
 
     public void UpdateText()
     {
-        //Debug.Log("TEXT UPDATED");
         finalPlayerDistance.text = playerDistance.ToString("F1");
-        longestPlayerDistance.text = playerDistance.ToString("F1");
+        longestPlayerDistance.text = PlayerPrefs.GetFloat(DISTANCE_SCORE, 0).ToString("F1");
     }
 }
 
