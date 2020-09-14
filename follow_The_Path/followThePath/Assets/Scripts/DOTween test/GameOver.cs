@@ -175,7 +175,6 @@ public class GameOver : MonoBehaviour
         //Distance.Instance.PlayerDistance += newDistanceValue;
         playerDistance += newDistanceValue;
         UpdateText();
-        Debug.Log("Banana Bar");
         //Debug.Log("Distance score SHOULD be SET: " + DISTANCE_SCORE);
 
         if (playerDistance > PlayerPrefs.GetFloat(DISTANCE_SCORE, 0))
@@ -183,10 +182,9 @@ public class GameOver : MonoBehaviour
             finalPlayerDistance.text = playerDistance.ToString("F1");
             
             PlayerPrefs.SetFloat(DISTANCE_SCORE, playerDistance);
-            //Debug.Log("SETS Distance score: " + DISTANCE_SCORE);
+            Debug.Log("SETS Distance score: " + DISTANCE_SCORE);
             PlayerPrefs.Save();
         }
-        Debug.Log("Banana Boat");
     }
 
     public void UpdateText()
