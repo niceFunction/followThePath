@@ -15,6 +15,6 @@ public class SpecificColor : MonoBehaviour, IColorMode
 
     public void Stop()
     {
-        // To be added
+        // No action necessary, no process is running
     }
 }

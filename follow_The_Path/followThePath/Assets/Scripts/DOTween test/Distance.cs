@@ -124,9 +124,7 @@ public class Distance : MonoBehaviour
             PlayerPrefs.SetFloat(DISTANCE_SCORE, addHighscoreDistance);
             FinalPlayerDistance.text = playerDistance.ToString("F1");
             PlayerPrefs.Save();
-
         }
-      
     }
     */
     
