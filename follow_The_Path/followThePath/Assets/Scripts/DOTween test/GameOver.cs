@@ -7,6 +7,8 @@ using DG.Tweening;
 
 public class GameOver : MonoBehaviour
 {
+    //TODO Remove commented code
+
     //TODO On Game Over, ensure that the game IS paused and the Ball can't move
     #region Game Over Components
 
@@ -93,6 +95,8 @@ public class GameOver : MonoBehaviour
     /// </summary>
     public void GameStatus()
     {
+        //TODO Break out all of the if statements to their own methods (not important right now)
+
         // If the Player's movement speed is too low, start the BackgroundTimer
         if (gameOverItemGroup.Ball.RB.velocity.magnitude < gameOverItemGroup.MinimumSpeed)
         {
@@ -145,8 +149,6 @@ public class GameOver : MonoBehaviour
     /// </summary>
     private void OnGameOver()
     {
-        // TODO GameOver 1: on Game Over, set player velocity.magnitude to 0, 
-        // TODO GameOver 2: but remember to restore it (if necessary)
         gameOverTween.Kill();
         gameOverTween = DOTween.Sequence()
             .Join(gameOverItemGroup.Background.DOFade(0.85f, gameOverTweenDuration))
@@ -171,9 +173,11 @@ public class GameOver : MonoBehaviour
         currentPlayerDistance.text = playerDistance.ToString("F1");
     }
 
-    public void SetScore(float newDistanceValue)
+    //TODO look through this method more
+    public void SetScore(float newDistanceValue) //TODO Rename newDistanceValue to something else, more "tydligt"?
     {
         //Distance.Instance.PlayerDistance += newDistanceValue;
+        //TODO should playerDistance be something else maybe use distanceScore?
         playerDistance += newDistanceValue;
         UpdateText();
         //Debug.Log("Distance score SHOULD be SET: " + DISTANCE_SCORE);
