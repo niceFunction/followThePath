@@ -13,8 +13,8 @@ public class GameOver : MonoBehaviour
     #region Game Over Components
 
     [SerializeField, Tooltip("Variables for Game Over state")]
-    private GameOverItems.GameOverGroup gameOverItemGroup;
-    public GameOverItems.GameOverGroup GameOverItemGroup { get { return gameOverItemGroup; } }
+    private GameOverGroup gameOverItemGroup;
+    public GameOverGroup GameOverItemGroup { get { return gameOverItemGroup; } }
 
     [SerializeField, Tooltip("Sets the 'setBackgroundTimer' to 'backgroundTimer', (USED FOR TESTING)")]
     private float setBackgroundTimer;
@@ -86,7 +86,6 @@ public class GameOver : MonoBehaviour
         setBackgroundTimer = gameOverItemGroup.BackgroundTimer;
         resetGameOverTimer = gameOverItemGroup.GameOverTimer;
 
-        //Distance.Instance.LongestPlayerDistance.text = PlayerPrefs.GetFloat(DISTANCE_SCORE, 0).ToString();
         Debug.Log("GETS Distance score: " + DISTANCE_SCORE);
     }
 
@@ -103,45 +102,52 @@ public class GameOver : MonoBehaviour
             // BackgroundTimer starts counting down
             gameOverItemGroup.BackgroundTimer -= Time.deltaTime;
 
-            // When BackgroundTimer is 0, GameOverTimer shows up & starts counting down
-            if(gameOverItemGroup.BackgroundTimer <= 0)
-            {
-                gameOverItemGroup.BackgroundTimer = 0;
-                gameOverItemGroup.GameOverTimerObject.SetActive(true);
-                gameOverItemGroup.GameOverTimer -= Time.deltaTime;
-                gameOverItemGroup.CountdownText.text = gameOverItemGroup.GameOverTimer.ToString("F0");
-
-                //Debug.Log("Background Timer SHOULD be zero");
-
-                // Game is Over if the GameOverTimer reaches 0
-                if (gameOverItemGroup.GameOverTimer <= 0)
-                {
-                    //Debug.Log("Game Should be Over");
-
-                    //Distance.Instance.SetScore();
-                    /*
-                    if (Distance.Instance.PlayerDistance > PlayerPrefs.GetFloat(DISTANCE_SCORE, 0))
-                    {
-                        Distance.Instance.FinalPlayerDistance.text = Distance.Instance.PlayerDistance.ToString("F1");
-                        PlayerPrefs.SetFloat(DISTANCE_SCORE, Distance.Instance.AddHighscoreDistance);
-                        Debug.Log("SETS Distance score: " + DISTANCE_SCORE);
-                        PlayerPrefs.Save();
-
-                    }
-                    */
-                    SetScore(distanceScore);
-                    gameOverItemGroup.IsGameOver = true;
-                    OnGameOver();
-                }
-            }
+            
+            InitiateGameOver();
         }
-        // If the Player's movement speed is above the minimum speed threshold, restore & hide timers
-        else if (gameOverItemGroup.Ball.RB.velocity.magnitude > gameOverItemGroup.MinimumSpeed)
+        else
         {
-            gameOverItemGroup.GameOverTimerObject.SetActive(false);
-            gameOverItemGroup.BackgroundTimer = setBackgroundTimer;
-            gameOverItemGroup.GameOverTimer = resetGameOverTimer;
+            GameIsNotOver();
         }
+    }
+
+    /// <summary>
+    /// When BackgroundTimer is 0, GameOverTimer shows up & starts counting down
+    /// </summary>
+    private void InitiateGameOver()
+    {
+        if (gameOverItemGroup.BackgroundTimer <= 0)
+        {
+            gameOverItemGroup.BackgroundTimer = 0;
+            gameOverItemGroup.GameOverTimerObject.SetActive(true);
+            gameOverItemGroup.GameOverTimer -= Time.deltaTime;
+            gameOverItemGroup.CountdownText.text = gameOverItemGroup.GameOverTimer.ToString("F0");
+
+            GameIsOver();
+        }
+    }
+
+    /// <summary>
+    ///  Game is Over if the GameOverTimer reaches 0
+    /// </summary>
+    private void GameIsOver()
+    {
+        if (gameOverItemGroup.GameOverTimer <= 0)
+        {
+            SetScore(distanceScore);
+            gameOverItemGroup.IsGameOver = true;
+            OnGameOver();
+        }
+    }
+
+    /// <summary>
+    ///  If the Player's movement speed is above the minimum speed threshold, restore & hide timers
+    /// </summary>
+    private void GameIsNotOver()
+    {
+        gameOverItemGroup.GameOverTimerObject.SetActive(false);
+        gameOverItemGroup.BackgroundTimer = setBackgroundTimer;
+        gameOverItemGroup.GameOverTimer = resetGameOverTimer;
     }
 
     /// <summary>
@@ -157,7 +163,6 @@ public class GameOver : MonoBehaviour
 
         // Set the GameOverTimer to 0 & hide it         
         gameOverItemGroup.GameOverTimer = 0;
-        //Distance.Instance.UpdateText();
         gameOverItemGroup.CountdownText.enabled = false;
 
     }
@@ -174,13 +179,11 @@ public class GameOver : MonoBehaviour
     }
 
     //TODO look through this method more
-    public void SetScore(float newDistanceValue) //TODO Rename newDistanceValue to something else, more "tydligt"?
+    public void SetScore(float newHighscore) //TODO Rename newDistanceValue to something else, more "tydligt"?
     {
-        //Distance.Instance.PlayerDistance += newDistanceValue;
         //TODO should playerDistance be something else maybe use distanceScore?
-        playerDistance += newDistanceValue;
+        distanceScore += newHighscore;
         UpdateText();
-        //Debug.Log("Distance score SHOULD be SET: " + DISTANCE_SCORE);
 
         if (playerDistance > PlayerPrefs.GetFloat(DISTANCE_SCORE, 0))
         {
